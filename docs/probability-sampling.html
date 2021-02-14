@@ -1,0 +1,595 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 3 Probability sampling | YCHI5045M computer practical notes</title>
+  <meta name="description" content="These are the notes for the YCHI5045M computer practical sessions." />
+  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 3 Probability sampling | YCHI5045M computer practical notes" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="These are the notes for the YCHI5045M computer practical sessions." />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 3 Probability sampling | YCHI5045M computer practical notes" />
+  
+  <meta name="twitter:description" content="These are the notes for the YCHI5045M computer practical sessions." />
+  
+
+<meta name="author" content="Joe Hicks and Matt Mulvey" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="preliminary-information.html"/>
+<link rel="next" href="sample-size.html"/>
+<script src="libs/header-attrs-2.6/header-attrs.js"></script>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<script src="libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
+<script type="text/javascript">
+$(document).ready(function() {
+  $folds = $(".fold");
+  $folds.wrapInner("<div class=\"fold-blck\">"); // wrap a div container around content
+  $folds.prepend("<button class=\"fold-btn\">Show</button>");  // add a button
+  $(".fold-blck").toggle();  // fold all blocks
+  $(".fold-btn").on("click", function() {  // add onClick event
+    $(this).text($(this).text() === "Hide" ? "Show" : "Hide");  // if the text equals "Fold", change it to "Unfold"or else to "Fold" 
+    $(this).next(".fold-blck").toggle("linear");  // "swing" is the default easing function. This can be further customized in its speed or the overall animation itself.
+  })
+});
+</script>
+
+
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">YCHI5045M computer practical sessions notes</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Aim and objectives</a></li>
+<li class="chapter" data-level="2" data-path="preliminary-information.html"><a href="preliminary-information.html"><i class="fa fa-check"></i><b>2</b> Preliminary information</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="preliminary-information.html"><a href="preliminary-information.html#a-word-of-encouragement"><i class="fa fa-check"></i><b>2.1</b> A word of encouragement</a></li>
+<li class="chapter" data-level="2.2" data-path="preliminary-information.html"><a href="preliminary-information.html#about-this-handout"><i class="fa fa-check"></i><b>2.2</b> About this handout</a></li>
+<li class="chapter" data-level="2.3" data-path="preliminary-information.html"><a href="preliminary-information.html#how-these-sessions-relate-to-the-summative-assignment"><i class="fa fa-check"></i><b>2.3</b> How these sessions relate to the summative assignment</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="probability-sampling.html"><a href="probability-sampling.html"><i class="fa fa-check"></i><b>3</b> Probability sampling</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="probability-sampling.html"><a href="probability-sampling.html#non-probability-sampling"><i class="fa fa-check"></i><b>3.1</b> Non-probability sampling</a></li>
+<li class="chapter" data-level="3.2" data-path="probability-sampling.html"><a href="probability-sampling.html#simple-random-sampling"><i class="fa fa-check"></i><b>3.2</b> Simple random sampling</a>
+<ul>
+<li class="chapter" data-level="3.2.1" data-path="probability-sampling.html"><a href="probability-sampling.html#overview"><i class="fa fa-check"></i><b>3.2.1</b> Overview</a></li>
+<li class="chapter" data-level="3.2.2" data-path="probability-sampling.html"><a href="probability-sampling.html#advantages-of-simple-random-sampling"><i class="fa fa-check"></i><b>3.2.2</b> Advantages of simple random sampling</a></li>
+<li class="chapter" data-level="3.2.3" data-path="probability-sampling.html"><a href="probability-sampling.html#disadvantageslimitations-of-simple-random-sampling"><i class="fa fa-check"></i><b>3.2.3</b> Disadvantages/limitations of simple random sampling</a></li>
+<li class="chapter" data-level="3.2.4" data-path="probability-sampling.html"><a href="probability-sampling.html#scenario"><i class="fa fa-check"></i><b>3.2.4</b> Scenario</a></li>
+<li class="chapter" data-level="3.2.5" data-path="probability-sampling.html"><a href="probability-sampling.html#exercise-taking-a-simple-random-sample-using-excel"><i class="fa fa-check"></i><b>3.2.5</b> Exercise: taking a simple random sample using Excel</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="probability-sampling.html"><a href="probability-sampling.html#stratified-random-sample"><i class="fa fa-check"></i><b>3.3</b> Stratified random sample</a>
+<ul>
+<li class="chapter" data-level="3.3.1" data-path="probability-sampling.html"><a href="probability-sampling.html#overview-1"><i class="fa fa-check"></i><b>3.3.1</b> Overview</a></li>
+<li class="chapter" data-level="3.3.2" data-path="probability-sampling.html"><a href="probability-sampling.html#advantages-of-stratified-random-sampling"><i class="fa fa-check"></i><b>3.3.2</b> Advantages of stratified random sampling</a></li>
+<li class="chapter" data-level="3.3.3" data-path="probability-sampling.html"><a href="probability-sampling.html#limitations-of-stratified-random-sampling-with-proportionate-stratification"><i class="fa fa-check"></i><b>3.3.3</b> Limitations of stratified random sampling with proportionate stratification</a></li>
+<li class="chapter" data-level="3.3.4" data-path="probability-sampling.html"><a href="probability-sampling.html#scenario-1"><i class="fa fa-check"></i><b>3.3.4</b> Scenario</a></li>
+<li class="chapter" data-level="3.3.5" data-path="probability-sampling.html"><a href="probability-sampling.html#exercise-taking-a-stratified-random-sample-with-proportionate-stratification-using-excel"><i class="fa fa-check"></i><b>3.3.5</b> Exercise: taking a stratified random sample with proportionate stratification using Excel</a></li>
+</ul></li>
+<li class="chapter" data-level="3.4" data-path="probability-sampling.html"><a href="probability-sampling.html#systematic-random-sampling"><i class="fa fa-check"></i><b>3.4</b> Systematic random sampling</a>
+<ul>
+<li class="chapter" data-level="3.4.1" data-path="probability-sampling.html"><a href="probability-sampling.html#overview-2"><i class="fa fa-check"></i><b>3.4.1</b> Overview</a></li>
+<li class="chapter" data-level="3.4.2" data-path="probability-sampling.html"><a href="probability-sampling.html#advantages-of-systematic-random-sampling"><i class="fa fa-check"></i><b>3.4.2</b> Advantages of systematic random sampling</a></li>
+<li class="chapter" data-level="3.4.3" data-path="probability-sampling.html"><a href="probability-sampling.html#disadvantageslimitations-of-systematic-random-sampling"><i class="fa fa-check"></i><b>3.4.3</b> Disadvantages/limitations of systematic random sampling</a></li>
+<li class="chapter" data-level="3.4.4" data-path="probability-sampling.html"><a href="probability-sampling.html#when-to-use-systematic-random-sampling"><i class="fa fa-check"></i><b>3.4.4</b> When to use systematic random sampling?</a></li>
+<li class="chapter" data-level="3.4.5" data-path="probability-sampling.html"><a href="probability-sampling.html#scenario-2"><i class="fa fa-check"></i><b>3.4.5</b> Scenario</a></li>
+<li class="chapter" data-level="3.4.6" data-path="probability-sampling.html"><a href="probability-sampling.html#exercise-taking-a-systematic-random-sample-using-excel"><i class="fa fa-check"></i><b>3.4.6</b> Exercise: taking a systematic random sample using Excel</a></li>
+</ul></li>
+<li class="chapter" data-level="3.5" data-path="probability-sampling.html"><a href="probability-sampling.html#single-stage-cluster-sampling-and-multi-stage-cluster-sampling"><i class="fa fa-check"></i><b>3.5</b> Single-stage cluster sampling and multi-stage cluster sampling</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="sample-size.html"><a href="sample-size.html"><i class="fa fa-check"></i><b>4</b> Sample size</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="sample-size.html"><a href="sample-size.html#overview-3"><i class="fa fa-check"></i><b>4.1</b> Overview</a></li>
+<li class="chapter" data-level="4.2" data-path="sample-size.html"><a href="sample-size.html#confidence-interval-based-approach"><i class="fa fa-check"></i><b>4.2</b> Confidence interval based approach</a>
+<ul>
+<li class="chapter" data-level="4.2.1" data-path="sample-size.html"><a href="sample-size.html#overview-4"><i class="fa fa-check"></i><b>4.2.1</b> Overview</a></li>
+<li class="chapter" data-level="4.2.2" data-path="sample-size.html"><a href="sample-size.html#analytical-studies"><i class="fa fa-check"></i><b>4.2.2</b> Analytical studies</a></li>
+<li class="chapter" data-level="4.2.3" data-path="sample-size.html"><a href="sample-size.html#statulator-sample-sizes-for-confidence-intervals"><i class="fa fa-check"></i><b>4.2.3</b> Statulator sample sizes for confidence intervals</a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="sample-size.html"><a href="sample-size.html#hypothesis-testing-based-approach"><i class="fa fa-check"></i><b>4.3</b> Hypothesis testing based approach</a>
+<ul>
+<li class="chapter" data-level="4.3.1" data-path="sample-size.html"><a href="sample-size.html#overview-5"><i class="fa fa-check"></i><b>4.3.1</b> Overview</a></li>
+<li class="chapter" data-level="4.3.2" data-path="sample-size.html"><a href="sample-size.html#descriptive-studies"><i class="fa fa-check"></i><b>4.3.2</b> Descriptive studies</a></li>
+<li class="chapter" data-level="4.3.3" data-path="sample-size.html"><a href="sample-size.html#statulator-sample-sizes-for-hypothesis-testing"><i class="fa fa-check"></i><b>4.3.3</b> Statulator sample sizes for hypothesis testing</a></li>
+</ul></li>
+<li class="chapter" data-level="4.4" data-path="sample-size.html"><a href="sample-size.html#confidence-interval-approach-in-statulator"><i class="fa fa-check"></i><b>4.4</b> Confidence interval approach in Statulator</a>
+<ul>
+<li class="chapter" data-level="4.4.1" data-path="sample-size.html"><a href="sample-size.html#estimating-means"><i class="fa fa-check"></i><b>4.4.1</b> Estimating means</a></li>
+<li class="chapter" data-level="4.4.2" data-path="sample-size.html"><a href="sample-size.html#estimating-proportions"><i class="fa fa-check"></i><b>4.4.2</b> Estimating proportions</a></li>
+</ul></li>
+<li class="chapter" data-level="4.5" data-path="sample-size.html"><a href="sample-size.html#hypothesis-testing-approach"><i class="fa fa-check"></i><b>4.5</b> Hypothesis testing approach</a>
+<ul>
+<li class="chapter" data-level="4.5.1" data-path="sample-size.html"><a href="sample-size.html#comparing-two-independent-means"><i class="fa fa-check"></i><b>4.5.1</b> Comparing two independent means</a></li>
+<li class="chapter" data-level="4.5.2" data-path="sample-size.html"><a href="sample-size.html#compare-two-independent-proportions"><i class="fa fa-check"></i><b>4.5.2</b> Compare two independent proportions</a></li>
+</ul></li>
+<li class="chapter" data-level="4.6" data-path="sample-size.html"><a href="sample-size.html#additional-considerations-for-the-hypothesis-testing-approach"><i class="fa fa-check"></i><b>4.6</b> Additional considerations for the hypothesis testing approach</a></li>
+<li class="chapter" data-level="4.7" data-path="sample-size.html"><a href="sample-size.html#exercises-estimating-required-sample-sizes"><i class="fa fa-check"></i><b>4.7</b> Exercises: estimating required sample sizes</a></li>
+<li class="chapter" data-level="4.8" data-path="sample-size.html"><a href="sample-size.html#reporting-sample-size-calculations"><i class="fa fa-check"></i><b>4.8</b> Reporting sample size calculations</a></li>
+<li class="chapter" data-level="4.10" data-path="sample-size.html"><a href="sample-size.html#adjusting-for-clustering"><i class="fa fa-check"></i><b>4.10</b> Adjusting for clustering</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="an-introduction-to-spss.html"><a href="an-introduction-to-spss.html"><i class="fa fa-check"></i><b>5</b> An introduction to SPSS</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="an-introduction-to-spss.html"><a href="an-introduction-to-spss.html#brief-background"><i class="fa fa-check"></i><b>5.1</b> Brief background</a></li>
+<li class="chapter" data-level="5.2" data-path="an-introduction-to-spss.html"><a href="an-introduction-to-spss.html#the-datasets"><i class="fa fa-check"></i><b>5.2</b> The datasets</a></li>
+<li class="chapter" data-level="5.3" data-path="an-introduction-to-spss.html"><a href="an-introduction-to-spss.html#exercise-opening-spss-loading-data-and-understanding-the-key-features-of-the-interface"><i class="fa fa-check"></i><b>5.3</b> Exercise: opening SPSS, loading data and understanding the key features of the interface</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="preparing-a-dataset-for-analysis.html"><a href="preparing-a-dataset-for-analysis.html"><i class="fa fa-check"></i><b>6</b> Preparing a dataset for analysis</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="preparing-a-dataset-for-analysis.html"><a href="preparing-a-dataset-for-analysis.html#exercise-loading-excel-data"><i class="fa fa-check"></i><b>6.1</b> Exercise: loading Excel data</a></li>
+<li class="chapter" data-level="6.2" data-path="preparing-a-dataset-for-analysis.html"><a href="preparing-a-dataset-for-analysis.html#exercise-set-variable-properties-code-categorical-variables-and-check-categorical-variables-for-obvious-errors"><i class="fa fa-check"></i><b>6.2</b> Exercise: set variable properties, code categorical variables, and check categorical variables for obvious errors</a></li>
+<li class="chapter" data-level="6.3" data-path="preparing-a-dataset-for-analysis.html"><a href="preparing-a-dataset-for-analysis.html#exercise-check-numerical-variables-for-obvious-errors"><i class="fa fa-check"></i><b>6.3</b> Exercise: check numerical variables for obvious errors</a></li>
+<li class="chapter" data-level="6.4" data-path="preparing-a-dataset-for-analysis.html"><a href="preparing-a-dataset-for-analysis.html#a-final-note-on-data-cleaning"><i class="fa fa-check"></i><b>6.4</b> A final note on data cleaning</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="describing-a-dataset.html"><a href="describing-a-dataset.html"><i class="fa fa-check"></i><b>7</b> Describing a dataset</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="describing-a-dataset.html"><a href="describing-a-dataset.html#background"><i class="fa fa-check"></i><b>7.1</b> Background</a></li>
+<li class="chapter" data-level="7.3" data-path="describing-a-dataset.html"><a href="describing-a-dataset.html#exercise-create-descriptive-statistics"><i class="fa fa-check"></i><b>7.3</b> Exercise: create descriptive statistics</a>
+<ul>
+<li class="chapter" data-level="7.3.1" data-path="describing-a-dataset.html"><a href="describing-a-dataset.html#overview-6"><i class="fa fa-check"></i><b>7.3.1</b> Overview</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="the-independent-t-test.html"><a href="the-independent-t-test.html"><i class="fa fa-check"></i><b>8</b> The independent t-test</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="the-independent-t-test.html"><a href="the-independent-t-test.html#overview-7"><i class="fa fa-check"></i><b>8.1</b> Overview</a></li>
+<li class="chapter" data-level="8.2" data-path="the-independent-t-test.html"><a href="the-independent-t-test.html#scenario-3"><i class="fa fa-check"></i><b>8.2</b> Scenario</a></li>
+<li class="chapter" data-level="8.3" data-path="the-independent-t-test.html"><a href="the-independent-t-test.html#step-1-check-the-assumptions-of-the-independent-t-test-are-not-violated"><i class="fa fa-check"></i><b>8.3</b> Step 1: check the assumptions of the independent t-test are not violated</a></li>
+<li class="chapter" data-level="8.4" data-path="the-independent-t-test.html"><a href="the-independent-t-test.html#step-2-create-a-binary-independent-variable-from-a-numerical-variable"><i class="fa fa-check"></i><b>8.4</b> Step 2: create a binary independent variable from a numerical variable</a></li>
+<li class="chapter" data-level="8.5" data-path="the-independent-t-test.html"><a href="the-independent-t-test.html#step-3-run-the-independent-t-test"><i class="fa fa-check"></i><b>8.5</b> Step 3: run the independent t-test</a></li>
+<li class="chapter" data-level="8.6" data-path="the-independent-t-test.html"><a href="the-independent-t-test.html#step-4-understand-the-results-tables-and-extract-the-key-results"><i class="fa fa-check"></i><b>8.6</b> Step 4: understand the results tables and extract the key results</a></li>
+<li class="chapter" data-level="8.7" data-path="the-independent-t-test.html"><a href="the-independent-t-test.html#step-5-report-and-interpret-the-results"><i class="fa fa-check"></i><b>8.7</b> Step 5: report and interpret the results</a></li>
+<li class="chapter" data-level="8.8" data-path="the-independent-t-test.html"><a href="the-independent-t-test.html#limitations"><i class="fa fa-check"></i><b>8.8</b> Limitations</a></li>
+<li class="chapter" data-level="8.9" data-path="the-independent-t-test.html"><a href="the-independent-t-test.html#exercise-independent-t-test"><i class="fa fa-check"></i><b>8.9</b> Exercise: independent t-test</a></li>
+<li class="chapter" data-level="8.10" data-path="the-independent-t-test.html"><a href="the-independent-t-test.html#next-steps-optional"><i class="fa fa-check"></i><b>8.10</b> Next steps (optional)</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="the-independent-t-test-skewed-outcome.html"><a href="the-independent-t-test-skewed-outcome.html"><i class="fa fa-check"></i><b>9</b> The independent t-test: skewed outcome</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="the-independent-t-test-skewed-outcome.html"><a href="the-independent-t-test-skewed-outcome.html#overview-8"><i class="fa fa-check"></i><b>9.1</b> Overview</a></li>
+<li class="chapter" data-level="9.2" data-path="the-independent-t-test-skewed-outcome.html"><a href="the-independent-t-test-skewed-outcome.html#scenario-4"><i class="fa fa-check"></i><b>9.2</b> Scenario</a></li>
+<li class="chapter" data-level="9.3" data-path="the-independent-t-test-skewed-outcome.html"><a href="the-independent-t-test-skewed-outcome.html#step-1-check-the-assumptions-of-the-independent-t-test."><i class="fa fa-check"></i><b>9.3</b> Step 1: check the assumptions of the independent t-test.</a></li>
+<li class="chapter" data-level="9.4" data-path="the-independent-t-test-skewed-outcome.html"><a href="the-independent-t-test-skewed-outcome.html#step-2-transform-the-outcome"><i class="fa fa-check"></i><b>9.4</b> Step 2: transform the outcome</a></li>
+<li class="chapter" data-level="9.5" data-path="the-independent-t-test-skewed-outcome.html"><a href="the-independent-t-test-skewed-outcome.html#step-3-run-the-independent-t-test-1"><i class="fa fa-check"></i><b>9.5</b> Step 3: run the independent t-test</a></li>
+<li class="chapter" data-level="9.6" data-path="the-independent-t-test-skewed-outcome.html"><a href="the-independent-t-test-skewed-outcome.html#step-4-understand-the-results-tables-and-extract-the-key-results-1"><i class="fa fa-check"></i><b>9.6</b> Step 4: understand the results tables and extract the key results</a></li>
+<li class="chapter" data-level="9.7" data-path="the-independent-t-test-skewed-outcome.html"><a href="the-independent-t-test-skewed-outcome.html#step-5-report-and-interpret-the-results-1"><i class="fa fa-check"></i><b>9.7</b> Step 5: report and interpret the results</a></li>
+<li class="chapter" data-level="9.8" data-path="the-independent-t-test-skewed-outcome.html"><a href="the-independent-t-test-skewed-outcome.html#limitations-1"><i class="fa fa-check"></i><b>9.8</b> Limitations</a></li>
+<li class="chapter" data-level="9.9" data-path="the-independent-t-test-skewed-outcome.html"><a href="the-independent-t-test-skewed-outcome.html#exercise-independent-t-test-with-a-skewed-outcome"><i class="fa fa-check"></i><b>9.9</b> Exercise: independent t-test with a skewed outcome</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="the-paired-t-test.html"><a href="the-paired-t-test.html"><i class="fa fa-check"></i><b>10</b> The paired t-test</a>
+<ul>
+<li class="chapter" data-level="10.1" data-path="the-paired-t-test.html"><a href="the-paired-t-test.html#overview-9"><i class="fa fa-check"></i><b>10.1</b> Overview</a></li>
+<li class="chapter" data-level="10.2" data-path="the-paired-t-test.html"><a href="the-paired-t-test.html#scenario-5"><i class="fa fa-check"></i><b>10.2</b> Scenario</a></li>
+<li class="chapter" data-level="10.3" data-path="the-paired-t-test.html"><a href="the-paired-t-test.html#step-1-check-the-assumptions-of-the-paired-t-test"><i class="fa fa-check"></i><b>10.3</b> Step 1: check the assumptions of the paired t-test</a></li>
+<li class="chapter" data-level="10.4" data-path="the-paired-t-test.html"><a href="the-paired-t-test.html#step-2-run-the-paired-t-test"><i class="fa fa-check"></i><b>10.4</b> Step 2: run the paired t-test</a></li>
+<li class="chapter" data-level="10.5" data-path="the-paired-t-test.html"><a href="the-paired-t-test.html#step-3-understand-the-results-tables-and-extract-the-key-results"><i class="fa fa-check"></i><b>10.5</b> Step 3: understand the results tables and extract the key results</a></li>
+<li class="chapter" data-level="10.6" data-path="the-paired-t-test.html"><a href="the-paired-t-test.html#step-4-report-and-interpret-the-results"><i class="fa fa-check"></i><b>10.6</b> Step 4: report and interpret the results</a></li>
+<li class="chapter" data-level="10.7" data-path="the-paired-t-test.html"><a href="the-paired-t-test.html#limitations-2"><i class="fa fa-check"></i><b>10.7</b> Limitations</a></li>
+<li class="chapter" data-level="10.8" data-path="the-paired-t-test.html"><a href="the-paired-t-test.html#exercise-paired-t-test"><i class="fa fa-check"></i><b>10.8</b> Exercise: paired t-test</a></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="the-chi-square-test-of-independence.html"><a href="the-chi-square-test-of-independence.html"><i class="fa fa-check"></i><b>11</b> The chi-square test of independence</a>
+<ul>
+<li class="chapter" data-level="11.1" data-path="the-chi-square-test-of-independence.html"><a href="the-chi-square-test-of-independence.html#overview-10"><i class="fa fa-check"></i><b>11.1</b> Overview</a></li>
+<li class="chapter" data-level="11.2" data-path="the-chi-square-test-of-independence.html"><a href="the-chi-square-test-of-independence.html#scenario-6"><i class="fa fa-check"></i><b>11.2</b> Scenario</a></li>
+<li class="chapter" data-level="11.3" data-path="the-chi-square-test-of-independence.html"><a href="the-chi-square-test-of-independence.html#step-1-check-the-assumptions-of-the-chi-squared-test-of-independence"><i class="fa fa-check"></i><b>11.3</b> Step 1: check the assumptions of the chi-squared test of independence</a></li>
+<li class="chapter" data-level="11.4" data-path="the-chi-square-test-of-independence.html"><a href="the-chi-square-test-of-independence.html#step-2-run-the-chi-squared-test-of-independence"><i class="fa fa-check"></i><b>11.4</b> Step 2: run the chi-squared test of independence</a></li>
+<li class="chapter" data-level="11.5" data-path="the-chi-square-test-of-independence.html"><a href="the-chi-square-test-of-independence.html#step-3-understand-the-results-tables-and-extract-the-key-results-1"><i class="fa fa-check"></i><b>11.5</b> Step 3: understand the results tables and extract the key results</a></li>
+<li class="chapter" data-level="11.6" data-path="the-chi-square-test-of-independence.html"><a href="the-chi-square-test-of-independence.html#step-4-report-and-interpret-the-results-1"><i class="fa fa-check"></i><b>11.6</b> Step 4: report and interpret the results</a></li>
+<li class="chapter" data-level="11.7" data-path="the-chi-square-test-of-independence.html"><a href="the-chi-square-test-of-independence.html#limitations-3"><i class="fa fa-check"></i><b>11.7</b> Limitations</a></li>
+<li class="chapter" data-level="11.8" data-path="the-chi-square-test-of-independence.html"><a href="the-chi-square-test-of-independence.html#expected-cell-counts-5"><i class="fa fa-check"></i><b>11.8</b> Expected cell counts &lt;5</a></li>
+<li class="chapter" data-level="11.9" data-path="the-chi-square-test-of-independence.html"><a href="the-chi-square-test-of-independence.html#exercise-chi-square-test-of-independence"><i class="fa fa-check"></i><b>11.9</b> Exercise: chi-square test of independence</a></li>
+</ul></li>
+<li class="chapter" data-level="12" data-path="the-chi-square-goodness-of-fit-test.html"><a href="the-chi-square-goodness-of-fit-test.html"><i class="fa fa-check"></i><b>12</b> The chi-square goodness-of-fit test</a></li>
+<li class="chapter" data-level="13" data-path="analysing-pairedcorrelated-categorical-outcomes.html"><a href="analysing-pairedcorrelated-categorical-outcomes.html"><i class="fa fa-check"></i><b>13</b> Analysing paired/correlated categorical outcomes</a></li>
+<li class="chapter" data-level="14" data-path="multiple-linear-regression.html"><a href="multiple-linear-regression.html"><i class="fa fa-check"></i><b>14</b> Multiple linear regression</a>
+<ul>
+<li class="chapter" data-level="14.1" data-path="multiple-linear-regression.html"><a href="multiple-linear-regression.html#key-terminology-and-concepts"><i class="fa fa-check"></i><b>14.1</b> Key terminology and concepts</a></li>
+<li class="chapter" data-level="14.2" data-path="multiple-linear-regression.html"><a href="multiple-linear-regression.html#overview-with-a-focus-on-causal-inference-from-observational-data"><i class="fa fa-check"></i><b>14.2</b> Overview with a focus on causal inference from observational data</a>
+<ul>
+<li class="chapter" data-level="14.2.1" data-path="multiple-linear-regression.html"><a href="multiple-linear-regression.html#causal-inference-references"><i class="fa fa-check"></i><b>14.2.1</b> Causal inference references</a></li>
+<li class="chapter" data-level="14.2.2" data-path="multiple-linear-regression.html"><a href="multiple-linear-regression.html#interactions-and-non-linear-relationships"><i class="fa fa-check"></i><b>14.2.2</b> Interactions and non-linear relationships</a></li>
+</ul></li>
+<li class="chapter" data-level="14.3" data-path="multiple-linear-regression.html"><a href="multiple-linear-regression.html#scenario-7"><i class="fa fa-check"></i><b>14.3</b> Scenario</a></li>
+<li class="chapter" data-level="14.4" data-path="multiple-linear-regression.html"><a href="multiple-linear-regression.html#step-1-explore-the-data"><i class="fa fa-check"></i><b>14.4</b> Step 1: explore the data</a></li>
+<li class="chapter" data-level="14.5" data-path="multiple-linear-regression.html"><a href="multiple-linear-regression.html#step-2-run-the-linear-regression-model"><i class="fa fa-check"></i><b>14.5</b> Step 2: run the linear regression model</a></li>
+<li class="chapter" data-level="14.6" data-path="multiple-linear-regression.html"><a href="multiple-linear-regression.html#step-3-check-the-assumptions-of-linear-regression"><i class="fa fa-check"></i><b>14.6</b> Step 3: check the assumptions of linear regression</a></li>
+<li class="chapter" data-level="14.7" data-path="multiple-linear-regression.html"><a href="multiple-linear-regression.html#step-4-consider-additional-possible-issues"><i class="fa fa-check"></i><b>14.7</b> Step 4: consider additional possible issues</a></li>
+<li class="chapter" data-level="14.8" data-path="multiple-linear-regression.html"><a href="multiple-linear-regression.html#step-5-understand-the-results-tables-and-extract-the-key-results"><i class="fa fa-check"></i><b>14.8</b> Step 5: understand the results tables and extract the key results</a></li>
+<li class="chapter" data-level="14.9" data-path="multiple-linear-regression.html"><a href="multiple-linear-regression.html#step-6-report-and-interpret-the-results"><i class="fa fa-check"></i><b>14.9</b> Step 6: report and interpret the results</a>
+<ul>
+<li class="chapter" data-level="14.9.1" data-path="multiple-linear-regression.html"><a href="multiple-linear-regression.html#numerical-variables-1"><i class="fa fa-check"></i><b>14.9.1</b> Numerical variables</a></li>
+<li class="chapter" data-level="14.9.2" data-path="multiple-linear-regression.html"><a href="multiple-linear-regression.html#categorical-variables-1"><i class="fa fa-check"></i><b>14.9.2</b> Categorical variables</a></li>
+<li class="chapter" data-level="14.9.3" data-path="multiple-linear-regression.html"><a href="multiple-linear-regression.html#non-significant-results"><i class="fa fa-check"></i><b>14.9.3</b> “Non-significant” results</a></li>
+<li class="chapter" data-level="14.9.4" data-path="multiple-linear-regression.html"><a href="multiple-linear-regression.html#regression-tables"><i class="fa fa-check"></i><b>14.9.4</b> Regression tables</a></li>
+<li class="chapter" data-level="14.9.5" data-path="multiple-linear-regression.html"><a href="multiple-linear-regression.html#methods"><i class="fa fa-check"></i><b>14.9.5</b> Methods</a></li>
+</ul></li>
+<li class="chapter" data-level="14.10" data-path="multiple-linear-regression.html"><a href="multiple-linear-regression.html#exercise-multiple-linear-regression"><i class="fa fa-check"></i><b>14.10</b> Exercise: multiple linear regression</a></li>
+<li class="chapter" data-level="14.11" data-path="multiple-linear-regression.html"><a href="multiple-linear-regression.html#next-steps-optional-1"><i class="fa fa-check"></i><b>14.11</b> Next steps (optional)</a></li>
+</ul></li>
+<li class="chapter" data-level="15" data-path="multiple-logistic-regression.html"><a href="multiple-logistic-regression.html"><i class="fa fa-check"></i><b>15</b> Multiple logistic regression</a>
+<ul>
+<li class="chapter" data-level="15.1" data-path="multiple-logistic-regression.html"><a href="multiple-logistic-regression.html#overview-11"><i class="fa fa-check"></i><b>15.1</b> Overview</a></li>
+<li class="chapter" data-level="15.2" data-path="multiple-logistic-regression.html"><a href="multiple-logistic-regression.html#scenario-8"><i class="fa fa-check"></i><b>15.2</b> Scenario</a></li>
+<li class="chapter" data-level="15.3" data-path="multiple-logistic-regression.html"><a href="multiple-logistic-regression.html#modelling-process"><i class="fa fa-check"></i><b>15.3</b> Modelling process</a></li>
+<li class="chapter" data-level="15.4" data-path="multiple-logistic-regression.html"><a href="multiple-logistic-regression.html#step-1-explore-the-data-1"><i class="fa fa-check"></i><b>15.4</b> Step 1: explore the data</a></li>
+<li class="chapter" data-level="15.5" data-path="multiple-logistic-regression.html"><a href="multiple-logistic-regression.html#step-2-run-the-logistic-regression-model"><i class="fa fa-check"></i><b>15.5</b> Step 2: run the logistic regression model</a></li>
+<li class="chapter" data-level="15.6" data-path="multiple-logistic-regression.html"><a href="multiple-logistic-regression.html#step-3-check-the-assumptions-of-the-logistic-regression"><i class="fa fa-check"></i><b>15.6</b> Step 3: check the assumptions of the logistic regression</a></li>
+<li class="chapter" data-level="15.7" data-path="multiple-logistic-regression.html"><a href="multiple-logistic-regression.html#step-4-consider-additional-problems"><i class="fa fa-check"></i><b>15.7</b> Step 4: consider additional problems</a></li>
+<li class="chapter" data-level="15.8" data-path="multiple-logistic-regression.html"><a href="multiple-logistic-regression.html#step-5-understand-the-results-tables-and-extract-the-key-results-1"><i class="fa fa-check"></i><b>15.8</b> Step 5: understand the results tables and extract the key results</a></li>
+<li class="chapter" data-level="15.9" data-path="multiple-logistic-regression.html"><a href="multiple-logistic-regression.html#step-6-report-and-interpret-the-results-1"><i class="fa fa-check"></i><b>15.9</b> Step 6: report and interpret the results</a>
+<ul>
+<li class="chapter" data-level="15.9.1" data-path="multiple-logistic-regression.html"><a href="multiple-logistic-regression.html#understanding-and-interpreting-odds-ratios"><i class="fa fa-check"></i><b>15.9.1</b> Understanding and interpreting odds ratios</a></li>
+<li class="chapter" data-level="15.9.2" data-path="multiple-logistic-regression.html"><a href="multiple-logistic-regression.html#categorical-variables-2"><i class="fa fa-check"></i><b>15.9.2</b> Categorical variables</a></li>
+<li class="chapter" data-level="15.9.3" data-path="multiple-logistic-regression.html"><a href="multiple-logistic-regression.html#numerical-variables-2"><i class="fa fa-check"></i><b>15.9.3</b> Numerical variables</a></li>
+<li class="chapter" data-level="15.9.4" data-path="multiple-logistic-regression.html"><a href="multiple-logistic-regression.html#practical-importance"><i class="fa fa-check"></i><b>15.9.4</b> Practical importance</a></li>
+<li class="chapter" data-level="15.9.5" data-path="multiple-logistic-regression.html"><a href="multiple-logistic-regression.html#non-significant-results-1"><i class="fa fa-check"></i><b>15.9.5</b> “Non-significant results”</a></li>
+<li class="chapter" data-level="15.9.6" data-path="multiple-logistic-regression.html"><a href="multiple-logistic-regression.html#regression-tables-1"><i class="fa fa-check"></i><b>15.9.6</b> Regression tables</a></li>
+<li class="chapter" data-level="15.9.7" data-path="multiple-logistic-regression.html"><a href="multiple-logistic-regression.html#methods-1"><i class="fa fa-check"></i><b>15.9.7</b> Methods</a></li>
+</ul></li>
+<li class="chapter" data-level="15.10" data-path="multiple-logistic-regression.html"><a href="multiple-logistic-regression.html#exercise-multiple-logistic-regression"><i class="fa fa-check"></i><b>15.10</b> Exercise: multiple logistic regression</a></li>
+<li class="chapter" data-level="15.11" data-path="multiple-logistic-regression.html"><a href="multiple-logistic-regression.html#next-steps-optional-2"><i class="fa fa-check"></i><b>15.11</b> Next steps (optional)</a></li>
+</ul></li>
+<li class="chapter" data-level="16" data-path="complex-survey-analysis.html"><a href="complex-survey-analysis.html"><i class="fa fa-check"></i><b>16</b> Complex survey analysis</a>
+<ul>
+<li class="chapter" data-level="16.1" data-path="complex-survey-analysis.html"><a href="complex-survey-analysis.html#overview-12"><i class="fa fa-check"></i><b>16.1</b> Overview</a></li>
+<li class="chapter" data-level="16.2" data-path="complex-survey-analysis.html"><a href="complex-survey-analysis.html#further-reading"><i class="fa fa-check"></i><b>16.2</b> Further reading</a></li>
+<li class="chapter" data-level="16.3" data-path="complex-survey-analysis.html"><a href="complex-survey-analysis.html#preparing-for-complex-survey-data-analysis-a-checklist"><i class="fa fa-check"></i><b>16.3</b> Preparing for complex survey data analysis: a checklist</a></li>
+<li class="chapter" data-level="16.4" data-path="complex-survey-analysis.html"><a href="complex-survey-analysis.html#scenario-9"><i class="fa fa-check"></i><b>16.4</b> Scenario</a></li>
+<li class="chapter" data-level="16.5" data-path="complex-survey-analysis.html"><a href="complex-survey-analysis.html#step-1-prepare-and-explore-the-data"><i class="fa fa-check"></i><b>16.5</b> Step 1: prepare and explore the data</a></li>
+<li class="chapter" data-level="16.6" data-path="complex-survey-analysis.html"><a href="complex-survey-analysis.html#step-2-create-the-spss-complex-samples-plan-file"><i class="fa fa-check"></i><b>16.6</b> Step 2: create the SPSS “complex samples plan file”</a></li>
+<li class="chapter" data-level="16.7" data-path="complex-survey-analysis.html"><a href="complex-survey-analysis.html#step-3-describe-the-sample"><i class="fa fa-check"></i><b>16.7</b> Step 3: describe the sample</a></li>
+<li class="chapter" data-level="16.8" data-path="complex-survey-analysis.html"><a href="complex-survey-analysis.html#step-4-run-the-complex-design-adjusted-linear-regression-model"><i class="fa fa-check"></i><b>16.8</b> Step 4: run the complex design adjusted linear regression model</a></li>
+<li class="chapter" data-level="16.9" data-path="complex-survey-analysis.html"><a href="complex-survey-analysis.html#step-5-check-the-assumptions-of-the-complex-design-linear-regression-model"><i class="fa fa-check"></i><b>16.9</b> Step 5: check the assumptions of the complex design linear regression model</a></li>
+<li class="chapter" data-level="16.10" data-path="complex-survey-analysis.html"><a href="complex-survey-analysis.html#step-6-understand-the-results-tables"><i class="fa fa-check"></i><b>16.10</b> Step 6: understand the results tables</a></li>
+<li class="chapter" data-level="16.11" data-path="complex-survey-analysis.html"><a href="complex-survey-analysis.html#exercise-complex-design-adjusted-linear-regression"><i class="fa fa-check"></i><b>16.11</b> Exercise: complex design adjusted linear regression</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">YCHI5045M computer practical notes</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="probability-sampling" class="section level1" number="3">
+<h1><span class="header-section-number">Chapter 3</span> Probability sampling</h1>
+<p>Sampling is the process whereby we choose which “units of observation” or “sampling units” within our target population we will collect data from. <em>Therefore, the first stage of sampling, which should always occur very early on in the research and study design process, is when you clearly and explicitly define your target population</em>. Units of observation are the “things” we are sampling to collect data from. These are usually individuals, typically patients or the public, but they can be anything such as schools, health facilities, villages, districts or even countries. See the sampling lecture for full details. However, in summary the only sampling methods that are guaranteed to produce unbiased results, albeit only on average or “in the long-run,” are “probability sampling” methods. This is because all standard statistical methods of analysis assume that sample data are randomly sampled from a given target population using some specific form of probability sampling. Therefore, the only way to robustly satisfy this assumption is clearly to take some form of probability sample.</p>
+<p>To take a probability sample you require a sampling frame, which is just a list of all units of observation in the target population that you are aiming to generalise your results to (e.g. all individuals in a region, all primary care health facilities in a country etc). <em>Therefore, the second stage of any sampling process is to obtain or create a sampling frame for your target population</em>. Note: for a probability sampling method to be valid it must be possible, at least in theory although you wouldn’t actually do it in practice, to calculate each unit of observation’s probability of being selected, which may or may not be equal for all units, and should not be zero for any unit.</p>
+<p>For most sampling methods we require a complete and comprehensive sampling frame before we actually sample. Although for some multi-stage sampling approaches, including those typically used by large-scale household surveys (as discussed in the lecture), you can use incomplete sampling frames to start your sampling and construct additional but still incomplete sampling frame(s) during your sampling process to achieve a robust probability sample. However, as these multi-stage approaches are quite complicated and you would not be advised to undertake them without extensive statistical support we will not practice them here.</p>
+<p>In these sampling practical sessions we will therefore look at how you can apply most of the commonly used simple probability sampling methods, specifically simple random sampling, a stratified random sampling with <em>proportionate stratification</em> and <em>disproportionate stratification</em>, and systematic random sampling. We will assume we have a complete sampling frame for our hypothetical target population. We will also note how these methods can also be used to take single-stage cluster samples with complete second/final-stage sampling, and how they can be combined into multi-stage cluster samples. However, we will not actually practice these much more complicated methods as it’s very unlikely you would ever need to implement them yourself (unless you become a survey methodologist etc).</p>
+<p><br></p>
+<div id="non-probability-sampling" class="section level2" number="3.1">
+<h2><span class="header-section-number">3.1</span> Non-probability sampling</h2>
+<div class="fold">
+<p><br></p>
+<p>While desirable it is clearly often not feasible to use probability sampling methods, usually because of the lack of a suitable sampling frame. For example, if you are studying patients attending a healthcare facility over a given period and you need to collect data on sampled patients <em>on the day they attend the facility</em> it’s typically impossible to construct a sampling frame because you won’t know who will be visiting each day! Therefore, you may often need to resort to non-probability sampling methods such as quota sampling or convenience sampling, and just try to make your samples as representative of your target population as you can, while minimising the opportunity for any researcher sampling bias.</p>
+<p>Broadly speaking it is often more justifiable to generalise results from analytical (associational) studies that use non-probability sampling methods than from descriptive studies (surveys) that use non-probability sampling methods, and consequently if you are aiming to describe certain characteristics of a given target population you should aim to take a probability sample. However, you may often be able to make a good justification that results from an analytical study can be generalised despite the study using non-probability sampling methods. For example, many (maybe most) trials of patient-level treatments use non-probability samples, often convenience samples taken at health facilities as patients attend, due to the difficulty of taking a true probability sample. In such circumstances it is often justifiable to generalise the results to other individuals who share similar key characteristics with the trial sample (e.g. age, sex, and biomedical characteristics distributions), because patient-level treatments often work fairly similarly across different populations with similar characteristics. This may be much less justified for complex interventions delivered at higher levels, such as complex interventions with staff-level and facility-level components, because the effects of these types of interventions are likely to be much more dependent on the study’s context. Hence, generalising the results of complex interventions from studies like cluster trials that use non-probability samples may be much more questionable. The only “solution” is to think very carefully when planning your sampling methods and think explicitly from the start about who you want your results to robustly generalise to.</p>
+</div>
+<p><br></p>
+</div>
+<div id="simple-random-sampling" class="section level2" number="3.2">
+<h2><span class="header-section-number">3.2</span> Simple random sampling</h2>
+<p><br></p>
+<div id="overview" class="section level3" number="3.2.1">
+<h3><span class="header-section-number">3.2.1</span> Overview</h3>
+<p>Simple random sampling involves taking a random sample of a given size from a sampling frame, which results in each unit of observation having an equal probability of being selected. You can take a simple random sample from a sampling frame in various ways, such as by generating random numbers that correspond to IDs that are pre-allocated to all units of observation, or you can do it by simply randomly sorting the list and just selecting the first n units of observation, where n is your sample size. We will use this second approach as it’s easy to implement in Excel.</p>
+<p><br></p>
+</div>
+<div id="advantages-of-simple-random-sampling" class="section level3" number="3.2.2">
+<h3><span class="header-section-number">3.2.2</span> Advantages of simple random sampling</h3>
+<ul>
+<li><p>Easy to implement and explain.</p></li>
+<li><p>Requires minimal data on your target population units of observation: just a list of all units of observation, plus usually some way of identifying/contacting them once selected.</p></li>
+</ul>
+<p><br></p>
+</div>
+<div id="disadvantageslimitations-of-simple-random-sampling" class="section level3" number="3.2.3">
+<h3><span class="header-section-number">3.2.3</span> Disadvantages/limitations of simple random sampling</h3>
+<ul>
+<li><p>Although simple random sampling guarantees that you will select a sample that is representative (i.e. unbiased) of your target population <em>on average/in the long-run</em>, i.e. over many hypothetically repeated samples, it is not the best approach at achieving this goal for any given sample, and obviously in practice you typically only ever take one sample! This is especially the case when the population is heterogeneous (highly varied in the characteristics/relationships of interest) and/or if sample size is small, say in the tens or low hundreds rather than the high hundreds or thousands (as the sample size increases the chances of getting an unrepresentative sample decrease). As these two situations are often true it is often better to use stratified random sampling instead, if possible.</p></li>
+<li><p>If your sampling units cover a large geographical area simple random sampling can produce a very logistically inefficient, costly, and geographically spread-out sample. See cluster sampling for an possible solution to this problem.</p></li>
+</ul>
+<p><br></p>
+</div>
+<div id="scenario" class="section level3" number="3.2.4">
+<h3><span class="header-section-number">3.2.4</span> Scenario</h3>
+<p>You work for a district governmental health department and you have been tasked with assessing the capacity and service delivery characteristics of the public primary care facilities within your district. Specifically, you need to report the typical (e.g. mean/median) staffing levels (e.g. the no. drs and nurses), resources and equipment levels (e.g. no. beds, no. oxygen canisters, no. x-ray machines), and services delivery levels (e.g. the no. of deliveries with a skilled birth attendant during the last 6 months, the no. of under 5s receiving their full set of vaccinations during the last 6 months etc) for all public primary care facilities.</p>
+<p>However, while there are 246 such facilities within your district you only have resources to survey 50 facilities (if you could survey all 246 it would be a “census” not a sample). A sample size calculation indicates that this will be sufficient to provide usefully precise estimates of these characteristics, but your results need to be robustly generalisable to the district, i.e. your target population is all public primary care facilities within your district.</p>
+<p>Luckily there is an existing comprehensive list (i.e. sampling frame) of all 246 existing public primary care facilities in your district. You have a copy of this list, in the form of an Excel spreadsheet, that includes facility names, addresses and telephone numbers, plus additional information that we will use in subsequent exercises.</p>
+<p>Our aim is therefore to take a simple random sample of 50 facilities from the list.</p>
+<p><br></p>
+</div>
+<div id="exercise-taking-a-simple-random-sample-using-excel" class="section level3" number="3.2.5">
+<h3><span class="header-section-number">3.2.5</span> Exercise: taking a simple random sample using Excel</h3>
+<p><br></p>
+<p><a href="https://youtu.be/GrHFm7VlNt4">Video instructions: taking a simple random sample using Excel</a></p>
+<p><br></p>
+<p>Written instructions: taking a simple random sample using Excel:</p>
+<div class="fold">
+<p><br></p>
+<ul>
+<li><p>Load the “Health facilities list - simple random sample.xlsx” Excel spreadsheet. You will see it has various self-explanatory columns/variables including “facility_name,” “facility_address,” and “facility_tel.”</p></li>
+<li><p>In column A (the blank column immediately to the left of the “facility_name” column) enter the following (or similar) word as a heading: random_no</p></li>
+<li><p>Immediately under this new column in cell A2 (the first row where the facility data starts) click on the cell and type <mark>=rand()</mark> and press enter. This Excel function generates a random number between 0 and 1 to six decimal places.</p></li>
+<li><p>Then simply ensure that cell A2 is selected (i.e. you’ve clicked on it) and then just double click on the small solid square at the very bottom right of this cell. This should copy and paste the function all the way down to the end of the facility data.</p></li>
+<li><p>Next click on the “random_no” column heading (cell A1) and then in the menu “ribbon” click on <mark>Data</mark> and click the <mark>Filter</mark> tool. You should see little “drop-down” menu buttons appear in the right of each column heading. Click on the drop-down menu button in the “random_no” column heading (cell A1) and select <mark>Sort Smallest to Largest</mark>.</p></li>
+<li><p>This will immediately sort all the data in order from those in the same row of the smallest random number value to the largest. Therefore, the list will now be randomly sorted! Note: the random numbers will all change immediately after sorting so they will actually no longer be ordered. This is because they are functions and will get re-calculated each time you change anything. However, this doesn’t matter because once all data have been sorted based on the original random numbers we don’t need those original values anymore.</p></li>
+<li><p>You can now simply take the first 50 facilities in the newly randomly sorted list as being your survey sample selected via simple random sampling (e.g. you could copy and paste the first 50 facilities into a new worksheet). If this was a real study you could then use the contact information to recruit and plan your data collection.</p></li>
+</ul>
+</div>
+<p><br></p>
+</div>
+</div>
+<div id="stratified-random-sample" class="section level2" number="3.3">
+<h2><span class="header-section-number">3.3</span> Stratified random sample</h2>
+<p><br></p>
+<div id="overview-1" class="section level3" number="3.3.1">
+<h3><span class="header-section-number">3.3.1</span> Overview</h3>
+<p>See the lecture for full details on stratified sampling. In summary though, stratified random sampling involves the following three main steps.</p>
+<ol style="list-style-type: decimal">
+<li><p><strong>Define your strata</strong>. Strata are simply a set of two or more mutually exclusive and comprehensive groups that cover all your sampling frame’s units of observation. This just means that every unit of observation in your sampling frame is a member of <em>one and only one stratum</em>. For example, if we were sampling individuals and had data on their ages we could stratify the them (i.e. the sampling frame) based on age, most simply by splitting all individuals into two age groups, say those aged &lt;18 and those aged 18 years or more. We will see below what to consider when selecting strata. Note: the singular of strata is stratum, e.g. “we create many strata but sample each stratum separately.” Note: you can define n strata for any single stratification variable, and your total strata will be the product of the number of strata created for each variable. For example, if you stratify based on age, grouped into &lt;18s and ≥18s, and sex, grouped into male or female, you have 2 x 2 = 4 strata in total. As you can see the total number of strata therefore increases rapidly with every extra stratification variable and/or group added! Note also: you cannot create a strata with no units of observation in. For example, if there were no &lt;18 men in your sampling frame you could not create an &lt;18-male strata group as the analysis would not work.</p></li>
+<li><p><strong>Decide on the sample size for each strata</strong>. There are two different versions of stratified random sampling: one that uses “proportionate stratification” and one that uses “disproportionate stratification.” Proportionate stratification means that the sizes of your sample’s strata are proportional to the size of the strata in the target population. For example, using the example above of stratifying by age with two groups of &lt;18 and ≥18: if 25% of the target population were aged &lt;18 (and therefore 75% are aged ≥18) whatever your sample size was 25% of the sample size would come from your &lt;18 stratum and 75% from your ≥18 stratum. This would result in a representative distribution of ages in your sample and preserve the equal probability of selection for all units of observation in your sampling frame. Disproportionate stratification is when the size of your sample’s strata is not proportional to their size in the target population. If this is the case then the units of observation in your sampling frame no longer have an equal probability of selection. This means you would have to calculate sampling weights to “map” the same back to the target population and avoid biased results when analysing the data.</p></li>
+<li><p><strong>Take a simple random sample (or less commonly a systematic random sample) of the relevant size in each strata.</strong></p></li>
+</ol>
+<p><br></p>
+</div>
+<div id="advantages-of-stratified-random-sampling" class="section level3" number="3.3.2">
+<h3><span class="header-section-number">3.3.2</span> Advantages of stratified random sampling</h3>
+<p>The advantages and uses of stratified random sampling differ somewhat depending on whether you are using a proportionate or disproportionate stratification, and the reason for doing either depends on your goals and skills.</p>
+<ol style="list-style-type: decimal">
+<li>For studies aiming to describe the characteristics of a target population, where you have no particular interest in any specific sub-populations (compare to scenario 2 below), compared to using simple random sampling stratified random sampling with <em>proportionate stratification</em> can help you to: a) reduce the chances of obtaining an unrepresentative sample, at least in terms of the characteristics represented by your chosen strata, and b) increase the precision of your estimates for a given sample size. While for studies aiming to estimate relationships within a target population, where you have no particular interest in any specific sub-populations, compared to using simple random sampling stratified random sampling can similarly help you to increase the precision with which you can estimate your relationships of interest for a given sample size, giving you a more “statistically efficient” sample.</li>
+</ol>
+<ul>
+<li><p>How well you achieve these goals depends on how well your chosen strata capture characteristics or variables that account for variation in your outcomes of interest. That is, you want units of observation to be as similar (homogeneous) as possible within strata and, on average, as dissimilar (heterogeneous) as possible between strata. For example, if we are interested in estimating rates of cardiovascular events then stratifying by age makes a lot of sense, because age is one of if not the biggest “causes” of cardiovascular events, i.e. the likelihood of having experienced a cardiovascular event will be quite similar for individuals within a young-age stratum and very different for those individuals compared to individuals in an geriatric-age stratum.</p></li>
+<li><p>Note: using proportionate stratification is not actually necessary to achieve these goals, but it results in a sample that does not need reweighting during analysis to avoid unbiased results, and calculating weights is complicated, plus there is typically no good reason to use disproportionate stratification in this case (again see scenario 2 below).</p></li>
+</ul>
+<ol start="2" style="list-style-type: decimal">
+<li>In other situations however you be particularly interested in specific sub-populations. In this case you can use stratification to “oversample” those sub-populations to ensure you have enough sample size to estimate characteristics/relationships for those sub-populations (strata) with sufficient precision/power. For example, you may wish to ensure you can estimate certain characteristics or relationships within a certain small, ethnic minority group with sufficient precision. With a simple random sample you would, on average, take a sample from the ethnic minority group that was proportional to its population size. For example, if the ethnic minority group were just 1% of the target population and you took a sample of 1000 individuals from the target population then on average you would only sample 10 individuals from the ethnic minority group! Hardly much use. Instead you could create strata for each ethnic group and take a fixed, larger (disproportionate) sample from the relevant ethnic minority group than you would take if you were using simple random sampling. This would be using disproportionate stratification.</li>
+</ol>
+<ul>
+<li>However, as noted earlier if you do this the added complication is that the relative sizes for one or more strata will then, by design, not match their relative sizes in the target population. This means there is not an equal probability of selection for all sampling units, and you would have to calculate and use sampling weights to “map” the sample back onto the target population and avoid obtaining biased results. As this is a more complicated process and this type of stratified sampling is not commonly used (although a form of it is commonly used in multi-stage cluster sampling) we will not look at it further. Note: when using disproportionate stratification you would still be able to gain the advantages mentioned for scenario 1 above if your strata, either those that are disproportionately sampled or indeed other strata, capture important sources of variation within your outcomes of interest.</li>
+</ul>
+<p><br></p>
+<p>In the following exercise we will just look at how to implement the first approach discussed above.</p>
+<p><br></p>
+</div>
+<div id="limitations-of-stratified-random-sampling-with-proportionate-stratification" class="section level3" number="3.3.3">
+<h3><span class="header-section-number">3.3.3</span> Limitations of stratified random sampling with proportionate stratification</h3>
+<ul>
+<li><p>You require data on your chosen strata for all members of your target population, and it is often difficult and costly to obtain this data.</p></li>
+<li><p>Compared to simple random sampling it is a somewhat more complicated and time consuming process (although this is typically a minor limitation).</p></li>
+<li><p>When analysing data from a stratified random sample you need to use non-standard analytical methods (or non-standard versions of typical analytical methods) to account for and obtain the benefits of your stratified sample, in terms of increased precision. However, this is actually very straight forward to do with modern software and we will see how to do this in the complex survey practical sessions.</p></li>
+</ul>
+<p><br></p>
+</div>
+<div id="scenario-1" class="section level3" number="3.3.4">
+<h3><span class="header-section-number">3.3.4</span> Scenario</h3>
+<p>We will use the same basic scenario as for the simple random sampling exercise previously, where we are aiming to conduct a survey of public primary care health facilities. However, in these exercises we will take a stratified random sample based on a single stratification variable that classifies each facility in terms of the sub-district that it’s in. We are therefore assuming that there is substantial variation in the characteristics we wish to estimate between health facilities within the sub-districts, and that it’s something we could easily have data on for all health facilities. We are also assuming that we are only interested in the district-level results. To keep things simple there are just three sub-districts. However, in a real study if you had data on additional characteristics that you thought were likely to be related to variation in the outcomes of interest you would probably further increase your chances of getting a representative and more statistically efficient sample by creating additional strata using those data.</p>
+<p><br></p>
+</div>
+<div id="exercise-taking-a-stratified-random-sample-with-proportionate-stratification-using-excel" class="section level3" number="3.3.5">
+<h3><span class="header-section-number">3.3.5</span> Exercise: taking a stratified random sample with proportionate stratification using Excel</h3>
+<p><br></p>
+<p><a href="https://youtu.be/x0kI-hybJh0">Video: stratified (proportionate) random sampling in Excel</a></p>
+<p><br></p>
+<button class="btn btn-primary" data-toggle="collapse" data-target="#instructions_stratified">
+Show/hide instructions: stratified (proportionate) random sampling in Excel
+</button>
+<div id="instructions_stratified" class="collapse">
+<p><br></p>
+<ul>
+<li><p>If we know there is substantial variation in health facility characteristics on average between sub-districts we may want to reduce the chances of getting an unrepresentative sample size for one or more sub-districts and increase the precision of our estimates (for a given sample size) compared to taking a simple random sample, which is likely to happen when the sample size is very small (like n = 50). As mentioned previously in reality we would probably want to create strata based on additional variables related to our outcomes, maybe things like some measure of facility size, staffing, or resources etc, but we will just keep things simple here.</p></li>
+<li><p>Therefore, instead of risking getting an unrepresentative distribution (number) of health facilities within each sub-district and less precise estimates, as would be likely with a simple random sample, we can take stratified random sample with strata sizes proportional to their relative population sizes.</p></li>
+<li><p>First open the “Health facilities list - stratified random sample.xlsx” Excel spreadsheet and look at the <mark>Full facility list</mark> worksheet if it’s not already in view. Look at the <mark>sub_district frequency table</mark> again. Look at the “Percentage” column. This shows us the percentage of health facilities in each sub-district. We therefore need to work out how to split our overall sample size of 50 between these three percentages. Look at the <mark>Strata sample size: strata size proportional to population</mark> table below the last table. This gives us the required sample size for each strata. The calculations are very simple. We just multiply our overall sample size (50) by the proportion of the total number of health facilities in the district that each sub-district contains in turn, rounding results upwards to the nearest whole number (this will usually result in a slightly larger sample size than that originally planned). For example, 9% of all health facilities are from the “Hills” sub-district, so we can convert this percentage to a proportion by dividing by 100. Then the strata sample size calculation for the Hills sub-district is:</p></li>
+</ul>
+<blockquote>
+<p>50 x 0.09 = 4.5</p>
+</blockquote>
+<blockquote>
+<p>Which we round to 5.</p>
+</blockquote>
+<ul>
+<li>Therefore, as a stratified random sample is just a repeated simple random sample within each strata all you now need to do is take a simple random sample of the relevant size for each sub-district, i.e. a simple random sample of 5 health facilities in the Hills sub-district and so on. To save you time because it’s not something you probably need to learn I’ve already created three additional worksheets (the tabs along the bottom of the Excel spreadsheet): one containing the data for each sub-district, so that it’s easy to take a separate simple random sample for each sub-district. Therefore, based on the required sample size for each sub-district try and repeat the simple random sample process learned in the last exercise for each of the sub-district lists in turn. Refer back to that exercise for the steps if needed. Note: you could actually also achieve a stratified random sample with proportional strata sizes, maybe more simply, by just randomising the total list of all health facilities and then selecting the first n health facilities from each sub-district as they appear in the randomised order, where n = the required sample size for each strata.</li>
+</ul>
+</div>
+<p><br></p>
+</div>
+</div>
+<div id="systematic-random-sampling" class="section level2" number="3.4">
+<h2><span class="header-section-number">3.4</span> Systematic random sampling</h2>
+<p><br></p>
+<div id="overview-2" class="section level3" number="3.4.1">
+<h3><span class="header-section-number">3.4.1</span> Overview</h3>
+<p>Systematic random sampling is very similar to simple random sampling in terms of the samples it produces, and the same “versions” of typical analytical methods can be used when analysing data from either type of sampling method. The basic process is as follows.</p>
+<ol style="list-style-type: decimal">
+<li><p>Take your sampling frame and select a random starting point (i.e. random unit of observation).</p></li>
+<li><p>Based on your desired sample size calculate a “skip pattern.” This is just a number which then determines how many units of observation are skipped after your starting point before sampling another unit.</p></li>
+<li><p>Sample your random starting point and based on your skip pattern all successive units of observation that your skipped sampling pattern “lands on” until you reach the end of your sampling frame, by which time you should have sampled your desired sample size (or just under - see the exercise).</p></li>
+</ol>
+<p><br></p>
+</div>
+<div id="advantages-of-systematic-random-sampling" class="section level3" number="3.4.2">
+<h3><span class="header-section-number">3.4.2</span> Advantages of systematic random sampling</h3>
+<p>Students often find systematic random sampling somewhat confusing in terms of its advantages over simple random sampling and stratified random sampling. This is not surprising as the advantages are typically not very clear.</p>
+<ul>
+<li>The main advantage that systematic random sampling has over simple random sampling is that it can reduce the chances that you will obtain a non-representative sample, but only when the sampling frame is ordered or stratified in some statistically meaningful way in relation to the characteristics or relationships of interest. For example, if you are surveying individuals from a very heterogeneous (mixed) community where individuals are from a variety of different ethnic groups, and getting a sample that is representative of the distribution of ethnicities is critical, then a simple random sample may often result in an unrepresentative distribution (proportional mix) of ethnicities in your sample when the sample size is small. Systematic random sampling could improve your chances of obtaining a representative proportional mix of ethnicities though if you have data on individuals’ ethnicity. This is because you can then order your sampling frame by ethnicity and systematic random sampling will, by its systematic nature, ensure that a proportionally “even spread” of individuals across all ethnic groups are selected. This results will be very similar to a sample obtained via stratified random sampling with strata sample sizes proportional to strata population sizes, and arguably the sampling method is slightly less complicated than for such a stratified sample.</li>
+</ul>
+<p><br></p>
+</div>
+<div id="disadvantageslimitations-of-systematic-random-sampling" class="section level3" number="3.4.3">
+<h3><span class="header-section-number">3.4.3</span> Disadvantages/limitations of systematic random sampling</h3>
+<ul>
+<li><p>Systematic random sampling is arguably slightly more complicated to implement than simple random sampling.</p></li>
+<li><p>As with stratified random sampling you need additional data on important characteristics of your units of observation that are related to the characteristics or relationships of interest to obtain a clear benefit from this approach, and such data is often difficult, costly or impossible to obtain.</p></li>
+<li><p>Most critically, if there is a meaningful pattern to the ordering of your sampling frame in terms of the distribution of characteristics related to the characteristics or relationships of interest then a systematic random sample may produce a seriously biased result. This is usually the case when the pattern is “small scale.” For example, if you are using systematic random sampling to sample from a sampling frame of hospital patients and the list is ordered by the time of day the patients first arrived then your skip pattern may mean you only select individuals who came early in the day. This might mean you hugely oversample the unemployed (who can only come to hospital early in the day), such as retired individuals and caregivers - hardly likely to be a representative sample. This is obviously most problematic when the pattern is not obvious.</p></li>
+</ul>
+<p><br></p>
+</div>
+<div id="when-to-use-systematic-random-sampling" class="section level3" number="3.4.4">
+<h3><span class="header-section-number">3.4.4</span> When to use systematic random sampling?</h3>
+<p>Clearly systematic random sampling can have some advantages over simple random sampling if used carefully, but what about in relation to stratified random sampling? Remember stratified random sampling can use either simple or systematic random sampling to take the samples within each strata. Therefore, it depends on your aims and there’s no single answer for all circumstances. However, broadly speaking if you have good data on what are likely to be important strata for your characteristics or relationships of interest then a stratified random sample using simple random sampling within strata will probably be the better choice in my opinion. This is because compared to simple random sampling stratified random sampling is more likely to produce a representative sample while also being likely to increase the precision of your estimates (i.e. increase your statistical efficiency) compared to systematic random sampling, but it also avoids the risk of producing a biased sample that systematic random sampling can result in when there are unrecognised, typically small-scale, statistically meaningful patterns in the sampling frame.</p>
+<p>However, for completeness we will practice below how to take a systematic random sample when we have some additional data on important strata.</p>
+<p>Lastly, note that one form of systematic random sampling is often used in the first stage of multi-stage cluster samples to take a non-stratified random sample of primary-stage clusters (often villages or city blocks) with <em>probability proportional to the size of primary-stage clusters</em>. This involves a slight modification of the approach we will see below, and as it’s typically only used in this specific circumstance we won’t look at it further.</p>
+<p><br></p>
+</div>
+<div id="scenario-2" class="section level3" number="3.4.5">
+<h3><span class="header-section-number">3.4.5</span> Scenario</h3>
+<p>We will use the same basic scenario as for the simple random sampling and stratified random sampling exercises previously, where we are aiming to conduct a survey of 50 public primary care health facilities. However, in this exercise we will take a systematic random sample. We will use the stratified random sampling exercise sampling frame where the health facilities were ordered into sub-district groups. As long as there is no smaller scale pattern in the ordering of the list a systematic random sample should ensure a random sample of health facilities while also ensuring the sample is evenly distributed across the three sub-districts.</p>
+<p><br></p>
+</div>
+<div id="exercise-taking-a-systematic-random-sample-using-excel" class="section level3" number="3.4.6">
+<h3><span class="header-section-number">3.4.6</span> Exercise: taking a systematic random sample using Excel</h3>
+<p><br></p>
+<p><a href="https://youtu.be/S-aZjcmt6PY">Video: systematic random sampling in Excel</a></p>
+<p><br></p>
+<button class="btn btn-primary" data-toggle="collapse" data-target="#instructions_systematic">
+Show/hide instructions: systematic random sampling in Excel
+</button>
+<div id="instructions_systematic" class="collapse">
+<p><br></p>
+<ul>
+<li><p>First open the “Health facility list - systematic random sample.xlsx” Excel spreadsheet.</p></li>
+<li><p>To save time we have already created a numerical sequence in the first column from 1 to 245. This will be used to identify our sampled health facilities.</p></li>
+<li><p>Calculate the skip pattern <em>k</em>. This is calculated as N/n, where N = total sampling frame size and n = sample size. If the result is a whole number (integer) use this value, or if not round up to the nearest whole number. Therefore, in a blank cell enter <mark>=245/50</mark> and press enter. You should get the value 4.9 and so our skip pattern <em>k</em> = 5.</p></li>
+<li><p>Select a random starting point between the first unit of observation and that corresponding to our skip pattern <em>k</em>, i.e. a random number between 1 and 5. To do this use the Excel function <em>randbetween</em>.</p></li>
+<li><p>In cell F1 enter the heading “facility_selection_id” or similar. Then in cell F2 click and enter <mark>=randbetween(1, 5)</mark> and press enter to create a value between 1 and 5 for the random starting point.</p></li>
+<li><p>Then click on cell F3 and type <mark>=F2+5</mark>. Then press enter and then click again on cell F2 and then <em>double click</em> on the small solid square at the bottom right of the selection box that appears around cell F2 to extend the formula down to the bottom of the data. The is then your sampling list up to the point where the values become &gt;245. You may notice that this actually only selects 49 health facilities. This is just due to the rounding in the maths and won’t always be the case, but when you end up sampling one too few health facilities you can just randomly select another health facility by going back to the start of the list once you reach the end (e.g. for our skip pattern of 5 if your final selected facility was number 244 then we’d count 245, 1, 2, 3, and then number 4 would be our final selected facility).</p></li>
+</ul>
+</div>
+<p><br></p>
+</div>
+</div>
+<div id="single-stage-cluster-sampling-and-multi-stage-cluster-sampling" class="section level2" number="3.5">
+<h2><span class="header-section-number">3.5</span> Single-stage cluster sampling and multi-stage cluster sampling</h2>
+<p>The following optional information is just for awareness/understanding purposes but we will not practice either of these methods.</p>
+<p><br></p>
+<button class="btn btn-primary" data-toggle="collapse" data-target="#additional_cluster">
+Show/hide additional information: single-stage cluster sampling and multi-stage cluster sampling
+</button>
+<div id="additional_cluster" class="collapse">
+<p><br></p>
+<div id="cluster-random-sampling" class="section level3" number="3.5.1">
+<h3><span class="header-section-number">3.5.1</span> Cluster random sampling</h3>
+<p>Cluster sampling involves sampling higher-level units of observation, such as households, schools, villages etc, which contain your lower-level units of observation, typically individuals. If you then also sample units within clusters (i.e. not every unit is selected) then you are using some form of multi-stage cluster sampling method, and that is too complicated for us to look into further, but see below for a bit more detail. However, if you are sampling clusters and then <em>selecting</em> all eligible units within each sampled cluster for data collection you can simply use any of the methods previous covered to sample your clusters. For example, if you wanted to survey community members in a number of communities and you could construct a sampling frame listing all the households in each community you wanted to survey, but not the household members, then you could take a simple random sample of households from your list and then select all eligible individuals within every sampled household for data collection. Or you may wish to stratify the sampling if you also collected data on, say, the total size of each community etc.</p>
+<p>Either way this would result in a representative sample (on average) with no need to re-weight the data, unlike if you had also sampled individuals within households. However, when you take a cluster sample you need to account for the clustering in your analysis. This is because standard methods of analysis assume observations (i.e. data points) are statistically independent from one another, but clearly individuals within the same household etc are not independent, and they therefore do not provide the same amount of statistical information about a population as fully independent observations would. Therefore, ignoring clustering in analyses results in falsely high levels of precision/power. We will see one way that you can account for clustering in the complex survey practical sessions.</p>
+<p><br></p>
+</div>
+<div id="multi-stage-clustered-random-sample" class="section level3" number="3.5.2">
+<h3><span class="header-section-number">3.5.2</span> Multi-stage clustered random sample</h3>
+<p>Multi-stage clustered random sampling is far too complicated to go into for this module, but we will see how to analyse data from multi-stage clustered samples in the complex survey practical sessions. It is typically only used by large-scale household surveys, such as the <em>Demographic and Health Surveys</em> by USAID and its in-country partners. Such projects almost always use professional statisticians or survey methodologists. In brief though, this approach is actually some combination of the earlier methods covered above, and usually combines a first stage systematic random sample, with probability proportional to size to select primary sampling units (usually census units, often called “enumeration areas,” that correspond to villages or city blocks), with a second stage of sampling of households, which either again uses systematic random sampling, but typically with equal probabilities of selection, or a simple random sample. However, there are many variations with possibly additional levels of sampling. This means that the probability of selection of the ultimate sampling units is never equal with such methods and complicated sampling weights need to be calculated to ensure analyses produce unbiased results.</p>
+</div>
+</div>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="preliminary-information.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="sample-size.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["YCHI5045M computer practical notes.pdf", "YCHI5045M computer practical notes.epub"],
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+</body>
+
+</html>
