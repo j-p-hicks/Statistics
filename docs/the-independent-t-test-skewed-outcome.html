@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 9 The independent t-test: skewed outcome | YCHI5045M Statistics for Health Sciences: Computer Practical Session Notes</title>
+  <meta name="description" content="These are the notes for the YCHI5045M computer practical sessions." />
+  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 9 The independent t-test: skewed outcome | YCHI5045M Statistics for Health Sciences: Computer Practical Session Notes" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="These are the notes for the YCHI5045M computer practical sessions." />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 9 The independent t-test: skewed outcome | YCHI5045M Statistics for Health Sciences: Computer Practical Session Notes" />
+  
+  <meta name="twitter:description" content="These are the notes for the YCHI5045M computer practical sessions." />
+  
+
+<meta name="author" content="Joe Hicks and Matt Mulvey" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="the-independent-t-test.html"/>
+<link rel="next" href="the-paired-t-test.html"/>
+<script src="libs/header-attrs-2.6/header-attrs.js"></script>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<script src="libs/font-awesome-5.13.0/js/script.js"></script>
+<script src="libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
+<script type="text/javascript">
+$(document).ready(function() {
+  $folds = $(".fold");
+  $folds.wrapInner("<div class=\"fold-blck\">"); // wrap a div container around content
+  $folds.prepend("<button class=\"fold-btn\">Show</button>");  // add a button
+  $(".fold-blck").toggle();  // fold all blocks
+  $(".fold-btn").on("click", function() {  // add onClick event
+    $(this).text($(this).text() === "Hide" ? "Show" : "Hide");  // if the text equals "Fold", change it to "Unfold"or else to "Fold" 
+    $(this).next(".fold-blck").toggle("linear");  // "swing" is the default easing function. This can be further customized in its speed or the overall animation itself.
+  })
+});
+</script>
+
+
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">YCHI5045M computer practical sessions notes</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Aims and objectives</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#statistical-paradigm"><i class="fa fa-check"></i><b>1.1</b> Statistical paradigm</a></li>
+<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#analyses-covered"><i class="fa fa-check"></i><b>1.2</b> Analyses covered</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="preliminary-information.html"><a href="preliminary-information.html"><i class="fa fa-check"></i><b>2</b> Preliminary information</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="preliminary-information.html"><a href="preliminary-information.html#a-word-of-encouragement"><i class="fa fa-check"></i><b>2.1</b> A word of encouragement</a></li>
+<li class="chapter" data-level="2.2" data-path="preliminary-information.html"><a href="preliminary-information.html#about-these-notes"><i class="fa fa-check"></i><b>2.2</b> About these notes</a></li>
+<li class="chapter" data-level="2.3" data-path="preliminary-information.html"><a href="preliminary-information.html#how-these-sessions-relate-to-the-summative-assignment"><i class="fa fa-check"></i><b>2.3</b> How these sessions relate to the summative assignment</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="probability-sampling.html"><a href="probability-sampling.html"><i class="fa fa-check"></i><b>3</b> Probability sampling</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="probability-sampling.html"><a href="probability-sampling.html#non-probability-sampling"><i class="fa fa-check"></i><b>3.1</b> Non-probability sampling</a></li>
+<li class="chapter" data-level="3.2" data-path="probability-sampling.html"><a href="probability-sampling.html#simple-random-sampling"><i class="fa fa-check"></i><b>3.2</b> Simple random sampling</a>
+<ul>
+<li class="chapter" data-level="3.2.1" data-path="probability-sampling.html"><a href="probability-sampling.html#overview"><i class="fa fa-check"></i><b>3.2.1</b> Overview</a></li>
+<li class="chapter" data-level="3.2.2" data-path="probability-sampling.html"><a href="probability-sampling.html#advantages-of-simple-random-sampling"><i class="fa fa-check"></i><b>3.2.2</b> Advantages of simple random sampling</a></li>
+<li class="chapter" data-level="3.2.3" data-path="probability-sampling.html"><a href="probability-sampling.html#disadvantageslimitations-of-simple-random-sampling"><i class="fa fa-check"></i><b>3.2.3</b> Disadvantages/limitations of simple random sampling</a></li>
+<li class="chapter" data-level="3.2.4" data-path="probability-sampling.html"><a href="probability-sampling.html#scenario"><i class="fa fa-check"></i><b>3.2.4</b> Scenario</a></li>
+<li class="chapter" data-level="3.2.5" data-path="probability-sampling.html"><a href="probability-sampling.html#exercise-taking-a-simple-random-sample-using-excel"><i class="fa fa-check"></i><b>3.2.5</b> Exercise: taking a simple random sample using Excel</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="probability-sampling.html"><a href="probability-sampling.html#stratified-random-sample"><i class="fa fa-check"></i><b>3.3</b> Stratified random sample</a>
+<ul>
+<li class="chapter" data-level="3.3.1" data-path="probability-sampling.html"><a href="probability-sampling.html#overview-1"><i class="fa fa-check"></i><b>3.3.1</b> Overview</a></li>
+<li class="chapter" data-level="3.3.2" data-path="probability-sampling.html"><a href="probability-sampling.html#advantages-of-stratified-random-sampling"><i class="fa fa-check"></i><b>3.3.2</b> Advantages of stratified random sampling</a></li>
+<li class="chapter" data-level="3.3.3" data-path="probability-sampling.html"><a href="probability-sampling.html#limitations-of-stratified-random-sampling-with-proportionate-stratification"><i class="fa fa-check"></i><b>3.3.3</b> Limitations of stratified random sampling with proportionate stratification</a></li>
+<li class="chapter" data-level="3.3.4" data-path="probability-sampling.html"><a href="probability-sampling.html#scenario-1"><i class="fa fa-check"></i><b>3.3.4</b> Scenario</a></li>
+<li class="chapter" data-level="3.3.5" data-path="probability-sampling.html"><a href="probability-sampling.html#exercise-taking-a-proportionate-stratified-random-sample-using-excel"><i class="fa fa-check"></i><b>3.3.5</b> Exercise: taking a proportionate stratified random sample using Excel</a></li>
+</ul></li>
+<li class="chapter" data-level="3.4" data-path="probability-sampling.html"><a href="probability-sampling.html#systematic-random-sampling"><i class="fa fa-check"></i><b>3.4</b> Systematic random sampling</a>
+<ul>
+<li class="chapter" data-level="3.4.1" data-path="probability-sampling.html"><a href="probability-sampling.html#overview-2"><i class="fa fa-check"></i><b>3.4.1</b> Overview</a></li>
+<li class="chapter" data-level="3.4.2" data-path="probability-sampling.html"><a href="probability-sampling.html#advantages-of-systematic-random-sampling"><i class="fa fa-check"></i><b>3.4.2</b> Advantages of systematic random sampling</a></li>
+<li class="chapter" data-level="3.4.3" data-path="probability-sampling.html"><a href="probability-sampling.html#disadvantageslimitations-of-systematic-random-sampling"><i class="fa fa-check"></i><b>3.4.3</b> Disadvantages/limitations of systematic random sampling</a></li>
+<li class="chapter" data-level="3.4.4" data-path="probability-sampling.html"><a href="probability-sampling.html#when-to-use-systematic-random-sampling"><i class="fa fa-check"></i><b>3.4.4</b> When to use systematic random sampling?</a></li>
+<li class="chapter" data-level="3.4.5" data-path="probability-sampling.html"><a href="probability-sampling.html#scenario-2"><i class="fa fa-check"></i><b>3.4.5</b> Scenario</a></li>
+<li class="chapter" data-level="3.4.6" data-path="probability-sampling.html"><a href="probability-sampling.html#exercise-taking-a-systematic-random-sample-using-excel"><i class="fa fa-check"></i><b>3.4.6</b> Exercise: taking a systematic random sample using Excel</a></li>
+</ul></li>
+<li class="chapter" data-level="3.5" data-path="probability-sampling.html"><a href="probability-sampling.html#single-stage-cluster-sampling-and-multi-stage-cluster-sampling"><i class="fa fa-check"></i><b>3.5</b> Single-stage cluster sampling and multi-stage cluster sampling</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="sample-size.html"><a href="sample-size.html"><i class="fa fa-check"></i><b>4</b> Sample size</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="sample-size.html"><a href="sample-size.html#overview-3"><i class="fa fa-check"></i><b>4.1</b> Overview</a></li>
+<li class="chapter" data-level="4.2" data-path="sample-size.html"><a href="sample-size.html#confidence-interval-based-approach"><i class="fa fa-check"></i><b>4.2</b> Confidence interval based approach</a>
+<ul>
+<li class="chapter" data-level="4.2.1" data-path="sample-size.html"><a href="sample-size.html#overview-4"><i class="fa fa-check"></i><b>4.2.1</b> Overview</a></li>
+<li class="chapter" data-level="4.2.2" data-path="sample-size.html"><a href="sample-size.html#analytical-studies"><i class="fa fa-check"></i><b>4.2.2</b> Analytical studies</a></li>
+<li class="chapter" data-level="4.2.3" data-path="sample-size.html"><a href="sample-size.html#statulator-sample-sizes-for-confidence-intervals"><i class="fa fa-check"></i><b>4.2.3</b> Statulator sample sizes for confidence intervals</a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="sample-size.html"><a href="sample-size.html#hypothesis-testing-based-approach"><i class="fa fa-check"></i><b>4.3</b> Hypothesis testing based approach</a>
+<ul>
+<li class="chapter" data-level="4.3.1" data-path="sample-size.html"><a href="sample-size.html#overview-5"><i class="fa fa-check"></i><b>4.3.1</b> Overview</a></li>
+<li class="chapter" data-level="4.3.2" data-path="sample-size.html"><a href="sample-size.html#descriptive-studies"><i class="fa fa-check"></i><b>4.3.2</b> Descriptive studies</a></li>
+<li class="chapter" data-level="4.3.3" data-path="sample-size.html"><a href="sample-size.html#statulator-sample-sizes-for-hypothesis-testing"><i class="fa fa-check"></i><b>4.3.3</b> Statulator sample sizes for hypothesis testing</a></li>
+</ul></li>
+<li class="chapter" data-level="4.4" data-path="sample-size.html"><a href="sample-size.html#confidence-interval-approach-in-statulator"><i class="fa fa-check"></i><b>4.4</b> Confidence interval approach in Statulator</a>
+<ul>
+<li class="chapter" data-level="4.4.1" data-path="sample-size.html"><a href="sample-size.html#estimating-means"><i class="fa fa-check"></i><b>4.4.1</b> Estimating means</a></li>
+<li class="chapter" data-level="4.4.2" data-path="sample-size.html"><a href="sample-size.html#estimating-proportions"><i class="fa fa-check"></i><b>4.4.2</b> Estimating proportions</a></li>
+</ul></li>
+<li class="chapter" data-level="4.5" data-path="sample-size.html"><a href="sample-size.html#hypothesis-testing-approach"><i class="fa fa-check"></i><b>4.5</b> Hypothesis testing approach</a>
+<ul>
+<li class="chapter" data-level="4.5.1" data-path="sample-size.html"><a href="sample-size.html#comparing-two-independent-means"><i class="fa fa-check"></i><b>4.5.1</b> Comparing two independent means</a></li>
+<li class="chapter" data-level="4.5.2" data-path="sample-size.html"><a href="sample-size.html#compare-two-independent-proportions"><i class="fa fa-check"></i><b>4.5.2</b> Compare two independent proportions</a></li>
+</ul></li>
+<li class="chapter" data-level="4.6" data-path="sample-size.html"><a href="sample-size.html#additional-considerations-for-the-hypothesis-testing-approach"><i class="fa fa-check"></i><b>4.6</b> Additional considerations for the hypothesis testing approach</a></li>
+<li class="chapter" data-level="4.7" data-path="sample-size.html"><a href="sample-size.html#exercises-estimating-required-sample-sizes"><i class="fa fa-check"></i><b>4.7</b> Exercises: estimating required sample sizes</a>
+<ul>
+<li class="chapter" data-level="4.7.1" data-path="sample-size.html"><a href="sample-size.html#sample-size-exercises-model-answers"><i class="fa fa-check"></i><b>4.7.1</b> Sample size exercises model answers</a></li>
+</ul></li>
+<li class="chapter" data-level="4.8" data-path="sample-size.html"><a href="sample-size.html#reporting-sample-size-calculations-in-methods-sections"><i class="fa fa-check"></i><b>4.8</b> Reporting sample size calculations in methods sections</a></li>
+<li class="chapter" data-level="4.10" data-path="sample-size.html"><a href="sample-size.html#adjusting-for-clustering"><i class="fa fa-check"></i><b>4.10</b> Adjusting for clustering</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="an-introduction-to-spss.html"><a href="an-introduction-to-spss.html"><i class="fa fa-check"></i><b>5</b> An introduction to SPSS</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="an-introduction-to-spss.html"><a href="an-introduction-to-spss.html#brief-background"><i class="fa fa-check"></i><b>5.1</b> Brief background</a></li>
+<li class="chapter" data-level="5.2" data-path="an-introduction-to-spss.html"><a href="an-introduction-to-spss.html#the-datasets"><i class="fa fa-check"></i><b>5.2</b> The datasets</a></li>
+<li class="chapter" data-level="5.3" data-path="an-introduction-to-spss.html"><a href="an-introduction-to-spss.html#exercise-opening-spss-loading-data-and-understanding-the-key-features-of-the-interface"><i class="fa fa-check"></i><b>5.3</b> Exercise: opening SPSS, loading data and understanding the key features of the interface</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="preparing-a-dataset-for-analysis.html"><a href="preparing-a-dataset-for-analysis.html"><i class="fa fa-check"></i><b>6</b> Preparing a dataset for analysis</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="preparing-a-dataset-for-analysis.html"><a href="preparing-a-dataset-for-analysis.html#exercise-loading-excel-data"><i class="fa fa-check"></i><b>6.1</b> Exercise: loading Excel data</a></li>
+<li class="chapter" data-level="6.2" data-path="preparing-a-dataset-for-analysis.html"><a href="preparing-a-dataset-for-analysis.html#exercise-set-variable-properties-code-categorical-variables-and-check-categorical-variables-for-obvious-errors"><i class="fa fa-check"></i><b>6.2</b> Exercise: set variable properties, code categorical variables, and check categorical variables for obvious errors</a></li>
+<li class="chapter" data-level="6.3" data-path="preparing-a-dataset-for-analysis.html"><a href="preparing-a-dataset-for-analysis.html#exercise-check-numerical-variables-for-obvious-errors"><i class="fa fa-check"></i><b>6.3</b> Exercise: check numerical variables for obvious errors</a></li>
+<li class="chapter" data-level="6.4" data-path="preparing-a-dataset-for-analysis.html"><a href="preparing-a-dataset-for-analysis.html#a-final-note-on-data-cleaning"><i class="fa fa-check"></i><b>6.4</b> A final note on data cleaning</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="describing-a-dataset.html"><a href="describing-a-dataset.html"><i class="fa fa-check"></i><b>7</b> Describing a dataset</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="describing-a-dataset.html"><a href="describing-a-dataset.html#background"><i class="fa fa-check"></i><b>7.1</b> Background</a>
+<ul>
+<li class="chapter" data-level="7.1.1" data-path="describing-a-dataset.html"><a href="describing-a-dataset.html#descriptive-vs-inferential-statistics"><i class="fa fa-check"></i><b>7.1.1</b> Descriptive vs inferential statistics</a></li>
+</ul></li>
+<li class="chapter" data-level="7.2" data-path="describing-a-dataset.html"><a href="describing-a-dataset.html#exercise-create-descriptive-statistics"><i class="fa fa-check"></i><b>7.2</b> Exercise: create descriptive statistics</a>
+<ul>
+<li class="chapter" data-level="7.2.1" data-path="describing-a-dataset.html"><a href="describing-a-dataset.html#overview-8"><i class="fa fa-check"></i><b>7.2.1</b> Overview</a></li>
+<li class="chapter" data-level="7.2.4" data-path="describing-a-dataset.html"><a href="describing-a-dataset.html#example-completed-table"><i class="fa fa-check"></i><b>7.2.4</b> Example completed table</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="the-independent-t-test.html"><a href="the-independent-t-test.html"><i class="fa fa-check"></i><b>8</b> The independent t-test</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="the-independent-t-test.html"><a href="the-independent-t-test.html#overview-9"><i class="fa fa-check"></i><b>8.1</b> Overview</a></li>
+<li class="chapter" data-level="8.2" data-path="the-independent-t-test.html"><a href="the-independent-t-test.html#scenario-7"><i class="fa fa-check"></i><b>8.2</b> Scenario</a></li>
+<li class="chapter" data-level="8.3" data-path="the-independent-t-test.html"><a href="the-independent-t-test.html#step-1-check-the-assumptions-of-the-independent-t-test-are-not-violated"><i class="fa fa-check"></i><b>8.3</b> Step 1: check the assumptions of the independent t-test are not violated</a></li>
+<li class="chapter" data-level="8.4" data-path="the-independent-t-test.html"><a href="the-independent-t-test.html#step-2-create-a-binary-independent-variable-from-a-numerical-variable"><i class="fa fa-check"></i><b>8.4</b> Step 2: create a binary independent variable from a numerical variable</a></li>
+<li class="chapter" data-level="8.5" data-path="the-independent-t-test.html"><a href="the-independent-t-test.html#step-3-run-the-independent-t-test"><i class="fa fa-check"></i><b>8.5</b> Step 3: run the independent t-test</a></li>
+<li class="chapter" data-level="8.6" data-path="the-independent-t-test.html"><a href="the-independent-t-test.html#step-4-understand-the-results-tables-and-extract-the-key-results"><i class="fa fa-check"></i><b>8.6</b> Step 4: understand the results tables and extract the key results</a></li>
+<li class="chapter" data-level="8.7" data-path="the-independent-t-test.html"><a href="the-independent-t-test.html#step-5-report-and-interpret-the-results"><i class="fa fa-check"></i><b>8.7</b> Step 5: report and interpret the results</a>
+<ul>
+<li class="chapter" data-level="8.7.1" data-path="the-independent-t-test.html"><a href="the-independent-t-test.html#reporting-the-results"><i class="fa fa-check"></i><b>8.7.1</b> Reporting the results</a></li>
+<li class="chapter" data-level="8.7.2" data-path="the-independent-t-test.html"><a href="the-independent-t-test.html#interpreting-the-results"><i class="fa fa-check"></i><b>8.7.2</b> Interpreting the results</a></li>
+</ul></li>
+<li class="chapter" data-level="8.8" data-path="the-independent-t-test.html"><a href="the-independent-t-test.html#limitations"><i class="fa fa-check"></i><b>8.8</b> Limitations</a></li>
+<li class="chapter" data-level="8.9" data-path="the-independent-t-test.html"><a href="the-independent-t-test.html#exercise-independent-t-test"><i class="fa fa-check"></i><b>8.9</b> Exercise: independent t-test</a>
+<ul>
+<li class="chapter" data-level="8.9.1" data-path="the-independent-t-test.html"><a href="the-independent-t-test.html#example-independent-t-test-results-reporting-text"><i class="fa fa-check"></i><b>8.9.1</b> Example independent t-test results reporting text</a></li>
+</ul></li>
+<li class="chapter" data-level="8.10" data-path="the-independent-t-test.html"><a href="the-independent-t-test.html#next-steps-optional"><i class="fa fa-check"></i><b>8.10</b> Next steps (optional)</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="the-independent-t-test-skewed-outcome.html"><a href="the-independent-t-test-skewed-outcome.html"><i class="fa fa-check"></i><b>9</b> The independent t-test: skewed outcome</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="the-independent-t-test-skewed-outcome.html"><a href="the-independent-t-test-skewed-outcome.html#overview-10"><i class="fa fa-check"></i><b>9.1</b> Overview</a></li>
+<li class="chapter" data-level="9.2" data-path="the-independent-t-test-skewed-outcome.html"><a href="the-independent-t-test-skewed-outcome.html#scenario-8"><i class="fa fa-check"></i><b>9.2</b> Scenario</a></li>
+<li class="chapter" data-level="9.3" data-path="the-independent-t-test-skewed-outcome.html"><a href="the-independent-t-test-skewed-outcome.html#step-1-check-the-assumptions-of-the-independent-t-test."><i class="fa fa-check"></i><b>9.3</b> Step 1: check the assumptions of the independent t-test.</a>
+<ul>
+<li class="chapter" data-level="9.3.1" data-path="the-independent-t-test-skewed-outcome.html"><a href="the-independent-t-test-skewed-outcome.html#continuous-outcome"><i class="fa fa-check"></i><b>9.3.1</b> 1. Continuous outcome</a></li>
+<li class="chapter" data-level="9.3.2" data-path="the-independent-t-test-skewed-outcome.html"><a href="the-independent-t-test-skewed-outcome.html#independent-groups"><i class="fa fa-check"></i><b>9.3.2</b> 2. Independent groups</a></li>
+<li class="chapter" data-level="9.3.3" data-path="the-independent-t-test-skewed-outcome.html"><a href="the-independent-t-test-skewed-outcome.html#the-outcome-is-approximately-normally-distributed-within-each-group"><i class="fa fa-check"></i><b>9.3.3</b> 3. The outcome is approximately normally distributed within each group</a></li>
+<li class="chapter" data-level="9.3.4" data-path="the-independent-t-test-skewed-outcome.html"><a href="the-independent-t-test-skewed-outcome.html#equal-variances-in-each-group"><i class="fa fa-check"></i><b>9.3.4</b> 4. Equal variances in each group</a></li>
+</ul></li>
+<li class="chapter" data-level="9.4" data-path="the-independent-t-test-skewed-outcome.html"><a href="the-independent-t-test-skewed-outcome.html#step-2-transform-the-outcome"><i class="fa fa-check"></i><b>9.4</b> Step 2: transform the outcome</a></li>
+<li class="chapter" data-level="9.5" data-path="the-independent-t-test-skewed-outcome.html"><a href="the-independent-t-test-skewed-outcome.html#step-3-run-the-independent-t-test-1"><i class="fa fa-check"></i><b>9.5</b> Step 3: run the independent t-test</a></li>
+<li class="chapter" data-level="9.6" data-path="the-independent-t-test-skewed-outcome.html"><a href="the-independent-t-test-skewed-outcome.html#step-4-understand-the-results-tables-and-extract-the-key-results-1"><i class="fa fa-check"></i><b>9.6</b> Step 4: understand the results tables and extract the key results</a></li>
+<li class="chapter" data-level="9.7" data-path="the-independent-t-test-skewed-outcome.html"><a href="the-independent-t-test-skewed-outcome.html#step-5-report-and-interpret-the-results-1"><i class="fa fa-check"></i><b>9.7</b> Step 5: report and interpret the results</a></li>
+<li class="chapter" data-level="9.8" data-path="the-independent-t-test-skewed-outcome.html"><a href="the-independent-t-test-skewed-outcome.html#limitations-1"><i class="fa fa-check"></i><b>9.8</b> Limitations</a></li>
+<li class="chapter" data-level="9.9" data-path="the-independent-t-test-skewed-outcome.html"><a href="the-independent-t-test-skewed-outcome.html#exercise-independent-t-test-with-a-skewed-outcome"><i class="fa fa-check"></i><b>9.9</b> Exercise: independent t-test with a skewed outcome</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="the-paired-t-test.html"><a href="the-paired-t-test.html"><i class="fa fa-check"></i><b>10</b> The paired t-test</a>
+<ul>
+<li class="chapter" data-level="10.1" data-path="the-paired-t-test.html"><a href="the-paired-t-test.html#overview-11"><i class="fa fa-check"></i><b>10.1</b> Overview</a></li>
+<li class="chapter" data-level="10.2" data-path="the-paired-t-test.html"><a href="the-paired-t-test.html#scenario-9"><i class="fa fa-check"></i><b>10.2</b> Scenario</a></li>
+<li class="chapter" data-level="10.3" data-path="the-paired-t-test.html"><a href="the-paired-t-test.html#step-1-check-the-assumptions-of-the-paired-t-test"><i class="fa fa-check"></i><b>10.3</b> Step 1: check the assumptions of the paired t-test</a>
+<ul>
+<li class="chapter" data-level="10.3.1" data-path="the-paired-t-test.html"><a href="the-paired-t-test.html#continuous-outcome-1"><i class="fa fa-check"></i><b>10.3.1</b> 1. Continuous outcome</a></li>
+<li class="chapter" data-level="10.3.2" data-path="the-paired-t-test.html"><a href="the-paired-t-test.html#paired-outcome-dataobservations-but-independent-observations-between-pairs"><i class="fa fa-check"></i><b>10.3.2</b> 2. Paired outcome data/observations, but independent observations between pairs</a></li>
+<li class="chapter" data-level="10.3.3" data-path="the-paired-t-test.html"><a href="the-paired-t-test.html#approximately-normally-distributed-differences-between-paired-observations"><i class="fa fa-check"></i><b>10.3.3</b> 3. Approximately normally distributed differences between paired observations</a></li>
+</ul></li>
+<li class="chapter" data-level="10.4" data-path="the-paired-t-test.html"><a href="the-paired-t-test.html#step-2-run-the-paired-t-test"><i class="fa fa-check"></i><b>10.4</b> Step 2: run the paired t-test</a></li>
+<li class="chapter" data-level="10.5" data-path="the-paired-t-test.html"><a href="the-paired-t-test.html#step-3-understand-the-results-tables-and-extract-the-key-results"><i class="fa fa-check"></i><b>10.5</b> Step 3: understand the results tables and extract the key results</a></li>
+<li class="chapter" data-level="10.6" data-path="the-paired-t-test.html"><a href="the-paired-t-test.html#step-4-report-and-interpret-the-results"><i class="fa fa-check"></i><b>10.6</b> Step 4: report and interpret the results</a></li>
+<li class="chapter" data-level="10.7" data-path="the-paired-t-test.html"><a href="the-paired-t-test.html#limitations-2"><i class="fa fa-check"></i><b>10.7</b> Limitations</a></li>
+<li class="chapter" data-level="10.8" data-path="the-paired-t-test.html"><a href="the-paired-t-test.html#exercise-paired-t-test"><i class="fa fa-check"></i><b>10.8</b> Exercise: paired t-test</a></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="the-chi-square-test-of-independence.html"><a href="the-chi-square-test-of-independence.html"><i class="fa fa-check"></i><b>11</b> The chi-square test of independence</a>
+<ul>
+<li class="chapter" data-level="11.1" data-path="the-chi-square-test-of-independence.html"><a href="the-chi-square-test-of-independence.html#overview-12"><i class="fa fa-check"></i><b>11.1</b> Overview</a></li>
+<li class="chapter" data-level="11.2" data-path="the-chi-square-test-of-independence.html"><a href="the-chi-square-test-of-independence.html#scenario-10"><i class="fa fa-check"></i><b>11.2</b> Scenario</a></li>
+<li class="chapter" data-level="11.3" data-path="the-chi-square-test-of-independence.html"><a href="the-chi-square-test-of-independence.html#step-1-check-the-assumptions-of-the-chi-squared-test-of-independence"><i class="fa fa-check"></i><b>11.3</b> Step 1: check the assumptions of the chi-squared test of independence</a></li>
+<li class="chapter" data-level="11.4" data-path="the-chi-square-test-of-independence.html"><a href="the-chi-square-test-of-independence.html#step-2-run-the-chi-squared-test-of-independence"><i class="fa fa-check"></i><b>11.4</b> Step 2: run the chi-squared test of independence</a></li>
+<li class="chapter" data-level="11.5" data-path="the-chi-square-test-of-independence.html"><a href="the-chi-square-test-of-independence.html#step-3-understand-the-results-tables-and-extract-the-key-results-1"><i class="fa fa-check"></i><b>11.5</b> Step 3: understand the results tables and extract the key results</a></li>
+<li class="chapter" data-level="11.6" data-path="the-chi-square-test-of-independence.html"><a href="the-chi-square-test-of-independence.html#step-4-report-and-interpret-the-results-1"><i class="fa fa-check"></i><b>11.6</b> Step 4: report and interpret the results</a></li>
+<li class="chapter" data-level="11.7" data-path="the-chi-square-test-of-independence.html"><a href="the-chi-square-test-of-independence.html#limitations-3"><i class="fa fa-check"></i><b>11.7</b> Limitations</a></li>
+<li class="chapter" data-level="11.8" data-path="the-chi-square-test-of-independence.html"><a href="the-chi-square-test-of-independence.html#expected-cell-counts-5"><i class="fa fa-check"></i><b>11.8</b> Expected cell counts &lt;5</a></li>
+<li class="chapter" data-level="11.9" data-path="the-chi-square-test-of-independence.html"><a href="the-chi-square-test-of-independence.html#exercise-chi-square-test-of-independence"><i class="fa fa-check"></i><b>11.9</b> Exercise: chi-square test of independence</a></li>
+</ul></li>
+<li class="chapter" data-level="12" data-path="the-chi-square-goodness-of-fit-test.html"><a href="the-chi-square-goodness-of-fit-test.html"><i class="fa fa-check"></i><b>12</b> The chi-square goodness-of-fit test</a></li>
+<li class="chapter" data-level="13" data-path="the-chi-square-goodness-of-fit-test-1.html"><a href="the-chi-square-goodness-of-fit-test-1.html"><i class="fa fa-check"></i><b>13</b> The chi-square goodness-of-fit test</a></li>
+<li class="chapter" data-level="14" data-path="multiple-linear-regression.html"><a href="multiple-linear-regression.html"><i class="fa fa-check"></i><b>14</b> Multiple linear regression</a>
+<ul>
+<li class="chapter" data-level="14.1" data-path="multiple-linear-regression.html"><a href="multiple-linear-regression.html#key-terminology-and-concepts"><i class="fa fa-check"></i><b>14.1</b> Key terminology and concepts</a></li>
+<li class="chapter" data-level="14.2" data-path="multiple-linear-regression.html"><a href="multiple-linear-regression.html#overview-with-a-focus-on-causal-inference-from-observational-data"><i class="fa fa-check"></i><b>14.2</b> Overview with a focus on causal inference from observational data</a>
+<ul>
+<li class="chapter" data-level="14.2.1" data-path="multiple-linear-regression.html"><a href="multiple-linear-regression.html#causal-inference-references"><i class="fa fa-check"></i><b>14.2.1</b> Causal inference references</a></li>
+<li class="chapter" data-level="14.2.2" data-path="multiple-linear-regression.html"><a href="multiple-linear-regression.html#interactions-and-non-linear-relationships"><i class="fa fa-check"></i><b>14.2.2</b> Interactions and non-linear relationships</a></li>
+</ul></li>
+<li class="chapter" data-level="14.3" data-path="multiple-linear-regression.html"><a href="multiple-linear-regression.html#scenario-11"><i class="fa fa-check"></i><b>14.3</b> Scenario</a></li>
+<li class="chapter" data-level="14.4" data-path="multiple-linear-regression.html"><a href="multiple-linear-regression.html#step-1-explore-the-data"><i class="fa fa-check"></i><b>14.4</b> Step 1: explore the data</a></li>
+<li class="chapter" data-level="14.5" data-path="multiple-linear-regression.html"><a href="multiple-linear-regression.html#step-2-run-the-linear-regression-model"><i class="fa fa-check"></i><b>14.5</b> Step 2: run the linear regression model</a></li>
+<li class="chapter" data-level="14.6" data-path="multiple-linear-regression.html"><a href="multiple-linear-regression.html#step-3-check-the-assumptions-of-linear-regression"><i class="fa fa-check"></i><b>14.6</b> Step 3: check the assumptions of linear regression</a></li>
+<li class="chapter" data-level="14.7" data-path="multiple-linear-regression.html"><a href="multiple-linear-regression.html#step-4-consider-additional-possible-issues"><i class="fa fa-check"></i><b>14.7</b> Step 4: consider additional possible issues</a></li>
+<li class="chapter" data-level="14.8" data-path="multiple-linear-regression.html"><a href="multiple-linear-regression.html#step-5-understand-the-results-tables-and-extract-the-key-results"><i class="fa fa-check"></i><b>14.8</b> Step 5: understand the results tables and extract the key results</a></li>
+<li class="chapter" data-level="14.9" data-path="multiple-linear-regression.html"><a href="multiple-linear-regression.html#step-6-report-and-interpret-the-results"><i class="fa fa-check"></i><b>14.9</b> Step 6: report and interpret the results</a>
+<ul>
+<li class="chapter" data-level="14.9.1" data-path="multiple-linear-regression.html"><a href="multiple-linear-regression.html#numerical-variables-1"><i class="fa fa-check"></i><b>14.9.1</b> Numerical variables</a></li>
+<li class="chapter" data-level="14.9.2" data-path="multiple-linear-regression.html"><a href="multiple-linear-regression.html#categorical-variables-1"><i class="fa fa-check"></i><b>14.9.2</b> Categorical variables</a></li>
+<li class="chapter" data-level="14.9.3" data-path="multiple-linear-regression.html"><a href="multiple-linear-regression.html#non-significant-results"><i class="fa fa-check"></i><b>14.9.3</b> “Non-significant” results</a></li>
+<li class="chapter" data-level="14.9.4" data-path="multiple-linear-regression.html"><a href="multiple-linear-regression.html#regression-tables"><i class="fa fa-check"></i><b>14.9.4</b> Regression tables</a></li>
+<li class="chapter" data-level="14.9.5" data-path="multiple-linear-regression.html"><a href="multiple-linear-regression.html#methods"><i class="fa fa-check"></i><b>14.9.5</b> Methods</a></li>
+</ul></li>
+<li class="chapter" data-level="14.10" data-path="multiple-linear-regression.html"><a href="multiple-linear-regression.html#exercise-multiple-linear-regression"><i class="fa fa-check"></i><b>14.10</b> Exercise: multiple linear regression</a></li>
+<li class="chapter" data-level="14.11" data-path="multiple-linear-regression.html"><a href="multiple-linear-regression.html#next-steps-optional-1"><i class="fa fa-check"></i><b>14.11</b> Next steps (optional)</a></li>
+</ul></li>
+<li class="chapter" data-level="15" data-path="multiple-logistic-regression.html"><a href="multiple-logistic-regression.html"><i class="fa fa-check"></i><b>15</b> Multiple logistic regression</a>
+<ul>
+<li class="chapter" data-level="15.1" data-path="multiple-logistic-regression.html"><a href="multiple-logistic-regression.html#overview-13"><i class="fa fa-check"></i><b>15.1</b> Overview</a></li>
+<li class="chapter" data-level="15.2" data-path="multiple-logistic-regression.html"><a href="multiple-logistic-regression.html#scenario-12"><i class="fa fa-check"></i><b>15.2</b> Scenario</a></li>
+<li class="chapter" data-level="15.3" data-path="multiple-logistic-regression.html"><a href="multiple-logistic-regression.html#modelling-process"><i class="fa fa-check"></i><b>15.3</b> Modelling process</a></li>
+<li class="chapter" data-level="15.4" data-path="multiple-logistic-regression.html"><a href="multiple-logistic-regression.html#step-1-explore-the-data-1"><i class="fa fa-check"></i><b>15.4</b> Step 1: explore the data</a></li>
+<li class="chapter" data-level="15.5" data-path="multiple-logistic-regression.html"><a href="multiple-logistic-regression.html#step-2-run-the-logistic-regression-model"><i class="fa fa-check"></i><b>15.5</b> Step 2: run the logistic regression model</a></li>
+<li class="chapter" data-level="15.6" data-path="multiple-logistic-regression.html"><a href="multiple-logistic-regression.html#step-3-check-the-assumptions-of-the-logistic-regression"><i class="fa fa-check"></i><b>15.6</b> Step 3: check the assumptions of the logistic regression</a></li>
+<li class="chapter" data-level="15.7" data-path="multiple-logistic-regression.html"><a href="multiple-logistic-regression.html#step-4-consider-additional-problems"><i class="fa fa-check"></i><b>15.7</b> Step 4: consider additional problems</a></li>
+<li class="chapter" data-level="15.8" data-path="multiple-logistic-regression.html"><a href="multiple-logistic-regression.html#step-5-understand-the-results-tables-and-extract-the-key-results-1"><i class="fa fa-check"></i><b>15.8</b> Step 5: understand the results tables and extract the key results</a></li>
+<li class="chapter" data-level="15.9" data-path="multiple-logistic-regression.html"><a href="multiple-logistic-regression.html#step-6-report-and-interpret-the-results-1"><i class="fa fa-check"></i><b>15.9</b> Step 6: report and interpret the results</a>
+<ul>
+<li class="chapter" data-level="15.9.1" data-path="multiple-logistic-regression.html"><a href="multiple-logistic-regression.html#understanding-and-interpreting-odds-ratios"><i class="fa fa-check"></i><b>15.9.1</b> Understanding and interpreting odds ratios</a></li>
+<li class="chapter" data-level="15.9.2" data-path="multiple-logistic-regression.html"><a href="multiple-logistic-regression.html#categorical-variables-2"><i class="fa fa-check"></i><b>15.9.2</b> Categorical variables</a></li>
+<li class="chapter" data-level="15.9.3" data-path="multiple-logistic-regression.html"><a href="multiple-logistic-regression.html#numerical-variables-2"><i class="fa fa-check"></i><b>15.9.3</b> Numerical variables</a></li>
+<li class="chapter" data-level="15.9.4" data-path="multiple-logistic-regression.html"><a href="multiple-logistic-regression.html#practical-importance"><i class="fa fa-check"></i><b>15.9.4</b> Practical importance</a></li>
+<li class="chapter" data-level="15.9.5" data-path="multiple-logistic-regression.html"><a href="multiple-logistic-regression.html#non-significant-results-1"><i class="fa fa-check"></i><b>15.9.5</b> “Non-significant results”</a></li>
+<li class="chapter" data-level="15.9.6" data-path="multiple-logistic-regression.html"><a href="multiple-logistic-regression.html#regression-tables-1"><i class="fa fa-check"></i><b>15.9.6</b> Regression tables</a></li>
+<li class="chapter" data-level="15.9.7" data-path="multiple-logistic-regression.html"><a href="multiple-logistic-regression.html#methods-1"><i class="fa fa-check"></i><b>15.9.7</b> Methods</a></li>
+</ul></li>
+<li class="chapter" data-level="15.10" data-path="multiple-logistic-regression.html"><a href="multiple-logistic-regression.html#exercise-multiple-logistic-regression"><i class="fa fa-check"></i><b>15.10</b> Exercise: multiple logistic regression</a></li>
+<li class="chapter" data-level="15.11" data-path="multiple-logistic-regression.html"><a href="multiple-logistic-regression.html#next-steps-optional-2"><i class="fa fa-check"></i><b>15.11</b> Next steps (optional)</a></li>
+</ul></li>
+<li class="chapter" data-level="16" data-path="complex-survey-analysis.html"><a href="complex-survey-analysis.html"><i class="fa fa-check"></i><b>16</b> Complex survey analysis</a>
+<ul>
+<li class="chapter" data-level="16.1" data-path="complex-survey-analysis.html"><a href="complex-survey-analysis.html#overview-14"><i class="fa fa-check"></i><b>16.1</b> Overview</a></li>
+<li class="chapter" data-level="16.2" data-path="complex-survey-analysis.html"><a href="complex-survey-analysis.html#a-very-brief-description-of-survey-weights"><i class="fa fa-check"></i><b>16.2</b> A very brief description of survey weights</a></li>
+<li class="chapter" data-level="16.3" data-path="complex-survey-analysis.html"><a href="complex-survey-analysis.html#further-reading"><i class="fa fa-check"></i><b>16.3</b> Further reading</a></li>
+<li class="chapter" data-level="16.4" data-path="complex-survey-analysis.html"><a href="complex-survey-analysis.html#preparing-for-complex-survey-data-analysis-a-checklist"><i class="fa fa-check"></i><b>16.4</b> Preparing for complex survey data analysis: a checklist</a></li>
+<li class="chapter" data-level="16.5" data-path="complex-survey-analysis.html"><a href="complex-survey-analysis.html#scenario-13"><i class="fa fa-check"></i><b>16.5</b> Scenario</a></li>
+<li class="chapter" data-level="16.6" data-path="complex-survey-analysis.html"><a href="complex-survey-analysis.html#step-1-prepare-and-explore-the-data"><i class="fa fa-check"></i><b>16.6</b> Step 1: prepare and explore the data</a>
+<ul>
+<li class="chapter" data-level="16.6.1" data-path="complex-survey-analysis.html"><a href="complex-survey-analysis.html#basic-variable-details"><i class="fa fa-check"></i><b>16.6.1</b> Basic variable details</a></li>
+<li class="chapter" data-level="16.6.2" data-path="complex-survey-analysis.html"><a href="complex-survey-analysis.html#prepare-and-explore-the-data"><i class="fa fa-check"></i><b>16.6.2</b> Prepare and explore the data</a></li>
+</ul></li>
+<li class="chapter" data-level="16.7" data-path="complex-survey-analysis.html"><a href="complex-survey-analysis.html#step-2-create-the-spss-complex-samples-plan-file"><i class="fa fa-check"></i><b>16.7</b> Step 2: create the SPSS “complex samples plan file”</a></li>
+<li class="chapter" data-level="16.8" data-path="complex-survey-analysis.html"><a href="complex-survey-analysis.html#step-3-describe-the-sample"><i class="fa fa-check"></i><b>16.8</b> Step 3: describe the sample</a></li>
+<li class="chapter" data-level="16.9" data-path="complex-survey-analysis.html"><a href="complex-survey-analysis.html#step-4-run-the-complex-design-adjusted-linear-regression-model"><i class="fa fa-check"></i><b>16.9</b> Step 4: run the complex design adjusted linear regression model</a></li>
+<li class="chapter" data-level="16.10" data-path="complex-survey-analysis.html"><a href="complex-survey-analysis.html#step-5-check-the-assumptions-of-the-complex-design-linear-regression-model"><i class="fa fa-check"></i><b>16.10</b> Step 5: check the assumptions of the complex design linear regression model</a></li>
+<li class="chapter" data-level="16.11" data-path="complex-survey-analysis.html"><a href="complex-survey-analysis.html#step-6-understand-the-results-tables"><i class="fa fa-check"></i><b>16.11</b> Step 6: understand the results tables</a></li>
+<li class="chapter" data-level="16.12" data-path="complex-survey-analysis.html"><a href="complex-survey-analysis.html#exercise-complex-design-adjusted-linear-regression"><i class="fa fa-check"></i><b>16.12</b> Exercise: complex design adjusted linear regression</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">YCHI5045M Statistics for Health Sciences: Computer Practical Session Notes</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="the-independent-t-test-skewed-outcome" class="section level1" number="9">
+<h1><span class="header-section-number">Chapter 9</span> The independent t-test: skewed outcome</h1>
+<div id="overview-10" class="section level2" number="9.1">
+<h2><span class="header-section-number">9.1</span> Overview</h2>
+<p>What if, based on your research question, your data are apparently suitable for analysing via an independent t-test, but you found that the outcome was actually heavily skewed? This is particular common with count data (i.e. variables that can only take integer values from 0 onwards) where outcomes are typically right skewed because there are no negative counts, many low value counts and fewer higher value counts. Given that the independent t-test assumes, at least approximately, normally distributed data within each comparison group, let’s look at how we deal with a right-skewed (non-normal) outcome.</p>
+</div>
+<div id="scenario-8" class="section level2" number="9.2">
+<h2><span class="header-section-number">9.2</span> Scenario</h2>
+<p>Using a different dataset than the SBP dataset we’ll see how to deal with a skewed outcome variable that violates the assumptions of the independent t-test while still using the independent t-test to analyse the data. Then you can try a similar analysis yourself.</p>
+<p>Load the “Ebola data.sav” dataset. Again this is a simulated dataset. There are three variables and every observation is meant to represent a record from a separate village in a hypothetical region suffering from an Ebola outbreak. The variables contain the following data:</p>
+<ul>
+<li><strong>n_ebola_cases</strong> = number of Ebola cases per village</li>
+<li><strong>n_chw</strong> = number of community health workers per village</li>
+<li><strong>pop_density</strong> = relative population density per village (1 = &lt;10 per 100m², 2 = ≥ 10 per 100m²)</li>
+</ul>
+<p>Using a paired t-test we’ll analyse whether there is a difference in the mean number of Ebola cases per village between villages with &lt;10 individuals per 100m² and those with ≥ 10 per 100m², i.e. between lower and higher density villages.</p>
+</div>
+<div id="step-1-check-the-assumptions-of-the-independent-t-test." class="section level2" number="9.3">
+<h2><span class="header-section-number">9.3</span> Step 1: check the assumptions of the independent t-test.</h2>
+<div id="continuous-outcome" class="section level3" number="9.3.1">
+<h3><span class="header-section-number">9.3.1</span> 1. Continuous outcome</h3>
+<p>Technically an independent t-test assumes a continuous outcome variable, but as long as the following two assumptions are satisfied it’s fine to use a discrete outcome with an independent t-test. Here our outcome is a discrete numerical variable.</p>
+</div>
+<div id="independent-groups" class="section level3" number="9.3.2">
+<h3><span class="header-section-number">9.3.2</span> 2. Independent groups</h3>
+<p>We will assume this holds here as we didn’t build non-independence into the data, but it may well not hold if this was real data. Can you think why? It’s likely that villages that are closer together have correlated Ebola rates, given spread between villages that are closer together is more likely than between villages that are farther apart. If this was a big issue we could most simply aggregate or pool villages that are closer together to create cluster summary values of the outcome, if these clusters were large enough that there was negligible transmission between clusters, or we could use a more sophisticated technique like a multi-level regression model.</p>
+</div>
+<div id="the-outcome-is-approximately-normally-distributed-within-each-group" class="section level3" number="9.3.3">
+<h3><span class="header-section-number">9.3.3</span> 3. The outcome is approximately normally distributed within each group</h3>
+<p>See the “Step 1: check the assumptions of the independent t-test” section in the Inferential analysis 1: the independent t-test" section above for a reminder of how to do this using histograms, but this time use the n_ebola_cases variable as the outcome and the pop_density variable as the rows grouping variable in your histograms. You’ll see that the distribution of Ebola cases per population density group is right skewed, particularly for the lower density group. Ideally we’d analyse such data using a special model for count data like a Poisson or negative binomial model, but those approaches are beyond the scope of this introductory course.</p>
+<p>Instead, we can try and transform the outcome to address the skew and then use an independent t-test that assumes normal data. There are many possible ways to transform data, and many are quite complicated and again beyond this course. However, for right skewed data two common and simple transforms that are often sufficient are to:</p>
+<ul>
+<li><p>Take the square root of every value.</p></li>
+<li><p>Take the logarithm (usually the natural log) of every value.</p></li>
+</ul>
+<p>These transformations will hopefully “pull in” the right skewed values so the distribution becomes more symmetrical and approximately normal (although it will never be truly normal). Log transforms will tend to pull the skew in more strongly than square root transforms and are often preferred and probably best to try first. Note: as you cannot take the square root or logarithm of negative numbers (simply speaking) you can only apply these transformations to positive values. Also, while you can take the square root of 0 (it’s 0) you cannot take the logarithm of 0 (it’s “undefined”). Therefore, you must add some constant to every value in an outcome variable before taking the logarithm. Strictly speaking it’s not an ideal approach because different choices of constants will affect your results, but for more rough and ready purposes it’s probably okay to stick with the commonly used choice of adding 1.</p>
+<p>Note: a transformation not always work, in which case you would have to use a non-parametric approach.</p>
+</div>
+<div id="equal-variances-in-each-group" class="section level3" number="9.3.4">
+<h3><span class="header-section-number">9.3.4</span> 4. Equal variances in each group</h3>
+<p>We can either use the histograms we produce to compare variances in each group or use the result of the Levene’s test once we run the independent t-test.</p>
+</div>
+</div>
+<div id="step-2-transform-the-outcome" class="section level2" number="9.4">
+<h2><span class="header-section-number">9.4</span> Step 2: transform the outcome</h2>
+<p>Let’s create a ln (natural log) transformed variable using the <mark>Compute</mark> tool to deal with the right-skew in the outcome’s distribution within each group.</p>
+<ul>
+<li><p>First explore the variable by creating a frequency table. See the “Categorical variables” sub-section in the “Exercise: create a”Table 1" summarising the key characteristics of the SBP data study sample" section above if you need a reminder of how to create a frequency table. Note: these instructions were for categorical variables but you can use numerical variables too.</p></li>
+<li><p>What do you notice about the range of the outcome? It includes 0. Therefore, we must add a constant before transforming via the logarithm.</p></li>
+<li><p>From the main menu go: <mark>Transform &gt; Compute Variable</mark>. Then in the <mark>Compute Variable</mark> tool call the new variable ln_n_ebola_cases, but this time enter the transform command “LN(n_ebola_cases+1)” (without quotes) and then click <mark>OK</mark>. This command first adds 1 to every outcome value before taking the natural log.</p></li>
+<li><p>Once you’ve computed your log-transformed variable check the distribution of values for the transformed outcome in each group using histograms again. You should see that they look more normal now.</p></li>
+</ul>
+</div>
+<div id="step-3-run-the-independent-t-test-1" class="section level2" number="9.5">
+<h2><span class="header-section-number">9.5</span> Step 3: run the independent t-test</h2>
+<ul>
+<li>Run an independent t-test comparing the mean of ln_n_ebola_cases between the lower and higher groups of the pop_density variable. If you can’t remember how to refer back to the previous “Step 3: run the independent t-test” section above. When defining the groups enter <mark>Group 1</mark> as “1” (the &lt;10 individuals per 100m² group) and <mark>Group 2</mark> as “2” to replicate the results I present, but you could of course compare them the other way round.</li>
+</ul>
+</div>
+<div id="step-4-understand-the-results-tables-and-extract-the-key-results-1" class="section level2" number="9.6">
+<h2><span class="header-section-number">9.6</span> Step 4: understand the results tables and extract the key results</h2>
+<ul>
+<li>Again, refer back to the previous “Step 4: understand the results tables and extract the key results” section above if you need a refresher, but we are just extracting the same results here.</li>
+</ul>
+</div>
+<div id="step-5-report-and-interpret-the-results-1" class="section level2" number="9.7">
+<h2><span class="header-section-number">9.7</span> Step 5: report and interpret the results</h2>
+<p>You should get the following result using the equal variances <em>not assumed</em> set of results, given the Levene’s test is significant and the histograms indicate non-equal variances, which could be reported as follows (remember to explain your analysis process and justify it in your methods):</p>
+<blockquote>
+<p>Comparing the &lt;10 per 100m² group (mean Ebola cases per village = 1.94) to the ≥ 10 per 100m² group (Ebola mean cases per village = 6.63) there is a mean difference in the natural-log number of Ebola cases per village of -1 (95% CI: -1.1, -0.9).</p>
+</blockquote>
+<ul>
+<li><p>Note: I’ve presented the group means on the original scale so they can be interpreted easily, and I’ve not bothered presenting the associated p-value above. Again it tells us nothing more and far less than the effect size or mean difference and the associated 95% confidence intervals.</p></li>
+<li><p>However, this mean difference and its 95% CI is for our outcome but on the natural log scale (i.e. how we transformed it), so it isn’t easy to interpret: what does a mean difference of -1 ln Ebola cases mean? Luckily we can transform (back transform) this mean difference back onto the original scale by using exponentiation with the base e applied to each value (<a href="https://en.wikipedia.org/wiki/Exponentiation" class="uri">https://en.wikipedia.org/wiki/Exponentiation</a>). This is actually maybe most easily and quickly done just using the Google search engine’s calculator functions. Just type “exp(X)” into Google, where X is either the value of the mean difference or the upper or lower confidence interval value, and it will back-transform those values back to their original scales.</p></li>
+<li><p>Doing this for the mean difference and each 95% CI and you should get the following result:</p></li>
+</ul>
+<blockquote>
+<p>Mean difference = 0.36 (95% CI: 0.32, 0.4).</p>
+</blockquote>
+<ul>
+<li><p>So how do we interpret this now? We must take care because we have calculated a difference on natural-log transformed data (via the independent t-test) and then back-transformed that mean difference of ln-transformed values. What we actually then ultimately get is a ratio between the <em>geometric mean</em> (<a href="https://en.wikipedia.org/wiki/Geometric_mean" class="uri">https://en.wikipedia.org/wiki/Geometric_mean</a>) of the outcome in the two comparison groups, rather than a difference in the arithmetic mean of the outcome in the two comparison groups, as we get with an independent t-test where we do not ln-transform the data and then back-transform the results.</p></li>
+<li><p>For example, ln(2) – ln(4) is -0.6931472, and if you calculate the exponential (with base <em>e</em>) of -0.6931472 you get 0.5, and the ratio of 2:4, i.e. 2/4 = 0.5. Or vice versa: if you calculate the exponential of ln(4) – ln(2) you get 2, and the ratio of 4/2 is 2! Therefore, the exponential back-transformed result now represents the a ratio of geometric means. Therefore, like with risk/odds ratios as this result is now on a ratio or multiplicative scale the null value (i.e. the value of no difference between the two groups) is now not 0 but 1, because any number divided by itself = 1. And just like with risk/odds ratios we interpret the result in terms of the number of “times” our reference group’s mean value is compared to the comparison group.</p></li>
+<li><p>Therefore, in a results section we can say that “in villages with &lt;10 individuals per 100m² the geometric mean number of Ebola cases was 0.36 (95% CI: 0.32, 0.4) times the geometric mean number of Ebola cases found in villages ≥ 10 individuals per 100m².”</p></li>
+<li><p>You can also view this ratio of means in percentage terms by converting the result using one of the following simple sums, which you may find easier to interpret:</p></li>
+</ul>
+<blockquote>
+<p>When the exponentiated difference (D) is &lt;1 the % decrease = (1 - D) x 100.
+When the exponentiated difference (D) is &gt;1 the % increase = (D - 1) x 100.</p>
+</blockquote>
+<ul>
+<li><p>So for our result we can calculate that the geometric mean number of Ebola cases was (1 - 0.36) x 100 = <strong>64%</strong> lower in low density areas compared to high density areas (you should also transform each confidence intervals range value onto the percentage scale and present them along with the point estimate in any results section).</p></li>
+<li><p>Note: geometric means are typically very similar to arithmetic means for outcomes that don’t have a huge range, i.e. that don’t span a number of orders of magnitude. Therefore, for many outcomes you can think of the geometric mean as being approximately equivalent to the arithmetic mean, but this won’t be the case for outcomes with big ranges spanning orders of magnitude from the smallest to the largest value.</p></li>
+<li><p>Lastly, if we were comparing a numerical variable between two groups what if our data are still badly skewed despite transformation? Then we can use a non-parametric test, such as the Mann-Whitney U test (the most common fall back if the independent t-test cannot be used). We will not cover that in this class so we have more time for more sophisticated tests, but you should have no serious difficulties running and interpreting such a test now using one of the many online or text book guides available (see the MWU SPSS.pdf files in the “Computer Practical sessions” “Additional materials” folder on Minerva). The two big limitations of this test are the reduced power and the fact it only gives you a p-value to accompany your difference (which given the skewed data should arguably be summarised via the median) but no confidence intervals.</p></li>
+</ul>
+</div>
+<div id="limitations-1" class="section level2" number="9.8">
+<h2><span class="header-section-number">9.8</span> Limitations</h2>
+<p>The limitations are the same as discussed in the “Limitations” section of the “Inferential analysis 1: the independent t-test” section.</p>
+</div>
+<div id="exercise-independent-t-test-with-a-skewed-outcome" class="section level2" number="9.9">
+<h2><span class="header-section-number">9.9</span> Exercise: independent t-test with a skewed outcome</h2>
+<p>Using the “Ebola.sav” dataset and the process outlined above use an independent t-test to analyse the relationship between community health worker number and Ebola case number.</p>
+<ul>
+<li><p>Divide n_chw into two groups based on n_chw values &lt;5 and those ≥5.</p></li>
+<li><p>As we know the outcome n_ebola_cases is right skewed we must first transform it. We know a natural log (ln) transform works reasonably well, so transform this variable (or use the already transformed version you’ll have created earlier). Remember as there are 0s in the outcome we must also first add a constant before transforming. When I did the analysis I used a constant of 1, so I suggest you use this to avoid any differences, although they should be very minor.</p></li>
+<li><p>Compare the number of Ebola cases per village for villages with &lt;5 community health workers to those with ≥5 community health workers using the independent t-test.</p></li>
+<li><p>Extract the mean difference and confidence intervals around this estimate and back transform them by exponentiation onto their original scale. Remember you can do this quickly via Google by Googling exp(x) where x is the ln-transformed mean difference/upper or lower confidence interval of the ln-transformed mean difference.</p></li>
+<li><p>In the YCHI5045M computer sessions materials “Exercises” folder open the “Exercises.docx” Word document and scroll down to <strong>Independent t-test with a skewed outcome: the relationship between community health worker number and Ebola case rate within villages</strong>.</p></li>
+<li><p>Write a couple of sentences reporting the results of your analysis. Include the basic descriptive statistics: sample size, group sizes and group outcome means (on the original scale). Also be sure to include sufficient details about the outcome variable and the comparison made, including how the two independent groups were defined, as well as the type of analysis used, and of course the key inferential results, but you also need to mention the fact that the data were ln-transformed prior to analysis to deal with the right skew/non-normality and that the mean difference and confidence intervals presented were then back-transformed. Remember you need to interpret the result carefully because the transformation and back-transformation mean that the mean difference is now no longer a simple mean difference in reality. See “Step 5: report and interpret the results” if you need reminding. Round results to one decimal place. You don’t need to explain anything about the study or interpret the clinical or practical importance of the result.</p></li>
+<li><p>Write a sentence or two about the key limitations of this analysis <em>in terms of interpreting the result</em>.</p></li>
+<li><p>Once you’ve completed this compare your reporting to the below example text.</p></li>
+</ul>
+<p><br></p>
+<p><strong>Example results reporting text</strong></p>
+<div class="fold">
+<p><br></p>
+<p>Using an independent t-test I analysed the relationship between the number of community health workers per village (&lt;5 compared to ≥5) and the number of Ebola cases per village. Out of a total sample size of 250 villages, 107 had &lt;5 community health workers (arithmetic mean Ebola cases = 3.1) and 143 had ≥5 community health workers (arithmetic Ebola cases = 3.4). Due to a strongly right-skewed outcome I first transformed the outcome by taking the natural log of each outcome value (first adding a constant of 1 due to the presence of 0s) before back-transforming the resulting independent t-test results via exponentiation with the base e. This indicated that villages with &lt;5 community health workers had a geometric mean number of Ebola cases that was 0.9 times (95% CI: 0.7, 1.5) the geometric mean number of Ebola cases among villages with ≥5 community health workers, or equivalently the geometric number of Ebola cases among villages with &lt;5 community health workers was 10% lower than the geometric mean number of Ebola cases among villages with ≥5 community health workers. Therefore, based on the confidence intervals there was no clear or statistically significant relationship between the number of community health workers in a village and the number of Ebola cases. The key limitation of this analysis is that it does not adjust for any other confounding variables, of which there are likely to be many (especially in an observational cross-sectional study like this). Therefore, this is likely to represent a biased estimate of the independent relationship between community health worker number per village and the number of Ebola cases per village in the target population.</p>
+</div>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="the-independent-t-test.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="the-paired-t-test.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["YCHI5045M computer practical notes.pdf", "YCHI5045M computer practical notes.epub"],
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+</body>
+
+</html>
