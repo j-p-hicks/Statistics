@@ -1,0 +1,652 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 8 The independent t-test | YCHI5045M Statistics for Health Sciences: Computer Practical Session Notes</title>
+  <meta name="description" content="These are the notes for the YCHI5045M computer practical sessions." />
+  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 8 The independent t-test | YCHI5045M Statistics for Health Sciences: Computer Practical Session Notes" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="These are the notes for the YCHI5045M computer practical sessions." />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 8 The independent t-test | YCHI5045M Statistics for Health Sciences: Computer Practical Session Notes" />
+  
+  <meta name="twitter:description" content="These are the notes for the YCHI5045M computer practical sessions." />
+  
+
+<meta name="author" content="Joe Hicks and Matt Mulvey" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="describing-a-dataset.html"/>
+<link rel="next" href="the-independent-t-test-skewed-outcome.html"/>
+<script src="libs/header-attrs-2.6/header-attrs.js"></script>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<script src="libs/font-awesome-5.13.0/js/script.js"></script>
+<script src="libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
+<script type="text/javascript">
+$(document).ready(function() {
+  $folds = $(".fold");
+  $folds.wrapInner("<div class=\"fold-blck\">"); // wrap a div container around content
+  $folds.prepend("<button class=\"fold-btn\">Show</button>");  // add a button
+  $(".fold-blck").toggle();  // fold all blocks
+  $(".fold-btn").on("click", function() {  // add onClick event
+    $(this).text($(this).text() === "Hide" ? "Show" : "Hide");  // if the text equals "Fold", change it to "Unfold"or else to "Fold" 
+    $(this).next(".fold-blck").toggle("linear");  // "swing" is the default easing function. This can be further customized in its speed or the overall animation itself.
+  })
+});
+</script>
+
+
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">YCHI5045M computer practical sessions notes</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Aims and objectives</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#statistical-paradigm"><i class="fa fa-check"></i><b>1.1</b> Statistical paradigm</a></li>
+<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#analyses-covered"><i class="fa fa-check"></i><b>1.2</b> Analyses covered</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="preliminary-information.html"><a href="preliminary-information.html"><i class="fa fa-check"></i><b>2</b> Preliminary information</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="preliminary-information.html"><a href="preliminary-information.html#datasets-and-exercises-document"><i class="fa fa-check"></i><b>2.1</b> Datasets and exercises document</a></li>
+<li class="chapter" data-level="2.2" data-path="preliminary-information.html"><a href="preliminary-information.html#a-word-of-encouragement"><i class="fa fa-check"></i><b>2.2</b> A word of encouragement</a></li>
+<li class="chapter" data-level="2.3" data-path="preliminary-information.html"><a href="preliminary-information.html#about-these-notes"><i class="fa fa-check"></i><b>2.3</b> About these notes</a></li>
+<li class="chapter" data-level="2.4" data-path="preliminary-information.html"><a href="preliminary-information.html#how-these-sessions-relate-to-the-summative-assignment"><i class="fa fa-check"></i><b>2.4</b> How these sessions relate to the summative assignment</a></li>
+<li class="chapter" data-level="2.5" data-path="preliminary-information.html"><a href="preliminary-information.html#about-this-website"><i class="fa fa-check"></i><b>2.5</b> About this website</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="probability-sampling.html"><a href="probability-sampling.html"><i class="fa fa-check"></i><b>3</b> Probability sampling</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="probability-sampling.html"><a href="probability-sampling.html#units-of-observation-and-analysis"><i class="fa fa-check"></i><b>3.1</b> Units of observation and analysis</a></li>
+<li class="chapter" data-level="3.2" data-path="probability-sampling.html"><a href="probability-sampling.html#overview"><i class="fa fa-check"></i><b>3.2</b> Overview</a></li>
+<li class="chapter" data-level="3.3" data-path="probability-sampling.html"><a href="probability-sampling.html#non-probability-sampling"><i class="fa fa-check"></i><b>3.3</b> Non-probability sampling</a></li>
+<li class="chapter" data-level="3.4" data-path="probability-sampling.html"><a href="probability-sampling.html#simple-random-sampling"><i class="fa fa-check"></i><b>3.4</b> Simple random sampling</a>
+<ul>
+<li class="chapter" data-level="3.4.1" data-path="probability-sampling.html"><a href="probability-sampling.html#overview-1"><i class="fa fa-check"></i><b>3.4.1</b> Overview</a></li>
+<li class="chapter" data-level="3.4.2" data-path="probability-sampling.html"><a href="probability-sampling.html#advantages-of-simple-random-sampling"><i class="fa fa-check"></i><b>3.4.2</b> Advantages of simple random sampling</a></li>
+<li class="chapter" data-level="3.4.3" data-path="probability-sampling.html"><a href="probability-sampling.html#disadvantageslimitations-of-simple-random-sampling"><i class="fa fa-check"></i><b>3.4.3</b> Disadvantages/limitations of simple random sampling</a></li>
+<li class="chapter" data-level="3.4.4" data-path="probability-sampling.html"><a href="probability-sampling.html#scenario"><i class="fa fa-check"></i><b>3.4.4</b> Scenario</a></li>
+<li class="chapter" data-level="3.4.5" data-path="probability-sampling.html"><a href="probability-sampling.html#exercise-taking-a-simple-random-sample-using-excel"><i class="fa fa-check"></i><b>3.4.5</b> Exercise: taking a simple random sample using Excel</a></li>
+</ul></li>
+<li class="chapter" data-level="3.5" data-path="probability-sampling.html"><a href="probability-sampling.html#stratified-random-sample"><i class="fa fa-check"></i><b>3.5</b> Stratified random sample</a>
+<ul>
+<li class="chapter" data-level="3.5.1" data-path="probability-sampling.html"><a href="probability-sampling.html#overview-2"><i class="fa fa-check"></i><b>3.5.1</b> Overview</a></li>
+<li class="chapter" data-level="3.5.2" data-path="probability-sampling.html"><a href="probability-sampling.html#advantages-of-stratified-random-sampling"><i class="fa fa-check"></i><b>3.5.2</b> Advantages of stratified random sampling</a></li>
+<li class="chapter" data-level="3.5.3" data-path="probability-sampling.html"><a href="probability-sampling.html#limitations-of-stratified-random-sampling-with-proportionate-stratification"><i class="fa fa-check"></i><b>3.5.3</b> Limitations of stratified random sampling with proportionate stratification</a></li>
+<li class="chapter" data-level="3.5.4" data-path="probability-sampling.html"><a href="probability-sampling.html#scenario-1"><i class="fa fa-check"></i><b>3.5.4</b> Scenario</a></li>
+<li class="chapter" data-level="3.5.5" data-path="probability-sampling.html"><a href="probability-sampling.html#exercise-taking-a-proportionate-stratified-random-sample-using-excel"><i class="fa fa-check"></i><b>3.5.5</b> Exercise: taking a proportionate stratified random sample using Excel</a></li>
+</ul></li>
+<li class="chapter" data-level="3.6" data-path="probability-sampling.html"><a href="probability-sampling.html#systematic-random-sampling"><i class="fa fa-check"></i><b>3.6</b> Systematic random sampling</a>
+<ul>
+<li class="chapter" data-level="3.6.1" data-path="probability-sampling.html"><a href="probability-sampling.html#overview-3"><i class="fa fa-check"></i><b>3.6.1</b> Overview</a></li>
+<li class="chapter" data-level="3.6.2" data-path="probability-sampling.html"><a href="probability-sampling.html#advantages-of-systematic-random-sampling"><i class="fa fa-check"></i><b>3.6.2</b> Advantages of systematic random sampling</a></li>
+<li class="chapter" data-level="3.6.3" data-path="probability-sampling.html"><a href="probability-sampling.html#disadvantageslimitations-of-systematic-random-sampling"><i class="fa fa-check"></i><b>3.6.3</b> Disadvantages/limitations of systematic random sampling</a></li>
+<li class="chapter" data-level="3.6.4" data-path="probability-sampling.html"><a href="probability-sampling.html#when-to-use-systematic-random-sampling"><i class="fa fa-check"></i><b>3.6.4</b> When to use systematic random sampling?</a></li>
+<li class="chapter" data-level="3.6.5" data-path="probability-sampling.html"><a href="probability-sampling.html#scenario-2"><i class="fa fa-check"></i><b>3.6.5</b> Scenario</a></li>
+<li class="chapter" data-level="3.6.6" data-path="probability-sampling.html"><a href="probability-sampling.html#exercise-taking-a-systematic-random-sample-using-excel"><i class="fa fa-check"></i><b>3.6.6</b> Exercise: taking a systematic random sample using Excel</a></li>
+</ul></li>
+<li class="chapter" data-level="3.7" data-path="probability-sampling.html"><a href="probability-sampling.html#single-stage-cluster-sampling-and-multi-stage-cluster-sampling"><i class="fa fa-check"></i><b>3.7</b> Single-stage cluster sampling and multi-stage cluster sampling</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="sample-size.html"><a href="sample-size.html"><i class="fa fa-check"></i><b>4</b> Sample size</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="sample-size.html"><a href="sample-size.html#overview-4"><i class="fa fa-check"></i><b>4.1</b> Overview</a></li>
+<li class="chapter" data-level="4.2" data-path="sample-size.html"><a href="sample-size.html#confidence-interval-based-approach"><i class="fa fa-check"></i><b>4.2</b> Confidence interval based approach</a>
+<ul>
+<li class="chapter" data-level="4.2.1" data-path="sample-size.html"><a href="sample-size.html#overview-5"><i class="fa fa-check"></i><b>4.2.1</b> Overview</a></li>
+<li class="chapter" data-level="4.2.2" data-path="sample-size.html"><a href="sample-size.html#analytical-studies"><i class="fa fa-check"></i><b>4.2.2</b> Analytical studies</a></li>
+<li class="chapter" data-level="4.2.3" data-path="sample-size.html"><a href="sample-size.html#statulator-sample-sizes-for-confidence-intervals"><i class="fa fa-check"></i><b>4.2.3</b> Statulator sample sizes for confidence intervals</a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="sample-size.html"><a href="sample-size.html#hypothesis-testing-based-approach"><i class="fa fa-check"></i><b>4.3</b> Hypothesis testing based approach</a>
+<ul>
+<li class="chapter" data-level="4.3.1" data-path="sample-size.html"><a href="sample-size.html#overview-6"><i class="fa fa-check"></i><b>4.3.1</b> Overview</a></li>
+<li class="chapter" data-level="4.3.2" data-path="sample-size.html"><a href="sample-size.html#descriptive-studies"><i class="fa fa-check"></i><b>4.3.2</b> Descriptive studies</a></li>
+<li class="chapter" data-level="4.3.3" data-path="sample-size.html"><a href="sample-size.html#statulator-sample-sizes-for-hypothesis-testing"><i class="fa fa-check"></i><b>4.3.3</b> Statulator sample sizes for hypothesis testing</a></li>
+</ul></li>
+<li class="chapter" data-level="4.4" data-path="sample-size.html"><a href="sample-size.html#confidence-interval-approach-in-statulator"><i class="fa fa-check"></i><b>4.4</b> Confidence interval approach in Statulator</a>
+<ul>
+<li class="chapter" data-level="4.4.1" data-path="sample-size.html"><a href="sample-size.html#estimating-means"><i class="fa fa-check"></i><b>4.4.1</b> Estimating means</a></li>
+<li class="chapter" data-level="4.4.2" data-path="sample-size.html"><a href="sample-size.html#estimating-proportions"><i class="fa fa-check"></i><b>4.4.2</b> Estimating proportions</a></li>
+</ul></li>
+<li class="chapter" data-level="4.5" data-path="sample-size.html"><a href="sample-size.html#hypothesis-testing-approach"><i class="fa fa-check"></i><b>4.5</b> Hypothesis testing approach</a>
+<ul>
+<li class="chapter" data-level="4.5.1" data-path="sample-size.html"><a href="sample-size.html#comparing-two-independent-means"><i class="fa fa-check"></i><b>4.5.1</b> Comparing two independent means</a></li>
+<li class="chapter" data-level="4.5.2" data-path="sample-size.html"><a href="sample-size.html#compare-two-independent-proportions"><i class="fa fa-check"></i><b>4.5.2</b> Compare two independent proportions</a></li>
+</ul></li>
+<li class="chapter" data-level="4.6" data-path="sample-size.html"><a href="sample-size.html#additional-considerations-for-the-hypothesis-testing-approach"><i class="fa fa-check"></i><b>4.6</b> Additional considerations for the hypothesis testing approach</a></li>
+<li class="chapter" data-level="4.7" data-path="sample-size.html"><a href="sample-size.html#exercises-estimating-required-sample-sizes"><i class="fa fa-check"></i><b>4.7</b> Exercises: estimating required sample sizes</a>
+<ul>
+<li class="chapter" data-level="4.7.1" data-path="sample-size.html"><a href="sample-size.html#sample-size-exercises-model-answers"><i class="fa fa-check"></i><b>4.7.1</b> Sample size exercises model answers</a></li>
+</ul></li>
+<li class="chapter" data-level="4.8" data-path="sample-size.html"><a href="sample-size.html#reporting-sample-size-calculations-in-methods-sections"><i class="fa fa-check"></i><b>4.8</b> Reporting sample size calculations in methods sections</a></li>
+<li class="chapter" data-level="4.10" data-path="sample-size.html"><a href="sample-size.html#adjusting-for-clustering"><i class="fa fa-check"></i><b>4.10</b> Adjusting for clustering</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="an-introduction-to-spss.html"><a href="an-introduction-to-spss.html"><i class="fa fa-check"></i><b>5</b> An introduction to SPSS</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="an-introduction-to-spss.html"><a href="an-introduction-to-spss.html#brief-background"><i class="fa fa-check"></i><b>5.1</b> Brief background</a></li>
+<li class="chapter" data-level="5.2" data-path="an-introduction-to-spss.html"><a href="an-introduction-to-spss.html#the-datasets"><i class="fa fa-check"></i><b>5.2</b> The datasets</a></li>
+<li class="chapter" data-level="5.3" data-path="an-introduction-to-spss.html"><a href="an-introduction-to-spss.html#exercise-opening-spss-loading-data-and-understanding-the-key-features-of-the-interface"><i class="fa fa-check"></i><b>5.3</b> Exercise: opening SPSS, loading data and understanding the key features of the interface</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="preparing-a-dataset-for-analysis.html"><a href="preparing-a-dataset-for-analysis.html"><i class="fa fa-check"></i><b>6</b> Preparing a dataset for analysis</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="preparing-a-dataset-for-analysis.html"><a href="preparing-a-dataset-for-analysis.html#exercise-loading-excel-data"><i class="fa fa-check"></i><b>6.1</b> Exercise: loading Excel data</a></li>
+<li class="chapter" data-level="6.2" data-path="preparing-a-dataset-for-analysis.html"><a href="preparing-a-dataset-for-analysis.html#exercise-set-variable-properties-code-categorical-variables-and-check-categorical-variables-for-obvious-errors"><i class="fa fa-check"></i><b>6.2</b> Exercise: set variable properties, code categorical variables, and check categorical variables for obvious errors</a></li>
+<li class="chapter" data-level="6.3" data-path="preparing-a-dataset-for-analysis.html"><a href="preparing-a-dataset-for-analysis.html#exercise-check-numerical-variables-for-obvious-errors"><i class="fa fa-check"></i><b>6.3</b> Exercise: check numerical variables for obvious errors</a></li>
+<li class="chapter" data-level="6.4" data-path="preparing-a-dataset-for-analysis.html"><a href="preparing-a-dataset-for-analysis.html#a-final-note-on-data-cleaning"><i class="fa fa-check"></i><b>6.4</b> A final note on data cleaning</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="describing-a-dataset.html"><a href="describing-a-dataset.html"><i class="fa fa-check"></i><b>7</b> Describing a dataset</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="describing-a-dataset.html"><a href="describing-a-dataset.html#background"><i class="fa fa-check"></i><b>7.1</b> Background</a>
+<ul>
+<li class="chapter" data-level="7.1.1" data-path="describing-a-dataset.html"><a href="describing-a-dataset.html#descriptive-vs-inferential-statistics"><i class="fa fa-check"></i><b>7.1.1</b> Descriptive vs inferential statistics</a></li>
+</ul></li>
+<li class="chapter" data-level="7.2" data-path="describing-a-dataset.html"><a href="describing-a-dataset.html#exercise-create-descriptive-statistics"><i class="fa fa-check"></i><b>7.2</b> Exercise: create descriptive statistics</a>
+<ul>
+<li class="chapter" data-level="7.2.1" data-path="describing-a-dataset.html"><a href="describing-a-dataset.html#overview-9"><i class="fa fa-check"></i><b>7.2.1</b> Overview</a></li>
+<li class="chapter" data-level="7.2.4" data-path="describing-a-dataset.html"><a href="describing-a-dataset.html#example-completed-table"><i class="fa fa-check"></i><b>7.2.4</b> Example completed table</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="the-independent-t-test.html"><a href="the-independent-t-test.html"><i class="fa fa-check"></i><b>8</b> The independent t-test</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="the-independent-t-test.html"><a href="the-independent-t-test.html#overview-10"><i class="fa fa-check"></i><b>8.1</b> Overview</a></li>
+<li class="chapter" data-level="8.2" data-path="the-independent-t-test.html"><a href="the-independent-t-test.html#scenario-7"><i class="fa fa-check"></i><b>8.2</b> Scenario</a></li>
+<li class="chapter" data-level="8.3" data-path="the-independent-t-test.html"><a href="the-independent-t-test.html#step-1-create-a-binary-independent-variable-from-a-numerical-variable"><i class="fa fa-check"></i><b>8.3</b> Step 1: create a binary independent variable from a numerical variable</a></li>
+<li class="chapter" data-level="8.4" data-path="the-independent-t-test.html"><a href="the-independent-t-test.html#step-2-check-the-assumptions-of-the-independent-t-test-are-not-violated"><i class="fa fa-check"></i><b>8.4</b> Step 2: check the assumptions of the independent t-test are not violated</a></li>
+<li class="chapter" data-level="8.5" data-path="the-independent-t-test.html"><a href="the-independent-t-test.html#step-3-run-the-independent-t-test"><i class="fa fa-check"></i><b>8.5</b> Step 3: run the independent t-test</a></li>
+<li class="chapter" data-level="8.6" data-path="the-independent-t-test.html"><a href="the-independent-t-test.html#step-4-understand-the-results-tables-and-extract-the-key-results"><i class="fa fa-check"></i><b>8.6</b> Step 4: understand the results tables and extract the key results</a></li>
+<li class="chapter" data-level="8.7" data-path="the-independent-t-test.html"><a href="the-independent-t-test.html#step-5-report-and-interpret-the-results"><i class="fa fa-check"></i><b>8.7</b> Step 5: report and interpret the results</a>
+<ul>
+<li class="chapter" data-level="8.7.1" data-path="the-independent-t-test.html"><a href="the-independent-t-test.html#reporting-the-results"><i class="fa fa-check"></i><b>8.7.1</b> Reporting the results</a></li>
+<li class="chapter" data-level="8.7.2" data-path="the-independent-t-test.html"><a href="the-independent-t-test.html#interpreting-the-results"><i class="fa fa-check"></i><b>8.7.2</b> Interpreting the results</a></li>
+</ul></li>
+<li class="chapter" data-level="8.8" data-path="the-independent-t-test.html"><a href="the-independent-t-test.html#limitations"><i class="fa fa-check"></i><b>8.8</b> Limitations</a></li>
+<li class="chapter" data-level="8.9" data-path="the-independent-t-test.html"><a href="the-independent-t-test.html#exercise-independent-t-test"><i class="fa fa-check"></i><b>8.9</b> Exercise: independent t-test</a>
+<ul>
+<li class="chapter" data-level="8.9.1" data-path="the-independent-t-test.html"><a href="the-independent-t-test.html#example-independent-t-test-results-reporting-text"><i class="fa fa-check"></i><b>8.9.1</b> Example independent t-test results reporting text</a></li>
+</ul></li>
+<li class="chapter" data-level="8.10" data-path="the-independent-t-test.html"><a href="the-independent-t-test.html#next-steps-optional"><i class="fa fa-check"></i><b>8.10</b> Next steps (optional)</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="the-independent-t-test-skewed-outcome.html"><a href="the-independent-t-test-skewed-outcome.html"><i class="fa fa-check"></i><b>9</b> The independent t-test: skewed outcome</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="the-independent-t-test-skewed-outcome.html"><a href="the-independent-t-test-skewed-outcome.html#overview-11"><i class="fa fa-check"></i><b>9.1</b> Overview</a></li>
+<li class="chapter" data-level="9.2" data-path="the-independent-t-test-skewed-outcome.html"><a href="the-independent-t-test-skewed-outcome.html#scenario-8"><i class="fa fa-check"></i><b>9.2</b> Scenario</a></li>
+<li class="chapter" data-level="9.3" data-path="the-independent-t-test-skewed-outcome.html"><a href="the-independent-t-test-skewed-outcome.html#step-1-check-the-assumptions-of-the-independent-t-test."><i class="fa fa-check"></i><b>9.3</b> Step 1: check the assumptions of the independent t-test.</a>
+<ul>
+<li class="chapter" data-level="9.3.1" data-path="the-independent-t-test-skewed-outcome.html"><a href="the-independent-t-test-skewed-outcome.html#continuous-outcome"><i class="fa fa-check"></i><b>9.3.1</b> 1. Continuous outcome</a></li>
+<li class="chapter" data-level="9.3.2" data-path="the-independent-t-test-skewed-outcome.html"><a href="the-independent-t-test-skewed-outcome.html#independent-groups"><i class="fa fa-check"></i><b>9.3.2</b> 2. Independent groups</a></li>
+<li class="chapter" data-level="9.3.3" data-path="the-independent-t-test-skewed-outcome.html"><a href="the-independent-t-test-skewed-outcome.html#the-outcome-is-approximately-normally-distributed-within-each-group"><i class="fa fa-check"></i><b>9.3.3</b> 3. The outcome is approximately normally distributed within each group</a></li>
+<li class="chapter" data-level="9.3.4" data-path="the-independent-t-test-skewed-outcome.html"><a href="the-independent-t-test-skewed-outcome.html#equal-variances-in-each-group"><i class="fa fa-check"></i><b>9.3.4</b> 4. Equal variances in each group</a></li>
+</ul></li>
+<li class="chapter" data-level="9.4" data-path="the-independent-t-test-skewed-outcome.html"><a href="the-independent-t-test-skewed-outcome.html#step-2-transform-the-outcome"><i class="fa fa-check"></i><b>9.4</b> Step 2: transform the outcome</a></li>
+<li class="chapter" data-level="9.5" data-path="the-independent-t-test-skewed-outcome.html"><a href="the-independent-t-test-skewed-outcome.html#step-3-run-the-independent-t-test-1"><i class="fa fa-check"></i><b>9.5</b> Step 3: run the independent t-test</a></li>
+<li class="chapter" data-level="9.6" data-path="the-independent-t-test-skewed-outcome.html"><a href="the-independent-t-test-skewed-outcome.html#step-4-understand-the-results-tables-and-extract-the-key-results-1"><i class="fa fa-check"></i><b>9.6</b> Step 4: understand the results tables and extract the key results</a></li>
+<li class="chapter" data-level="9.7" data-path="the-independent-t-test-skewed-outcome.html"><a href="the-independent-t-test-skewed-outcome.html#step-5-report-and-interpret-the-results-1"><i class="fa fa-check"></i><b>9.7</b> Step 5: report and interpret the results</a></li>
+<li class="chapter" data-level="9.8" data-path="the-independent-t-test-skewed-outcome.html"><a href="the-independent-t-test-skewed-outcome.html#limitations-1"><i class="fa fa-check"></i><b>9.8</b> Limitations</a></li>
+<li class="chapter" data-level="9.9" data-path="the-independent-t-test-skewed-outcome.html"><a href="the-independent-t-test-skewed-outcome.html#exercise-independent-t-test-with-a-skewed-outcome"><i class="fa fa-check"></i><b>9.9</b> Exercise: independent t-test with a skewed outcome</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="the-paired-t-test.html"><a href="the-paired-t-test.html"><i class="fa fa-check"></i><b>10</b> The paired t-test</a>
+<ul>
+<li class="chapter" data-level="10.1" data-path="the-paired-t-test.html"><a href="the-paired-t-test.html#overview-12"><i class="fa fa-check"></i><b>10.1</b> Overview</a></li>
+<li class="chapter" data-level="10.2" data-path="the-paired-t-test.html"><a href="the-paired-t-test.html#scenario-9"><i class="fa fa-check"></i><b>10.2</b> Scenario</a></li>
+<li class="chapter" data-level="10.3" data-path="the-paired-t-test.html"><a href="the-paired-t-test.html#step-1-check-the-assumptions-of-the-paired-t-test"><i class="fa fa-check"></i><b>10.3</b> Step 1: check the assumptions of the paired t-test</a>
+<ul>
+<li class="chapter" data-level="10.3.1" data-path="the-paired-t-test.html"><a href="the-paired-t-test.html#continuous-outcome-1"><i class="fa fa-check"></i><b>10.3.1</b> 1. Continuous outcome</a></li>
+<li class="chapter" data-level="10.3.2" data-path="the-paired-t-test.html"><a href="the-paired-t-test.html#paired-outcome-dataobservations-but-independent-observations-between-pairs"><i class="fa fa-check"></i><b>10.3.2</b> 2. Paired outcome data/observations, but independent observations between pairs</a></li>
+<li class="chapter" data-level="10.3.3" data-path="the-paired-t-test.html"><a href="the-paired-t-test.html#approximately-normally-distributed-differences-between-paired-observations"><i class="fa fa-check"></i><b>10.3.3</b> 3. Approximately normally distributed differences between paired observations</a></li>
+</ul></li>
+<li class="chapter" data-level="10.4" data-path="the-paired-t-test.html"><a href="the-paired-t-test.html#step-2-run-the-paired-t-test"><i class="fa fa-check"></i><b>10.4</b> Step 2: run the paired t-test</a></li>
+<li class="chapter" data-level="10.5" data-path="the-paired-t-test.html"><a href="the-paired-t-test.html#step-3-understand-the-results-tables-and-extract-the-key-results"><i class="fa fa-check"></i><b>10.5</b> Step 3: understand the results tables and extract the key results</a></li>
+<li class="chapter" data-level="10.6" data-path="the-paired-t-test.html"><a href="the-paired-t-test.html#step-4-report-and-interpret-the-results"><i class="fa fa-check"></i><b>10.6</b> Step 4: report and interpret the results</a></li>
+<li class="chapter" data-level="10.7" data-path="the-paired-t-test.html"><a href="the-paired-t-test.html#limitations-2"><i class="fa fa-check"></i><b>10.7</b> Limitations</a></li>
+<li class="chapter" data-level="10.8" data-path="the-paired-t-test.html"><a href="the-paired-t-test.html#exercise-paired-t-test"><i class="fa fa-check"></i><b>10.8</b> Exercise: paired t-test</a></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="the-chi-square-test-of-independence.html"><a href="the-chi-square-test-of-independence.html"><i class="fa fa-check"></i><b>11</b> The chi-square test of independence</a>
+<ul>
+<li class="chapter" data-level="11.1" data-path="the-chi-square-test-of-independence.html"><a href="the-chi-square-test-of-independence.html#overview-13"><i class="fa fa-check"></i><b>11.1</b> Overview</a></li>
+<li class="chapter" data-level="11.2" data-path="the-chi-square-test-of-independence.html"><a href="the-chi-square-test-of-independence.html#scenario-10"><i class="fa fa-check"></i><b>11.2</b> Scenario</a></li>
+<li class="chapter" data-level="11.3" data-path="the-chi-square-test-of-independence.html"><a href="the-chi-square-test-of-independence.html#step-1-check-the-assumptions-of-the-chi-square-test-of-independence"><i class="fa fa-check"></i><b>11.3</b> Step 1: check the assumptions of the chi-square test of independence</a></li>
+<li class="chapter" data-level="11.4" data-path="the-chi-square-test-of-independence.html"><a href="the-chi-square-test-of-independence.html#step-2-run-the-chi-square-test-of-independence"><i class="fa fa-check"></i><b>11.4</b> Step 2: run the chi-square test of independence</a></li>
+<li class="chapter" data-level="11.5" data-path="the-chi-square-test-of-independence.html"><a href="the-chi-square-test-of-independence.html#step-3-understand-the-results-tables-and-extract-the-key-results-1"><i class="fa fa-check"></i><b>11.5</b> Step 3: understand the results tables and extract the key results</a></li>
+<li class="chapter" data-level="11.6" data-path="the-chi-square-test-of-independence.html"><a href="the-chi-square-test-of-independence.html#step-4-report-and-interpret-the-results-1"><i class="fa fa-check"></i><b>11.6</b> Step 4: report and interpret the results</a></li>
+<li class="chapter" data-level="11.7" data-path="the-chi-square-test-of-independence.html"><a href="the-chi-square-test-of-independence.html#limitations-3"><i class="fa fa-check"></i><b>11.7</b> Limitations</a></li>
+<li class="chapter" data-level="11.8" data-path="the-chi-square-test-of-independence.html"><a href="the-chi-square-test-of-independence.html#expected-cell-counts-5"><i class="fa fa-check"></i><b>11.8</b> Expected cell counts &lt;5</a></li>
+<li class="chapter" data-level="11.9" data-path="the-chi-square-test-of-independence.html"><a href="the-chi-square-test-of-independence.html#exercise-chi-square-test-of-independence"><i class="fa fa-check"></i><b>11.9</b> Exercise: chi-square test of independence</a></li>
+</ul></li>
+<li class="chapter" data-level="12" data-path="the-chi-square-goodness-of-fit-test.html"><a href="the-chi-square-goodness-of-fit-test.html"><i class="fa fa-check"></i><b>12</b> The chi-square goodness-of-fit test</a></li>
+<li class="chapter" data-level="13" data-path="mcnemars-test.html"><a href="mcnemars-test.html"><i class="fa fa-check"></i><b>13</b> McNemar’s test</a></li>
+<li class="chapter" data-level="14" data-path="multiple-linear-regression.html"><a href="multiple-linear-regression.html"><i class="fa fa-check"></i><b>14</b> Multiple linear regression</a>
+<ul>
+<li class="chapter" data-level="14.1" data-path="multiple-linear-regression.html"><a href="multiple-linear-regression.html#key-terminology-and-concepts"><i class="fa fa-check"></i><b>14.1</b> Key terminology and concepts</a></li>
+<li class="chapter" data-level="14.2" data-path="multiple-linear-regression.html"><a href="multiple-linear-regression.html#overview-with-a-focus-on-causal-inference-from-observational-data"><i class="fa fa-check"></i><b>14.2</b> Overview with a focus on causal inference from observational data</a>
+<ul>
+<li class="chapter" data-level="14.2.1" data-path="multiple-linear-regression.html"><a href="multiple-linear-regression.html#causal-inference-references"><i class="fa fa-check"></i><b>14.2.1</b> Causal inference references</a></li>
+<li class="chapter" data-level="14.2.2" data-path="multiple-linear-regression.html"><a href="multiple-linear-regression.html#interactions-and-non-linear-relationships"><i class="fa fa-check"></i><b>14.2.2</b> Interactions and non-linear relationships</a></li>
+</ul></li>
+<li class="chapter" data-level="14.3" data-path="multiple-linear-regression.html"><a href="multiple-linear-regression.html#scenario-11"><i class="fa fa-check"></i><b>14.3</b> Scenario</a></li>
+<li class="chapter" data-level="14.4" data-path="multiple-linear-regression.html"><a href="multiple-linear-regression.html#step-1-explore-the-data"><i class="fa fa-check"></i><b>14.4</b> Step 1: explore the data</a></li>
+<li class="chapter" data-level="14.5" data-path="multiple-linear-regression.html"><a href="multiple-linear-regression.html#step-2-run-the-linear-regression-model"><i class="fa fa-check"></i><b>14.5</b> Step 2: run the linear regression model</a></li>
+<li class="chapter" data-level="14.6" data-path="multiple-linear-regression.html"><a href="multiple-linear-regression.html#step-3-check-the-assumptions-of-linear-regression"><i class="fa fa-check"></i><b>14.6</b> Step 3: check the assumptions of linear regression</a></li>
+<li class="chapter" data-level="14.7" data-path="multiple-linear-regression.html"><a href="multiple-linear-regression.html#step-4-consider-additional-possible-issues"><i class="fa fa-check"></i><b>14.7</b> Step 4: consider additional possible issues</a></li>
+<li class="chapter" data-level="14.8" data-path="multiple-linear-regression.html"><a href="multiple-linear-regression.html#step-5-understand-the-results-tables-and-extract-the-key-results"><i class="fa fa-check"></i><b>14.8</b> Step 5: understand the results tables and extract the key results</a></li>
+<li class="chapter" data-level="14.9" data-path="multiple-linear-regression.html"><a href="multiple-linear-regression.html#step-6-report-and-interpret-the-results"><i class="fa fa-check"></i><b>14.9</b> Step 6: report and interpret the results</a>
+<ul>
+<li class="chapter" data-level="14.9.1" data-path="multiple-linear-regression.html"><a href="multiple-linear-regression.html#numerical-variables-1"><i class="fa fa-check"></i><b>14.9.1</b> Numerical variables</a></li>
+<li class="chapter" data-level="14.9.2" data-path="multiple-linear-regression.html"><a href="multiple-linear-regression.html#categorical-variables-1"><i class="fa fa-check"></i><b>14.9.2</b> Categorical variables</a></li>
+<li class="chapter" data-level="14.9.3" data-path="multiple-linear-regression.html"><a href="multiple-linear-regression.html#non-significant-results"><i class="fa fa-check"></i><b>14.9.3</b> “Non-significant” results</a></li>
+<li class="chapter" data-level="14.9.4" data-path="multiple-linear-regression.html"><a href="multiple-linear-regression.html#regression-tables"><i class="fa fa-check"></i><b>14.9.4</b> Regression tables</a></li>
+<li class="chapter" data-level="14.9.5" data-path="multiple-linear-regression.html"><a href="multiple-linear-regression.html#methods"><i class="fa fa-check"></i><b>14.9.5</b> Methods</a></li>
+</ul></li>
+<li class="chapter" data-level="14.10" data-path="multiple-linear-regression.html"><a href="multiple-linear-regression.html#exercise-multiple-linear-regression"><i class="fa fa-check"></i><b>14.10</b> Exercise: multiple linear regression</a></li>
+<li class="chapter" data-level="14.11" data-path="multiple-linear-regression.html"><a href="multiple-linear-regression.html#next-steps-optional-1"><i class="fa fa-check"></i><b>14.11</b> Next steps (optional)</a></li>
+</ul></li>
+<li class="chapter" data-level="15" data-path="multiple-binary-logistic-regression.html"><a href="multiple-binary-logistic-regression.html"><i class="fa fa-check"></i><b>15</b> Multiple binary logistic regression</a>
+<ul>
+<li class="chapter" data-level="15.1" data-path="multiple-binary-logistic-regression.html"><a href="multiple-binary-logistic-regression.html#overview-14"><i class="fa fa-check"></i><b>15.1</b> Overview</a></li>
+<li class="chapter" data-level="15.2" data-path="multiple-binary-logistic-regression.html"><a href="multiple-binary-logistic-regression.html#scenario-12"><i class="fa fa-check"></i><b>15.2</b> Scenario</a></li>
+<li class="chapter" data-level="15.3" data-path="multiple-binary-logistic-regression.html"><a href="multiple-binary-logistic-regression.html#modelling-process"><i class="fa fa-check"></i><b>15.3</b> Modelling process</a></li>
+<li class="chapter" data-level="15.4" data-path="multiple-binary-logistic-regression.html"><a href="multiple-binary-logistic-regression.html#step-1-explore-the-data-1"><i class="fa fa-check"></i><b>15.4</b> Step 1: explore the data</a></li>
+<li class="chapter" data-level="15.5" data-path="multiple-binary-logistic-regression.html"><a href="multiple-binary-logistic-regression.html#step-2-run-the-logistic-regression-model"><i class="fa fa-check"></i><b>15.5</b> Step 2: run the logistic regression model</a></li>
+<li class="chapter" data-level="15.6" data-path="multiple-binary-logistic-regression.html"><a href="multiple-binary-logistic-regression.html#step-3-check-the-assumptions-of-the-logistic-regression"><i class="fa fa-check"></i><b>15.6</b> Step 3: check the assumptions of the logistic regression</a></li>
+<li class="chapter" data-level="15.7" data-path="multiple-binary-logistic-regression.html"><a href="multiple-binary-logistic-regression.html#step-4-consider-additional-problems"><i class="fa fa-check"></i><b>15.7</b> Step 4: consider additional problems</a></li>
+<li class="chapter" data-level="15.8" data-path="multiple-binary-logistic-regression.html"><a href="multiple-binary-logistic-regression.html#step-5-understand-the-results-tables-and-extract-the-key-results-1"><i class="fa fa-check"></i><b>15.8</b> Step 5: understand the results tables and extract the key results</a></li>
+<li class="chapter" data-level="15.9" data-path="multiple-binary-logistic-regression.html"><a href="multiple-binary-logistic-regression.html#step-6-report-and-interpret-the-results-1"><i class="fa fa-check"></i><b>15.9</b> Step 6: report and interpret the results</a>
+<ul>
+<li class="chapter" data-level="15.9.1" data-path="multiple-binary-logistic-regression.html"><a href="multiple-binary-logistic-regression.html#understanding-and-interpreting-odds-ratios"><i class="fa fa-check"></i><b>15.9.1</b> Understanding and interpreting odds ratios</a></li>
+<li class="chapter" data-level="15.9.2" data-path="multiple-binary-logistic-regression.html"><a href="multiple-binary-logistic-regression.html#categorical-variables-2"><i class="fa fa-check"></i><b>15.9.2</b> Categorical variables</a></li>
+<li class="chapter" data-level="15.9.3" data-path="multiple-binary-logistic-regression.html"><a href="multiple-binary-logistic-regression.html#numerical-variables-2"><i class="fa fa-check"></i><b>15.9.3</b> Numerical variables</a></li>
+<li class="chapter" data-level="15.9.4" data-path="multiple-binary-logistic-regression.html"><a href="multiple-binary-logistic-regression.html#practical-importance"><i class="fa fa-check"></i><b>15.9.4</b> Practical importance</a></li>
+<li class="chapter" data-level="15.9.5" data-path="multiple-binary-logistic-regression.html"><a href="multiple-binary-logistic-regression.html#non-significant-results-1"><i class="fa fa-check"></i><b>15.9.5</b> “Non-significant results”</a></li>
+<li class="chapter" data-level="15.9.6" data-path="multiple-binary-logistic-regression.html"><a href="multiple-binary-logistic-regression.html#regression-tables-1"><i class="fa fa-check"></i><b>15.9.6</b> Regression tables</a></li>
+<li class="chapter" data-level="15.9.7" data-path="multiple-binary-logistic-regression.html"><a href="multiple-binary-logistic-regression.html#methods-1"><i class="fa fa-check"></i><b>15.9.7</b> Methods</a></li>
+</ul></li>
+<li class="chapter" data-level="15.10" data-path="multiple-binary-logistic-regression.html"><a href="multiple-binary-logistic-regression.html#exercise-multiple-logistic-regression"><i class="fa fa-check"></i><b>15.10</b> Exercise: multiple logistic regression</a></li>
+<li class="chapter" data-level="15.11" data-path="multiple-binary-logistic-regression.html"><a href="multiple-binary-logistic-regression.html#next-steps-optional-2"><i class="fa fa-check"></i><b>15.11</b> Next steps (optional)</a></li>
+</ul></li>
+<li class="chapter" data-level="16" data-path="complex-surveydesign-analysis.html"><a href="complex-surveydesign-analysis.html"><i class="fa fa-check"></i><b>16</b> Complex survey/design analysis</a>
+<ul>
+<li class="chapter" data-level="16.1" data-path="complex-surveydesign-analysis.html"><a href="complex-surveydesign-analysis.html#overview-15"><i class="fa fa-check"></i><b>16.1</b> Overview</a></li>
+<li class="chapter" data-level="16.2" data-path="complex-surveydesign-analysis.html"><a href="complex-surveydesign-analysis.html#a-very-brief-description-of-survey-weights"><i class="fa fa-check"></i><b>16.2</b> A very brief description of survey weights</a></li>
+<li class="chapter" data-level="16.3" data-path="complex-surveydesign-analysis.html"><a href="complex-surveydesign-analysis.html#further-reading"><i class="fa fa-check"></i><b>16.3</b> Further reading</a></li>
+<li class="chapter" data-level="16.4" data-path="complex-surveydesign-analysis.html"><a href="complex-surveydesign-analysis.html#preparing-for-complex-survey-data-analysis-a-checklist"><i class="fa fa-check"></i><b>16.4</b> Preparing for complex survey data analysis: a checklist</a></li>
+<li class="chapter" data-level="16.5" data-path="complex-surveydesign-analysis.html"><a href="complex-surveydesign-analysis.html#scenario-13"><i class="fa fa-check"></i><b>16.5</b> Scenario</a></li>
+<li class="chapter" data-level="16.6" data-path="complex-surveydesign-analysis.html"><a href="complex-surveydesign-analysis.html#step-1-prepare-and-explore-the-data"><i class="fa fa-check"></i><b>16.6</b> Step 1: prepare and explore the data</a>
+<ul>
+<li class="chapter" data-level="16.6.1" data-path="complex-surveydesign-analysis.html"><a href="complex-surveydesign-analysis.html#basic-variable-details"><i class="fa fa-check"></i><b>16.6.1</b> Basic variable details</a></li>
+<li class="chapter" data-level="16.6.2" data-path="complex-surveydesign-analysis.html"><a href="complex-surveydesign-analysis.html#prepare-and-explore-the-data"><i class="fa fa-check"></i><b>16.6.2</b> Prepare and explore the data</a></li>
+</ul></li>
+<li class="chapter" data-level="16.7" data-path="complex-surveydesign-analysis.html"><a href="complex-surveydesign-analysis.html#step-2-create-the-spss-complex-samples-plan-file"><i class="fa fa-check"></i><b>16.7</b> Step 2: create the SPSS “complex samples plan file”</a></li>
+<li class="chapter" data-level="16.8" data-path="complex-surveydesign-analysis.html"><a href="complex-surveydesign-analysis.html#step-3-describe-the-sample"><i class="fa fa-check"></i><b>16.8</b> Step 3: describe the sample</a></li>
+<li class="chapter" data-level="16.9" data-path="complex-surveydesign-analysis.html"><a href="complex-surveydesign-analysis.html#step-4-run-the-complex-design-adjusted-linear-regression-model"><i class="fa fa-check"></i><b>16.9</b> Step 4: run the complex design adjusted linear regression model</a></li>
+<li class="chapter" data-level="16.10" data-path="complex-surveydesign-analysis.html"><a href="complex-surveydesign-analysis.html#step-5-check-the-assumptions-of-the-complex-design-linear-regression-model"><i class="fa fa-check"></i><b>16.10</b> Step 5: check the assumptions of the complex design linear regression model</a></li>
+<li class="chapter" data-level="16.11" data-path="complex-surveydesign-analysis.html"><a href="complex-surveydesign-analysis.html#step-6-understand-the-results-tables"><i class="fa fa-check"></i><b>16.11</b> Step 6: understand the results tables</a></li>
+<li class="chapter" data-level="16.12" data-path="complex-surveydesign-analysis.html"><a href="complex-surveydesign-analysis.html#exercise-complex-design-adjusted-linear-regression"><i class="fa fa-check"></i><b>16.12</b> Exercise: complex design adjusted linear regression</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">YCHI5045M Statistics for Health Sciences: Computer Practical Session Notes</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="the-independent-t-test" class="section level1" number="8">
+<h1><span class="header-section-number">Chapter 8</span> The independent t-test</h1>
+<div id="overview-10" class="section level2" number="8.1">
+<h2><span class="header-section-number">8.1</span> Overview</h2>
+<p>The independent t-test allows you to compare whether two independent groups differ in their mean values of some numerical outcome, or less formally whether individuals in one group have higher/lower values for some numerical outcome than individuals in another group, on average. Therefore, it is suitable when your outcome is numerical and your single independent variable is binary. For example, if you wanted to analyse whether a group of women had a different mean systolic blood pressure from a group of men. Therefore, the independent t-test is suitable for when your outcome is numerical and your independent variable is binary. Strictly speaking the outcome should be continuous and normally distributed for each group, but the independent t-test is very robust to non-normally distributed outcomes and as long as the outcome isn’t strongly skewed for each group it should be okay to use this test. Note: with the independent t-test the independent variable is binary and might naturally consist of a categorical variable with just two levels (like sex), or we might construct a binary variable from a categorical variable with &gt;2 levels (e.g. reclassifying socio-economic status from low, medium and high levels to just low/medium and high levels by pooling individuals in the low and medium levels), or we might create a binary variable from a numerical variable based on a threshold cut-off (e.g. BMI ≤20 vs BMI &gt;20). We’ll look at the last of these scenarios as it requires a bit more preparation, so you will know how to do this if needed in SPSS.</p>
+</div>
+<div id="scenario-7" class="section level2" number="8.2">
+<h2><span class="header-section-number">8.2</span> Scenario</h2>
+<p>Using the SBP final dataset we’ll see how we can use the independent t-test to compare whether the mean systolic blood pressure (mmHg) differs between individuals aged ≤40 compared to those aged &gt;40, and then you can try a similar analysis by yourself.</p>
+</div>
+<div id="step-1-create-a-binary-independent-variable-from-a-numerical-variable" class="section level2" number="8.3">
+<h2><span class="header-section-number">8.3</span> Step 1: create a binary independent variable from a numerical variable</h2>
+<ul>
+<li>Load the “SBP data final.sav” SPSS dataset.</li>
+</ul>
+<p><a href="https://youtu.be/DPphng9PC4Q">Video instructions: create a binary independent variable from a numerical variable</a></p>
+<p><strong>Written instructions: create a binary independent variable from a numerical variable</strong></p>
+<div class="fold">
+<p><br></p>
+<p>Next we need to create a two-level categorical variable defining our younger and older individuals. Usually you should choose the cut-point at which you define your two-levels based on theory or some sensible motivation (e.g. the age at which prior research suggests blood pressure may often change), but here let’s just compare those individuals above and below the <em>median age</em>, which is 40. We therefore want to create a variable that classifies every individual as either ≤40 or &gt;40.</p>
+<ul>
+<li>First, we can use the <mark>Compute Variable</mark> tool to create a new variable based on a logical test of whether the value in the original age variable is ≤40 or not. This will create a new variable that has the value 0 if the participant’s age is &gt;40 and the value 1 if their age is ≤40 (i.e. if the logical check we asked SPSS to do on the original age variable is TRUE then the new variable’s value is 1). From the main menu go: <mark>Transform &gt; Compute Variable</mark>. Then in the <mark>Compute Variable</mark> tool enter “age_young_old” as the name for the new variable in the <mark>Target Variable:</mark> box. Then in the <mark>Numeric Expression:</mark> box enter:</li>
+</ul>
+<blockquote>
+<p>age &lt;= 40</p>
+</blockquote>
+<p>Then click <mark>OK</mark>.</p>
+<ul>
+<li><p>The <mark>output window</mark> will appear. Minimise this to go back to the main window and go to the <mark>Variable View</mark>. You should now see our new variable age_young_old has appeared. Let’s give it a variable label so it’s well described in SPSS: Age (0 = &gt;40 / 1 = &lt;=40). Then let’s give it some value labels so each level is well described. As it was created from a logical expression it takes only two values: 0 or 1. 1 should be coded as “≤40,” because when the participant’s age was less than or equal to 40 the logical expression would be true and the new variable would take the value 1. Similarly 0 should be coded as “&gt;40” as the logical expression would be false and the value set to 0. Check back to the instructions on adding value labels or ask if you need help.</p></li>
+<li><p>Lastly, once that’s done you should always do a quick check that the variable has been created correctly using a “cross tabulation” between our old and new age variable. In the main menu go: <mark>Analyse &gt; Descriptive Statistics &gt; Crosstabs</mark>. Then in the <mark>Crosstabs</mark> tool add the original age variable into the <mark>Row(s):</mark> box and the new categorical binary age variable into the <mark>Column(s):</mark> box and click <mark>OK</mark>. If you’ve created the new age variable correctly all ages ≤40 should be counted in the age &lt;=40 column and all ages &gt;40 in the new age variable age &gt;40 column. Always perform such checks when creating new variables!</p></li>
+</ul>
+</div>
+</div>
+<div id="step-2-check-the-assumptions-of-the-independent-t-test-are-not-violated" class="section level2" number="8.4">
+<h2><span class="header-section-number">8.4</span> Step 2: check the assumptions of the independent t-test are not violated</h2>
+<div class="fold">
+<p><br></p>
+<p>Whenever you run a statistical analysis you must ensure that the assumptions of the analysis are not violated, otherwise the results may not be valid or even meaningful. For simple analyses like the independent t-test we can check the assumptions before we run the test, but for more sophisticated analyses such as regression models we typically check the assumptions after running the analysis because SPSS produces the information to make the necessary checks only after running the analysis.</p>
+<p>The independent t-test makes the following assumptions:</p>
+<p><br></p>
+<p><strong>1. Continuous outcome</strong></p>
+<p>Technically an independent t-test assumes a continuous outcome variable, but as long as assumptions 2 and 3 below are satisfied it’s fine to use a discrete outcome with an independent t-test. Here our outcome is continuous. Note: ideally when analysing a discrete outcome you would use a more specific model like a Poisson or negative binomial model, but this is beyond the scope of this introductory course.</p>
+<p><br></p>
+<p><strong>2. Independent groups (hence the “independent t-test”)</strong></p>
+<p>This means the observations in each group cannot be related. You can only really verify this by knowledge of your study design. With the SBP data the study took a <strong>simple random sample</strong> of individuals and we are then dividing them into two groups based on an age threshold. Therefore, by definition the two groups are statistically independent as all observations represent separate, randomly sampled individuals.</p>
+<p>Typically groups are only not independent in two situations. First, if you were taking repeated measurements from the same set of individuals but treating the measurements at each time period as different “groups.” Here there would be correlations between the measurements at the different time periods within individuals. Second, if you were taking measurements from two groups of separate individuals, but the individuals in the two groups were not statistically independent. For example, if there were different families with members in both the age groups, or if there were individuals from the same work places within each group. Again, in such situations there would be correlations between members of the same family or work place (e.g. due to genetics or shared risk factors etc).</p>
+<p>Here our groups or observations are clearly independent as the individuals in the study were randomly sampled and the two groups contain separate individuals.</p>
+<p><br></p>
+<p><strong>3. The outcome is approximately normally distributed within each group</strong></p>
+<p>Note: technically it is the “residuals” or “model errors” that need to be normally distributed, which are the differences between the observed values of the data and the “model predicted values.” For a t-test these are simply the differences between the observed values of the data and the mean of the relevant group that the observation comes from, which actually means that for a t-test the residuals are identical to the observed values and so you can just view the distribution of the observed data. For more complicated regression models we’ll see that we need to calculate and plot the residuals separately.</p>
+<p>To check the distribution of the residuals within each group you can use statistical tests, but most statisticians would recommend using graphical methods. We can visually check these two distributions easily in SPSS using histograms as follows. From the main menu go: <mark>Graphs &gt; Legacy Dialogues &gt; Histogram</mark>. Then add the sbp variable into the <mark>Variable:</mark> box, then add the age_young_old variable into the <mark>Rows:</mark> box, tick the <mark>Display normal curve</mark> box and then click <mark>OK</mark>. You’ll see a histogram for the sbp variable for each age group. As you can see the outcome approximates a normal distribution fairly well for the ≤40 age (this is probably as good as you would see with real data), and is slightly right skewed for the &gt;40 age group. However, as previously mentioned the t-test is pretty robust to slightly skewed outcomes so this is nothing to worry about, and we can assume this assumption is met. Below are some examples of suitably and unsuitably distributed data for you to compare with for future reference.</p>
+<p><br></p>
+<p><strong>Examples of suitably and unsuitably distributed data for t-tests</strong></p>
+<div class="fold">
+<p><br></p>
+<p>Students (and researchers) often struggle with knowing whether an analysis’s assumptions have been violated or not, and for good reason because it usually involves judgement based on experience. For the t-test like most analyses requiring normality there is no agreed “threshold” for when the skewness of a variable is considered “non-normal.” However, as t-tests and regression models are fairly robust to some non-normality the following examples should hopefully give you a sense of when you are okay to go ahead and when you are violating the assumptions and need to transform the data or use a different model.</p>
+<p><br></p>
+<p><strong>A. Probably suitably <em>approximately</em> normally distributed data within each group for a t-test, with n = 50 per group:</strong></p>
+<p><br></p>
+<center>
+<img src="Images/t-test%20normal%20equal%20data%20n=100.jpg" title="fig:" alt="Approximately normal (and approximately equal variance) data in each group of a t-test, n = 50 per group" />
+</center>
+<p><br></p>
+<p>With only 50 data points per group the distribution is pretty “lumpy” but you can see an approximate normal distribution in both groups, although less so for the lower group. Also note: these data are generated from a normal distribution, so you can see that when your sample size is low even with artificially simulated data from a known normal distribution the resulting sample can often be only somewhat approximately normal! You can also see that the variance in both groups looks approximately normal, which satisfies our next assumption (see below).</p>
+<p><br></p>
+<p><strong>B. Highly suitably normally distributed data within each group for a t-test, with n = 500 per group:</strong></p>
+<p><br></p>
+<center>
+<div class="figure">
+<img src="Images/t-test%20normal%20equal%20data%20n=1000.jpg" alt="" />
+<p class="caption">Normal (and equal variance) data in each group of a t-test, n = 500 per group</p>
+</div>
+</center>
+<p><br></p>
+<p>Now with 500 data points per group simulated from the same distribution unsurprisingly the distribution looks much more suitably normal.</p>
+<p><br></p>
+<p><strong>C. Probably not suitably normally distributed data within each group for a t-test, with n = 50 per group:</strong></p>
+<p><br></p>
+<center>
+<div class="figure">
+<img src="Images/t-test%20non-normal%20non-equal%20data%20n=100.jpg" alt="" />
+<p class="caption">Non-normal (and non-equal variance) data in each group of a t-test, n = 50 per group</p>
+</div>
+</center>
+<p><br></p>
+<p>You may think it doesn’t look much different from the first image, and you’d be right. Again, it comes down to judgement but when sample sizes are small there’s a lot of subjectivity involved. These data are simulated from a right-skewed “version” of the normal distribution. If you are concerned one option is to run your test on the raw data and then transform the data (we’ll see later how to do this) and re-run the test and see if the results change much, and just report both. This is called a sensitivity analysis.</p>
+<p>You can also see that there is a lot more variance in the lower group’s data, which would violate our next assumption (see below).</p>
+<p><br></p>
+<p><strong>D. Definitely not suitably normally distributed data within each group for a t-test, with n = 500 per group:</strong></p>
+<p><br></p>
+<center>
+<div class="figure">
+<img src="Images/t-test%20non-normal%20non-equal%20data%20n=1000.jpg" alt="" />
+<p class="caption">Non-normal (and non-equal variance) data in each group of a t-test, n = 500 per group</p>
+</div>
+</center>
+<p><br></p>
+<p>Now with 500 observations per group it’s clear that there is some definite right-skew in the distribution of both group’s data, and that there is considerably more variance in the lower group.</p>
+</div>
+<p><br></p>
+<p><strong>4. Equal variances in each group</strong></p>
+<p>This means that the variance (dispersion or spread) of outcome values is approximately the same in each group. We can check this by looking at the p-value for a test of this assumption called “Levene’s test of equality of variances” or by comparing the histograms from the two groups. SPSS produces the results of the Levene’s test when we run the t-test, so we will evaluate the results of this test/assumption once we’ve produced our t-test results below. Note: if this test is significant (P&lt;0.05) we can simply use the results from the version of the t-test that doesn’t assume equal variances in each group. The only disadvantage is that we lose a little bit of statistical power, but typically it’s not much and the results will be very similar. Hence, although we’ll interpret the “equal variances assumed” version of the t-test below it’s probably a better practice to just always use the more conservative but robust and safer set of results that do not assume equal variances is each group.</p>
+</div>
+</div>
+<div id="step-3-run-the-independent-t-test" class="section level2" number="8.5">
+<h2><span class="header-section-number">8.5</span> Step 3: run the independent t-test</h2>
+<p><a href="https://youtu.be/jHGKbgDWuio">Video instruction: run the independent t-test</a></p>
+<p><strong>Written instruction: run the independent t-test</strong></p>
+<div class="fold">
+<p><br></p>
+<ul>
+<li><p>In the main menu go: <mark>Analyse &gt; Compare Means &gt; Independent Samples T Test</mark>. Then in the <mark>Independent-Samples T Test</mark> tool add the sbp variable into the <mark>Test Variable(s):</mark> box. Then add our new independent variable for age group (at the bottom of the list) into the <mark>Grouping Variable:</mark> box and click <mark>Define Groups…</mark>. This is where we tell SPSS what numerical values code for each of our two groups, and what way round we want to compare the two groups. Remember we created the age variable so that it took the value “0” for individuals &gt;40 and “1” for individuals ≤40. Let’s compare individuals &gt;40 to individuals ≤40. When it comes to comparing the groups this tells SPSS subtract the mean outcome in group 0 from group 1, i.e. the mean systolic blood pressure for individuals &gt;40 minus the mean systolic blood pressure for individuals ≤40. To do this ensure the <mark>Use specified values</mark> option is selected and add the value “0” to <mark>Group 1:</mark> and the value “1” to <mark>Group 2:</mark>.</p></li>
+<li><p>Note: you can of course swap the coding values around and compare individuals ≤40 to individuals &gt;40 and your results will be reversed but otherwise identical. Neither choice is necessarily “correct” it just depends on which way round you want the groups compared. If, in your version of SPSS, there is a box called <mark>Estimate effect sizes</mark> below the <mark>Grouping variable:</mark> options make sure this is not ticked. Finally click <mark>Continue</mark> and then <mark>OK</mark>. You’ll now see the <mark>output window</mark> appear with our results!</p></li>
+</ul>
+</div>
+</div>
+<div id="step-4-understand-the-results-tables-and-extract-the-key-results" class="section level2" number="8.6">
+<h2><span class="header-section-number">8.6</span> Step 4: understand the results tables and extract the key results</h2>
+<p>Now we’ve verified the first two assumptions of the independent t-test (independent observations and approximately normally distributed residuals) let’s look at the results tables where we can check the third assumption (equal variances in each group), extract the key results and interpret them.</p>
+<p>So what do the tables mean?</p>
+<p><br></p>
+<hr style="border: 3px solid grey">
+</hr>
+<p><strong>Group Statistics table explained</strong></p>
+<hr style="border: 1px solid grey">
+</hr>
+<p>The first table we see gives us descriptive statistics for the outcome variable for each level of our categorical independent variable.</p>
+<ul>
+<li><p>First, make sure you look at and record the values under the “N” column, which are the group sample sizes, and check they match what they should be. You should see there were 295 individuals in the ≤40 group and 248 individuals in the &gt;40 age group. These sum to 543, which is less than the total number of individuals in the dataset: 556. There are three reasons why this might be: either some individuals are missing values for the outcome or the independent variable or both variables. We know from when we prepared the dataset that some individuals are indeed missing values for their systolic blood pressure. You can quickly check this by going to the <mark>Data view</mark>, right clicking on the sbp variable and selecting <mark>Descriptive Statistics</mark>. In the <strong>Statistics</strong> results table that appears you should see that there are indeed 13 individuals with missing values for sbp, and hence only 543 individuals with complete data on this variable, which explains the sample size of the independent t-test.</p></li>
+<li><p>Next make sure you look at and record the mean value of the outcome for each group under the “Mean” column. You should see the mean systolic blood pressure (mmHg) was 128.2 for individuals &gt;40 and 125.1 for individuals ≤40 (rounded to 1 decimal place).</p></li>
+</ul>
+<hr style="border: 1px solid grey">
+</hr>
+<p><br></p>
+<hr style="border: 3px solid grey">
+</hr>
+<p><strong>Independent Samples Test</strong></p>
+<hr style="border: 1px solid grey">
+</hr>
+<p>This table gives us the results of the t-test we’re interested in, although SPSS lays out the results less than clearly in my opinion. Here’s what they all mean.</p>
+<p><br></p>
+<hr style="border: 1px dashed white">
+</hr>
+<p><strong>Levene’s Test for Equality of Variances section columns explained</strong></p>
+<hr style="border: 1px dashed white">
+</hr>
+<p>Under this part of the table are results that relate to a statistical test that is totally separate to the independent t-test called “Levene’s test for equality of variances.” This tests whether the variance (spread) of the outcome in each group is approximately equal. If they are not then this assumption is violated and we must only use the results from the version of the independent t-test that accounts for this.</p>
+<p><br></p>
+<p><strong>F</strong></p>
+<ul>
+<li>The F-value is the test statistic for the Levene’s test for equality of variances. You can ignore it as it is used to calculate the corresponding p-value of the test (see below), which is all we are interested in.</li>
+</ul>
+<p><strong>Sig.</strong></p>
+<ul>
+<li><p>The “Sig.” value is just the p-value associated with the test statistic (i.e. the F-value). For some reason SPSS always refers to p-values with a “Sig.” column heading. The null hypothesis for the Levene’s test is that the variances in both groups are equal. Therefore, if the p-value (“Sig.”) is &lt;0.05 this indicates that the variances in the two groups are <em>unlikely to be equal</em>. If this is the case it is then safer to use the version of the <em>independent t-test</em> that does not assume equal variances. Results from both versions of the independent t-test are presented. Just look at the far left of the table and you can see the top row of results are for the “Equal variances assumed” version and the bottom row for the “Equal variances not assumed” version.</p></li>
+<li><p>Here you should see that the p-value for the test is <strong>0.244</strong>, i.e. it’s &gt;0.05. Therefore, we can assume the variances are approximately equal in each group. Hence, we can use the results for the independent t-test from the row called <strong>Equal variances assumed</strong> (see below).</p></li>
+<li><p><strong>Note: SPSS only gives p-values to 3 decimal places, so when it says “0.001” it means the p-value is actually &lt;0.001. Therefore, you should write P&lt;0.001.</strong></p></li>
+</ul>
+<p><br></p>
+<hr style="border: 1px dashed white">
+</hr>
+<p><strong>t-test for Equality of Means section columns explained</strong></p>
+<hr style="border: 1px dashed white">
+</hr>
+<p>Under this part of the table are the results for the actual independent t-test. We will use those from the row/version that do not assume equal variances.</p>
+<p><br></p>
+<p><strong>t</strong></p>
+<ul>
+<li>This is the value of the t-test statistic which is used when calculating the p-value. We can ignore this and just interpret the p-value directly (and of more use the confidence intervals).</li>
+</ul>
+<p><strong>df</strong></p>
+<ul>
+<li>This is the degrees of freedom which form part of the calculation of the test statistic (calculated as: n - 2). You can typically ignore this but it should closely match your “true” sample size, i.e. the number of genuinely independent observations.</li>
+</ul>
+<p><strong>Sig. (2-tailed)</strong></p>
+<ul>
+<li><p>This is the two-tailed p-value for the independent t-test. The “two-tailed” part means that it allows for the possibility that the difference between the two groups may be positive or negative, i.e. either group might have a greater mean than the other. The null hypothesis of the independent t-test is that the “true” difference between the two groups in the target population from which the sample was taken is exactly 0. Therefore, this p-value tells us how likely we are to have observed data giving a mean difference at least as great or greater (in either direction) as the one observed. Alternatively, you can more loosely interpret it as a probability measure of how consistent the data are with the null hypothesis of no difference. Again note that SPSS only gives p-values to 3 decimal places, so when it says 0.001 it means the p-value is &lt;0.001.</p></li>
+<li><p>Here you should see that the p-value is <strong>0.072</strong>.</p></li>
+</ul>
+<p><strong>Mean Difference</strong></p>
+<ul>
+<li><p>This is the difference between the mean of the outcome for the group that we set as “Group 1” minus the mean of the outcome for “Group 2.” For us this means the mean SBP of participants aged &gt;40 minus the mean SBP of those aged ≤40. It therefore tells us the direction and size of any difference, and is therefore a key result/statistic from the test. You can swap the coding of the groups around if it makes more sense (just go back and re-run the analysis but change the coding), but the difference will be reversed (i.e. a positive difference will become a negative difference).</p></li>
+<li><p>Here you should see that the mean difference (rounded to one decimal place) is <strong>3.1</strong>.</p></li>
+</ul>
+<p><strong>Std. Error Difference</strong></p>
+<ul>
+<li>This is the standard error of the mean difference, which estimates the sampling variability associated with our estimate of the parameter in the target population. This is used when calculating the 95% confidence intervals and the p-value. You can ignore it and just interpret the confidence intervals and p-value.</li>
+</ul>
+<p><strong>95% Confidence Interval of the Difference (Lower and Upper)</strong></p>
+<ul>
+<li><p>These are the estimated lower and upper 95% confidence intervals around the estimated mean difference, which is the point estimate or best single estimate of the mean difference in the target population. Formally speaking, if we repeated our study an infinite (or very large number) of times and each time we calculated the mean difference and the 95% confidence interval around those mean differences then 95% of those 95% confidence intervals would contain the true mean difference found in the target population (i.e. the mean difference that we would find if we sampled 100% of the target population). Informally speaking we can think of the 95% confidence intervals as defining a range of values that are consistent with the likely/probable true mean difference in the target population based on the sampled data.</p></li>
+<li><p>Here you should see that the lower and upper confidence intervals for the mean difference (rounded to one decimal place) are -0.3 and 6.4.</p></li>
+</ul>
+<hr style="border: 1px solid grey">
+</hr>
+<p><br></p>
+</div>
+<div id="step-5-report-and-interpret-the-results" class="section level2" number="8.7">
+<h2><span class="header-section-number">8.7</span> Step 5: report and interpret the results</h2>
+<div id="reporting-the-results" class="section level3" number="8.7.1">
+<h3><span class="header-section-number">8.7.1</span> Reporting the results</h3>
+<p>In a methods section you should explain that you used an independent t-test to analyse the data and justify why.</p>
+<p>In a results section we would want to report the sample size, the mean of the outcome for each group, and the key results of the independent t-test (the mean difference, the 95% confidence intervals and the associated p-value). Therefore, we could write something like the following (using “n” as it is commonly used to refer to sample size):</p>
+<blockquote>
+<p>We compared the systolic blood pressure among individuals aged &gt;40 (n = 248) to those aged (n = 295). Among those aged &gt;40 the mean systolic blood pressure was 128.2 mmHg and among those aged ≤40 the mean systolic blood pressure was 125.1 mmHg. Using an independent t-test (equal variances assumed) we estimated that the mean difference in systolic blood pressure between those aged &gt;40 compared to those aged ≤40 was 3.1 mmHg (95% CI: -0.3, 6.4).</p>
+</blockquote>
+<ul>
+<li><p>Note: the convention is to compactly present confidence intervals for estimated statistics in brackets like above, indicating the confidence level of the confidence interval (usually 95%), and to use a comma “,” or possibly the word “and” to separate the lower and upper confidence interval, but not a dash “-” as this can look like a negative symbol.</p></li>
+<li><p>Also note: we are focusing on the mean difference and the confidence intervals, not the p-value here as it tells us nothing more and far less than those results do.</p></li>
+<li><p>Lastly, if you felt it wasn’t clear where the inferential result had come from, say if you were reporting result from different analyses, then you should certainly make this clear in the results section too, e.g. you might say something like “based on an independent t-test the mean difference was….”</p></li>
+</ul>
+<blockquote>
+<p>Discussion: interpret the direction and size of the difference in terms of the implications for practice and policy. Is the difference “statistically significant,” i.e. can we make a clear inference that there even is a difference on average between the groups, and if so is it a small difference, a medium difference, a large difference etc in terms of what is being measured and the implications for practice and policy?</p>
+</blockquote>
+</div>
+<div id="interpreting-the-results" class="section level3" number="8.7.2">
+<h3><span class="header-section-number">8.7.2</span> Interpreting the results</h3>
+<p>How do we actually interpret these results then? Remember with statistical inference we are aiming to make a “probabilistic inference,” or a generalisation with some level of uncertainty, about the likely value of the population parameter of interest, which here is the mean difference in systolic blood pressure between individuals aged &gt;40 compared to individuals aged ≤40 in our target population, based on the data from our sample. And our confidence intervals around our sample statistic (the sample mean difference) are what allow us to do that. More specifically, the confidence intervals around the mean difference tell us that the mean difference in systolic blood pressure between individuals aged &gt;40 compared to individuals aged ≤40 in the target population is “quite likely” to be somewhere between -0.3 and 6.5 mmHg. Alternatively and equivalently we can interpret the results in terms of an “average individual” in our target population, and say that the confidence intervals tell us that in the target population the systolic blood pressure of individuals aged &gt;40 is “quite likely” to be between 0.3 mmHg <em>lower</em> to 6.5 mmHg <em>higher</em> than individuals aged ≤40 <em>on average</em>.</p>
+<p>Note: strictly or technically speaking our confidence intervals tell us how much error is associated with our <em>sampling process</em>, and that if we repeated our study many times 95% of the time the 95% confidence intervals that we obtained around our estimated mean difference would contain the true mean difference in the target population. Therefore, our interpretation of the value being “quite likely” to fall within our given confidence interval range is somewhat informal and loose, but probably fine for most research purposes.</p>
+<p>Also note: critically this interpretation assumes that all other sources of bias are negligible, which is extremely unlikely! Therefore, you should always treat inferential results very carefully, and evaluate them in the context of how much likely bias there is in the results other than sampling error, which is the only source of bias that inferential statistics account for. E.g. if you knew there was likely a large amount of other sources of error in the study, such as uncontrolled confounding, then the 95% confidence intervals would not accurately reflect the total error or bias in the results because they can only account for sampling error in the absence of all other errors/bias.</p>
+<p>Consequently, our confidence intervals indicate that we can’t have much confidence over whether there is even a positive or negative difference in systolic blood pressure between these two groups in the target population, let alone how big any difference is with any great precision. However, the result does tell us that the practical significance or clinical significance of the true difference in mean systolic blood pressure between these two groups is likely to be small, given the confidence intervals suggest it is likely to be at most just 6.5 mmHg (the confidence interval furthest from 0). Always remember though, this is a <em>probabilistic</em> result (not certain) and there is always still a non-negligible chance that the true difference is greater, possibly much greater, than we estimated, i.e. outside the range of the 95% confidence intervals, and as above this is actually inevitable with any study unless completely free of other sources of bias.</p>
+<p>Lastly, note: when setting up the t-test if we swapped the order of the comparison around we would get the same result but expressed as the ≤40 age group compared to the &gt;40 age group, and so we’d get a mean difference of -3.1 mmHg (95% CI: -6.5, 0.3). Note the 95% confidence interval order is also reversed.</p>
+</div>
+</div>
+<div id="limitations" class="section level2" number="8.8">
+<h2><span class="header-section-number">8.8</span> Limitations</h2>
+<p>The key limitations of the independent t-test is the inability to look at differences between &gt;2 groups or between the outcome and numerical variables, and the inability to control for other covariates. Therefore, with observational data there is a very high risk (essentially a certainty) that the result will be biased due to confounding to a greater or lesser extent, and with experimental data you have no ability to increase the precision of your estimate by controlling for variables that may explain some of the variation in outcomes. As we will see in the linear regression practical once we control for other variables, which likely confound the sbp ~ age relationship, we find there is apparently evidence of a (small) relationship between age and SBP.</p>
+</div>
+<div id="exercise-independent-t-test" class="section level2" number="8.9">
+<h2><span class="header-section-number">8.9</span> Exercise: independent t-test</h2>
+<p>Using the “SBP final data.sav” dataset and via the process outlined above use an independent t-test to analyse the relationship between BMI and systolic blood pressure.</p>
+<ul>
+<li><p>Divide bmi into two groups based on BMI values &lt;30 kg/m² and those ≥ 30 kg/m², which are the values typically used to define obesity when defined in terms of BMI.</p></li>
+<li><p>Compare individuals with BMI values &lt;30 kg/m² to those with BMI values ≥ 30 kg/m² using the independent t-test.</p></li>
+<li><p>Extract the mean difference and confidence intervals around this estimate.</p></li>
+<li><p>In the YCHI5045M computer sessions materials “Exercises” folder open the “Exercises.docx” Word document and scroll down to <strong>Independent t-test: the relationship between BMI and systolic blood pressure</strong>.</p></li>
+<li><p>Write a couple of sentences reporting the results of your analysis. Include the basic descriptive statistics: sample size, group sizes and group outcome means. Also be sure to include sufficient details about the outcome variable and the comparison made, including how the two independent groups were defined, as well as the type of analysis used, and of course the key inferential results. Round results to one decimal place. You don’t need to explain anything about the study or interpret the clinical or practical importance of the result.</p></li>
+<li><p>Write a sentence or two about the key limitations of this analysis <em>in terms of interpreting the result</em>.</p></li>
+<li><p>Once you’ve completed this compare your reporting to the below example text.</p></li>
+</ul>
+<div id="example-independent-t-test-results-reporting-text" class="section level3" number="8.9.1">
+<h3><span class="header-section-number">8.9.1</span> Example independent t-test results reporting text</h3>
+<div class="fold">
+<p><br></p>
+<p>Using an independent t-test I analysed the relationship between BMI and systolic blood pressure (mmHg) for individuals having low compared to high BMI (&lt;30 kg/m² compared to ≥ 30 kg/m²). Out of a total sample size of 516 individuals, 419 individuals had a BMI &lt;30 kg/m² (mean systolic blood pressure = 121.6 mmHg) and 97 individuals had a BMI ≥ 30 kg/m² (mean systolic blood pressure = 146.7 mmHg). This represented a mean difference of -25 mmHg (95% CI: -28.9, -21.2) for those with a BMI &lt;30 kg/m² compared to those with a BMI ≥ 30 kg/m². Therefore, having a BMI &lt; 30 kg/m² appears to be associated with a substantially lower systolic blood pressure on average than having a BMI ≥ 30 kg/m². However, the key limitation of this analysis is that it does not adjust for any other confounding variables, of which there are likely to be many (especially in an observational cross-sectional study like this). Therefore, this is likely to represent a biased estimate of the independent relationship between BMI (as defined/grouped here) and systolic blood pressure in the target population.</p>
+</div>
+</div>
+</div>
+<div id="next-steps-optional" class="section level2" number="8.10">
+<h2><span class="header-section-number">8.10</span> Next steps (optional)</h2>
+<p>If you have time and want to practice and learn more you can try the following exercises:</p>
+<ul>
+<li><p>Repeat the independent t-test but reverse the coding of the groups to convince yourself that the results are identical but just reversed.</p></li>
+<li><p>Use the independent t-test to analyse whether there is a difference in the mean systolic blood pressure between individuals from different socio-economic groups (ses variable). As there are three socioeconomic groups in the variable this would require you to first recode the ses variable into a new variable so that two of the socio-economic groups are pooled to give a binary variable.</p></li>
+</ul>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="describing-a-dataset.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="the-independent-t-test-skewed-outcome.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": null,
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": null,
+"toc": {
+"collapse": "section"
+}
+});
+});
+</script>
+
+</body>
+
+</html>
