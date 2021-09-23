@@ -1,1 +1,1 @@
-This site hosts the notes for the computer practical sessions for the YCHI5045M module.
+This site hosts the statistics and data analysis notes for the Nuffield Centre for International Health and Development.
