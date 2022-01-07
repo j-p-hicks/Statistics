@@ -1,0 +1,608 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 6 Preparing a dataset for analysis | Statistics Computer Practical Sessions Notes &amp; Materials for the Statistics for Health Sciences (MSc) &amp; Health Systems Research Methods (MPH) Modules</title>
+  <meta name="description" content="These are the notes and materials for the statistics computer practical sessions for the MSc in International Health Statistics for Health Sciences module and the Public Health (International) MPH Health Systems Research Methods module." />
+  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 6 Preparing a dataset for analysis | Statistics Computer Practical Sessions Notes &amp; Materials for the Statistics for Health Sciences (MSc) &amp; Health Systems Research Methods (MPH) Modules" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="These are the notes and materials for the statistics computer practical sessions for the MSc in International Health Statistics for Health Sciences module and the Public Health (International) MPH Health Systems Research Methods module." />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 6 Preparing a dataset for analysis | Statistics Computer Practical Sessions Notes &amp; Materials for the Statistics for Health Sciences (MSc) &amp; Health Systems Research Methods (MPH) Modules" />
+  
+  <meta name="twitter:description" content="These are the notes and materials for the statistics computer practical sessions for the MSc in International Health Statistics for Health Sciences module and the Public Health (International) MPH Health Systems Research Methods module." />
+  
+
+<meta name="author" content="Joe Hicks and Matt Mulvey" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="an-introduction-to-spss.html"/>
+<link rel="next" href="describing-a-dataset.html"/>
+<script src="libs/header-attrs-2.6/header-attrs.js"></script>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<script src="libs/font-awesome-5.13.0/js/script.js"></script>
+<script src="libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
+<script type="text/javascript">
+$(document).ready(function() {
+  $folds = $(".fold");
+  $folds.wrapInner("<div class=\"fold-blck\">"); // wrap a div container around content
+  $folds.prepend("<button class=\"fold-btn\">Show</button>");  // add a button
+  $(".fold-blck").toggle();  // fold all blocks
+  $(".fold-btn").on("click", function() {  // add onClick event
+    $(this).text($(this).text() === "Hide" ? "Show" : "Hide");  // if the text equals "Fold", change it to "Unfold"or else to "Fold" 
+    $(this).next(".fold-blck").toggle("linear");  // "swing" is the default easing function. This can be further customized in its speed or the overall animation itself.
+  })
+});
+</script>
+
+
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Aims and objectives</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#statistical-paradigm"><i class="fa fa-check"></i><b>1.1</b> Statistical paradigm</a></li>
+<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#analyses-covered"><i class="fa fa-check"></i><b>1.2</b> Analyses covered</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="preliminary-information.html"><a href="preliminary-information.html"><i class="fa fa-check"></i><b>2</b> Preliminary information</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="preliminary-information.html"><a href="preliminary-information.html#datasets-and-exercises-document"><i class="fa fa-check"></i><b>2.1</b> Datasets and exercises document</a></li>
+<li class="chapter" data-level="2.2" data-path="preliminary-information.html"><a href="preliminary-information.html#a-word-of-encouragement"><i class="fa fa-check"></i><b>2.2</b> A word of encouragement</a></li>
+<li class="chapter" data-level="2.3" data-path="preliminary-information.html"><a href="preliminary-information.html#about-these-notes"><i class="fa fa-check"></i><b>2.3</b> About these notes</a></li>
+<li class="chapter" data-level="2.4" data-path="preliminary-information.html"><a href="preliminary-information.html#how-these-sessions-relate-to-the-summative-assignment-msc-students-only"><i class="fa fa-check"></i><b>2.4</b> How these sessions relate to the summative assignment (MSc students only)</a></li>
+<li class="chapter" data-level="2.5" data-path="preliminary-information.html"><a href="preliminary-information.html#about-this-website"><i class="fa fa-check"></i><b>2.5</b> About this website</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="probability-sampling.html"><a href="probability-sampling.html"><i class="fa fa-check"></i><b>3</b> Probability sampling</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="probability-sampling.html"><a href="probability-sampling.html#units-of-observation-and-analysis"><i class="fa fa-check"></i><b>3.1</b> Units of observation and analysis</a></li>
+<li class="chapter" data-level="3.2" data-path="probability-sampling.html"><a href="probability-sampling.html#overview"><i class="fa fa-check"></i><b>3.2</b> Overview</a></li>
+<li class="chapter" data-level="3.3" data-path="probability-sampling.html"><a href="probability-sampling.html#non-probability-sampling"><i class="fa fa-check"></i><b>3.3</b> Non-probability sampling</a></li>
+<li class="chapter" data-level="3.4" data-path="probability-sampling.html"><a href="probability-sampling.html#simple-random-sampling"><i class="fa fa-check"></i><b>3.4</b> Simple random sampling</a>
+<ul>
+<li class="chapter" data-level="3.4.1" data-path="probability-sampling.html"><a href="probability-sampling.html#overview-1"><i class="fa fa-check"></i><b>3.4.1</b> Overview</a></li>
+<li class="chapter" data-level="3.4.2" data-path="probability-sampling.html"><a href="probability-sampling.html#advantages-of-simple-random-sampling"><i class="fa fa-check"></i><b>3.4.2</b> Advantages of simple random sampling</a></li>
+<li class="chapter" data-level="3.4.3" data-path="probability-sampling.html"><a href="probability-sampling.html#disadvantageslimitations-of-simple-random-sampling"><i class="fa fa-check"></i><b>3.4.3</b> Disadvantages/limitations of simple random sampling</a></li>
+<li class="chapter" data-level="3.4.4" data-path="probability-sampling.html"><a href="probability-sampling.html#scenario"><i class="fa fa-check"></i><b>3.4.4</b> Scenario</a></li>
+<li class="chapter" data-level="3.4.5" data-path="probability-sampling.html"><a href="probability-sampling.html#exercise-taking-a-simple-random-sample-using-excel"><i class="fa fa-check"></i><b>3.4.5</b> Exercise: taking a simple random sample using Excel</a></li>
+</ul></li>
+<li class="chapter" data-level="3.5" data-path="probability-sampling.html"><a href="probability-sampling.html#stratified-random-sample"><i class="fa fa-check"></i><b>3.5</b> Stratified random sample</a>
+<ul>
+<li class="chapter" data-level="3.5.1" data-path="probability-sampling.html"><a href="probability-sampling.html#overview-2"><i class="fa fa-check"></i><b>3.5.1</b> Overview</a></li>
+<li class="chapter" data-level="3.5.2" data-path="probability-sampling.html"><a href="probability-sampling.html#advantages-of-stratified-random-sampling"><i class="fa fa-check"></i><b>3.5.2</b> Advantages of stratified random sampling</a></li>
+<li class="chapter" data-level="3.5.3" data-path="probability-sampling.html"><a href="probability-sampling.html#limitations-of-stratified-random-sampling-with-proportionate-stratification"><i class="fa fa-check"></i><b>3.5.3</b> Limitations of stratified random sampling with proportionate stratification</a></li>
+<li class="chapter" data-level="3.5.4" data-path="probability-sampling.html"><a href="probability-sampling.html#scenario-1"><i class="fa fa-check"></i><b>3.5.4</b> Scenario</a></li>
+<li class="chapter" data-level="3.5.5" data-path="probability-sampling.html"><a href="probability-sampling.html#exercise-taking-a-proportionate-stratified-random-sample-using-excel"><i class="fa fa-check"></i><b>3.5.5</b> Exercise: taking a proportionate stratified random sample using Excel</a></li>
+</ul></li>
+<li class="chapter" data-level="3.6" data-path="probability-sampling.html"><a href="probability-sampling.html#systematic-random-sampling"><i class="fa fa-check"></i><b>3.6</b> Systematic random sampling</a>
+<ul>
+<li class="chapter" data-level="3.6.1" data-path="probability-sampling.html"><a href="probability-sampling.html#overview-3"><i class="fa fa-check"></i><b>3.6.1</b> Overview</a></li>
+<li class="chapter" data-level="3.6.2" data-path="probability-sampling.html"><a href="probability-sampling.html#advantages-of-systematic-random-sampling"><i class="fa fa-check"></i><b>3.6.2</b> Advantages of systematic random sampling</a></li>
+<li class="chapter" data-level="3.6.3" data-path="probability-sampling.html"><a href="probability-sampling.html#disadvantageslimitations-of-systematic-random-sampling"><i class="fa fa-check"></i><b>3.6.3</b> Disadvantages/limitations of systematic random sampling</a></li>
+<li class="chapter" data-level="3.6.4" data-path="probability-sampling.html"><a href="probability-sampling.html#when-to-use-systematic-random-sampling"><i class="fa fa-check"></i><b>3.6.4</b> When to use systematic random sampling?</a></li>
+<li class="chapter" data-level="3.6.5" data-path="probability-sampling.html"><a href="probability-sampling.html#scenario-2"><i class="fa fa-check"></i><b>3.6.5</b> Scenario</a></li>
+<li class="chapter" data-level="3.6.6" data-path="probability-sampling.html"><a href="probability-sampling.html#exercise-taking-a-systematic-random-sample-using-excel"><i class="fa fa-check"></i><b>3.6.6</b> Exercise: taking a systematic random sample using Excel</a></li>
+</ul></li>
+<li class="chapter" data-level="3.7" data-path="probability-sampling.html"><a href="probability-sampling.html#single-stage-cluster-sampling-and-multi-stage-cluster-sampling"><i class="fa fa-check"></i><b>3.7</b> Single-stage cluster sampling and multi-stage cluster sampling</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="sample-size.html"><a href="sample-size.html"><i class="fa fa-check"></i><b>4</b> Sample size</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="sample-size.html"><a href="sample-size.html#overview-4"><i class="fa fa-check"></i><b>4.1</b> Overview</a></li>
+<li class="chapter" data-level="4.2" data-path="sample-size.html"><a href="sample-size.html#confidence-interval-based-approach"><i class="fa fa-check"></i><b>4.2</b> Confidence interval based approach</a>
+<ul>
+<li class="chapter" data-level="4.2.1" data-path="sample-size.html"><a href="sample-size.html#overview-5"><i class="fa fa-check"></i><b>4.2.1</b> Overview</a></li>
+<li class="chapter" data-level="4.2.2" data-path="sample-size.html"><a href="sample-size.html#analytical-studies"><i class="fa fa-check"></i><b>4.2.2</b> Analytical studies</a></li>
+<li class="chapter" data-level="4.2.3" data-path="sample-size.html"><a href="sample-size.html#statulator-sample-sizes-for-confidence-intervals"><i class="fa fa-check"></i><b>4.2.3</b> Statulator sample sizes for confidence intervals</a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="sample-size.html"><a href="sample-size.html#hypothesis-testing-based-approach"><i class="fa fa-check"></i><b>4.3</b> Hypothesis testing based approach</a>
+<ul>
+<li class="chapter" data-level="4.3.1" data-path="sample-size.html"><a href="sample-size.html#overview-6"><i class="fa fa-check"></i><b>4.3.1</b> Overview</a></li>
+<li class="chapter" data-level="4.3.2" data-path="sample-size.html"><a href="sample-size.html#descriptive-studies"><i class="fa fa-check"></i><b>4.3.2</b> Descriptive studies</a></li>
+<li class="chapter" data-level="4.3.3" data-path="sample-size.html"><a href="sample-size.html#statulator-sample-sizes-for-hypothesis-testing"><i class="fa fa-check"></i><b>4.3.3</b> Statulator sample sizes for hypothesis testing</a></li>
+</ul></li>
+<li class="chapter" data-level="4.4" data-path="sample-size.html"><a href="sample-size.html#confidence-interval-approach-in-statulator"><i class="fa fa-check"></i><b>4.4</b> Confidence interval approach in Statulator</a>
+<ul>
+<li class="chapter" data-level="4.4.1" data-path="sample-size.html"><a href="sample-size.html#estimating-means"><i class="fa fa-check"></i><b>4.4.1</b> Estimating means</a></li>
+<li class="chapter" data-level="4.4.2" data-path="sample-size.html"><a href="sample-size.html#estimating-proportions"><i class="fa fa-check"></i><b>4.4.2</b> Estimating proportions</a></li>
+</ul></li>
+<li class="chapter" data-level="4.5" data-path="sample-size.html"><a href="sample-size.html#hypothesis-testing-approach"><i class="fa fa-check"></i><b>4.5</b> Hypothesis testing approach</a>
+<ul>
+<li class="chapter" data-level="4.5.1" data-path="sample-size.html"><a href="sample-size.html#comparing-two-independent-means"><i class="fa fa-check"></i><b>4.5.1</b> Comparing two independent means</a></li>
+<li class="chapter" data-level="4.5.2" data-path="sample-size.html"><a href="sample-size.html#compare-two-independent-proportions"><i class="fa fa-check"></i><b>4.5.2</b> Compare two independent proportions</a></li>
+</ul></li>
+<li class="chapter" data-level="4.6" data-path="sample-size.html"><a href="sample-size.html#additional-considerations-for-the-hypothesis-testing-approach"><i class="fa fa-check"></i><b>4.6</b> Additional considerations for the hypothesis testing approach</a></li>
+<li class="chapter" data-level="4.7" data-path="sample-size.html"><a href="sample-size.html#exercises-estimating-required-sample-sizes"><i class="fa fa-check"></i><b>4.7</b> Exercises: estimating required sample sizes</a>
+<ul>
+<li class="chapter" data-level="4.7.1" data-path="sample-size.html"><a href="sample-size.html#sample-size-exercises-model-answers"><i class="fa fa-check"></i><b>4.7.1</b> Sample size exercises model answers</a></li>
+</ul></li>
+<li class="chapter" data-level="4.8" data-path="sample-size.html"><a href="sample-size.html#reporting-sample-size-calculations-in-methods-sections"><i class="fa fa-check"></i><b>4.8</b> Reporting sample size calculations in methods sections</a></li>
+<li class="chapter" data-level="4.10" data-path="sample-size.html"><a href="sample-size.html#adjusting-for-clustering"><i class="fa fa-check"></i><b>4.10</b> Adjusting for clustering</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="an-introduction-to-spss.html"><a href="an-introduction-to-spss.html"><i class="fa fa-check"></i><b>5</b> An introduction to SPSS</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="an-introduction-to-spss.html"><a href="an-introduction-to-spss.html#brief-background"><i class="fa fa-check"></i><b>5.1</b> Brief background</a></li>
+<li class="chapter" data-level="5.2" data-path="an-introduction-to-spss.html"><a href="an-introduction-to-spss.html#the-datasets"><i class="fa fa-check"></i><b>5.2</b> The datasets</a></li>
+<li class="chapter" data-level="5.3" data-path="an-introduction-to-spss.html"><a href="an-introduction-to-spss.html#exercise-opening-spss-loading-data-and-understanding-the-key-features-of-the-interface"><i class="fa fa-check"></i><b>5.3</b> Exercise: opening SPSS, loading data and understanding the key features of the interface</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="preparing-a-dataset-for-analysis.html"><a href="preparing-a-dataset-for-analysis.html"><i class="fa fa-check"></i><b>6</b> Preparing a dataset for analysis</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="preparing-a-dataset-for-analysis.html"><a href="preparing-a-dataset-for-analysis.html#exercise-loading-excel-data"><i class="fa fa-check"></i><b>6.1</b> Exercise: loading Excel data</a></li>
+<li class="chapter" data-level="6.2" data-path="preparing-a-dataset-for-analysis.html"><a href="preparing-a-dataset-for-analysis.html#exercise-set-variable-properties-code-categorical-variables-and-check-categorical-variables-for-obvious-errors"><i class="fa fa-check"></i><b>6.2</b> Exercise: set variable properties, code categorical variables, and check categorical variables for obvious errors</a></li>
+<li class="chapter" data-level="6.3" data-path="preparing-a-dataset-for-analysis.html"><a href="preparing-a-dataset-for-analysis.html#exercise-check-numerical-variables-for-obvious-errors"><i class="fa fa-check"></i><b>6.3</b> Exercise: check numerical variables for obvious errors</a></li>
+<li class="chapter" data-level="6.4" data-path="preparing-a-dataset-for-analysis.html"><a href="preparing-a-dataset-for-analysis.html#a-final-note-on-data-cleaning"><i class="fa fa-check"></i><b>6.4</b> A final note on data cleaning</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="describing-a-dataset.html"><a href="describing-a-dataset.html"><i class="fa fa-check"></i><b>7</b> Describing a dataset</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="describing-a-dataset.html"><a href="describing-a-dataset.html#background"><i class="fa fa-check"></i><b>7.1</b> Background</a>
+<ul>
+<li class="chapter" data-level="7.1.1" data-path="describing-a-dataset.html"><a href="describing-a-dataset.html#descriptive-vs-inferential-statistics"><i class="fa fa-check"></i><b>7.1.1</b> Descriptive vs inferential statistics</a></li>
+</ul></li>
+<li class="chapter" data-level="7.2" data-path="describing-a-dataset.html"><a href="describing-a-dataset.html#exercise-create-descriptive-statistics"><i class="fa fa-check"></i><b>7.2</b> Exercise: create descriptive statistics</a>
+<ul>
+<li class="chapter" data-level="7.2.1" data-path="describing-a-dataset.html"><a href="describing-a-dataset.html#overview-9"><i class="fa fa-check"></i><b>7.2.1</b> Overview</a></li>
+<li class="chapter" data-level="7.2.4" data-path="describing-a-dataset.html"><a href="describing-a-dataset.html#example-completed-table"><i class="fa fa-check"></i><b>7.2.4</b> Example completed table</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="the-independent-t-test.html"><a href="the-independent-t-test.html"><i class="fa fa-check"></i><b>8</b> The independent t-test</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="the-independent-t-test.html"><a href="the-independent-t-test.html#overview-10"><i class="fa fa-check"></i><b>8.1</b> Overview</a></li>
+<li class="chapter" data-level="8.2" data-path="the-independent-t-test.html"><a href="the-independent-t-test.html#scenario-7"><i class="fa fa-check"></i><b>8.2</b> Scenario</a></li>
+<li class="chapter" data-level="8.3" data-path="the-independent-t-test.html"><a href="the-independent-t-test.html#step-1-create-a-binary-independent-variable-from-a-numerical-variable"><i class="fa fa-check"></i><b>8.3</b> Step 1: create a binary independent variable from a numerical variable</a></li>
+<li class="chapter" data-level="8.4" data-path="the-independent-t-test.html"><a href="the-independent-t-test.html#step-2-check-the-assumptions-of-the-independent-t-test-are-not-violated"><i class="fa fa-check"></i><b>8.4</b> Step 2: check the assumptions of the independent t-test are not violated</a></li>
+<li class="chapter" data-level="8.5" data-path="the-independent-t-test.html"><a href="the-independent-t-test.html#step-3-run-the-independent-t-test"><i class="fa fa-check"></i><b>8.5</b> Step 3: run the independent t-test</a></li>
+<li class="chapter" data-level="8.6" data-path="the-independent-t-test.html"><a href="the-independent-t-test.html#step-4-understand-the-results-tables-and-extract-the-key-results"><i class="fa fa-check"></i><b>8.6</b> Step 4: understand the results tables and extract the key results</a></li>
+<li class="chapter" data-level="8.7" data-path="the-independent-t-test.html"><a href="the-independent-t-test.html#step-5-report-and-interpret-the-results"><i class="fa fa-check"></i><b>8.7</b> Step 5: report and interpret the results</a>
+<ul>
+<li class="chapter" data-level="8.7.1" data-path="the-independent-t-test.html"><a href="the-independent-t-test.html#reporting-the-results"><i class="fa fa-check"></i><b>8.7.1</b> Reporting the results</a></li>
+<li class="chapter" data-level="8.7.2" data-path="the-independent-t-test.html"><a href="the-independent-t-test.html#interpreting-the-results"><i class="fa fa-check"></i><b>8.7.2</b> Interpreting the results</a></li>
+</ul></li>
+<li class="chapter" data-level="8.8" data-path="the-independent-t-test.html"><a href="the-independent-t-test.html#limitations"><i class="fa fa-check"></i><b>8.8</b> Limitations</a></li>
+<li class="chapter" data-level="8.9" data-path="the-independent-t-test.html"><a href="the-independent-t-test.html#exercise-independent-t-test"><i class="fa fa-check"></i><b>8.9</b> Exercise: independent t-test</a>
+<ul>
+<li class="chapter" data-level="8.9.1" data-path="the-independent-t-test.html"><a href="the-independent-t-test.html#example-independent-t-test-results-reporting-text"><i class="fa fa-check"></i><b>8.9.1</b> Example independent t-test results reporting text</a></li>
+</ul></li>
+<li class="chapter" data-level="8.10" data-path="the-independent-t-test.html"><a href="the-independent-t-test.html#next-steps-optional"><i class="fa fa-check"></i><b>8.10</b> Next steps (optional)</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="the-independent-t-test-skewed-outcome.html"><a href="the-independent-t-test-skewed-outcome.html"><i class="fa fa-check"></i><b>9</b> The independent t-test: skewed outcome</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="the-independent-t-test-skewed-outcome.html"><a href="the-independent-t-test-skewed-outcome.html#overview-11"><i class="fa fa-check"></i><b>9.1</b> Overview</a></li>
+<li class="chapter" data-level="9.2" data-path="the-independent-t-test-skewed-outcome.html"><a href="the-independent-t-test-skewed-outcome.html#scenario-8"><i class="fa fa-check"></i><b>9.2</b> Scenario</a></li>
+<li class="chapter" data-level="9.3" data-path="the-independent-t-test-skewed-outcome.html"><a href="the-independent-t-test-skewed-outcome.html#step-1-check-the-assumptions-of-the-independent-t-test."><i class="fa fa-check"></i><b>9.3</b> Step 1: check the assumptions of the independent t-test.</a>
+<ul>
+<li class="chapter" data-level="9.3.1" data-path="the-independent-t-test-skewed-outcome.html"><a href="the-independent-t-test-skewed-outcome.html#continuous-outcome"><i class="fa fa-check"></i><b>9.3.1</b> 1. Continuous outcome</a></li>
+<li class="chapter" data-level="9.3.2" data-path="the-independent-t-test-skewed-outcome.html"><a href="the-independent-t-test-skewed-outcome.html#independent-groups"><i class="fa fa-check"></i><b>9.3.2</b> 2. Independent groups</a></li>
+<li class="chapter" data-level="9.3.3" data-path="the-independent-t-test-skewed-outcome.html"><a href="the-independent-t-test-skewed-outcome.html#the-outcome-is-approximately-normally-distributed-within-each-group"><i class="fa fa-check"></i><b>9.3.3</b> 3. The outcome is approximately normally distributed within each group</a></li>
+<li class="chapter" data-level="9.3.4" data-path="the-independent-t-test-skewed-outcome.html"><a href="the-independent-t-test-skewed-outcome.html#equal-variances-in-each-group"><i class="fa fa-check"></i><b>9.3.4</b> 4. Equal variances in each group</a></li>
+</ul></li>
+<li class="chapter" data-level="9.4" data-path="the-independent-t-test-skewed-outcome.html"><a href="the-independent-t-test-skewed-outcome.html#step-2-transform-the-outcome"><i class="fa fa-check"></i><b>9.4</b> Step 2: transform the outcome</a></li>
+<li class="chapter" data-level="9.5" data-path="the-independent-t-test-skewed-outcome.html"><a href="the-independent-t-test-skewed-outcome.html#step-3-run-the-independent-t-test-1"><i class="fa fa-check"></i><b>9.5</b> Step 3: run the independent t-test</a></li>
+<li class="chapter" data-level="9.6" data-path="the-independent-t-test-skewed-outcome.html"><a href="the-independent-t-test-skewed-outcome.html#step-4-understand-the-results-tables-and-extract-the-key-results-1"><i class="fa fa-check"></i><b>9.6</b> Step 4: understand the results tables and extract the key results</a></li>
+<li class="chapter" data-level="9.7" data-path="the-independent-t-test-skewed-outcome.html"><a href="the-independent-t-test-skewed-outcome.html#step-5-report-and-interpret-the-results-1"><i class="fa fa-check"></i><b>9.7</b> Step 5: report and interpret the results</a></li>
+<li class="chapter" data-level="9.8" data-path="the-independent-t-test-skewed-outcome.html"><a href="the-independent-t-test-skewed-outcome.html#limitations-1"><i class="fa fa-check"></i><b>9.8</b> Limitations</a></li>
+<li class="chapter" data-level="9.9" data-path="the-independent-t-test-skewed-outcome.html"><a href="the-independent-t-test-skewed-outcome.html#exercise-independent-t-test-with-a-skewed-outcome"><i class="fa fa-check"></i><b>9.9</b> Exercise: independent t-test with a skewed outcome</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="the-paired-t-test.html"><a href="the-paired-t-test.html"><i class="fa fa-check"></i><b>10</b> The paired t-test</a>
+<ul>
+<li class="chapter" data-level="10.1" data-path="the-paired-t-test.html"><a href="the-paired-t-test.html#overview-12"><i class="fa fa-check"></i><b>10.1</b> Overview</a></li>
+<li class="chapter" data-level="10.2" data-path="the-paired-t-test.html"><a href="the-paired-t-test.html#scenario-9"><i class="fa fa-check"></i><b>10.2</b> Scenario</a></li>
+<li class="chapter" data-level="10.3" data-path="the-paired-t-test.html"><a href="the-paired-t-test.html#step-1-check-the-assumptions-of-the-paired-t-test"><i class="fa fa-check"></i><b>10.3</b> Step 1: check the assumptions of the paired t-test</a>
+<ul>
+<li class="chapter" data-level="10.3.1" data-path="the-paired-t-test.html"><a href="the-paired-t-test.html#continuous-outcome-1"><i class="fa fa-check"></i><b>10.3.1</b> 1. Continuous outcome</a></li>
+<li class="chapter" data-level="10.3.2" data-path="the-paired-t-test.html"><a href="the-paired-t-test.html#paired-outcome-dataobservations-but-independent-observations-between-pairs"><i class="fa fa-check"></i><b>10.3.2</b> 2. Paired outcome data/observations, but independent observations between pairs</a></li>
+<li class="chapter" data-level="10.3.3" data-path="the-paired-t-test.html"><a href="the-paired-t-test.html#approximately-normally-distributed-differences-between-paired-observations"><i class="fa fa-check"></i><b>10.3.3</b> 3. Approximately normally distributed differences between paired observations</a></li>
+</ul></li>
+<li class="chapter" data-level="10.4" data-path="the-paired-t-test.html"><a href="the-paired-t-test.html#step-2-run-the-paired-t-test"><i class="fa fa-check"></i><b>10.4</b> Step 2: run the paired t-test</a></li>
+<li class="chapter" data-level="10.5" data-path="the-paired-t-test.html"><a href="the-paired-t-test.html#step-3-understand-the-results-tables-and-extract-the-key-results"><i class="fa fa-check"></i><b>10.5</b> Step 3: understand the results tables and extract the key results</a></li>
+<li class="chapter" data-level="10.6" data-path="the-paired-t-test.html"><a href="the-paired-t-test.html#step-4-report-and-interpret-the-results"><i class="fa fa-check"></i><b>10.6</b> Step 4: report and interpret the results</a></li>
+<li class="chapter" data-level="10.7" data-path="the-paired-t-test.html"><a href="the-paired-t-test.html#limitations-2"><i class="fa fa-check"></i><b>10.7</b> Limitations</a></li>
+<li class="chapter" data-level="10.8" data-path="the-paired-t-test.html"><a href="the-paired-t-test.html#exercise-paired-t-test"><i class="fa fa-check"></i><b>10.8</b> Exercise: paired t-test</a></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="the-chi-square-test-of-independence.html"><a href="the-chi-square-test-of-independence.html"><i class="fa fa-check"></i><b>11</b> The chi-square test of independence</a>
+<ul>
+<li class="chapter" data-level="11.1" data-path="the-chi-square-test-of-independence.html"><a href="the-chi-square-test-of-independence.html#overview-13"><i class="fa fa-check"></i><b>11.1</b> Overview</a></li>
+<li class="chapter" data-level="11.2" data-path="the-chi-square-test-of-independence.html"><a href="the-chi-square-test-of-independence.html#scenario-10"><i class="fa fa-check"></i><b>11.2</b> Scenario</a></li>
+<li class="chapter" data-level="11.3" data-path="the-chi-square-test-of-independence.html"><a href="the-chi-square-test-of-independence.html#step-1-check-the-assumptions-of-the-chi-square-test-of-independence"><i class="fa fa-check"></i><b>11.3</b> Step 1: check the assumptions of the chi-square test of independence</a></li>
+<li class="chapter" data-level="11.4" data-path="the-chi-square-test-of-independence.html"><a href="the-chi-square-test-of-independence.html#step-2-run-the-chi-square-test-of-independence"><i class="fa fa-check"></i><b>11.4</b> Step 2: run the chi-square test of independence</a></li>
+<li class="chapter" data-level="11.5" data-path="the-chi-square-test-of-independence.html"><a href="the-chi-square-test-of-independence.html#step-3-understand-the-results-tables-and-extract-the-key-results-1"><i class="fa fa-check"></i><b>11.5</b> Step 3: understand the results tables and extract the key results</a></li>
+<li class="chapter" data-level="11.6" data-path="the-chi-square-test-of-independence.html"><a href="the-chi-square-test-of-independence.html#step-4-report-and-interpret-the-results-1"><i class="fa fa-check"></i><b>11.6</b> Step 4: report and interpret the results</a></li>
+<li class="chapter" data-level="11.7" data-path="the-chi-square-test-of-independence.html"><a href="the-chi-square-test-of-independence.html#limitations-3"><i class="fa fa-check"></i><b>11.7</b> Limitations</a></li>
+<li class="chapter" data-level="11.8" data-path="the-chi-square-test-of-independence.html"><a href="the-chi-square-test-of-independence.html#expected-cell-counts-5"><i class="fa fa-check"></i><b>11.8</b> Expected cell counts &lt;5</a></li>
+<li class="chapter" data-level="11.9" data-path="the-chi-square-test-of-independence.html"><a href="the-chi-square-test-of-independence.html#exercise-chi-square-test-of-independence"><i class="fa fa-check"></i><b>11.9</b> Exercise: chi-square test of independence</a></li>
+</ul></li>
+<li class="chapter" data-level="12" data-path="the-chi-square-goodness-of-fit-test.html"><a href="the-chi-square-goodness-of-fit-test.html"><i class="fa fa-check"></i><b>12</b> The chi-square goodness-of-fit test</a></li>
+<li class="chapter" data-level="13" data-path="mcnemars-test.html"><a href="mcnemars-test.html"><i class="fa fa-check"></i><b>13</b> McNemar’s test</a></li>
+<li class="chapter" data-level="14" data-path="multiple-linear-regression.html"><a href="multiple-linear-regression.html"><i class="fa fa-check"></i><b>14</b> Multiple linear regression</a>
+<ul>
+<li class="chapter" data-level="14.1" data-path="multiple-linear-regression.html"><a href="multiple-linear-regression.html#key-terminology-and-concepts"><i class="fa fa-check"></i><b>14.1</b> Key terminology and concepts</a></li>
+<li class="chapter" data-level="14.2" data-path="multiple-linear-regression.html"><a href="multiple-linear-regression.html#overview-with-a-focus-on-causal-inference-from-observational-data"><i class="fa fa-check"></i><b>14.2</b> Overview with a focus on causal inference from observational data</a>
+<ul>
+<li class="chapter" data-level="14.2.1" data-path="multiple-linear-regression.html"><a href="multiple-linear-regression.html#causal-inference-references"><i class="fa fa-check"></i><b>14.2.1</b> Causal inference references</a></li>
+<li class="chapter" data-level="14.2.2" data-path="multiple-linear-regression.html"><a href="multiple-linear-regression.html#interactions-and-non-linear-relationships"><i class="fa fa-check"></i><b>14.2.2</b> Interactions and non-linear relationships</a></li>
+</ul></li>
+<li class="chapter" data-level="14.3" data-path="multiple-linear-regression.html"><a href="multiple-linear-regression.html#scenario-11"><i class="fa fa-check"></i><b>14.3</b> Scenario</a></li>
+<li class="chapter" data-level="14.4" data-path="multiple-linear-regression.html"><a href="multiple-linear-regression.html#step-1-explore-the-data"><i class="fa fa-check"></i><b>14.4</b> Step 1: explore the data</a></li>
+<li class="chapter" data-level="14.5" data-path="multiple-linear-regression.html"><a href="multiple-linear-regression.html#step-2-run-the-linear-regression-model"><i class="fa fa-check"></i><b>14.5</b> Step 2: run the linear regression model</a></li>
+<li class="chapter" data-level="14.6" data-path="multiple-linear-regression.html"><a href="multiple-linear-regression.html#step-3-check-the-assumptions-of-linear-regression"><i class="fa fa-check"></i><b>14.6</b> Step 3: check the assumptions of linear regression</a></li>
+<li class="chapter" data-level="14.7" data-path="multiple-linear-regression.html"><a href="multiple-linear-regression.html#step-4-consider-additional-possible-issues"><i class="fa fa-check"></i><b>14.7</b> Step 4: consider additional possible issues</a></li>
+<li class="chapter" data-level="14.8" data-path="multiple-linear-regression.html"><a href="multiple-linear-regression.html#step-5-understand-the-results-tables-and-extract-the-key-results"><i class="fa fa-check"></i><b>14.8</b> Step 5: understand the results tables and extract the key results</a></li>
+<li class="chapter" data-level="14.9" data-path="multiple-linear-regression.html"><a href="multiple-linear-regression.html#step-6-report-and-interpret-the-results"><i class="fa fa-check"></i><b>14.9</b> Step 6: report and interpret the results</a>
+<ul>
+<li class="chapter" data-level="14.9.1" data-path="multiple-linear-regression.html"><a href="multiple-linear-regression.html#numerical-variables-1"><i class="fa fa-check"></i><b>14.9.1</b> Numerical variables</a></li>
+<li class="chapter" data-level="14.9.2" data-path="multiple-linear-regression.html"><a href="multiple-linear-regression.html#categorical-variables-1"><i class="fa fa-check"></i><b>14.9.2</b> Categorical variables</a></li>
+<li class="chapter" data-level="14.9.3" data-path="multiple-linear-regression.html"><a href="multiple-linear-regression.html#non-significant-results"><i class="fa fa-check"></i><b>14.9.3</b> “Non-significant” results</a></li>
+<li class="chapter" data-level="14.9.4" data-path="multiple-linear-regression.html"><a href="multiple-linear-regression.html#regression-tables"><i class="fa fa-check"></i><b>14.9.4</b> Regression tables</a></li>
+<li class="chapter" data-level="14.9.5" data-path="multiple-linear-regression.html"><a href="multiple-linear-regression.html#methods"><i class="fa fa-check"></i><b>14.9.5</b> Methods</a></li>
+</ul></li>
+<li class="chapter" data-level="14.10" data-path="multiple-linear-regression.html"><a href="multiple-linear-regression.html#exercise-multiple-linear-regression"><i class="fa fa-check"></i><b>14.10</b> Exercise: multiple linear regression</a></li>
+<li class="chapter" data-level="14.11" data-path="multiple-linear-regression.html"><a href="multiple-linear-regression.html#next-steps-optional-1"><i class="fa fa-check"></i><b>14.11</b> Next steps (optional)</a></li>
+</ul></li>
+<li class="chapter" data-level="15" data-path="multiple-binary-logistic-regression.html"><a href="multiple-binary-logistic-regression.html"><i class="fa fa-check"></i><b>15</b> Multiple binary logistic regression</a>
+<ul>
+<li class="chapter" data-level="15.1" data-path="multiple-binary-logistic-regression.html"><a href="multiple-binary-logistic-regression.html#overview-14"><i class="fa fa-check"></i><b>15.1</b> Overview</a></li>
+<li class="chapter" data-level="15.2" data-path="multiple-binary-logistic-regression.html"><a href="multiple-binary-logistic-regression.html#scenario-12"><i class="fa fa-check"></i><b>15.2</b> Scenario</a></li>
+<li class="chapter" data-level="15.3" data-path="multiple-binary-logistic-regression.html"><a href="multiple-binary-logistic-regression.html#modelling-process"><i class="fa fa-check"></i><b>15.3</b> Modelling process</a></li>
+<li class="chapter" data-level="15.4" data-path="multiple-binary-logistic-regression.html"><a href="multiple-binary-logistic-regression.html#step-1-explore-the-data-1"><i class="fa fa-check"></i><b>15.4</b> Step 1: explore the data</a></li>
+<li class="chapter" data-level="15.5" data-path="multiple-binary-logistic-regression.html"><a href="multiple-binary-logistic-regression.html#step-2-run-the-logistic-regression-model"><i class="fa fa-check"></i><b>15.5</b> Step 2: run the logistic regression model</a></li>
+<li class="chapter" data-level="15.6" data-path="multiple-binary-logistic-regression.html"><a href="multiple-binary-logistic-regression.html#step-3-check-the-assumptions-of-the-logistic-regression"><i class="fa fa-check"></i><b>15.6</b> Step 3: check the assumptions of the logistic regression</a></li>
+<li class="chapter" data-level="15.7" data-path="multiple-binary-logistic-regression.html"><a href="multiple-binary-logistic-regression.html#step-4-consider-additional-problems"><i class="fa fa-check"></i><b>15.7</b> Step 4: consider additional problems</a></li>
+<li class="chapter" data-level="15.8" data-path="multiple-binary-logistic-regression.html"><a href="multiple-binary-logistic-regression.html#step-5-understand-the-results-tables-and-extract-the-key-results-1"><i class="fa fa-check"></i><b>15.8</b> Step 5: understand the results tables and extract the key results</a></li>
+<li class="chapter" data-level="15.9" data-path="multiple-binary-logistic-regression.html"><a href="multiple-binary-logistic-regression.html#step-6-report-and-interpret-the-results-1"><i class="fa fa-check"></i><b>15.9</b> Step 6: report and interpret the results</a>
+<ul>
+<li class="chapter" data-level="15.9.1" data-path="multiple-binary-logistic-regression.html"><a href="multiple-binary-logistic-regression.html#understanding-and-interpreting-odds-ratios"><i class="fa fa-check"></i><b>15.9.1</b> Understanding and interpreting odds ratios</a></li>
+<li class="chapter" data-level="15.9.2" data-path="multiple-binary-logistic-regression.html"><a href="multiple-binary-logistic-regression.html#categorical-variables-2"><i class="fa fa-check"></i><b>15.9.2</b> Categorical variables</a></li>
+<li class="chapter" data-level="15.9.3" data-path="multiple-binary-logistic-regression.html"><a href="multiple-binary-logistic-regression.html#numerical-variables-2"><i class="fa fa-check"></i><b>15.9.3</b> Numerical variables</a></li>
+<li class="chapter" data-level="15.9.4" data-path="multiple-binary-logistic-regression.html"><a href="multiple-binary-logistic-regression.html#practical-importance"><i class="fa fa-check"></i><b>15.9.4</b> Practical importance</a></li>
+<li class="chapter" data-level="15.9.5" data-path="multiple-binary-logistic-regression.html"><a href="multiple-binary-logistic-regression.html#non-significant-results-1"><i class="fa fa-check"></i><b>15.9.5</b> “Non-significant results”</a></li>
+<li class="chapter" data-level="15.9.6" data-path="multiple-binary-logistic-regression.html"><a href="multiple-binary-logistic-regression.html#regression-tables-1"><i class="fa fa-check"></i><b>15.9.6</b> Regression tables</a></li>
+<li class="chapter" data-level="15.9.7" data-path="multiple-binary-logistic-regression.html"><a href="multiple-binary-logistic-regression.html#methods-1"><i class="fa fa-check"></i><b>15.9.7</b> Methods</a></li>
+</ul></li>
+<li class="chapter" data-level="15.10" data-path="multiple-binary-logistic-regression.html"><a href="multiple-binary-logistic-regression.html#exercise-multiple-logistic-regression"><i class="fa fa-check"></i><b>15.10</b> Exercise: multiple logistic regression</a></li>
+<li class="chapter" data-level="15.11" data-path="multiple-binary-logistic-regression.html"><a href="multiple-binary-logistic-regression.html#next-steps-optional-2"><i class="fa fa-check"></i><b>15.11</b> Next steps (optional)</a></li>
+</ul></li>
+<li class="chapter" data-level="16" data-path="complex-surveydesign-analysis.html"><a href="complex-surveydesign-analysis.html"><i class="fa fa-check"></i><b>16</b> Complex survey/design analysis</a>
+<ul>
+<li class="chapter" data-level="16.1" data-path="complex-surveydesign-analysis.html"><a href="complex-surveydesign-analysis.html#overview-15"><i class="fa fa-check"></i><b>16.1</b> Overview</a></li>
+<li class="chapter" data-level="16.2" data-path="complex-surveydesign-analysis.html"><a href="complex-surveydesign-analysis.html#a-very-brief-description-of-survey-weights"><i class="fa fa-check"></i><b>16.2</b> A very brief description of survey weights</a></li>
+<li class="chapter" data-level="16.3" data-path="complex-surveydesign-analysis.html"><a href="complex-surveydesign-analysis.html#further-reading"><i class="fa fa-check"></i><b>16.3</b> Further reading</a></li>
+<li class="chapter" data-level="16.4" data-path="complex-surveydesign-analysis.html"><a href="complex-surveydesign-analysis.html#preparing-for-complex-survey-data-analysis-a-checklist"><i class="fa fa-check"></i><b>16.4</b> Preparing for complex survey data analysis: a checklist</a></li>
+<li class="chapter" data-level="16.5" data-path="complex-surveydesign-analysis.html"><a href="complex-surveydesign-analysis.html#scenario-13"><i class="fa fa-check"></i><b>16.5</b> Scenario</a></li>
+<li class="chapter" data-level="16.6" data-path="complex-surveydesign-analysis.html"><a href="complex-surveydesign-analysis.html#step-1-prepare-and-explore-the-data"><i class="fa fa-check"></i><b>16.6</b> Step 1: prepare and explore the data</a>
+<ul>
+<li class="chapter" data-level="16.6.1" data-path="complex-surveydesign-analysis.html"><a href="complex-surveydesign-analysis.html#basic-variable-details"><i class="fa fa-check"></i><b>16.6.1</b> Basic variable details</a></li>
+<li class="chapter" data-level="16.6.2" data-path="complex-surveydesign-analysis.html"><a href="complex-surveydesign-analysis.html#prepare-and-explore-the-data"><i class="fa fa-check"></i><b>16.6.2</b> Prepare and explore the data</a></li>
+</ul></li>
+<li class="chapter" data-level="16.7" data-path="complex-surveydesign-analysis.html"><a href="complex-surveydesign-analysis.html#step-2-create-the-spss-complex-samples-plan-file"><i class="fa fa-check"></i><b>16.7</b> Step 2: create the SPSS “complex samples plan file”</a></li>
+<li class="chapter" data-level="16.8" data-path="complex-surveydesign-analysis.html"><a href="complex-surveydesign-analysis.html#step-3-describe-the-sample"><i class="fa fa-check"></i><b>16.8</b> Step 3: describe the sample</a></li>
+<li class="chapter" data-level="16.9" data-path="complex-surveydesign-analysis.html"><a href="complex-surveydesign-analysis.html#step-4-run-the-complex-design-adjusted-linear-regression-model"><i class="fa fa-check"></i><b>16.9</b> Step 4: run the complex design adjusted linear regression model</a></li>
+<li class="chapter" data-level="16.10" data-path="complex-surveydesign-analysis.html"><a href="complex-surveydesign-analysis.html#step-5-check-the-assumptions-of-the-complex-design-linear-regression-model"><i class="fa fa-check"></i><b>16.10</b> Step 5: check the assumptions of the complex design linear regression model</a></li>
+<li class="chapter" data-level="16.11" data-path="complex-surveydesign-analysis.html"><a href="complex-surveydesign-analysis.html#step-6-understand-the-results-tables"><i class="fa fa-check"></i><b>16.11</b> Step 6: understand the results tables</a></li>
+<li class="chapter" data-level="16.12" data-path="complex-surveydesign-analysis.html"><a href="complex-surveydesign-analysis.html#exercise-complex-design-adjusted-linear-regression"><i class="fa fa-check"></i><b>16.12</b> Exercise: complex design adjusted linear regression</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Statistics Computer Practical Sessions Notes &amp; Materials for the Statistics for Health Sciences (MSc) &amp; Health Systems Research Methods (MPH) Modules</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="preparing-a-dataset-for-analysis" class="section level1" number="6">
+<h1><span class="header-section-number">Chapter 6</span> Preparing a dataset for analysis</h1>
+<p>The first step before doing any analysis is to understand and prepare the dataset. If you are lucky this will have been done already, but either way you should still go through this process to ensure the data really are ready for analysis. You may see this stage referred to as data preparation, data cleaning or data cleansing. These can mean different things in different contexts, but in the context of preparing a dataset for analysis we want to ensure the following:</p>
+<ul>
+<li><p>All variables are correctly named, labelled and set to the correct data type.</p></li>
+<li><p>All categorical variables are correctly coded and free from obvious errors.</p></li>
+<li><p>All numerical variables are in the correct format and free from obvious errors.</p></li>
+</ul>
+<p>In addition there are often other key features of a dataset that must be checked prior to analysis, but these will be dataset specific and we don’t have time to go into the detail here. However, one common example would be checking that any unique IDs have no duplicated values, and another would be cross checking any variables that are related to confirm they are both consistent, e.g. compare ages with dates of birth (they should agree) etc. To save time we will just do these steps for some of the variables in the <em>SBP Excel data</em> dataset to see how they are done, but then use a fully cleaned and prepared dataset for the analyses.</p>
+<p>First we’ll load a typical basic Excel dataset that lacks the extra formatting features of an SPSS format dataset, and that also contains typical errors present in raw datasets such as wrongly coded categorical variable observations and clear errors in some numerical variables, so we can see how to deal with these common issues when preparing datasets.</p>
+<div id="exercise-loading-excel-data" class="section level2" number="6.1">
+<h2><span class="header-section-number">6.1</span> Exercise: loading Excel data</h2>
+<p>SPSS can load all the main types of data you are likely to need to load, including CSV files, Excel spreadsheets, and data files from various other statistical programs like Stata and SAS. During these practical sessions we will use datasets saved in SPSS’s own format (.sav), which preserves all the useful information on things like variable names and labels, categorical variable coding labels etc that we will see explained below. However, if you use SPSS in the future it is likely you will have to load data in an Excel format at some point. Therefore, the first thing we’ll learn to do is to load an Excel spreadsheet.</p>
+<p><a href="https://youtu.be/IrLCr-Gp0sw">Video instructions: load Excel data into SPSS</a></p>
+<p><strong>Written instructions: load Excel data into SPSS</strong></p>
+<div class="fold">
+<p><br></p>
+<p>Go back to the main window in SPSS and in the main menu click <mark>File &gt; Open &gt; Data</mark>. Then in the <mark>Open Data</mark> tool window that opens navigate to the folder where you unzipped the MSc &amp; MPH statistics computer sessions practical files and go into the “Datasets” folder in the same way you would locate a folder in Windows Explorer. Then to allow you to see Excel files look for the <mark>Files of type</mark> drop-down menu beneath the area in the <mark>Open Data</mark> tool where the folders and files are displayed, and select the <mark>All Files</mark> option here. Then click on the “SBP data.xlsx” dataset and then click <mark>Open</mark> (or double click on the file). A tool window will pop-up called <mark>Opening Excel Data Source</mark>. Ensure the <mark>Read variable names from the first row of data</mark> box is ticked and the <mark>Worksheet</mark> drop down menu is on “SBP data [A1:I557]” and then click <mark>OK</mark>. You will now see the raw data displayed in the <mark>Data View</mark> with the variable names in the top row and the data values in the cells. You will see there are nine variables.</p>
+</div>
+</div>
+<div id="exercise-set-variable-properties-code-categorical-variables-and-check-categorical-variables-for-obvious-errors" class="section level2" number="6.2">
+<h2><span class="header-section-number">6.2</span> Exercise: set variable properties, code categorical variables, and check categorical variables for obvious errors</h2>
+<p>Now using our “raw” Excel dataset (that just contains the variable names and their values) let’s see how to set key variable properties, check that all categorical variables are correctly coded and free from obvious errors, and check that all numerical variables are free from obvious errors. For this we will need to understand the key details of our variables. If you are working with data that is not your own then assuming you are using a high quality, well documented dataset, this information will often be presented in the form of a “codebook.” We will present the codebook for this dataset in the form of a table below:</p>
+<p><br></p>
+<table>
+<caption>
+<span id="tab:unnamed-chunk-3">Table 6.1: </span><em>SBP data</em> dataset variable details
+</caption>
+<thead>
+<tr>
+<th style="text-align:left;">
+Variable name
+</th>
+<th style="text-align:left;">
+Variable type
+</th>
+<th style="text-align:left;">
+Variable description (units/coding of levels)
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+id
+</td>
+<td style="text-align:left;">
+Numerical:discrete
+</td>
+<td style="text-align:left;">
+Observation ID
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+sbp
+</td>
+<td style="text-align:left;">
+Numerical: continuous
+</td>
+<td style="text-align:left;">
+Systolic blood pressure (mmHg)
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+htn
+</td>
+<td style="text-align:left;">
+Categorical: nominal (binary)
+</td>
+<td style="text-align:left;">
+Hypertension (SBP &gt;= 140 mmHg, 0 = no/1 = yes)
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+age
+</td>
+<td style="text-align:left;">
+Numerical: discrete
+</td>
+<td style="text-align:left;">
+Age (years)
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+sex
+</td>
+<td style="text-align:left;">
+Categorical: nominal (binary)
+</td>
+<td style="text-align:left;">
+Sex (1 = male/2 = female)
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+ses
+</td>
+<td style="text-align:left;">
+Categorical: nominal
+</td>
+<td style="text-align:left;">
+Socio-economic status (1 = low/2 = medium/3 = high)
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+salt
+</td>
+<td style="text-align:left;">
+Numerical: discrete
+</td>
+<td style="text-align:left;">
+Salt consumption (g/day)
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+bmi
+</td>
+<td style="text-align:left;">
+Numerical: continuous
+</td>
+<td style="text-align:left;">
+BMI (kg/m2)
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+ace
+</td>
+<td style="text-align:left;">
+Categorical: nominal (binary)
+</td>
+<td style="text-align:left;">
+ACE inhibitor usage for at least 3 months (1 = yes/2 = no)
+</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<p><a href="https://youtu.be/ldFKC_qBFdA">Video instructions: set variable properties, code categorical variables, and check categorical variables for obvious errors</a></p>
+<p><strong>Written instructions: set variable properties, code categorical variables, and check categorical variables for obvious errors</strong></p>
+<div class="fold">
+<p><br></p>
+<p>First we’ll make sure our variables are correctly named, labelled and set to the correct data type, and that all categorical variables are correctly coded. Note: for some of these exercises we will just edit a few of the variables for practice, but leave the rest alone. This is okay because when we move on we will be using a fully updated version of the dataset so we don’t need to update more than enough to understand the processes. To make these updates we need to know what variables are in our dataset and what data they contain, its units/coding etc. This information would either be available to you if you were the one who collected the data, or it would be made available in a “codebook.” Refer to the codebook table above for the key details of all variables in this <em>SBP Excel data</em> dataset when updating the variables’ details.</p>
+<div id="variable-names" class="section level3" number="6.2.1">
+<h3><span class="header-section-number">6.2.1</span> Variable names</h3>
+<ul>
+<li>On the <mark>Variable View</mark> tab look at the <mark>Name</mark> column. Here you see the variables’ names. Variable names are short terms used to refer to the variables, a bit like file names. Variable names should be short, clear, understandable and unambiguous. We’ll leave these as they are, but just so you can see how to edit them click on the variable name “id,” delete it and re-enter it.</li>
+</ul>
+</div>
+<div id="variable-labels" class="section level3" number="6.2.2">
+<h3><span class="header-section-number">6.2.2</span> Variable labels</h3>
+<ul>
+<li><p>Next in the <mark>Variable View</mark> look along to the <mark>Label</mark> column where the variable labels can be stored (there are none in this dataset yet as Excel cannot store such information). Variable labels allow you to briefly describe the variable in more detail than the variable name. Good practice is to include the units for numerical variables or the coding scheme for categorical variables. Let’s add some for practice:</p></li>
+<li><p>For the variable sbp click on the variable label cell and enter “Systolic blood pressure (mmHg),” i.e. the brief description of the variable with the units included take from the codebook table.</p></li>
+<li><p>Now click on the variable label for ses and enter the description provided in the codebook table (you can just copy and paste it from the table).</p></li>
+<li><p>Feel free to update the variable labels for some other variables if you wish, but once you’ve know how to do it you can move on.</p></li>
+</ul>
+</div>
+<div id="variable-types" class="section level3" number="6.2.3">
+<h3><span class="header-section-number">6.2.3</span> Variable types</h3>
+<ul>
+<li><p>It is very important that variable types are correctly set in SPSS (and all stats packages), because it affects the way analyses and other things like graphs may work, with incorrectly defined variable types resulting in errors. To set the variable type go to the <mark>Variable View</mark> and click on the relevant cell under <mark>Measure</mark> (it will either say “Scale” or “Nominal”) and select the correct type from the drop-down menu. SPSS will set the <mark>Measure</mark> based on the nature of the variable: for any variables with any non-numeric (i.e. letters or special characters) values the variable <mark>Type</mark> will be <mark>String</mark> and the variable <mark>Measure</mark> will be <mark>Nominal</mark>, and for any variables with only numeric (discrete or continuous) values the variable <mark>Type</mark> will be <mark>Numeric</mark> and the variable <mark>Measure</mark> will be <mark>Scale</mark>. However, these automatic choices may not be correct for the dataset!</p></li>
+<li><p>For our dataset let’s start with sbp. What do you notice about its <mark>Type</mark> and <mark>Measure</mark>? The <mark>Type</mark> is <mark>String</mark> and the <mark>Measure</mark> is <mark>Nominal</mark>. What about if you click on the <mark>Measure</mark> cell? Only nominal and ordinal options are available! This means that at least one value in the variable is non-numeric, i.e. a letter or special character. Unfortunately there are no easy ways to check which values are non-numeric (there are ways using more complicated functions, but we don’t have time for that here), but if you create a frequency table (see later for how to do this) and scroll through all the values you may be able to spot the problem values. However, to save time here the issue is observation number 93, which has a value of 1o3, i.e. with a letter “o” instead of a zero.</p></li>
+<li><p>To update the erroneous value go to the <mark>Data View</mark> and either scroll down to the value (observation 93) and update it, or click on the sbp column variable name/heading to select the whole variable, then press <strong>ctrl</strong> and <strong>f</strong> to open the <mark>Find and Replace - Data View</mark> tool (below the <mark>Find</mark> tab it should say <mark>“Column: sbp”</mark>), then click on the <mark>Replace</mark> tab and then in the <mark>Find</mark> text box enter “1o3” (without the quotes) and then in the <mark>Replace</mark> text box enter “103” (without the quotes) and press the <mark>Replace</mark> button at the bottom to correct the value.</p></li>
+<li><p>Once the error has been updated go back to the <mark>Variable View</mark> window and update the variable <mark>Type</mark> for sbp to <mark>Numeric</mark>, because only <mark>Numeric</mark> type variables can be <mark>Scale</mark> variables (sorry for the confusing terminology, I don’t like SPSS’s choices!). Click on the relevant cell for sbp under <mark>Type</mark> and click the little box with three dots that appears to the right. Then select <mark>Numeric</mark> and then <mark>OK</mark>. As there are no more values with strings or non-numeric characters in you should now be able to update the variable’s <mark>Measure</mark> to <mark>Scale</mark>!</p></li>
+<li><p>You can go through all other variables and ensure the variable <strong>Type</strong> and <strong>Measure</strong> characteristics are set correctly if you wish, but once you’re happy how this is done feel free to move on.</p></li>
+</ul>
+</div>
+<div id="value-labels-coding-categorical-variables" class="section level3" number="6.2.4">
+<h3><span class="header-section-number">6.2.4</span> Value labels: coding categorical variables</h3>
+<ul>
+<li>Categorical variables must use some type of coding or coding scheme to be understandable. This just refers to how categorical variables’ levels are stored (e.g. our sex variable has two levels: male and female). There are two approaches:</li>
+</ul>
+<ol style="list-style-type: decimal">
+<li><p>String/character coding: each categorical level is referred to via a string (i.e. a set of letters, numbers or special characters). E.g. sex might take either the value “male” or “female.”</p></li>
+<li><p>Value coding: each categorical level is referred to via a number, with the number linked to a “value label” that then describes what that level represents. E.g. sex might take either the value 1 or 2, where 1 is linked to the value label “male” and 2 is linked to the value label “female.”</p></li>
+</ol>
+<ul>
+<li><p>You can use either approach in SPSS and you shouldn’t have any problems. However, as value coding is often used and requires more understanding of SPSS to add/edit we will follow this approach so you can get the practice.</p></li>
+<li><p>So let’s set-up value labels for our categorical variables sex and ses. To do this we must ensure that they are correctly coded with numbers and that suitable value labels are attached those numbers. In “real life” we would repeat this process for all other categorical variables. Before making any changes though we must first check each categorical variable to find out what levels exist and if there are any errors – you might be surprised. The easiest way to do this is to generate a frequency table: a table listing the number of cases the percentage of cases with each level.</p></li>
+<li><p>From the main menu go: <mark>Analyze &gt; Descriptive Statistics &gt; Frequencies</mark>. Note that SPSS tries to work out the type of variable based on the values present, e.g. if there are any non-numerical characters it will assume a categorical variable. In SPSS categorical variables are represented by three coloured circles, and numerical variables by a small ruler symbol. However, these assumptions will not necessarily be correct. Let’s look at sex and ses. Either double click on the sex and ses variables in turn or click once on each while holding the <strong>shift</strong> button and then click the right pointing arrow to add them. Then ensure the <mark>Display frequency tables</mark> button is ticked and click <mark>OK</mark>. The results will appear in a new output window, which is the other main window in SPSS where all results will be displayed along with any error messages.</p></li>
+<li><p>Now look at the frequency table to see what levels are present for sex and ses and how they are coded. Note that sex has been entered as a string variable (with levels recorded as words) and ses has been entered as a numeric variable (with levels recorded as numbers). Now you can see why frequency tables are so useful for data cleaning. For sex you can see that there are five levels, and it’s clear that three are errors (both the fact there are clear spelling mistakes/odd values and the fact they only occur once indicate they are mistakes). Specifically the levels “<em>1</em>,” “<em>FM</em>” and “<em>mal</em>” need correcting.</p></li>
+<li><p>We therefore need to first clean/correct the error values, and then convert all values to numerical values and then add the labels. Look at the codebook above and the “Description (units/level coding)” column for the correct coding to apply to each level. To correct the mistakes go back to the <mark>Data View</mark> and click the top of the sex column (click on the word sex) to highlight the whole column. Then hold <strong>ctrl</strong> and <strong>f</strong> to open the <mark>Find and Replace - Data View</mark> tool. Then in the <mark>Find</mark> text box enter “1” (without quotes) and in the <mark>Replace with</mark> text box enter “male” (without quotes) and then click <mark>Replace All</mark>. Repeat this find and replace process for all other levels that are errors with the obvious correct word. Then use the find and replace process to change all “male” values to the number 1, and all “female” values to the number 2. We can now add value labels to these numerical codes. Be sure to add labels to the correct numerical values or they won’t display.</p></li>
+<li><p>Now go back to the main window <mark>Variable View</mark> and click on the <mark>Values</mark> cell for sex where it currently says “None.” You’ll see a small box appear to the right of the cell with three dots in it – click on this to open the <mark>Value Labels</mark> tool. Then click the <mark>Value</mark> text entry box and type 1. Then click the <mark>Label</mark> text entry box and type “male.” Then click <mark>Add</mark>. Then repeat for Value = 2 and Label = “Female” (make sure you remember to click <mark>Add</mark>). Then once both value labels are added click <mark>OK</mark>.</p></li>
+<li><p>Next let’s correct (if necessary) and code ses. Go back and look at the frequency table for ses. We can see there are four levels with one obviously incorrectly coded level of “11” only observed once. Clearly this should be coded as “1.” Use the find and replace process detailed above to replace level “11” with “1,” and then attach the correct value labels to the levels 1, 2 and 3 based on the information provided in the codebook table (1 = low, 2 = medium and 3 = high).</p></li>
+<li><p>Note: variable labels and value labels are not stored in Excel files, so to retain them you must first save your dataset in SPSS “.sav” format. This can be done by going from the main menu to: <mark>File &gt; Save As</mark>, and then selecting a folder and file name. The .sav format should be the default selected, but ensure that you save your updated dataset in this format.</p></li>
+</ul>
+</div>
+</div>
+</div>
+<div id="exercise-check-numerical-variables-for-obvious-errors" class="section level2" number="6.3">
+<h2><span class="header-section-number">6.3</span> Exercise: check numerical variables for obvious errors</h2>
+<p><a href="https://youtu.be/Q51ex9lcqJs">Video instructions: check numerical variables for obvious errors</a></p>
+<p><strong>Written instructions: check numerical variables for obvious errors</strong></p>
+<div class="fold">
+<p><br></p>
+<ul>
+<li><p>All we can really hope to find are clearly erroneous values, such as values that are outside the plausible range of values for the variable based on what it is measuring or what we restricted it to via study design, but more modest errors won’t be detectable.</p></li>
+<li><p>If you have a numerical variable with relatively few distinct/unique values, such as age, then probably the easiest check is another frequency table. Produce a frequency table for age and what do you notice about the extreme values (i.e. the lower and upper ends)? One person has an age of 4. This is clearly an error, as the study only recruited participants aged 18+. What to do? There are three choices: 1) leave it as it is, 2) update it or 3) delete it. Option 1 is not a good idea because we know it must be an error. Option 2 would be ideal, but you can’t always do this. In this case an age of 4 could actually be an age of 24, 34, 40, 41 etc, so we would have to be able to go back and contact the participant to check their age if we wanted to update this. Where this is not possible you could conduct a sensitivity analysis by running your analysis with this age value as 40 and then again with the value updated to 49. That way you see what happens when you assume it was actually either end of the possible value range of the likely true value. Or you may take option is 3 and delete the value (but this should be reported in your methods). However, here we’ll assume we were able to check and the correct age should have been 40. To update this go to the <mark>Data View</mark>, right click on the age variable name and select <mark>Sort Ascending</mark>. The data should now be ordered with the participant with age 4 at the top (or you could use the find and replace process detailed above). Update their age to 40.</p></li>
+<li><p>When numeric variables have lots of different unique values, such as when they include decimals, using a frequency table becomes less easy. A better option is to produce a dotplot (also called a dotchart or Cleveland dotplot/dotchart), which is like a histogram but each value is displayed as a dot, with dots from observations of values in a similar range (i.e. in the same “bin”) being stacked like a histogram. As BMI has very few (maybe no) repeated values a frequency table will be huge. Let’s produce a dotplot instead. From the main menu go: <mark>Graphs &gt; Legacy Dialogues &gt; Scatter/Dot</mark>. Then click <mark>Simple Dot &gt; Define</mark>. Then in the <mark>Simple Dot</mark> graph tool add the variable bmi into the <mark>X-Axis Variable</mark> box. Then click <mark>OK</mark>. Looking at the graph you’ll see a huge stack of values of similar values, and then far out to the right on the x-axis you should clearly see an anomalous value (a circle) that must be an error because it’s so high. Double click on the graph which will open it in a new window where you can edit the graph. Now click on the error value, which should highlight all circles in yellow, and then click on it again and only the error circle should be highlighted. Then right click on the circle and choose <mark>Go to Case</mark>. This will take you to the relevant observation in the <mark>Data View</mark> where you can update it. Again we have three choices, and let’s assume we could go back and get the correct value either from the participant or an earlier dataset (e.g. if weight and height were measured separately), and it was actually 28.175.</p></li>
+<li><p>Now re-run the dotplot for BMI and what do you see? Again there is a value to the right of the distribution that is a far way to the right (higher) than any other BMI value. This may be considered an “outlier.” Outliers are extreme values that are far greater/smaller than any other values in a numerical variable. There are no clear thresholds beyond which a value is considered an outlier, but as you can see probably the easiest way to spot possible outliers is via a dotplot. Once you’ve identified any possible outliers such as this very high BMI value you should check to see if they are obvious errors and correct them if possible. However, if they appear to be genuine values the recommended approach is to conduct any analyses that involve the relevant variable(s) with and without the outliers present, i.e. repeat your analysis but delete the observations (e.g. individuals) who have the outliers and see what changes. Then simply clearly report the results of both of these analyses and any implications for the interpretation of your results. This is known as a sensitivity analysis. Broadly speaking, if removing outliers makes an important difference for your results then your results are probably not very robust to start with. Where you have plenty of good quality data removing the odd outlier from an analysis will rarely make much difference unless it’s a relatively hugely larger/smaller value. As you’ll have seen from the dotplot there are no outliers in this dataset.</p></li>
+</ul>
+</div>
+</div>
+<div id="a-final-note-on-data-cleaning" class="section level2" number="6.4">
+<h2><span class="header-section-number">6.4</span> A final note on data cleaning</h2>
+<p>We will end our data cleaning there having seen how to clean and prepare all variables as best as we can in isolation. However, with a real dataset these steps would just be the basics, and we would want to look further to check for errors and anomalous values by also looking at relationships between variables. For example, if we looked at a scatter plot of sbp ~ age we may see a suspiciously high value for sbp for a very young participant, i.e. one that would be very unlikely in such a young individual. We could then check this with any prior data or the participant if we were able to.</p>
+<p><strong>Note: it’s considered a good rule that you should only delete an observation from a given variable if you can confirm beyond reasonable doubt that it is an error, and that any data deletions must be reported in any results section of a paper/report etc. If you are concerned that one or more observations for one or more variables are errors but you cannot confirm this then a good approach is to run your analyses with and without those data points, and then in your results explain if this made any difference to your conclusions and discuss the implications accordingly.</strong></p>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="an-introduction-to-spss.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="describing-a-dataset.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": null,
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": null,
+"toc": {
+"collapse": "section"
+}
+});
+});
+</script>
+
+</body>
+
+</html>
