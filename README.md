@@ -1,1 +1,1 @@
-This site hosts the statistics and data analysis notes for the Nuffield Centre for International Health and Development.
+This site hosts the statistics materials for the Nuffield Centre for International Health and Development MSc in International Health Statistics for Health Sciences module, with the content also shared by the Public Health (International) MPH Health Systems Research Methods module.
