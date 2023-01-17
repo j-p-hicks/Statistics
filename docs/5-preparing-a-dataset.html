@@ -1,0 +1,579 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.2.269">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>preparing-a-dataset</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="dark">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+
+<script src="site_libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="site_libs/lightable-0.0.1/lightable.css" rel="stylesheet">
+
+
+<link rel="stylesheet" href="styles.css">
+</head>
+
+<body class="nav-sidebar docked">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+    <div class="container-fluid d-flex justify-content-between">
+      <h1 class="quarto-secondary-nav-title"></h1>
+      <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
+        <i class="bi bi-chevron-right"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation docked overflow-auto">
+      <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+      </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">Home</a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./1-website-information.html" class="sidebar-item-text sidebar-link">1. How to use this website</a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">2. Sampling and sample size</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./2-probability-sampling.html" class="sidebar-item-text sidebar-link">2.1. Probability sampling</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./3-sample-size.html" class="sidebar-item-text sidebar-link">2.2. Sample size</a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">3. Introducing SPSS &amp; preparing data</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./4-introduction-to-spss.html" class="sidebar-item-text sidebar-link">3.1. Introducing SPSS</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./5-preparing-a-dataset.html" class="sidebar-item-text sidebar-link active">3.2. Preparing a dataset</a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">4. Data exploration, sample &amp; population characteristics</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./6-describing-a-dataset.html" class="sidebar-item-text sidebar-link">4.1 Data exploration &amp; sample characteristics</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./7-describing-a-population.html" class="sidebar-item-text sidebar-link">4.2. Population characteristics</a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true">5. Statistical tests for numerical variables</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./8-independent-t-test.html" class="sidebar-item-text sidebar-link">5.1. Independent t-test</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./9-independent-t-test-skewed.html" class="sidebar-item-text sidebar-link">5.2. Independent t-test with skewed data</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./10-paired-t-test.html" class="sidebar-item-text sidebar-link">5.3. Paired t-test</a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="true">6 Statistical tests for categorical variables</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="true">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./11-chi-sq-independence.html" class="sidebar-item-text sidebar-link">6.1. Chi-square test of independence</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./12-chi-sq-goodness.html" class="sidebar-item-text sidebar-link">6.2. Chi-square goodness of fit test</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./13-paired-categorical-test.html" class="sidebar-item-text sidebar-link">6.3. Paired categorical variable test (McNemar’s test)</a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" aria-expanded="true">7. Regresson modelling</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" aria-expanded="true">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./14-linear-regression.html" class="sidebar-item-text sidebar-link">7.1. Linear regression</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./15-logistic-regression.html" class="sidebar-item-text sidebar-link">7.2. Logistic regression</a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./16-complex-survey-analysis.html" class="sidebar-item-text sidebar-link">8. Complex survey design analysis</a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#preparing-a-dataset-for-analysis" id="toc-preparing-a-dataset-for-analysis" class="nav-link active" data-scroll-target="#preparing-a-dataset-for-analysis">Preparing a dataset for analysis</a>
+  <ul class="collapse">
+  <li><a href="#exercise-loading-excel-data" id="toc-exercise-loading-excel-data" class="nav-link" data-scroll-target="#exercise-loading-excel-data">Exercise: loading Excel data</a></li>
+  <li><a href="#exercise-set-variable-properties-code-categorical-variables-and-check-categorical-variables-for-obvious-errors" id="toc-exercise-set-variable-properties-code-categorical-variables-and-check-categorical-variables-for-obvious-errors" class="nav-link" data-scroll-target="#exercise-set-variable-properties-code-categorical-variables-and-check-categorical-variables-for-obvious-errors">Exercise: set variable properties, code categorical variables, and check categorical variables for obvious errors</a>
+  <ul class="collapse">
+  <li><a href="#variable-names" id="toc-variable-names" class="nav-link" data-scroll-target="#variable-names">Variable names</a></li>
+  <li><a href="#variable-labels" id="toc-variable-labels" class="nav-link" data-scroll-target="#variable-labels">Variable labels</a></li>
+  <li><a href="#variable-types" id="toc-variable-types" class="nav-link" data-scroll-target="#variable-types">Variable types</a></li>
+  <li><a href="#value-labels-coding-categorical-variables" id="toc-value-labels-coding-categorical-variables" class="nav-link" data-scroll-target="#value-labels-coding-categorical-variables">Value labels: coding categorical variables</a></li>
+  </ul></li>
+  <li><a href="#exercise-check-numerical-variables-for-obvious-errors" id="toc-exercise-check-numerical-variables-for-obvious-errors" class="nav-link" data-scroll-target="#exercise-check-numerical-variables-for-obvious-errors">Exercise: check numerical variables for obvious errors</a></li>
+  <li><a href="#a-final-note-on-data-cleaning" id="toc-a-final-note-on-data-cleaning" class="nav-link" data-scroll-target="#a-final-note-on-data-cleaning">A final note on data cleaning</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+
+
+<section id="preparing-a-dataset-for-analysis" class="level1">
+<h1>Preparing a dataset for analysis</h1>
+<p>The first step before doing any analysis is to understand and prepare the dataset. If you are working with data from someone else’s study (“secondary data”) the data <em>may</em> have been prepared already, but either way you must still go through these processes to ensure you understand the dataset in detail and to ensure the data really are ready for analysis. You may see this stage referred to as data preparation, processing, cleaning, cleansing etc. These terms can mean different things in different contexts and there’s not really any universally accepted terminology, but prior to analysing a dataset to produce results we want to ensure the following:</p>
+<ul>
+<li><p>All variables are suitably named, labelled and (as appropriate to the software) set to the appropriate variable type.</p></li>
+<li><p>All categorical variables are correctly coded and free from obvious errors.</p></li>
+<li><p>All numerical variables are in the correct format and free from obvious errors.</p></li>
+</ul>
+<p>In addition there are often other key features of a dataset that must be checked prior to analysis, but these will be dataset specific and we don’t have time to go into the detail here. However, one common example would be checking that any unique IDs have no duplicated values, and another would be cross checking any variables that are related to confirm they are both consistent, e.g.&nbsp;compare ages with dates of birth (they should agree) etc. To save time we will just do these steps for some of the variables in the <em>SBP Excel data</em> dataset to see how they are done, but then use a fully cleaned and prepared dataset for the analyses.</p>
+<p>First we’ll load a typical basic Excel dataset that lacks the extra formatting features of an SPSS format dataset, and that also contains typical errors present in raw datasets such as wrongly coded categorical variable observations and clear errors in some numerical variables, so we can see how to deal with these common issues when preparing datasets.</p>
+<section id="exercise-loading-excel-data" class="level2">
+<h2 class="anchored" data-anchor-id="exercise-loading-excel-data">Exercise: loading Excel data</h2>
+<p>SPSS can load all the main types of data you are likely to need to load, including CSV files, Excel spreadsheets, and data files from various other statistical programs like Stata and SAS. During these practical sessions we will use datasets saved in SPSS’s own format (.sav), which preserves all the useful information on things like variable names and labels, categorical variable coding labels etc that we will see explained below. However, if you use SPSS in the future it is likely you will have to load data in an Excel format at some point. Therefore, the first thing we’ll learn to do is to load an Excel spreadsheet.</p>
+<p><a href="https://youtu.be/IrLCr-Gp0sw">Video instructions: load Excel data into SPSS</a></p>
+<p><strong>Written instructions: load Excel data into SPSS</strong></p>
+<details>
+<summary>
+Read/hide
+</summary>
+<p><br></p>
+<p>Go back to the main window in SPSS and in the main menu click <mark>File &gt; Open &gt; Data</mark>. Then in the <mark>Open Data</mark> tool window that opens navigate to the folder where you unzipped the MSc &amp; MPH statistics computer sessions practical files and go into the “Datasets” folder in the same way you would locate a folder in Windows Explorer. Then to allow you to see Excel files look for the <mark>Files of type</mark> drop-down menu beneath the area in the <mark>Open Data</mark> tool where the folders and files are displayed, and select the <mark>All Files</mark> option here. Then click on the “SBP data.xlsx” dataset and then click <mark>Open</mark> (or double click on the file). A tool window will pop-up called <mark>Opening Excel Data Source</mark>. Ensure the <mark>Read variable names from the first row of data</mark> box is ticked and the <mark>Worksheet</mark> drop down menu is on “SBP data [A1:I557]” and then click <mark>OK</mark>. You will now see the raw data displayed in the <mark>Data View</mark> with the variable names in the top row and the data values in the cells. You will see there are nine variables.</p>
+</details>
+</section>
+<section id="exercise-set-variable-properties-code-categorical-variables-and-check-categorical-variables-for-obvious-errors" class="level2">
+<h2 class="anchored" data-anchor-id="exercise-set-variable-properties-code-categorical-variables-and-check-categorical-variables-for-obvious-errors">Exercise: set variable properties, code categorical variables, and check categorical variables for obvious errors</h2>
+<p>Now using our “raw” Excel dataset (that just contains the variable names and their values) let’s see how to set key variable properties, check that all categorical variables are correctly coded and free from obvious errors, and check that all numerical variables are free from obvious errors. For this we will need to understand the key details of our variables. If you are working with data that is not your own then assuming you are using a high quality, well documented dataset, this information will often be presented in the form of a “codebook”. We will present the codebook for this dataset in the form of a table below:</p>
+<p><br></p>
+<div class="cell">
+<div class="cell-output-display">
+
+<table>
+<caption>*SBP data* dataset variable details</caption>
+ <thead>
+  <tr>
+   <th style="text-align:left;"> Variable name </th>
+   <th style="text-align:left;"> Variable type </th>
+   <th style="text-align:left;"> Variable description  (units/coding of levels) </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:left;"> id </td>
+   <td style="text-align:left;"> Numerical:discrete </td>
+   <td style="text-align:left;"> Observation ID </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> sbp </td>
+   <td style="text-align:left;"> Numerical: continuous </td>
+   <td style="text-align:left;"> Systolic blood pressure (mmHg) </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> htn </td>
+   <td style="text-align:left;"> Categorical: nominal (binary) </td>
+   <td style="text-align:left;"> Hypertension (SBP &gt;= 140 mmHg, 0 = no/1 = yes) </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> age </td>
+   <td style="text-align:left;"> Numerical: discrete </td>
+   <td style="text-align:left;"> Age (years) </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> sex </td>
+   <td style="text-align:left;"> Categorical: nominal (binary) </td>
+   <td style="text-align:left;"> Sex (1 = male/2 = female) </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> ses </td>
+   <td style="text-align:left;"> Categorical: nominal </td>
+   <td style="text-align:left;"> Socio-economic status (1 = low/2 = medium/3 = high) </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> salt </td>
+   <td style="text-align:left;"> Numerical: discrete </td>
+   <td style="text-align:left;"> Salt consumption (g/day) </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> bmi </td>
+   <td style="text-align:left;"> Numerical: continuous </td>
+   <td style="text-align:left;"> BMI (kg/m2) </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> ace </td>
+   <td style="text-align:left;"> Categorical: nominal (binary) </td>
+   <td style="text-align:left;"> ACE inhibitor usage for at least 3 months (1 = yes/2 = no) </td>
+  </tr>
+</tbody>
+</table>
+
+</div>
+</div>
+<p><br></p>
+<p><a href="https://youtu.be/ldFKC_qBFdA">Video instructions: set variable properties, code categorical variables, and check categorical variables for obvious errors</a></p>
+<p><strong>Written instructions: set variable properties, code categorical variables, and check categorical variables for obvious errors</strong></p>
+<details>
+<summary>
+Read/hide
+</summary>
+<p><br></p>
+<p>First we’ll make sure our variables are correctly named, labelled and set to the correct data type, and that all categorical variables are correctly coded. Note: for some of these exercises we will just edit a few of the variables for practice, but leave the rest alone. This is okay because when we move on we will be using a fully updated version of the dataset so we don’t need to update more than enough to understand the processes. To make these updates we need to know what variables are in our dataset and what data they contain, its units/coding etc. This information would either be available to you if you were the one who collected the data, or it would be made available in a “codebook”. Refer to the codebook table above for the key details of all variables in this <em>SBP Excel data</em> dataset when updating the variables’ details.</p>
+<section id="variable-names" class="level3">
+<h3 class="anchored" data-anchor-id="variable-names">Variable names</h3>
+<ul>
+<li>On the <mark>Variable View</mark> tab look at the <mark>Name</mark> column. Here you see the variables’ names. Variable names are short terms used to refer to the variables, a bit like file names. Variable names should be short, clear, understandable and unambiguous. We’ll leave these as they are, but just so you can see how to edit them click on the variable name “id”, delete it and re-enter it.</li>
+</ul>
+</section>
+<section id="variable-labels" class="level3">
+<h3 class="anchored" data-anchor-id="variable-labels">Variable labels</h3>
+<ul>
+<li><p>Next in the <mark>Variable View</mark> look along to the <mark>Label</mark> column where the variable labels can be stored (there are none in this dataset yet as Excel cannot store such information). Variable labels allow you to briefly describe the variable in more detail than the variable name. Good practice is to include the units for numerical variables or the coding scheme for categorical variables. Let’s add some for practice:</p></li>
+<li><p>For the variable sbp click on the variable label cell and enter “Systolic blood pressure (mmHg)”, i.e.&nbsp;the brief description of the variable with the units included take from the codebook table.</p></li>
+<li><p>Now click on the variable label for ses and enter the description provided in the codebook table (you can just copy and paste it from the table).</p></li>
+<li><p>Feel free to update the variable labels for some other variables if you wish, but once you’ve know how to do it you can move on.</p></li>
+</ul>
+</section>
+<section id="variable-types" class="level3">
+<h3 class="anchored" data-anchor-id="variable-types">Variable types</h3>
+<ul>
+<li><p>It is very important that variable types are correctly set in SPSS (and all stats packages), because it affects the way analyses and other things like graphs may work, with incorrectly defined variable types resulting in errors. To set the variable type go to the <mark>Variable View</mark> and click on the relevant cell under <mark>Measure</mark> (it will either say “Scale” or “Nominal”) and select the correct type from the drop-down menu. SPSS will set the <mark>Measure</mark> based on the nature of the variable: for any variables with any non-numeric (i.e.&nbsp;letters or special characters) values the variable <mark>Type</mark> will be <mark>String</mark> and the variable <mark>Measure</mark> will be <mark>Nominal</mark>, and for any variables with only numeric (discrete or continuous) values the variable <mark>Type</mark> will be <mark>Numeric</mark> and the variable <mark>Measure</mark> will be <mark>Scale</mark>. However, these automatic choices may not be correct for the dataset!</p></li>
+<li><p>For our dataset let’s start with sbp. What do you notice about its <mark>Type</mark> and <mark>Measure</mark>? The <mark>Type</mark> is <mark>String</mark> and the <mark>Measure</mark> is <mark>Nominal</mark>. What about if you click on the <mark>Measure</mark> cell? Only nominal and ordinal options are available! This means that at least one value in the variable is non-numeric, i.e.&nbsp;a letter or special character. Unfortunately, there are no easy ways to check which values are non-numeric (there are ways using more complicated functions, but we don’t have time for that here), but if you create a frequency table (see later for how to do this) and scroll through all the values you may be able to spot the problem values. However, to save time here the issue is observation number 93, which has a value of 1o3, i.e.&nbsp;with a letter “o” instead of a zero.</p></li>
+<li><p>To update the erroneous value go to the <mark>Data View</mark> and either scroll down to the value (observation 93) and update it, or click on the sbp column variable name/heading to select the whole variable, then press <strong>ctrl</strong> and <strong>f</strong> to open the <mark>Find and Replace - Data View</mark> tool (below the <mark>Find</mark> tab it should say <mark>“Column: sbp”</mark>), then click on the <mark>Replace</mark> tab and then in the <mark>Find</mark> text box enter “1o3” (without the quotes) and then in the <mark>Replace</mark> text box enter “103” (without the quotes) and press the <mark>Replace</mark> button at the bottom to correct the value.</p></li>
+<li><p>Once the error has been updated go back to the <mark>Variable View</mark> window and update the variable <mark>Type</mark> for sbp to <mark>Numeric</mark>, because only <mark>Numeric</mark> type variables can be <mark>Scale</mark> variables (sorry for the confusing terminology, I don’t like SPSS’s choices!). Click on the relevant cell for sbp under <mark>Type</mark> and click the little box with three dots that appears to the right. Then select <mark>Numeric</mark> and then <mark>OK</mark>. As there are no more values with strings or non-numeric characters in you should now be able to update the variable’s <mark>Measure</mark> to <mark>Scale</mark>!</p></li>
+<li><p>You can go through all other variables and ensure the variable <strong>Type</strong> and <strong>Measure</strong> characteristics are set correctly if you wish, but once you’re happy how this is done feel free to move on.</p></li>
+</ul>
+</section>
+<section id="value-labels-coding-categorical-variables" class="level3">
+<h3 class="anchored" data-anchor-id="value-labels-coding-categorical-variables">Value labels: coding categorical variables</h3>
+<ul>
+<li>Categorical variables must use some type of coding or coding scheme to be understandable. This just refers to how categorical variables’ levels are stored (e.g.&nbsp;our sex variable has two levels: male and female). There are two approaches:</li>
+</ul>
+<ol type="1">
+<li><p>String/character coding: each categorical level is referred to via a string (i.e.&nbsp;a set of letters, numbers or special characters). E.g. sex might take either the value “male” or “female”.</p></li>
+<li><p>Value coding: each categorical level is referred to via a number, with the number linked to a “value label” that then describes what that level represents. E.g. sex might take either the value 1 or 2, where 1 is linked to the value label “male” and 2 is linked to the value label “female”.</p></li>
+</ol>
+<ul>
+<li><p>You can use either approach in SPSS and you shouldn’t have any problems. However, as value coding is often used and requires more understanding of SPSS to add/edit we will follow this approach so you can get the practice.</p></li>
+<li><p>So let’s set-up value labels for our categorical variables sex and ses. To do this we must ensure that they are correctly coded with numbers and that suitable value labels are attached those numbers. In “real life” we would repeat this process for all other categorical variables. Before making any changes though we must first check each categorical variable to find out what levels exist and if there are any errors – you might be surprised. The easiest way to do this is to generate a frequency table: a table listing the number of cases the percentage of cases with each level.</p></li>
+<li><p>From the main menu go: <mark>Analyze &gt; Descriptive Statistics &gt; Frequencies</mark>. Note that SPSS tries to work out the type of variable based on the values present, e.g.&nbsp;if there are any non-numerical characters it will assume a categorical variable. In SPSS categorical variables are represented by three coloured circles, and numerical variables by a small ruler symbol. However, these assumptions will not necessarily be correct. Let’s look at sex and ses. Either double click on the sex and ses variables in turn or click once on each while holding the <strong>shift</strong> button and then click the right pointing arrow to add them. Then ensure the <mark>Display frequency tables</mark> button is ticked and click <mark>OK</mark>. The results will appear in a new output window, which is the other main window in SPSS where all results will be displayed along with any error messages.</p></li>
+<li><p>Now look at the frequency table to see what levels are present for sex and ses and how they are coded. Note that sex has been entered as a string variable (with levels recorded as words) and ses has been entered as a numeric variable (with levels recorded as numbers). Now you can see why frequency tables are so useful for data cleaning. For sex you can see that there are five levels, and it’s clear that three are errors (both the fact there are clear spelling mistakes/odd values and the fact they only occur once indicate they are mistakes). Specifically the levels “<em>1</em>”, “<em>FM</em>” and “<em>mal</em>” need correcting.</p></li>
+<li><p>We therefore need to first clean/correct the error values, and then convert all values to numerical values and then add the labels. Look at the codebook above and the “Description (units/level coding)” column for the correct coding to apply to each level. To correct the mistakes go back to the <mark>Data View</mark> and click the top of the sex column (click on the word sex) to highlight the whole column. Then hold <strong>ctrl</strong> and <strong>f</strong> to open the <mark>Find and Replace - Data View</mark> tool. Then in the <mark>Find</mark> text box enter “1” (without quotes) and in the <mark>Replace with</mark> text box enter “male” (without quotes) and then click <mark>Replace All</mark>. Repeat this find and replace process for all other levels that are errors with the obvious correct word. Then use the find and replace process to change all “male” values to the number 1, and all “female” values to the number 2. We can now add value labels to these numerical codes. Be sure to add labels to the correct numerical values or they won’t display.</p></li>
+<li><p>Now go back to the main window <mark>Variable View</mark> and click on the <mark>Values</mark> cell for sex where it currently says “None”. You’ll see a small box appear to the right of the cell with three dots in it – click on this to open the <mark>Value Labels</mark> tool. Then click the <mark>Value</mark> text entry box and type 1. Then click the <mark>Label</mark> text entry box and type “male”. Then click <mark>Add</mark>. Then repeat for Value = 2 and Label = “Female” (make sure you remember to click <mark>Add</mark>). Then once both value labels are added click <mark>OK</mark>.</p></li>
+<li><p>Next let’s correct (if necessary) and code ses. Go back and look at the frequency table for ses. We can see there are four levels with one obviously incorrectly coded level of “11” only observed once. Clearly this should be coded as “1”. Use the find and replace process detailed above to replace level “11” with “1”, and then attach the correct value labels to the levels 1, 2 and 3 based on the information provided in the codebook table (1 = low, 2 = medium and 3 = high).</p></li>
+<li><p>Note: variable labels and value labels are not stored in Excel files, so to retain them you must first save your dataset in SPSS “.sav” format. This can be done by going from the main menu to: <mark>File &gt; Save As</mark>, and then selecting a folder and file name. The .sav format should be the default selected, but ensure that you save your updated dataset in this format.</p></li>
+</ul>
+</section></details>
+</section>
+</section>
+<section id="exercise-check-numerical-variables-for-obvious-errors" class="level2">
+<h2 class="anchored" data-anchor-id="exercise-check-numerical-variables-for-obvious-errors">Exercise: check numerical variables for obvious errors</h2>
+<p><a href="https://youtu.be/Q51ex9lcqJs">Video instructions: check numerical variables for obvious errors</a></p>
+<p><strong>Written instructions: check numerical variables for obvious errors</strong></p>
+<details>
+<summary>
+Read/hide
+</summary>
+<p><br></p>
+<ul>
+<li><p>All we can really hope to find are clearly erroneous values, such as values that are outside the plausible range of values for the variable based on what it is measuring or what we restricted it to via study design, but more modest errors won’t be detectable.</p></li>
+<li><p>If you have a numerical variable with relatively few distinct/unique values, such as age, then probably the easiest check is another frequency table. Produce a frequency table for age and what do you notice about the extreme values (i.e.&nbsp;the lower and upper ends)? One person has an age of 4. This is clearly an error, as the study only recruited participants aged 18+. What to do? There are three choices: 1) leave it as it is, 2) update it or 3) delete it. Option 1 is not a good idea because we know it must be an error. Option 2 would be ideal, but you can’t always do this. In this case an age of 4 could actually be an age of 24, 34, 40, 41 etc, so we would have to be able to go back and contact the participant to check their age if we wanted to update this. Where this is not possible you could conduct a sensitivity analysis by running your analysis with this age value as 40 and then again with the value updated to 49. That way you see what happens when you assume it was actually either end of the possible value range of the likely true value. Or you may take option is 3 and delete the value (but this should be reported in your methods). However, here we’ll assume we were able to check and the correct age should have been 40. To update this go to the <mark>Data View</mark>, right click on the age variable name and select <mark>Sort Ascending</mark>. The data should now be ordered with the participant with age 4 at the top (or you could use the find and replace process detailed above). Update their age to 40.</p></li>
+<li><p>When numeric variables have lots of different unique values, such as when they include decimals, using a frequency table becomes less easy. A better option is to produce a dotplot (also called a dotchart or Cleveland dotplot/dotchart), which is like a histogram but each value is displayed as a dot, with dots from observations of values in a similar range (i.e.&nbsp;in the same “bin”) being stacked like a histogram. As BMI has very few (maybe no) repeated values a frequency table will be huge. Let’s produce a dotplot instead. From the main menu go: <mark>Graphs &gt; Legacy Dialogues &gt; Scatter/Dot</mark>. Then click <mark>Simple Dot &gt; Define</mark>. Then in the <mark>Simple Dot</mark> graph tool add the variable bmi into the <mark>X-Axis Variable</mark> box. Then click <mark>OK</mark>. Looking at the graph you’ll see a huge stack of values of similar values, and then far out to the right on the x-axis you should clearly see an anomalous value (a circle) that must be an error because it’s so high. Double click on the graph which will open it in a new window where you can edit the graph. Now click on the error value, which should highlight all circles in yellow, and then click on it again and only the error circle should be highlighted. Then right click on the circle and choose <mark>Go to Case</mark>. This will take you to the relevant observation in the <mark>Data View</mark> where you can update it. Again we have three choices, and let’s assume we could go back and get the correct value either from the participant or an earlier dataset (e.g.&nbsp;if weight and height were measured separately), and it was actually 28.175.</p></li>
+<li><p>Now re-run the dotplot for BMI and what do you see? Again there is a value to the right of the distribution that is a far way to the right (higher) than any other BMI value. This may be considered an “outlier”. Outliers are extreme values that are far greater/smaller than any other values in a numerical variable. There are no clear thresholds beyond which a value is considered an outlier, but as you can see probably the easiest way to spot possible outliers is via a dotplot. Once you’ve identified any possible outliers such as this very high BMI value you should check to see if they are obvious errors and correct them if possible. However, if they appear to be genuine values the recommended approach is to conduct any analyses that involve the relevant variable(s) with and without the outliers present, i.e.&nbsp;repeat your analysis but delete the observations (e.g.&nbsp;individuals) who have the outliers and see what changes. Then simply clearly report the results of both of these analyses and any implications for the interpretation of your results. This is known as a sensitivity analysis. Broadly speaking, if removing outliers makes an important difference for your results then your results are probably not very robust to start with. Where you have plenty of good quality data removing the odd outlier from an analysis will rarely make much difference unless it’s a relatively hugely larger/smaller value. As you’ll have seen from the dotplot there are no outliers in this dataset.</p></li>
+</ul>
+</details>
+</section>
+<section id="a-final-note-on-data-cleaning" class="level2">
+<h2 class="anchored" data-anchor-id="a-final-note-on-data-cleaning">A final note on data cleaning</h2>
+<p>We will end our data cleaning there having seen how to clean and prepare all variables as best as we can in isolation. However, with a real dataset these steps would just be the basics, and we would want to look further to check for errors and anomalous values by also looking at relationships between variables. For example, if we looked at a scatter plot of sbp vs age we may see a suspiciously high value for sbp for a very young participant, i.e.&nbsp;one that would be very unlikely in such a young individual. We could then check this with any prior data or the participant if we were able to.</p>
+<p><strong>Note: generally speaking you should not delete any observations (e.g.&nbsp;patients) from any variables when preparing your data. When it comes to analysing your data the presence of missing values in some variables may be a problem, and in the most simplistic approach you may have to conduct “complete case” analyses by removing any observations with missing values for variables in the analyses. However, this is not without implications for possible bias (https://stefvanbuuren.name/fimd/ch-introduction.html), and you should always compute and present the frequency of missing data if present.</strong></p>
+<p><strong>Note: if you are concerned that one or more observations for one or more variables are errors but you cannot confirm this then a good approach is to run your analyses with and without those data points, and then in your results explain if this made any difference to your conclusions and discuss the implications accordingly. This is known as a sensitivity analysis.</strong></p>
+
+
+</section>
+
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>
