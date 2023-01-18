@@ -361,7 +361,7 @@ Read/hide
 <summary>
 Read/hide
 </summary>
-There appears to be a slightly odd “gap” near the mean, but overall the variable appears to pretty closely follow a normal distribution.
+<p>There appears to be a slightly odd “gap” near the mean, but overall the variable appears to pretty closely follow a normal distribution.</p>
 </details>
 <p>Next let’s look at a bar chart for our ses variable.</p>
 <ul>
@@ -372,7 +372,7 @@ There appears to be a slightly odd “gap” near the mean, but overall the vari
 <summary>
 Read/hide
 </summary>
-Most participants were of low socio-economic status, with successively smaller proportions being of medium and high socio-economic status.
+<p>Most participants were of low socio-economic status, with successively smaller proportions being of medium and high socio-economic status.</p>
 </details>
 <p>You can use these two types of graphs to explore the distribution of all the variables. In a real analysis you would certainly want to do this, but for the sake of time you may want to move on now that you know how to do this.</p>
 </section>
@@ -389,7 +389,7 @@ Most participants were of low socio-economic status, with successively smaller p
 <summary>
 Read/hide
 </summary>
-It’s hard to say much other than there’s no clearly strong linear or non-linear relationship. However, this is a good example of why you can’t always interpret bivariate graphs very easily, because when there is a lot of variation in the data it can easily hide weaker relationships, because as we’ll see later there is evidence of a relationship here.
+<p>It’s hard to say much other than there’s no clearly strong linear or non-linear relationship. However, this is a good example of why you can’t always interpret bivariate graphs very easily, because when there is a lot of variation in the data it can easily hide weaker relationships, because as we’ll see later there is evidence of a relationship here.</p>
 </details>
 <p>What if we had seen a clear non-linear relationship? There are two main options within a regression modelling framework:</p>
 <ol type="1">
@@ -404,14 +404,12 @@ It’s hard to say much other than there’s no clearly strong linear or non-lin
 <ul>
 <li>Look at the figure below to understand how to interpret boxplots:</li>
 </ul>
-<center>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="C:/Users/fbsjhi/OneDrive%20-%20University%20of%20Leeds/Teaching/MSc%20IH/Statistics%20for%20Health%20Sciences/Website/Images/Boxplot.jpg" class="img-fluid figure-img"></p>
+<p><img src="Images/Boxplot.jpg" class="img-fluid figure-img"></p>
 <p></p><figcaption class="figure-caption">Boxplot explained</figcaption><p></p>
 </figure>
 </div>
-</center>
 <p>Let’s look at the relationship between the outcome and the categorical variable sex with a boxplot:</p>
 <ul>
 <li>From the main menu go: <mark>Graphs &gt; Legacy Dialogues &gt; Boxplot</mark>, then select <mark>Simple</mark> and click <mark>Define</mark>. Add the sbp variable into the <mark>Variable:</mark> box and sex into the <mark>Category Axis:</mark> box and click <mark>OK</mark>. What do you see?</li>
@@ -421,9 +419,9 @@ It’s hard to say much other than there’s no clearly strong linear or non-lin
 <summary>
 Read/hide
 </summary>
-In our sample males clearly tend to have moderately higher values of SBP than females on average, but both sexes have a broadly similar spread (i.e.&nbsp;approximately equal variance) of SBP values. We can also see that systolic blood pressure values in both groups appear to follow a fairly normal distribution, which you can tell this by the fact that the box plots are quite symmetrical, unlike the explanatory boxplot image above where the data would clearly be right skewed due to the larger spread of higher values. Asymmetry indicates a non-normal, skewed distribution with a higher spread of observations indicating right-skew and a lower spread of observations indicating left skew. You can always plot a histogram of the outcome within each group to understand this more clearly.
+<p>In our sample males clearly tend to have moderately higher values of SBP than females on average, but both sexes have a broadly similar spread (i.e.&nbsp;approximately equal variance) of SBP values. We can also see that systolic blood pressure values in both groups appear to follow a fairly normal distribution, which you can tell this by the fact that the box plots are quite symmetrical, unlike the explanatory boxplot image above where the data would clearly be right skewed due to the larger spread of higher values. Asymmetry indicates a non-normal, skewed distribution with a higher spread of observations indicating right-skew and a lower spread of observations indicating left skew. You can always plot a histogram of the outcome within each group to understand this more clearly.</p>
 </details>
-Again, you can now use these two types of plots to explore the relationships between all the other independent variables and the outcome if you wish, but there’s no real need to do this for this practical so feel free to move on.
+<p>Again, you can now use these two types of plots to explore the relationships between all the other independent variables and the outcome if you wish, but there’s no real need to do this for this practical so feel free to move on.</p>
 </section></section></details>
 </section>
 </section>
@@ -461,7 +459,7 @@ Read/hide
 <summary>
 Read/hide
 </summary>
-There are sophisticated and powerful ways of dealing with problems of non-independence, but we don’t go into them here. However, a simple solution for non-independent observations due to having multiple measurements across time is to just use observations from one time point only as your outcome (if this makes sense), or to take the average across all time points (if this makes sense), or to take the difference between your first and last time points and use these change scores as your new outcome (if this makes sense). And a simple solution for having non-independent observations due to clustering is to calculate summary values of the outcome based on all observations within each cluster. For example, if your outcome is a numerical variable, such as SBP, and you are looking at patients within facilities, then you can calculate the mean SBP across all patients in each facility, and then use the facility-level mean SBP as your outcome. For binary categorical variables (e.g.&nbsp;hypertension – yes/no) you can select one level (e.g.&nbsp;hypertension = yes) and calculate the proportion or percentage of observations in that level per cluster. For categorical variables with &gt;2 levels you have to create separate summary percentage variables for each level.
+<p>There are sophisticated and powerful ways of dealing with problems of non-independence, but we don’t go into them here. However, a simple solution for non-independent observations due to having multiple measurements across time is to just use observations from one time point only as your outcome (if this makes sense), or to take the average across all time points (if this makes sense), or to take the difference between your first and last time points and use these change scores as your new outcome (if this makes sense). And a simple solution for having non-independent observations due to clustering is to calculate summary values of the outcome based on all observations within each cluster. For example, if your outcome is a numerical variable, such as SBP, and you are looking at patients within facilities, then you can calculate the mean SBP across all patients in each facility, and then use the facility-level mean SBP as your outcome. For binary categorical variables (e.g.&nbsp;hypertension – yes/no) you can select one level (e.g.&nbsp;hypertension = yes) and calculate the proportion or percentage of observations in that level per cluster. For categorical variables with &gt;2 levels you have to create separate summary percentage variables for each level.</p>
 </details>
 <p><strong>3. Normally distributed residuals</strong></p>
 <p>Remember that in linear regression the residuals or model errors are simply the differences between each observed outcome value and the model predicted value (based on the linear regression equation). Technically the assumption here is “multivariate normality of residuals or errors”. In practical terms this just means checking that the residuals are (approximately) normally distributed, which luckily is easy to do. Linear regression assumes normally distributed errors, and if this assumption is violated then the resulting confidence intervals and p-values for coefficients can be biased (usually too narrow and too small respectively).</p>
@@ -474,7 +472,7 @@ There are sophisticated and powerful ways of dealing with problems of non-indepe
 <summary>
 Read/hide
 </summary>
-The residuals appear to be reasonably approximately normal so we can safely assume this assumption has not been violated in our model. If the residuals were not approximately normally distributed then we can try to transform the outcome to increase the normality of their distribution. You can use the same methods as discussed and practiced in the “Inferential analysis 2: the independent t-test applied to a skewed outcome” practical, specifically see the “Step 2: transform the outcome” section.
+<p>The residuals appear to be reasonably approximately normal so we can safely assume this assumption has not been violated in our model. If the residuals were not approximately normally distributed then we can try to transform the outcome to increase the normality of their distribution. You can use the same methods as discussed and practiced in the “Inferential analysis 2: the independent t-test applied to a skewed outcome” practical, specifically see the “Step 2: transform the outcome” section.</p>
 </details>
 <p><strong>4. Linearity of the relationships between the residuals and all numerical variables</strong></p>
 <p>Although you should have already confirmed the nature of the bivariate relationships between sbp and the numerical independent variables during your pre-modelling data exploration phase, once we are dealing with a multiple linear regression model it can be the case that once you adjust for a certain variable the adjusted relationship between another numerical independent variable and the outcome becomes non-linear. If this is the case the un-modelled non-linearity will be reflected in the residuals and cause bias in the inferential results (confidence intervals and p-values). Therefore, we must check whether the residuals show any non-linear patterns (curved trends) when plotted against the values of each independent numerical variable.</p>
@@ -486,20 +484,18 @@ The residuals appear to be reasonably approximately normal so we can safely assu
 <summary>
 Read/hide
 </summary>
-There is no clear non-linear trend as the residuals are scattered fairly evenly and linearly across values of age.
+<p>There is no clear non-linear trend as the residuals are scattered fairly evenly and linearly across values of age.</p>
 </details>
 <p>In a real data analysis you should repeat this process for the other numerical independent variables in the model, but feel free to move on now if you wish because there are also no issues with the remaining variables. If you had found any non-linear relationships involving numerical independent variables then see the above “Bivariate exploration” section for a discussion of some possible solutions.</p>
 <p><strong>5. Homoscedasticity: constant variance of the residuals across model predicted values</strong></p>
 <p>The technical name for this assumption is homoscedasticity, but in practical terms this just means that there should be no systematic pattern or change in the amount of variation (i.e.&nbsp;spread) in the residuals across the model predicted values (also called the model fitted values). If the residual variance changes with predicted values (most commonly increasing at higher predicted values) then this is known as heteroscedasticity, and this can again lead to confidence intervals and p-values for coefficients can be biased (usually too narrow and too small respectively). Again there are statistical tests available to “test” for this, but we will use graphical methods. Again this is very easy to check: we just plot the model predicted values against the model residuals and hope to see “random noise”.</p>
 <p>See the following three figures for an illustration of some examples of clear heteroscedasticity and homoscedasticity:</p>
-<center>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="C:/Users/fbsjhi/OneDrive%20-%20University%20of%20Leeds/Teaching/MSc%20IH/Statistics%20for%20Health%20Sciences/Website/Images/hetero-homo-scedasticity.jpg" class="img-fluid figure-img"></p>
-<p></p><figcaption class="figure-caption">Illustrations of idealised heteroscedasticity and homoscedasticity residual patterns</figcaption><p></p>
+<p><img src="Images/hetero-homo-scedasticity.jpg" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">Illustrations of example heteroscedasticity and homoscedasticity residual patterns</figcaption><p></p>
 </figure>
 </div>
-</center>
 <p>Note: these are in an idealised/very clear form. You will often see some tapering of points at either end of the main spread of points because there is usually less data at these places, but this is not usually something to worry about.</p>
 <p>Let’s now produce the necessary plot and check for violation of this assumption:</p>
 <ul>
@@ -510,7 +506,7 @@ There is no clear non-linear trend as the residuals are scattered fairly evenly 
 <summary>
 Read/hide
 </summary>
-The spread of the residuals looks fairly even across all values of the model predictions for the outcome, so we can safely assume this assumption has not been violated.
+<p>The spread of the residuals looks fairly even across all values of the model predictions for the outcome, so we can safely assume this assumption has not been violated.</p>
 </details>
 <p>What if there had been a clear pattern in the residuals when plotted against the model predicted values?</p>
 <p><strong>How to deal with heteroscedasticity</strong></p>
@@ -521,7 +517,7 @@ Read/hide
 <p>The first thing to do would be to try and find out why this was. This is usually either caused by 1) having an outcome that covers a very large range of values, because typically the variance will be greater at larger values, even if the model is correctly specified, 2) having an outcome that varies more at higher/lower values of a numerical independent variable and/or varies differently between one or more categorical variable levels for whatever (genuine/real world) reason, or 3) having an incorrectly specified model, which means your model is either missing important and necessary non-linear and/or interaction terms, or is missing one or more independent variables that are important in explaining variation in the outcome.</p>
 <p>Identifying scenario 2) and 3) involves exploring the relationship between the residuals and all independent variables in turn to try and identify the culprits, and careful thinking about whether any key independent variables may be missing from your sufficient adjustment set. While identifying scenario 1) involves ruling out scenario 2) and 3) and having an outcome with a large range of values (typically spanning a number of orders of magnitude).</p>
 <p>How to solve this? If the problem appears to be due to scenario 3) you may be able to identify the culprit missing variable or missing functional form and update the model to solve the problem. If the problem involves scenario 1) or 2) then a simple and often sufficient solution is to use a linear regression model with “robust standard errors”, also known as “heteroskedasticity-consistent standard errors” or “Huber-White (robust) standard errors” (after the two inventors of the method). While we will not discuss or practice this solution further you can get an overview of how to run the method in SPSS here:</p>
-https://www.ibm.com/support/pages/can-i-compute-robust-standard-errors-spss
+<p>https://www.ibm.com/support/pages/can-i-compute-robust-standard-errors-spss</p>
 </details>
 </section>
 <section id="step-4-consider-additional-possible-issues" class="level2">
@@ -540,7 +536,7 @@ https://www.ibm.com/support/pages/can-i-compute-robust-standard-errors-spss
 <summary>
 Read/hide
 </summary>
-There are no concerning signs of excessive multicollinearity for any independent variables. Great!
+<p>There are no concerning signs of excessive multicollinearity for any independent variables. Great!</p>
 </details>
 <p>What if you do find excessive multicollinearity in your model?</p>
 <p><strong>How to deal with excessive multicollinearity</strong></p>
@@ -548,7 +544,7 @@ There are no concerning signs of excessive multicollinearity for any independent
 <summary>
 Read/hide
 </summary>
-What if one or more variables had very high VIF scores? Before doing anything we can actually ignore high VIF scores under some circumstances. 1) When they are only for “control” variables, i.e.&nbsp;variables whose effects we are not interested in interpreting but where we believe they need to be in our model because of our theory about the likely causal influences on our outcome. 2) Where the VIFs are for interaction or polynomial terms, because this is to be expected. 3) The variables with high VIF values are dummy variables for a categorical variable with three or more levels. When the reference level has an increasingly small proportion of the observations in it then the remaining levels will have increasingly large VIFs. You can avoid this by setting the reference category as a larger level. However, if the variable(s) with large VIF values aren’t covered by these situations then you need to consider why they have a high VIF. It means they are highly correlated with one or more other independent variables, which usually means they are essentially measuring the same thing. For example, weight and waist circumference will often be highly correlated. Therefore, in such a situation you can simply remove whichever one of the variables makes most sense for your research question.
+<p>What if one or more variables had very high VIF scores? Before doing anything we can actually ignore high VIF scores under some circumstances. 1) When they are only for “control” variables, i.e.&nbsp;variables whose effects we are not interested in interpreting but where we believe they need to be in our model because of our theory about the likely causal influences on our outcome. 2) Where the VIFs are for interaction or polynomial terms, because this is to be expected. 3) The variables with high VIF values are dummy variables for a categorical variable with three or more levels. When the reference level has an increasingly small proportion of the observations in it then the remaining levels will have increasingly large VIFs. You can avoid this by setting the reference category as a larger level. However, if the variable(s) with large VIF values aren’t covered by these situations then you need to consider why they have a high VIF. It means they are highly correlated with one or more other independent variables, which usually means they are essentially measuring the same thing. For example, weight and waist circumference will often be highly correlated. Therefore, in such a situation you can simply remove whichever one of the variables makes most sense for your research question.</p>
 </details>
 <p><strong>2. No extremely influential observations</strong></p>
 <p>Sometimes single or multiple observations (individuals in our “SBP data final.sav” dataset) can have an excessive influence on the results, i.e.&nbsp;the coefficients and/or confidence intervals and p-values of your linear regression model, especially in smaller datasets. What this means is that including or excluding these observations from the analysis can change the results and potentially your overall interpretation of the results substantially. This is obviously not a good situation when the results are so sensitive to one or a few observations. If such observations exist in your model then you need to explore them and try and understand why they are so influential and whether they should be retained in the model. Observations can be influential in two main ways:</p>
@@ -567,7 +563,7 @@ What if one or more variables had very high VIF scores? Before doing anything we
 <summary>
 Read/hide
 </summary>
-Two observations appear to have clearly relatively much higher values for Cook’s D than all the other observations. Interacting with the graph we can explore these observations, which have ids of 478 and 520.
+<p>Two observations appear to have clearly relatively much higher values for Cook’s D than all the other observations. Interacting with the graph we can explore these observations, which have ids of 478 and 520.</p>
 </details>
 <p>What do you notice about the outcome and/or independent variable values for these observations?</p>
 <p>What do you notice about these influential values?</p>
@@ -575,7 +571,7 @@ Two observations appear to have clearly relatively much higher values for Cook�
 <summary>
 Read/hide
 </summary>
-Observation id 520 has a very large value for BMI of 41, but otherwise appears normal, so this is likely driving its influential power. While observation 478 has a very large value for the outcome, with a SBP of 175, but otherwise has fairly “normal” values for its independent variables although they are of high socio-economic status and taking an ACE inhibitor, both of which (as we’ll see) are associated with lower values of SBP in the sample, so this is likely driving its influential power.
+<p>Observation id 520 has a very large value for BMI of 41, but otherwise appears normal, so this is likely driving its influential power. While observation 478 has a very large value for the outcome, with a SBP of 175, but otherwise has fairly “normal” values for its independent variables although they are of high socio-economic status and taking an ACE inhibitor, both of which (as we’ll see) are associated with lower values of SBP in the sample, so this is likely driving its influential power.</p>
 </details>
 <p>What should we do? Generally unless you can be certain that an observation is influential due to an error in the outcome or an independent variable then you should not make any changes to these values nor should you exclude the observation from your primary analysis. However, a simple, transparent and widely recommended approach is to conduct a sensitivity analysis by removing such observations from the dataset (i.e.&nbsp;create a copy of the dataset and then delete them entirely) and re-running your analysis to see if the results change substantially. If the results do not change in any important way then you should report this lack of change following the removal of the observations, but include the sensitivity analysis results in an appendix etc so readers can verify the truth of this. If the results do change substantially then it makes most sense to report both sets of results in the main paper and interpret accordingly, i.e.&nbsp;be clear that the conclusions change depending on whether such extreme observations are included or not. Either way you must be transparent and open about their effects.</p>
 </section>
@@ -686,35 +682,33 @@ Observation id 520 has a very large value for BMI of 41, but otherwise appears n
 <summary>
 Read/hide
 </summary>
-<center>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="C:/Users/fbsjhi/OneDrive%20-%20University%20of%20Leeds/Teaching/MSc%20IH/Statistics%20for%20Health%20Sciences/Website/Images/Linear%20regression%20table.jpg" class="img-fluid figure-img"></p>
+<p><img src="Images/Linear regression table.jpg" class="img-fluid figure-img"></p>
 <p></p><figcaption class="figure-caption">Linear regression results table</figcaption><p></p>
 </figure>
 </div>
-</center>
 </details>
 <p><strong>Example text interpreting the relationship between BMI and systolic blood pressure in terms of its statistical and practical importance</strong></p>
 <details>
 <summary>
 Read/hide
 </summary>
-There was a clear and precise, statistically significant relationship between BMI (kg/m²) and systolic blood pressure (mmHg) in the linear regression model, indicating that for every 1-unit increase in BMI there is a mean increase in systolic blood pressure of 4.25 mmHg (95% CI: 3.89, 4.6) independent of all other independent variables. Given that the range of BMI in the study was 23, the relatively narrow confidence intervals for this relationship indicate that variation in BMI has the potential to have a very substantial impact on variation in systolic blood pressure in the target population, and given BMI is potentially variable by individuals and interventions this has clearly important clinical and practical implications. For example, this result suggests an increase in BMI of just 10 could potentially lead to an increase of between 39 mmHg (3.9 x 10) and 46 mmHg (4.6 x 10) in an individual’s systolic blood pressure on average, implying this should be considered when developing treatment guidelines and public health programmes.
+<p>There was a clear and precise, statistically significant relationship between BMI (kg/m²) and systolic blood pressure (mmHg) in the linear regression model, indicating that for every 1-unit increase in BMI there is a mean increase in systolic blood pressure of 4.25 mmHg (95% CI: 3.89, 4.6) independent of all other independent variables. Given that the range of BMI in the study was 23, the relatively narrow confidence intervals for this relationship indicate that variation in BMI has the potential to have a very substantial impact on variation in systolic blood pressure in the target population, and given BMI is potentially variable by individuals and interventions this has clearly important clinical and practical implications. For example, this result suggests an increase in BMI of just 10 could potentially lead to an increase of between 39 mmHg (3.9 x 10) and 46 mmHg (4.6 x 10) in an individual’s systolic blood pressure on average, implying this should be considered when developing treatment guidelines and public health programmes.</p>
 </details>
 <p><strong>Example text interpreting the relationship between sex and systolic blood pressure in terms of its statistical and practical importance</strong></p>
 <details>
 <summary>
 Read/hide
 </summary>
-There was a clear and precise, statistically significant relationship between sex (male/female) and systolic blood pressure (mmHg) in the linear regression model, indicating that compared to females males had systolic blood pressure values that were on average 10.03 mmHg (95% CI: 7.77, 12.3) higher, independent of all other independent variables. Therefore, considering that the mean difference is likely to be between 7.77 mmHg and 12.3 mmHg this appears to be a potentially important clinical difference that should be considered when developing treatment guidelines and public health programmes (for example, by educating males on their higher risk of having higher systolic blood pressure).
+<p>There was a clear and precise, statistically significant relationship between sex (male/female) and systolic blood pressure (mmHg) in the linear regression model, indicating that compared to females males had systolic blood pressure values that were on average 10.03 mmHg (95% CI: 7.77, 12.3) higher, independent of all other independent variables. Therefore, considering that the mean difference is likely to be between 7.77 mmHg and 12.3 mmHg this appears to be a potentially important clinical difference that should be considered when developing treatment guidelines and public health programmes (for example, by educating males on their higher risk of having higher systolic blood pressure).</p>
 </details>
 <p><strong>Example text discussing the key limitations of the study and the issues that must be considered when critically interpreting the results</strong></p>
 <details>
 <summary>
 Read/hide
 </summary>
-Care must be taken when interpreting the results because the study was an observational cross-sectional study with therefore very limited ability to make robust causal inferences, and because the validity and accuracy of the results depends on how well the study data and model have accurately captured the causal relationships of interest and all important confounding variables of those causal relationships, and on how much bias there was in the study.
+<p>Care must be taken when interpreting the results because the study was an observational cross-sectional study with therefore very limited ability to make robust causal inferences, and because the validity and accuracy of the results depends on how well the study data and model have accurately captured the causal relationships of interest and all important confounding variables of those causal relationships, and on how much bias there was in the study.</p>
 </details>
 </section>
 <section id="next-steps-optional" class="level2">

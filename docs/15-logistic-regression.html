@@ -322,7 +322,7 @@ Read/hide
 <summary>
 Read/hide
 </summary>
-There appears to be a fairly linear increase in the proportion of individuals with hypertension as BMI values increase.
+<p>There appears to be a fairly linear increase in the proportion of individuals with hypertension as BMI values increase.</p>
 </details>
 </section>
 <section id="categorical-independent-variables" class="level3">
@@ -337,7 +337,7 @@ There appears to be a fairly linear increase in the proportion of individuals wi
 <summary>
 Read/hide
 </summary>
-Men appear to have roughly twice the proportion of hypertension cases compared to women.
+<p>Men appear to have roughly twice the proportion of hypertension cases compared to women.</p>
 </details>
 <p>In a real analysis you would explore all bivariate relationships this way, but as with the linear regression practical feel free to move on once you are happy with the process.</p>
 </section>
@@ -354,7 +354,7 @@ Men appear to have roughly twice the proportion of hypertension cases compared t
 <summary>
 Read/hide
 </summary>
-There appear to be reasonable numbers of observations of both levels of the outcome for all levels of sex and ses, but ACE = yes has only three htn = yes observations. See the “Additional potential problems” for more discussion of the possible problems this might cause.
+<p>There appear to be reasonable numbers of observations of both levels of the outcome for all levels of sex and ses, but ACE = yes has only three htn = yes observations. See the “Additional potential problems” for more discussion of the possible problems this might cause.</p>
 </details>
 </section></details>
 </section>
@@ -380,7 +380,7 @@ Read/hide
 <li><p>Next click on the <mark>Save</mark> tab and tick the <mark>Cook’s distance</mark> option to save a variable of the Cook’s distance values for each observation in the dataset. We’ll come back to this, but it provides a measure of influence of each observation on the values of the regression coefficients.</p></li>
 <li><p>Finally click <mark>OK</mark>.</p></li>
 </ul>
-As with the linear regression practical, before interpreting the results we should check the assumptions of the model are not violated, and if they are make any necessary changes before re-running the model.
+<p>As with the linear regression practical, before interpreting the results we should check the assumptions of the model are not violated, and if they are make any necessary changes before re-running the model.</p>
 </details>
 </section>
 <section id="step-3-check-the-assumptions-of-the-logistic-regression" class="level2">
@@ -417,7 +417,7 @@ As with the linear regression practical, before interpreting the results we shou
 <summary>
 Read/hide
 </summary>
-There are two clearly excessively influential points. Interact with the graph to see which observations these are (double click, then click twice on one of the points to highlight it before right clicking and selecting “Go to Case”). Unsurprisingly they are the same two observations that were highly influential for our linear regression: 478 and 520. We can again examine the values of the independent variables for each one again but the conclusion would be the same. Although they have independent variable values that mean the model predicts a very low likelihood of having hypertension we have no reason to think there are any errors in any of their data, and so we must keep them in our primary analysis, but best practice would be to perform a sensitivity analysis by removing them and exploring if our results and therefore our conclusions change substantially, and then transparently reporting this.
+<p>There are two clearly excessively influential points. Interact with the graph to see which observations these are (double click, then click twice on one of the points to highlight it before right clicking and selecting “Go to Case”). Unsurprisingly they are the same two observations that were highly influential for our linear regression: 478 and 520. We can again examine the values of the independent variables for each one again but the conclusion would be the same. Although they have independent variable values that mean the model predicts a very low likelihood of having hypertension we have no reason to think there are any errors in any of their data, and so we must keep them in our primary analysis, but best practice would be to perform a sensitivity analysis by removing them and exploring if our results and therefore our conclusions change substantially, and then transparently reporting this.</p>
 </details>
 </section>
 <section id="step-5-understand-the-results-tables-and-extract-the-key-results" class="level2">
@@ -560,40 +560,38 @@ There are two clearly excessively influential points. Interact with the graph to
 <ul>
 <li>In the MSc &amp; MPH computer practical sessions files “Exercises” folder open the “Exercises.docx” Word document and scroll down to <strong>Multiple logistic regression: the causes of variation in hypertension status</strong>. Then follow the instructions in the exercise.</li>
 </ul>
-<p><strong>Example completed linear regression results table</strong></p>
+<p><strong>Example completed logistic regression results table</strong></p>
 <details>
 <summary>
 Read/hide
 </summary>
-<center>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="C:/Users/fbsjhi/OneDrive%20-%20University%20of%20Leeds/Teaching/MSc%20IH/Statistics%20for%20Health%20Sciences/Website/Images/Logistic%20regression%20table.jpg" class="img-fluid figure-img"></p>
+<p><img src="Images/Logistic regression table.jpg" class="img-fluid figure-img"></p>
 <p></p><figcaption class="figure-caption">Logistic regression results table</figcaption><p></p>
 </figure>
 </div>
-</center>
 </details>
 <p><strong>Example statistical and practical interpretation of the relationship between BMI and hypertension status</strong></p>
 <details>
 <summary>
 Read/hide
 </summary>
-The model-predicted that the odds of having hypertension increased by 85% (95% CI: 64%, 110%) for every 1-unit increase in BMI (kg/m²), while holding the effect of all other independent variables constant. Therefore, there was a clear, statistically significant, positive relationship between BMI and hypertension status.
+<p>The model-predicted that the odds of having hypertension increased by 85% (95% CI: 64%, 110%) for every 1-unit increase in BMI (kg/m²), while holding the effect of all other independent variables constant. Therefore, there was a clear, statistically significant, positive relationship between BMI and hypertension status.</p>
 </details>
 <p><strong>Example statistical and practical interpretation of the relationship between socio-economic status and hypertension status</strong></p>
 <details>
 <summary>
 Read/hide
 </summary>
-The model-predicted that, on average, the odds of having hypertension for individuals in the low socio-economic group were 187% (95% CI: 28%, 543%) higher than the odds of having hypertension for individuals in the high socio-economic group, while, on average, the odds of having hypertension for individuals in the medium socio-economic group were 38% (95% CI: -42%, 233%) higher than the odds of having hypertension for individuals in the high socio-economic group. <em>Note: as the lower confidence interval was for an odds ratio &lt;1 it represents a percentage reduction in the odds and so you must indicate this by adding a negative symbol. You wouldn’t have to do this if both confidence intervals were reductions if you had verbally stated that the percentage changes were “reduction” or “decreases”, as doing both could be confusing (a double negative).</em> Therefore, there was a clear, statistically significant, positive relationship between having low socio-economic status compared to high socio-economic status and the odds of having hypertension, but no clear (“statistically non-significant”) relationship between having medium socio-economic status compared to high socio-economic status and the odds of having hypertension.
+<p>The model-predicted that, on average, the odds of having hypertension for individuals in the low socio-economic group were 187% (95% CI: 28%, 543%) higher than the odds of having hypertension for individuals in the high socio-economic group, while, on average, the odds of having hypertension for individuals in the medium socio-economic group were 38% (95% CI: -42%, 233%) higher than the odds of having hypertension for individuals in the high socio-economic group. <em>Note: as the lower confidence interval was for an odds ratio &lt;1 it represents a percentage reduction in the odds and so you must indicate this by adding a negative symbol. You wouldn’t have to do this if both confidence intervals were reductions if you had verbally stated that the percentage changes were “reduction” or “decreases”, as doing both could be confusing (a double negative).</em> Therefore, there was a clear, statistically significant, positive relationship between having low socio-economic status compared to high socio-economic status and the odds of having hypertension, but no clear (“statistically non-significant”) relationship between having medium socio-economic status compared to high socio-economic status and the odds of having hypertension.</p>
 </details>
 <p><strong>Example text discussing the key limitations of the study and the issues that must be considered when critically interpreting the results</strong></p>
 <details>
 <summary>
 Read/hide
 </summary>
-Care must be taken when interpreting the results because the study was an observational cross-sectional study with therefore very limited ability to make robust causal inferences, and because the validity and accuracy of the results depends on how well the study data and model have accurately captured the causal relationships of interest and all important confounding variables of those causal relationships, and on how much bias there was in the study.
+<p>Care must be taken when interpreting the results because the study was an observational cross-sectional study with therefore very limited ability to make robust causal inferences, and because the validity and accuracy of the results depends on how well the study data and model have accurately captured the causal relationships of interest and all important confounding variables of those causal relationships, and on how much bias there was in the study.</p>
 </details>
 </section>
 <section id="next-steps-optional" class="level2">
@@ -604,7 +602,7 @@ Care must be taken when interpreting the results because the study was an observ
 <summary>
 Read/hide
 </summary>
-Although there are some minor changes, with the largest being for the effect of taking an ACE inhibitor, it seems fair to say there are no substantial changes to the interpretation of the results. You can therefore have greater confidence in the robustness of the primary results.
+<p>Although there are some minor changes, with the largest being for the effect of taking an ACE inhibitor, it seems fair to say there are no substantial changes to the interpretation of the results. You can therefore have greater confidence in the robustness of the primary results.</p>
 </details>
 
 

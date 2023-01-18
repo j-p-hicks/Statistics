@@ -328,49 +328,41 @@ Read/hide
 </summary>
 <p>Students (and researchers) often struggle with knowing whether an analysis’s assumptions have been violated or not, and for good reason because it usually involves judgement based on experience. For the t-test like most analyses requiring normality there is no agreed “threshold” for when the skewness of a variable is considered “non-normal”. However, as t-tests and regression models are fairly robust to some non-normality the following examples should hopefully give you a sense of when you are okay to go ahead and when you are violating the assumptions and need to transform the data or use a different model.</p>
 <p><strong>A. Probably suitably <em>approximately</em> normally distributed data within each group for a t-test, with n = 50 per group:</strong></p>
-<center>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="C:/Users/fbsjhi/OneDrive%20-%20University%20of%20Leeds/Teaching/MSc%20IH/Statistics%20for%20Health%20Sciences/Website/Images/t-test%20normal%20equal%20data%20n=100.jpg" class="img-fluid figure-img"></p>
+<p><img src="Images/t-test normal equal data n=100.jpg" class="img-fluid figure-img"></p>
 <p></p><figcaption class="figure-caption">Approximately normal (and approximately equal variance) data in each group of a t-test, n = 50 per group</figcaption><p></p>
 </figure>
 </div>
-</center>
 <p>With only 50 data points per group the distribution is pretty “lumpy” but you can see an approximate normal distribution in both groups, although less so for the lower group. Also note: these data are generated from a normal distribution, so you can see that when your sample size is low even with artificially simulated data from a known normal distribution the resulting sample can often be only somewhat approximately normal! You can also see that the variance in both groups looks approximately normal, which satisfies our next assumption (see below).</p>
 <p><strong>B. Highly suitably normally distributed data within each group for a t-test, with n = 500 per group:</strong></p>
-<center>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="C:/Users/fbsjhi/OneDrive%20-%20University%20of%20Leeds/Teaching/MSc%20IH/Statistics%20for%20Health%20Sciences/Website/Images/t-test%20normal%20equal%20data%20n=1000.jpg" class="img-fluid figure-img"></p>
-<p></p><figcaption class="figure-caption">Normal (and equal variance) data in each group of a t-test, n = 500 per group</figcaption><p></p>
+<p><img src="Images/t-test normal equal data n=1000.jpg" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">Approximately normal (and approximately equal variance) data in each group of a t-test, n = 500 per group</figcaption><p></p>
 </figure>
 </div>
-</center>
 <p>Now with 500 data points per group simulated from the same distribution unsurprisingly the distribution looks much more suitably normal.</p>
 <p><strong>C. Probably not suitably normally distributed data within each group for a t-test, with n = 50 per group:</strong></p>
-<center>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="C:/Users/fbsjhi/OneDrive%20-%20University%20of%20Leeds/Teaching/MSc%20IH/Statistics%20for%20Health%20Sciences/Website/Images/t-test%20non-normal%20non-equal%20data%20n=100.jpg" class="img-fluid figure-img"></p>
+<p><img src="Images/t-test non-normal non-equal data n=100.jpg" class="img-fluid figure-img"></p>
 <p></p><figcaption class="figure-caption">Non-normal (and non-equal variance) data in each group of a t-test, n = 50 per group</figcaption><p></p>
 </figure>
 </div>
-</center>
 <p>You may think it doesn’t look much different from the first image, and you’d be right. Again, it comes down to judgement but when sample sizes are small there’s a lot of subjectivity involved. These data are simulated from a right-skewed “version” of the normal distribution. If you are concerned one option is to run your test on the raw data and then transform the data (we’ll see later how to do this) and re-run the test and see if the results change much, and just report both. This is called a sensitivity analysis.</p>
 <p>You can also see that there is a lot more variance in the lower group’s data, which would violate our next assumption (see below).</p>
 <p><strong>D. Definitely not suitably normally distributed data within each group for a t-test, with n = 500 per group:</strong></p>
-<center>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="C:/Users/fbsjhi/OneDrive%20-%20University%20of%20Leeds/Teaching/MSc%20IH/Statistics%20for%20Health%20Sciences/Website/Images/t-test%20non-normal%20non-equal%20data%20n=1000.jpg" class="img-fluid figure-img"></p>
+<p><img src="Images/t-test non-normal non-equal data n=1000.jpg" class="img-fluid figure-img"></p>
 <p></p><figcaption class="figure-caption">Non-normal (and non-equal variance) data in each group of a t-test, n = 500 per group</figcaption><p></p>
 </figure>
 </div>
-</center>
-Now with 500 observations per group it’s clear that there is some definite right-skew in the distribution of both group’s data, and that there is considerably more variance in the lower group.
+<p>Now with 500 observations per group it’s clear that there is some definite right-skew in the distribution of both group’s data, and that there is considerably more variance in the lower group.</p>
 </details>
 <p><strong>4. Equal variances in each group</strong></p>
-This means that the variance (dispersion or spread) of outcome values is approximately the same in each group. We can check this by looking at the p-value for a test of this assumption called “Levene’s test of equality of variances” or by comparing the histograms from the two groups. SPSS produces the results of the Levene’s test when we run the t-test, so we will evaluate the results of this test/assumption once we’ve produced our t-test results below. Note: if this test is significant (P&lt;0.05) we can simply use the results from the version of the t-test that doesn’t assume equal variances in each group. The only disadvantage is that we lose a little bit of statistical power, but typically it’s not much and the results will be very similar. Hence, although we’ll interpret the “equal variances assumed” version of the t-test below it’s probably a better practice to just always use the more conservative but robust and safer set of results that do not assume equal variances is each group.
+<p>This means that the variance (dispersion or spread) of outcome values is approximately the same in each group. We can check this by looking at the p-value for a test of this assumption called “Levene’s test of equality of variances” or by comparing the histograms from the two groups. SPSS produces the results of the Levene’s test when we run the t-test, so we will evaluate the results of this test/assumption once we’ve produced our t-test results below. Note: if this test is significant (P&lt;0.05) we can simply use the results from the version of the t-test that doesn’t assume equal variances in each group. The only disadvantage is that we lose a little bit of statistical power, but typically it’s not much and the results will be very similar. Hence, although we’ll interpret the “equal variances assumed” version of the t-test below it’s probably a better practice to just always use the more conservative but robust and safer set of results that do not assume equal variances is each group.</p>
 </details>
 </section>
 <section id="step-3-run-the-independent-t-test" class="level2">
@@ -510,7 +502,7 @@ Read/hide
 <summary>
 Read/hide
 </summary>
-Using an independent t-test I analysed the relationship between BMI and systolic blood pressure (mmHg) for individuals having low compared to high BMI (&lt;30 kg/m² compared to ≥30 kg/m²). Out of a total sample size of 516 individuals, 419 individuals had a BMI &lt;30 kg/m² (mean systolic blood pressure = 121.6 mmHg) and 97 individuals had a BMI ≥30 kg/m² (mean systolic blood pressure = 146.7 mmHg). This represented a mean difference of -25 mmHg (95% CI: -28.9, -21.2) for those with a BMI &lt;30 kg/m² compared to those with a BMI ≥30 kg/m². Therefore, having a BMI &lt; 30 kg/m² appears to be associated with a substantially lower systolic blood pressure on average than having a BMI ≥30 kg/m². However, the key limitation of this analysis is that it does not adjust for any other confounding variables, of which there are likely to be many (especially in an observational cross-sectional study like this). Therefore, this is likely to represent a biased estimate of the independent relationship between BMI (as defined/grouped here) and systolic blood pressure in the target population.
+<p>Using an independent t-test I analysed the relationship between BMI and systolic blood pressure (mmHg) for individuals having low compared to high BMI (&lt;30 kg/m² compared to ≥30 kg/m²). Out of a total sample size of 516 individuals, 419 individuals had a BMI &lt;30 kg/m² (mean systolic blood pressure = 121.6 mmHg) and 97 individuals had a BMI ≥30 kg/m² (mean systolic blood pressure = 146.7 mmHg). This represented a mean difference of -25 mmHg (95% CI: -28.9, -21.2) for those with a BMI &lt;30 kg/m² compared to those with a BMI ≥30 kg/m². Therefore, having a BMI &lt; 30 kg/m² appears to be associated with a substantially lower systolic blood pressure on average than having a BMI ≥30 kg/m². However, the key limitation of this analysis is that it does not adjust for any other confounding variables, of which there are likely to be many (especially in an observational cross-sectional study like this). Therefore, this is likely to represent a biased estimate of the independent relationship between BMI (as defined/grouped here) and systolic blood pressure in the target population.</p>
 </details>
 </section>
 </section>

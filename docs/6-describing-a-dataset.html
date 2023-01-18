@@ -252,8 +252,6 @@ ul.task-list li input[type="checkbox"] {
   <li><a href="#numerical-variable-descriptive-statistics" id="toc-numerical-variable-descriptive-statistics" class="nav-link" data-scroll-target="#numerical-variable-descriptive-statistics">Numerical variable descriptive statistics</a></li>
   <li><a href="#categorical-variable-descriptive-statistics" id="toc-categorical-variable-descriptive-statistics" class="nav-link" data-scroll-target="#categorical-variable-descriptive-statistics">Categorical variable descriptive statistics</a></li>
   <li><a href="#calculating-descriptive-statistics-in-spss" id="toc-calculating-descriptive-statistics-in-spss" class="nav-link" data-scroll-target="#calculating-descriptive-statistics-in-spss">Calculating descriptive statistics in SPSS</a></li>
-  <li><a href="#categorical-variables" id="toc-categorical-variables" class="nav-link" data-scroll-target="#categorical-variables">Categorical variables</a></li>
-  <li><a href="#numerical-variables" id="toc-numerical-variables" class="nav-link" data-scroll-target="#numerical-variables">Numerical variables</a></li>
   <li><a href="#example-completed-table-for-reference" id="toc-example-completed-table-for-reference" class="nav-link" data-scroll-target="#example-completed-table-for-reference">Example completed table for reference</a></li>
   </ul></li>
   </ul></li>
@@ -336,21 +334,17 @@ Read/hide
 <summary>
 Read/hide
 </summary>
-</details></section>
-<section id="categorical-variables" class="level3">
-<h3 class="anchored" data-anchor-id="categorical-variables">Categorical variables</h3>
+<p><strong>Categorical variables</strong></p>
 <ul>
 <li>To calculate descriptive statistics for the categorical variables we just need to produce frequency tables for each variable and extract (i.e.&nbsp;copy) the counts for each category level and the corresponding percentages. Simple! From the main menu go to: <mark>Analyze &gt; Descriptive Statistics &gt; Frequencies</mark>. Then in the <mark>Frequencies</mark> tool window add all categorical variables to the <mark>Variable(s):</mark> box. You can either drag each variable across one-by-one by clicking and holding down the left mouse button, or you can click on each one and then click the button in between the two boxes to move it over (or to move it back), or you can select multiple variables and move them at the same time in the same way by first holding down <strong>ctrl</strong> and then clicking on as many variables as you want to before moving them. Note: this is the typical behaviour of these types of variable boxes in SPSS and you will spend quite a lot of time moving variables so it’s good to try the different methods. Once you have moved all the categorical variables in the table over to the <mark>Variable(s):</mark> box just ensure the <mark>Display frequency tables</mark> box at the bottom of the tool is ticked and then click <mark>OK</mark>. After a moment in the <mark>output window</mark> you should see the tables appear (one for each variable). You can now copy the relevant values from the <strong>Frequency</strong> and <strong>Percent</strong> columns into the table.</li>
 </ul>
-</section>
-<section id="numerical-variables" class="level3">
-<h3 class="anchored" data-anchor-id="numerical-variables">Numerical variables</h3>
+<p><strong>Numerical variables</strong></p>
 <ul>
 <li><p>Now for numerical variables. First we need to check the variables’ distributions to see whether they are approximately normal or skewed. There are statistical tests that can be used to formally test whether a variable’s distribution differs “significantly” from a normal distribution, but as they are based on p-value thresholds the result depends strongly on the sample size, and with a big enough sample size you are essentially guaranteed that a variable will fail the test and be classed “non-normal”. However, many statistical tests that rely on normality are quite robust to modest (or sometimes worse) departures from normality, i.e.&nbsp;they still work well with slightly skewed variables and have much more power than equivalent non-parametric tests. Therefore, it’s better to judge normality by eye using histograms even if this seems unscientific or less robust than using a statistical test.</p></li>
 <li><p>So let’s see how to create histograms for numerical variables to check their distributions. In the main menu go: <mark>Graphs &gt; Legacy Dialogues &gt; Histogram</mark>. Then add the sbp variable into the <mark>Variable:</mark> box and tick the <mark>Display normal curve</mark> box just below the <mark>Variable:</mark> box. This adds a curved line to the histogram which shows what the distribution of values would look like assuming the data were normally distributed. If the histogram follows this fairly well we can assume approximate normality. Now just click <mark>OK</mark>. Do this for each numerical variable in turn and examine the graphs. What do you see? sbp, age and bmi all appear to approximate a normal distribution well, but salt displays some slight right skew. Therefore, let’s present the mean and SD for sbp, age and bmi, and the median and IQR for salt. Go: <mark>Analyze &gt; Descriptive Statistics &gt; Explore</mark>. Then in the <mark>Explore</mark> tool window add each numerical variable to the <mark>Dependent List:</mark> box. Then click the <mark>Statistics</mark> button and ensure the <mark>Descriptives</mark> box is ticked and click <mark>Continue</mark>. Then back at the main <mark>Explore</mark> tool window in the <mark>Display</mark> options at the bottom ensure the <mark>Statistics</mark> option is selected and then click <mark>OK</mark>. You’ll then get several tables produced in the output window, one for each variable, with lots of descriptive statistics listed. Simply copy the relevant statistics (mean/median and SD/IQR) from them and add them to your Table 1.</p></li>
 <li><p>Repeat the above processes for each characteristic, given the appropriate descriptive statistic you are calculating, and complete the table.</p></li>
 </ul>
-
+</details>
 </section>
 <section id="example-completed-table-for-reference" class="level3">
 <h3 class="anchored" data-anchor-id="example-completed-table-for-reference">Example completed table for reference</h3>
@@ -358,14 +352,12 @@ Read/hide
 <summary>
 Read/hide
 </summary>
-<center>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="C:/Users/fbsjhi/OneDrive%20-%20University%20of%20Leeds/Teaching/MSc%20IH/Statistics%20for%20Health%20Sciences/Website/Images/Table%201.jpg" class="img-fluid figure-img"></p>
-<p></p><figcaption class="figure-caption">Completed Table 1 for SBP dataset</figcaption><p></p>
+<p><img src="Images/Table 1.jpg" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">Completed Table 1 for SBP data</figcaption><p></p>
 </figure>
 </div>
-</center>
 <p>If you have any glaring errors or strange differences try and work out why, and if you can’t then ask for help!</p>
 </details>
 
