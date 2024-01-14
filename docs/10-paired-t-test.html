@@ -1,0 +1,629 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.3.433">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>paired-t-test</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="dark">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+<link rel="stylesheet" href="styles.css">
+</head>
+
+<body class="nav-sidebar docked">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./8-independent-t-test.html">5. Statistical tests for numerical variables</a></li><li class="breadcrumb-item"><a href="./10-paired-t-test.html">5.3. Paired t-test</a></li></ol></nav>
+      <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+      </a>
+      <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation docked overflow-auto">
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Home</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./1-website-information.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">1. How to use this website</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
+ <span class="menu-text">2. Sampling and sample size</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./2-probability-sampling.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">2.1. Probability sampling</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./3-sample-size.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">2.2. Sample size</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
+ <span class="menu-text">3. Introducing SPSS &amp; preparing data</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./4-introduction-to-spss.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">3.1. Introducing SPSS</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./5-preparing-a-dataset.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">3.2. Preparing a dataset</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">
+ <span class="menu-text">4. Data exploration, sample &amp; population characteristics</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./6-describing-a-dataset.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">4.1 Data exploration &amp; sample characteristics</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./7-describing-a-population.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">4.2. Population characteristics</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true">
+ <span class="menu-text">5. Statistical tests for numerical variables</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./8-independent-t-test.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">5.1. Independent t-test</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./9-independent-t-test-skewed.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">5.2. Independent t-test with skewed data</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./10-paired-t-test.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">5.3. Paired t-test</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="true">
+ <span class="menu-text">6 Statistical tests for categorical variables</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./11-chi-sq-independence.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">6.1. Chi-square test of independence</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./12-chi-sq-goodness.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">6.2. Chi-square goodness of fit test</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./13-paired-categorical-test.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">6.3. Paired categorical variable test (McNemar’s test)</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" aria-expanded="true">
+ <span class="menu-text">7. Regresson modelling</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./14-linear-regression.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">7.1. Linear regression</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./15-logistic-regression.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">7.2. Logistic regression</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./16-complex-survey-analysis.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">8. Complex survey design analysis</span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#the-paired-t-test" id="toc-the-paired-t-test" class="nav-link active" data-scroll-target="#the-paired-t-test">The paired t-test</a>
+  <ul class="collapse">
+  <li><a href="#overview" id="toc-overview" class="nav-link" data-scroll-target="#overview">Overview</a></li>
+  <li><a href="#scenario" id="toc-scenario" class="nav-link" data-scroll-target="#scenario">Scenario</a></li>
+  <li><a href="#step-1-check-the-assumptions-of-the-paired-t-test" id="toc-step-1-check-the-assumptions-of-the-paired-t-test" class="nav-link" data-scroll-target="#step-1-check-the-assumptions-of-the-paired-t-test">Step 1: check the assumptions of the paired t-test</a>
+  <ul class="collapse">
+  <li><a href="#continuous-outcome" id="toc-continuous-outcome" class="nav-link" data-scroll-target="#continuous-outcome">1. Continuous outcome</a></li>
+  <li><a href="#paired-outcome-dataobservations-but-independent-observations-between-pairs" id="toc-paired-outcome-dataobservations-but-independent-observations-between-pairs" class="nav-link" data-scroll-target="#paired-outcome-dataobservations-but-independent-observations-between-pairs">2. Paired outcome data/observations, but independent observations between pairs</a></li>
+  <li><a href="#approximately-normally-distributed-differences-between-paired-observations" id="toc-approximately-normally-distributed-differences-between-paired-observations" class="nav-link" data-scroll-target="#approximately-normally-distributed-differences-between-paired-observations">3. Approximately normally distributed differences between paired observations</a></li>
+  </ul></li>
+  <li><a href="#step-2-run-the-paired-t-test" id="toc-step-2-run-the-paired-t-test" class="nav-link" data-scroll-target="#step-2-run-the-paired-t-test">Step 2: run the paired t-test</a></li>
+  <li><a href="#step-3-understand-the-results-tables-and-extract-the-key-results" id="toc-step-3-understand-the-results-tables-and-extract-the-key-results" class="nav-link" data-scroll-target="#step-3-understand-the-results-tables-and-extract-the-key-results">Step 3: understand the results tables and extract the key results</a></li>
+  <li><a href="#step-4-report-and-interpret-the-results" id="toc-step-4-report-and-interpret-the-results" class="nav-link" data-scroll-target="#step-4-report-and-interpret-the-results">Step 4: report and interpret the results</a></li>
+  <li><a href="#limitations" id="toc-limitations" class="nav-link" data-scroll-target="#limitations">Limitations</a></li>
+  <li><a href="#exercise-paired-t-test" id="toc-exercise-paired-t-test" class="nav-link" data-scroll-target="#exercise-paired-t-test">Exercise: paired t-test</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+
+
+<section id="the-paired-t-test" class="level1">
+<h1>The paired t-test</h1>
+<section id="overview" class="level2">
+<h2 class="anchored" data-anchor-id="overview">Overview</h2>
+<p>The information and instructions given here will be kept brief, as once you understand when to use the paired t-test rather than the independent t-test there’s not much more to know because the interpretation is very similar to the independent t-test.</p>
+<p>The paired t-test allows us to compare whether the mean of an outcome differs between two groups when observations within those two groups are correlated. This is most typically the case when the groups represent measurements taken from individuals or other entities (units of observation) at two points in time. For example, if you were interested in the effect of an intervention on blood pressure you might have measured systolic blood pressure in a group of individuals before the intervention and then repeated the measurements after applying the intervention. Less clearly you would also have paired observations when collecting outcome measures from pairs of spatially or geographically related entities. For example, if you were interested in HIV rates within villages located along a major highway and were specifically looking at whether villages on the side of the road where traffic is travelling from the capital city have higher HIV rates than villages located on the other side of the road where traffic is travelling to the capital city. You could then compare pairs of villages that are on opposite sides of the road. Clearly though, adjacent villages will likely have correlated HIV rates compared to villages that are further away, and so your observations would be correlated or paired.</p>
+<p>In summary, there’s no fool proof way to work out if your data are “paired” or correlated, but if you think carefully you should be able to work out what is likely based on the study design and subject matter knowledge.</p>
+<p>Therefore, if you have paired data and your research question is about whether there are differences between the two groups making up the pairs then you can use the paired t-test. The paired t-test is actually largely just the independent t-test but applied to the <em>differences between the pairs of observations</em> (e.g.&nbsp;the difference between the systolic blood pressure measured before an intervention compared to after an intervention in each individual in a study), rather than applied to two groups of observations. Let’s see how to do the analysis. Note: the way you would store such data for use in a paired t-test is to have two outcome variables: one for each member of the paired observations.</p>
+</section>
+<section id="scenario" class="level2">
+<h2 class="anchored" data-anchor-id="scenario">Scenario</h2>
+<ul>
+<li>Load the “AB paired.sav” SPSS dataset.</li>
+</ul>
+<p>This contains real data from a cluster randomised controlled trial done by Chinese partners in China and Canada with support from Joe Hicks. The research question was whether a multi-component complex intervention could reduce inappropriate prescribing of antibiotics by primary care providers to children (aged 2-14) in Chinese primary care facilities. However, this dataset just contains data from the intervention arm before and after the intervention. There are two variables: apr_base and apr_end. apr_base contains the antibiotic prescription rates (actually proportions not true rates) for primary care facilities before the intervention was applied in the intervention arm, and the apr_end contains the antibiotic prescription rates for the same primary care facilities after the intervention had run for six months in the intervention arm. Hence, each row contains data from the same primary care facility, and therefore the outcomes are correlated: they are pre and post measurements from the same facilities. The antibiotic prescription rates are more specifically the facility-level proportion of prescriptions issued to children (aged 2-14) for upper respiratory tract infections that contain one or more antibiotics. Therefore, broadly speaking these will be inappropriate and a lower rate is more desirable. We’ll use a paired t-test to explore the relationship between the antibiotic prescription rate and the intervention period (pre or post intervention) as a proxy for evidence of the intervention’s potential effectiveness, and then you can try a similar analysis by yourself.</p>
+</section>
+<section id="step-1-check-the-assumptions-of-the-paired-t-test" class="level2">
+<h2 class="anchored" data-anchor-id="step-1-check-the-assumptions-of-the-paired-t-test">Step 1: check the assumptions of the paired t-test</h2>
+<section id="continuous-outcome" class="level3">
+<h3 class="anchored" data-anchor-id="continuous-outcome">1. Continuous outcome</h3>
+<p>Technically a paired t-test assumes a continuous outcome variable, but as long as the following two assumptions are satisfied it’s fine to use a discrete outcome with a paired t-test.</p>
+</section>
+<section id="paired-outcome-dataobservations-but-independent-observations-between-pairs" class="level3">
+<h3 class="anchored" data-anchor-id="paired-outcome-dataobservations-but-independent-observations-between-pairs">2. Paired outcome data/observations, but independent observations between pairs</h3>
+<p>See above for a discussion of how to understand if your data are suitable for the paired t-test. However, the paired t-test also assumes that pairs of observations are independent from each other. For example, if you recorded blood pressure measurements from individuals before and after an intervention the observations would be paired or correlated within individuals, but if individuals were also clustered within family grouping then there would also be correlations between pairs of individuals (as family members would likely have correlated before and after values), and the data would violate this assumption of the paired t-test.</p>
+</section>
+<section id="approximately-normally-distributed-differences-between-paired-observations" class="level3">
+<h3 class="anchored" data-anchor-id="approximately-normally-distributed-differences-between-paired-observations">3. Approximately normally distributed differences between paired observations</h3>
+<p>Compute the difference between each pair of observations and plot them on a histogram to check for approximate normality. In SPSS you can use the <mark>Compute Variable</mark> tool that we used earlier in the data preparation section to do this easily. You just need to enter the command: “var1 - var2” (without quotes) or vice versa, where var1 and var2 are your paired outcome variables. Or you can also do it in Excel by creating a new column from the difference between your paired outcomes. You should know how to plot a histogram now, but refer back to the “Step 1: check the assumptions of the independent t-test” section earlier for a reminder if needed.</p>
+</section>
+</section>
+<section id="step-2-run-the-paired-t-test" class="level2">
+<h2 class="anchored" data-anchor-id="step-2-run-the-paired-t-test">Step 2: run the paired t-test</h2>
+<ul>
+<li><p>From the main menu go: <mark>Analyse &gt; Compare Means &gt; Paired Samples T Test</mark>.</p></li>
+<li><p>Add apr_base as <mark>Variable1</mark> and apr_end as <mark>Variable2</mark> then click <mark>OK</mark>.</p></li>
+</ul>
+</section>
+<section id="step-3-understand-the-results-tables-and-extract-the-key-results" class="level2">
+<h2 class="anchored" data-anchor-id="step-3-understand-the-results-tables-and-extract-the-key-results">Step 3: understand the results tables and extract the key results</h2>
+<ul>
+<li>The results are largely the same as for the independent t-test, so refer back to the “Step 4: understand the results tables and extract the key results” section in the “Inferential analysis 1: the independent t-test” section to review what the results in the tables mean if you need reminding. However, a few things are a little different. Your descriptive statistics for each group are in the <mark>Paired Samples Statistics</mark> table, and you get the (presumably) Pearson correlation between the two groups in the <mark>Paired Samples Correlations</mark> table. Then your inferential results are in the <mark>Paired Samples Test</mark> table. There are now no equal variances assumed/not assumed version of the results, and we can see the key results are the <strong>Mean</strong> (i.e.&nbsp;mean difference between the reference group [entered into Variable1] and the comparison group [entered into Variable2], the associated 95% confidence intervals of this mean difference, and if you want it the two-tailed p-value (<strong>Sig. (2-tailed)</strong>), which tests the hypothesis that the mean difference = 0. You can ignore any “effect size” table.</li>
+</ul>
+</section>
+<section id="step-4-report-and-interpret-the-results" class="level2">
+<h2 class="anchored" data-anchor-id="step-4-report-and-interpret-the-results">Step 4: report and interpret the results</h2>
+<p>For a report we would say something like:</p>
+<blockquote class="blockquote">
+<p>Methods: explain that you used a paired t-test and justify why.</p>
+</blockquote>
+<blockquote class="blockquote">
+<p>Results: at baseline the mean facility-level antibiotic prescription rate was 0.82. After the six-month post-intervention follow-up the mean facility-level antibiotic prescription rate was 0.4. There was therefore a mean change in the antibiotic prescription rate from baseline to six-month follow-up of 0.42 (95% CI: 0.3, 0.55).</p>
+</blockquote>
+<ul>
+<li>Note: take care interpreting the direction of change. If we compared the six-month follow-up group to the baseline group the change would be -0.4, which could be easily mistaken for a reduction when it’s actually an increase. Just be clear on the mean of each group and what comparison is being made, i.e.&nbsp;which group mean is being subtracted from which.</li>
+</ul>
+<blockquote class="blockquote">
+<p>Discussion: interpret the direction and size of the difference in terms of the implications for practice and policy. Is the difference “statistically significant”, i.e.&nbsp;can we make a clear inference that there even is a difference on average between the groups, and if so is it a small difference, a medium difference, a large difference etc in terms of what is being measured and the implications for practice and policy?</p>
+</blockquote>
+</section>
+<section id="limitations" class="level2">
+<h2 class="anchored" data-anchor-id="limitations">Limitations</h2>
+<p>The limitations are the same as discussed in the “Limitations” section of the “Inferential analysis 1: the independent t-test” section.</p>
+</section>
+<section id="exercise-paired-t-test" class="level2">
+<h2 class="anchored" data-anchor-id="exercise-paired-t-test">Exercise: paired t-test</h2>
+<p>Open the simulated “MDR-TB LTFU.sav” dataset. It represents data collected from an uncontrolled pre-post (or before-after) study comparing the number of patients being treated for multiple drug resistant Tuberculosis (MDR-TB) who were lost to follow-up during a month before and after an intervention was implemented that aimed to reduce loss to follow-up. The unit of observation is the health facility, and the dataset contains three variables:</p>
+<ul>
+<li><p><strong>facility_id</strong> = generic facility ID.</p></li>
+<li><p><strong>ltfu</strong> = the number of patients lost to follow-up during the pre or post intervention period.</p></li>
+<li><p><strong>treatment_period</strong> = the treatment period (pre or post).</p></li>
+</ul>
+<p>Note: pre-post data are often stored like this in “long” format, with the outcome variable containing repeated measures for each unit of observation and a variable indicating which time period those observations come from. Therefore, you will need to rearrange the dataset into two outcome columns (pre and post) where the observations from each separate facility are on the same row (this should be easy enough to do once you look at the data).</p>
+<ul>
+<li><p>Then via the process outlined above use a paired t-test to analyse the relationship between the treatment period (i.e.&nbsp;in theory the effect of the treatment) and the number of MDR-TB patients lost to follow-up per facility.</p></li>
+<li><p>Extract the mean difference and confidence intervals around this estimate.</p></li>
+<li><p>In the MSc &amp; MPH computer practical sessions files “Exercises” folder open the “Exercises.docx” Word document and scroll down to <strong>Paired t-test: the relationship between an intervention and MDR-TB patient loss to follow-up</strong>.</p></li>
+<li><p>Write a couple of sentences reporting the results of your analysis. Include the basic descriptive statistics: sample size and group outcome means. Also be sure to include sufficient details about the outcome variable and the comparison made, including the type of analysis used, and of course the key inferential results. Round results to one decimal place. You don’t need to explain anything about the study or interpret the clinical or practical importance of the result.</p></li>
+<li><p>Write a sentence or two about the key limitations of this analysis <em>in terms of interpreting the result</em>.</p></li>
+<li><p>Once you’ve completed this compare your reporting to the below example text.</p></li>
+</ul>
+<p><strong>Example results reporting text</strong></p>
+<details>
+<summary>
+Read/hide
+</summary>
+<p>Using a paired t-test I analysed the change in the number of MDR-TB patients lost to follow-up during the month before and after an intervention to reduce loss to follow-up in MDR-TB health facilities. Out of a total sample size of 10 health facilities the mean number of patients lost to follow-up before the intervention was 7.9 and after the intervention was 5.3. This represented a mean difference of 2.6 (95% CI: 1, 4.2) more patients lost to follow-up in the month before the intervention was implemented. Therefore, the intervention was associated with a clear and statistically significant reduction in the number of patients lost to follow-up in the month following its implementation compared to the previous month. However, the key limitation of this analysis is that it does not adjust for any other confounding variables, of which there are likely to be many (especially in an uncontrolled pre-post study like this), particularly unmeasured time-varying confounding variables that may have impacted on patient loss to follow-up (such as performance bias [https://catalogofbias.org/biases/performance-bias/]). Therefore, this is likely to represent a biased estimate of the independent relationship between the intervention and the number of patients lost to follow-up.</p>
+</details>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>
