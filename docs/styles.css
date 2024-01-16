@@ -1,0 +1,35 @@
+p.caption {
+  color: #777;
+  margin-top: 10px;
+}
+p code {
+  white-space: inherit;
+}
+pre {
+  word-break: normal;
+  word-wrap: normal;
+}
+pre code {
+  white-space: inherit;
+}
+
+mark {
+  background-color: DarkRed;
+  color: #C0C0C0;
+  padding: 2px;
+  font-weight: bolder;
+  border-radius: 5px;
+}
+
+.fold-btn { 
+  float: left; 
+  margin: 5px 5px 0 0;
+  border-radius: 5px;
+}
+
+.fold { 
+  border: 1px solid DarkRed;
+  min-height: 40px;
+  border-radius: 5px;
+  padding: 5px;
+}

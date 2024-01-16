@@ -1,0 +1,978 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.3.433">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>linear-regression</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="dark">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+<link rel="stylesheet" href="styles.css">
+</head>
+
+<body class="nav-sidebar docked">
+
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./linear-regression.html">8. Regresson modelling</a></li><li class="breadcrumb-item"><a href="./linear-regression.html">8.1. Linear regression</a></li></ol></nav>
+      <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+      </a>
+      <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation docked overflow-auto">
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Home</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./website-information.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">How to use this website &amp; run SPSS</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./timetable.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Computer sessions timetable</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./probability-sampling.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">1. Probability sampling</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
+ <span class="menu-text">2. Introducing SPSS &amp; preparing data</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./introduction-to-spss.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">2.1. Introducing SPSS</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./preparing-a-dataset.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">2.2. Preparing a dataset</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./sample-description.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">3. Data exploration &amp; sample description</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./population-description.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">4. Population description</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./sample-size.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">5. Sample size calculations</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
+ <span class="menu-text">6. Bivariate tests for numerical variables</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./independent-t-test.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">6.1. Independent t-test</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./independent-t-test-skewed.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">6.2. Independent t-test with skewed data</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./paired-t-test.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">6.3. Paired t-test</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">
+ <span class="menu-text">7. Bivariate tests for categorical variables</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chi-sq-independence.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">7.1. Chi-square test of independence</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chi-sq-goodness.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">7.2. Chi-square goodness of fit test</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./paired-categorical-test.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">7.3. Paired categorical variable test (McNemar’s test)</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true">
+ <span class="menu-text">8. Regresson modelling</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./linear-regression.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">8.1. Linear regression</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./logistic-regression.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">8.2. Logistic regression</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./complex-survey-analysis.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">9. Complex survey design analysis</span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#multiple-linear-regression" id="toc-multiple-linear-regression" class="nav-link active" data-scroll-target="#multiple-linear-regression">Multiple linear regression</a>
+  <ul class="collapse">
+  <li><a href="#key-terminology-and-concepts" id="toc-key-terminology-and-concepts" class="nav-link" data-scroll-target="#key-terminology-and-concepts">Key terminology and concepts</a></li>
+  <li><a href="#overview-with-a-focus-on-causal-inference-from-observational-data" id="toc-overview-with-a-focus-on-causal-inference-from-observational-data" class="nav-link" data-scroll-target="#overview-with-a-focus-on-causal-inference-from-observational-data">Overview with a focus on causal inference from observational data</a>
+  <ul class="collapse">
+  <li><a href="#causal-inference-references" id="toc-causal-inference-references" class="nav-link" data-scroll-target="#causal-inference-references">Causal inference references</a></li>
+  <li><a href="#interactions-and-non-linear-relationships" id="toc-interactions-and-non-linear-relationships" class="nav-link" data-scroll-target="#interactions-and-non-linear-relationships">Interactions and non-linear relationships</a></li>
+  </ul></li>
+  <li><a href="#scenario" id="toc-scenario" class="nav-link" data-scroll-target="#scenario">Scenario</a></li>
+  <li><a href="#step-1-explore-the-data" id="toc-step-1-explore-the-data" class="nav-link" data-scroll-target="#step-1-explore-the-data">Step 1: explore the data</a>
+  <ul class="collapse">
+  <li><a href="#univariate-exploration" id="toc-univariate-exploration" class="nav-link" data-scroll-target="#univariate-exploration">Univariate exploration</a></li>
+  <li><a href="#bivariate-exploration" id="toc-bivariate-exploration" class="nav-link" data-scroll-target="#bivariate-exploration">Bivariate exploration</a></li>
+  </ul></li>
+  <li><a href="#step-2-run-the-linear-regression-model" id="toc-step-2-run-the-linear-regression-model" class="nav-link" data-scroll-target="#step-2-run-the-linear-regression-model">Step 2: run the linear regression model</a></li>
+  <li><a href="#step-3-check-the-assumptions-of-linear-regression" id="toc-step-3-check-the-assumptions-of-linear-regression" class="nav-link" data-scroll-target="#step-3-check-the-assumptions-of-linear-regression">Step 3: check the assumptions of linear regression</a></li>
+  <li><a href="#step-4-consider-additional-possible-issues" id="toc-step-4-consider-additional-possible-issues" class="nav-link" data-scroll-target="#step-4-consider-additional-possible-issues">Step 4: consider additional possible issues</a></li>
+  <li><a href="#step-5-understand-the-results-tables-and-extract-the-key-results" id="toc-step-5-understand-the-results-tables-and-extract-the-key-results" class="nav-link" data-scroll-target="#step-5-understand-the-results-tables-and-extract-the-key-results">Step 5: understand the results tables and extract the key results</a></li>
+  <li><a href="#step-6-report-and-interpret-the-results" id="toc-step-6-report-and-interpret-the-results" class="nav-link" data-scroll-target="#step-6-report-and-interpret-the-results">Step 6: report and interpret the results</a>
+  <ul class="collapse">
+  <li><a href="#numerical-variables" id="toc-numerical-variables" class="nav-link" data-scroll-target="#numerical-variables">Numerical variables</a></li>
+  <li><a href="#categorical-variables" id="toc-categorical-variables" class="nav-link" data-scroll-target="#categorical-variables">Categorical variables</a></li>
+  <li><a href="#non-significant-results" id="toc-non-significant-results" class="nav-link" data-scroll-target="#non-significant-results">“Non-significant” results</a></li>
+  <li><a href="#regression-tables" id="toc-regression-tables" class="nav-link" data-scroll-target="#regression-tables">Regression tables</a></li>
+  <li><a href="#methods" id="toc-methods" class="nav-link" data-scroll-target="#methods">Methods</a></li>
+  </ul></li>
+  <li><a href="#exercise-multiple-linear-regression" id="toc-exercise-multiple-linear-regression" class="nav-link" data-scroll-target="#exercise-multiple-linear-regression">Exercise: multiple linear regression</a></li>
+  <li><a href="#next-steps-optional" id="toc-next-steps-optional" class="nav-link" data-scroll-target="#next-steps-optional">Next steps (optional)</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+
+
+<section id="multiple-linear-regression" class="level1">
+<h1>Multiple linear regression</h1>
+<section id="key-terminology-and-concepts" class="level2">
+<h2 class="anchored" data-anchor-id="key-terminology-and-concepts">Key terminology and concepts</h2>
+<p>If necessary please read the below guide to key terminology and concepts before reading further as we will be using these terms when discussing linear regression and the modelling process in SPSS without further explanation.</p>
+<ul>
+<li><p><strong>Model</strong> = Loosely speaking the outcome variable and the set of independent variables that you are analysing via linear regression, plus their functional form (see below). Note: although simpler analyses like the independent t-test are referred to as “statistical tests”, creating the false illusion of a fundamental difference from regression “modelling”, they have the same underlying mathematical form. Simply put, parameteric statistical tests like the independent t-test are models too.</p></li>
+<li><p><strong>Functional form/model parameterisation</strong> = In what mathematical form you add independent variables to your model. Practically speaking this is whether your model assumes 1) a simple linear relationship between a given independent variable and the outcome (also called a “main effect”), or 2) an interaction between a given independent variable and one or more other independent variables and the outcome, or 3) a non-linear relationship between a given independent variable and the outcome (although many other functional forms are possible).</p></li>
+<li><p><strong>Model building</strong> = The process by which you decide which independent variables to include in your model.</p></li>
+<li><p><strong>Coefficient or parameter or (model) term</strong> = The point estimate measuring/indicating the direction and size of the relationship between a given independent variable and the outcome that your linear regression estimates.</p></li>
+<li><p><strong>Focal relationship</strong> = A relationship between a given independent variable and an outcome that is the focus of the analysis and research question, such as the effect of smoking status on systolic blood pressure.</p></li>
+<li><p><strong>Confounder or confounding variable</strong> = With respect to a focal relationship, say the effect of smoking status on systolic blood pressure, a confounder or confounding variable is a “common cause” of both the independent variable of interest (smoking status) and the outcome (systolic blood pressure). For this example a plausible confounder might be “stress level”, because it’s very plausible that stress can induce people to take up smoking or restart smoking and that stress can increase blood pressure on its own.</p></li>
+<li><p><strong>Competing exposure</strong> = With respect to a focal relationship, say the effect of smoking status on systolic blood pressure, a competing exposure is a cause of the outcome but is not caused by the independent variable of interest and does not cause the independent variable of interest. For this example a plausible competing exposure might be the presence of a certain gene that predisposes individuals to high blood pressure, whilst having no effect on their likelihood of taking up smoking or remaining a smoker, because it would, on average, lead to higher blood pressure in individuals but not affect their likelihood of smoking.</p></li>
+<li><p><strong>Sufficient adjustment set</strong> = With respect to a focal relationship, say the effect of smoking status on systolic blood pressure, a sufficient adjustment set is a set of variables that, if fully “conditioned on” (i.e.&nbsp;adjusted for by including in a regression model), will provide an unbiased estimate for the causal effect of the independent variable of interest by adjusting for all sources of confounding.</p></li>
+</ul>
+</section>
+<section id="overview-with-a-focus-on-causal-inference-from-observational-data" class="level2">
+<h2 class="anchored" data-anchor-id="overview-with-a-focus-on-causal-inference-from-observational-data">Overview with a focus on causal inference from observational data</h2>
+<p>Multiple linear regression is used to analyse the relationship(s) between one numerical outcome variable and one or more independent variables that can be numerical or categorical or a mixture of both. When you have one numerical outcome and one numerical or categorical independent variable this is sometimes referred to as “simple linear regression”, but there’s no qualitative difference from multiple linear regression, and we’ll often just refer to “linear regression” from here on. Note: when we have one outcome variable and multiple independent variables it is a multiple linear regression not a multivariate linear regression. Multivariate refers to analyses of more than one outcome variable.</p>
+<p>Linear regression modelling is therefore an extremely flexible and powerful method of analysis. Linear regression models are used for a variety of purposes, but primarily they are used for prediction and causal inference. Prediction models (actually more often using logistic regression) are typically used for diagnosis or prognosis, and are usually developed using more or less “theory free” and automated methods, where data are primarily used to build the model. However, most research in the health sciences focuses on attempting to understand causes of outcomes, such as does smoking cause lung cancer? This has historically been what “statistical inference” tended to mean, at least in practice. In the context of robust randomised controlled trials it is generally accepted that causal effects can be clearly identified, and you can certainly use regression models to this as appropriate to the data. However, in the context of observational studies it is generally accepted to be much more challenging to clearly identify causal effects, primarily due to the challenges of accurately modelling the processes generating your outcome of interest and avoiding various source of bias such as confounding and other less well known biases.</p>
+<p>Broadly speaking, in the context of observational studies the historical, and still dominant, approach to trying to understand causal effects has been the following: 1) collect some data on an outcome of interest and a range of independent variables thought to be possible causes or confounders, 2) use a mix of theory and data-driven choices to build a regression model that is the “best” in some sense, usually at minimising the unexplained variation in the outcome, and 3) interpret all the independent variables as causal effects in relation to the outcome, at least implicitly. I say implicitly because the typical approach in research using observational studies, given the limitations of observational designs at robustly and clearly identifying causal effects, has been to refer to the relationships identified between independent variables and outcomes as “associations” or another similar term. In such studies researchers usually also state that causation cannot be inferred from the study given its limitations, but then in practice still treat the identified relationships as causal, which is clearly not a very satisfactory approach!</p>
+<p>For a while now though a field know as “causal inference” has been developing and promoting methods for less biased analysis of causal research questions in observational studies, as it has become increasingly clear that existing methods and approaches have some substantial (and often hidden and/or counterintuitive) biases. Most of the learning and approaches from this field area beyond the scope of this introductory course, but we will try and incorporate some of the key ideas and findings below, while acknowledging the gaps.</p>
+<p>Very simply speaking, particularly in the context of observational studies, research has shown that data-driven automated model selection processes typically lead to biased models that cannot identify and accurately estimate causal relationships, while also producing inferential results that have falsely inflated precision and power. Research has also shown that it is typically not valid to interpret the results of a regression model in terms of <em>all the independent variables</em> in the model reflecting causal relationships. This is known as the “Table 2 fallacy”.</p>
+<p>Instead, within a given study every focal relationship of interest, say the relationship between stress and blood pressure, should be analysed using a separate model containing its own set of independent variables (other than the independent variable of focal interest), which may or may not differ from the set of independent variables used when analysing a different focal relationship of interest within the data, say the relationship between BMI and blood pressure. Broadly speaking, each model for every separate focal relationship of interest should contain a “sufficient adjustment set” of independent variables that suitably adjust for <em>all key sources of confounding of that relationship</em>, and this set of variables should be chosen based on theory and plausible/sensible decisions, not via a data-driven automated process.</p>
+<p>In this practical and course we will not go further into these aspects of causal inference, and please be clear that this is just a very simplistic overview of a few of the key principles of causal inference as it relates to analysing observational data using regression models, but there is much more to learn and many details are not covered! However, we will take some of these key principles forward. Specifically, for this linear regression and the following logistic regression practical sessions we will assume we are aiming to make causal inferences about the likely causes of variation in systolic blood pressure and hypertension status respectively using the SBP data, which we assume to have come from an observational study (specifically a cross-sectional design). We will be interested in the assumed causal effects of all the available independent variables. We will not use any form of data-driven automated process when building our model, but we will select a single set of independent variables that we assume represents the sufficient adjustment set of variables for each variable in that set. That is, we will interpret the relationship of each independent variable in our single model as though it was an estimate of a possible causal effect between itself and the outcome based on a single model, i.e.&nbsp;we will assume that every independent variable in our model is a focal relationship of interest. However, please bear in mind that while this practice is extremely common in the scientific literature, as discussed above in practice this would almost certainly be committing the “Table 2 fallacy”, and it’s just for the purposes of keeping things simple that we won’t try and create sufficient adjustment sets for every focal relationship.</p>
+<section id="causal-inference-references" class="level3">
+<h3 class="anchored" data-anchor-id="causal-inference-references">Causal inference references</h3>
+<p>If you are likely to carry out quantitative research in your dissertation and/or later career I would strongly advise that as well as putting time and effort into learning statistics, i.e.&nbsp;analysing data, that you put time and effort into learning about causal inference and put into practice as many of the recommended approaches as you can. Although it’s still somewhat of an emerging field learning from it is being adopted rapidly by epidemiology and the health sciences, and understanding at least the basic principles and key recommendations will really benefit your research and expertise.</p>
+<p>Some very useful causal inference references are:</p>
+<p><strong>Hernan and Robins’ causal inference book.</strong> This is an excellent and comprehensive book. It gets quite technical in places but there’s not necessarily a way to simplify things further. If you want to do robust causal inference it’s not a simple or easy thing unfortunately.</p>
+<ul>
+<li>https://www.hsph.harvard.edu/miguel-hernan/causal-inference-book/</li>
+</ul>
+<p><strong>Free online course about using directed acyclic diagrams (DAGs) to select variables for models.</strong> DAGs are a brilliant and relatively easy to use tool for thinking through what independent variables constitute a sufficient adjustment set for a given focal relationship when planning an analysis of data relating to that focal relationship. They are highly recommended by causal inference practitioners, and are literally just diagrams - no maths involved.</p>
+<p>https://www.edx.org/course/causal-diagrams-draw-your-assumptions-before-your</p>
+<p><strong>Table 2 fallacy paper.</strong></p>
+<ul>
+<li>https://academic.oup.com/aje/article/177/4/292/147738</li>
+</ul>
+<p><strong>Why step-wise selection methods commonly used to build regression models are bad.</strong></p>
+<ul>
+<li>https://towardsdatascience.com/stopping-stepwise-why-stepwise-selection-is-bad-and-what-you-should-use-instead-90818b3f52df</li>
+</ul>
+</section>
+<section id="interactions-and-non-linear-relationships" class="level3">
+<h3 class="anchored" data-anchor-id="interactions-and-non-linear-relationships">Interactions and non-linear relationships</h3>
+<p>Linear regression can also be used to look at interactions between different variables (e.g.&nbsp;how the relationship between smoking status and systolic blood pressure changes based on sex), and to model non-linear relationships (e.g.&nbsp;the relationship between age and blood pressure, which is typically fairly flat at young ages and then increases through middle age before flattening out). In practice most processes/phenomena interact and are non-linear to a greater or less extent, but it is often a reasonable simplifying assumption to treat variables as independent (non-interacting) and relationships as linear, unless the interactions and/or non-linear relationships are clearly strong or a key part of your research question. Therefore, as these issues are complicated and often not required when analysing maybe most data simple datasets we will not look at or practice the techniques needed to model interactions and non-linear relationships.</p>
+<p>Note: the “linear” part of linear regression refers to the fact that in the linear regression model the coefficients or parameters are “linear”, i.e.&nbsp;the model is just a simple sum of those coefficients:</p>
+<blockquote class="blockquote">
+<p>y = α + β1X1 + β2X2 + … + βnXn</p>
+</blockquote>
+<p>Where y is the model predicted outcome value, α is the intercept, the βs are the independent variable coefficients and the Xs are the independent variable values.</p>
+</section>
+</section>
+<section id="scenario" class="level2">
+<h2 class="anchored" data-anchor-id="scenario">Scenario</h2>
+<p>We wish to understand all the main likely causes of variation in individuals’ systolic blood pressure using the data collected in the SBP final dataset. We’ll use a linear regression model/analysis to look at this question. Refer to the “The datasets” section within the “Introduction to SPSS” section for full details if you need a full reminder, but briefly this dataset contains data on 556 individuals who were (hypothetically speaking!) sampled in a cross-sectional survey, and had data collected on their systolic blood pressure plus certain socio-demographic (age, sex, socio-economic status) and health characteristics (BMI, salt intake and ACE inhibitor usage).</p>
+<p>As discussed above we will assume, based on existing theory/evidence and plausible, critical thinking, that all our measured independent variables are all likely causes of variation in systolic blood pressure and collectively simultaneously act as a sufficient adjustment set when interpreting each independent variable’s relationship with the outcome causally. That is, we will just create one linear regression model containing all the independent variables and assume that this model represents the same sufficient adjustment set for each independent variable (i.e.&nbsp;when interpreting the effect of each independent variable causally we will assume all other variables in the model are confounders of that relationship that require adjusting for to obtain an unbiased estimate of the focal causal effect). In reality if we were doing this we should start by deciding which focal relationships of interest we were interested in, which may well not be all of our collected independent variables, and for each focal relationship of interest we should define a sufficient adjustment set which may well differ from the sufficient adjustment set of other focal relationships of interest. This would typically be a big and time consuming process requiring a lot of careful critical thought and research/subject matter knowledge.</p>
+<ul>
+<li>Load the “SBP data final.sav” dataset.</li>
+</ul>
+</section>
+<section id="step-1-explore-the-data" class="level2">
+<h2 class="anchored" data-anchor-id="step-1-explore-the-data">Step 1: explore the data</h2>
+<p><a href="https://youtu.be/aZpnd63IM4s">Video instructions: explore the data for a linear regression</a></p>
+<p><strong>Written instructions: explore the data for a linear regression</strong></p>
+<details>
+<summary>
+Read/hide
+</summary>
+<p>Although we are not taking a data-driven approach to model building, which often involves extensive exploration of patterns in your dataset to largely/wholly determine your model building along with automated model selection processes, it is always advisable to conduct some focused exploration of your dataset to understand the data and the guide certain decisions in your model building process. Note: this would follow your data preparation stage, where you would already have a good sense of the key characteristics of each variable, such as the type of data it contains, the range of values present etc.</p>
+<p>Specifically, although you should not typically use your dataset to guide which independent variables are included in your model (and as discussed earlier for any given focal relationship that should be based on theory and plausible hypotheses about what constitutes a sufficient adjustment set), most researchers would recommend thoroughly exploring you data in terms of: 1) the distribution of your outcome and independent variables, to ensure you understand them well and are taking a suitable modelling approach (e.g.&nbsp;linear regression rather than another type of regression), and 2) what functional form of model makes good sense given the relationships between your independent and outcome variables, primarily whether there are any clear/strong non-linear relationships or interactions, although we will not look at exploring interactions in this practical as they are beyond the scope of this course.</p>
+<section id="univariate-exploration" class="level3">
+<h3 class="anchored" data-anchor-id="univariate-exploration">Univariate exploration</h3>
+<p>To understand the distribution of your variables you can use histograms for numerical variables and bar charts for categorical variables. Let’s run a histogram for our outcome variable.</p>
+<ul>
+<li>From the main menu go: <mark>Graphs &gt; Legacy Dialogues &gt; Histograms</mark>. Add sbp into the <mark>Variable:</mark> box, tick the <mark>Display normal curve</mark> box and click <mark>OK</mark>. What do you see?</li>
+</ul>
+<p>What does the distribution of the outcome look like?</p>
+<details>
+<summary>
+Read/hide
+</summary>
+<p>There appears to be a slightly odd “gap” near the mean, but overall the variable appears to pretty closely follow a normal distribution.</p>
+</details>
+<p>Next let’s look at a bar chart for our ses variable.</p>
+<ul>
+<li>From the main menu go: <mark>Graphs &gt; Legacy Dialogues &gt; Bar</mark>. Then click the <mark>Simple</mark> option and <mark>Define</mark>. Add ses to the <mark>Category axis:</mark> box, tick the <mark>% of cases</mark> option and click <mark>OK</mark>. What do you see?</li>
+</ul>
+<p>What does the distribution of the socio-economic status variable look like?</p>
+<details>
+<summary>
+Read/hide
+</summary>
+<p>Most participants were of low socio-economic status, with successively smaller proportions being of medium and high socio-economic status.</p>
+</details>
+<p>You can use these two types of graphs to explore the distribution of all the variables. In a real analysis you would certainly want to do this, but for the sake of time you may want to move on now that you know how to do this.</p>
+</section>
+<section id="bivariate-exploration" class="level3">
+<h3 class="anchored" data-anchor-id="bivariate-exploration">Bivariate exploration</h3>
+<section id="numerical-independent-variables" class="level4">
+<h4 class="anchored" data-anchor-id="numerical-independent-variables">Numerical independent variables</h4>
+<p>First let’s look at relationships between the outcome and numerical variables (i.e.&nbsp;bivariate relationships) to understand whether it’s reasonable to assume simple linear relationships for your numerical independent variables or whether any need to be modelled via the addition of non-linear terms to the model. We’ll just look at age and we’ll use a scatterplot.</p>
+<ul>
+<li>From the main menu go: <mark>Graphs &gt; Legacy Dialogues &gt; Scatter/Dot</mark>. Then select the <mark>Simple</mark> option and click <mark>Define</mark>. Add the sbp variable into the <mark>Y Axis:</mark> box and age into the <mark>X Axis:</mark> box then click <mark>OK</mark>. What do you see?</li>
+</ul>
+<p>What does the relationship between age and systolic blood pressure look like?</p>
+<details>
+<summary>
+Read/hide
+</summary>
+<p>It’s hard to say much other than there’s no clearly strong linear or non-linear relationship. However, this is a good example of why you can’t always interpret bivariate graphs very easily, because when there is a lot of variation in the data it can easily hide weaker relationships, because as we’ll see later there is evidence of a relationship here.</p>
+</details>
+<p>What if we had seen a clear non-linear relationship? There are two main options within a regression modelling framework:</p>
+<ol type="1">
+<li><p>Convert your numerical independent variable into a categorical variable.</p></li>
+<li><p>Include additional “polynomial” terms of the relevant independent variable. This just means that as well as including, say, age in the model you include age² or possibly higher-order terms as well.</p></li>
+</ol>
+<p>Option 1 is often the best choice because although it might not model the relationship as well as option 2 it provides results that are easier to interpret. If you ever need to do this as always you should think carefully and critically about what cut-points to use when converting your numerical variable to a categorical variable. There aren’t necessarily clear “rules” about this, but within the framework we’ve discussed it would be most consistent to choose cut-points based on theory rather than driven by what the sample data suggest are key cut-points.</p>
+</section>
+<section id="categorical-independent-variables" class="level4">
+<h4 class="anchored" data-anchor-id="categorical-independent-variables">Categorical independent variables</h4>
+<p>Now let’s look at the relationship between categorical variables and the numerical outcome. To do this we can use bar charts or boxplots. Boxplots are probably better as they provide more information within the plot, although you can present much of the same information on a barchart if you know how using statistical software like R. Why would we want to do this, given you cannot have a non-linear relationship between a categorical variable and a numerical outcome? The main reason would be to inform us whether any levels within categorical variables might be suitable for merging/pooling together if necessary, and to understand whether the variance within category levels is approximately equal, which is a key assumption of linear regression.</p>
+<ul>
+<li>Look at the figure below to understand how to interpret boxplots:</li>
+</ul>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="Images/Boxplot.jpg" class="img-fluid figure-img"></p>
+<figcaption class="figure-caption">Boxplot explained</figcaption>
+</figure>
+</div>
+<p>Let’s look at the relationship between the outcome and the categorical variable sex with a boxplot:</p>
+<ul>
+<li>From the main menu go: <mark>Graphs &gt; Legacy Dialogues &gt; Boxplot</mark>, then select <mark>Simple</mark> and click <mark>Define</mark>. Add the sbp variable into the <mark>Variable:</mark> box and sex into the <mark>Category Axis:</mark> box and click <mark>OK</mark>. What do you see?</li>
+</ul>
+<p>What does the relationship between sex and systolic blood pressure look like?</p>
+<details>
+<summary>
+Read/hide
+</summary>
+<p>In our sample males clearly tend to have moderately higher values of SBP than females on average, but both sexes have a broadly similar spread (i.e.&nbsp;approximately equal variance) of SBP values. We can also see that systolic blood pressure values in both groups appear to follow a fairly normal distribution, which you can tell this by the fact that the box plots are quite symmetrical, unlike the explanatory boxplot image above where the data would clearly be right skewed due to the larger spread of higher values. Asymmetry indicates a non-normal, skewed distribution with a higher spread of observations indicating right-skew and a lower spread of observations indicating left skew. You can always plot a histogram of the outcome within each group to understand this more clearly.</p>
+</details>
+<p>Again, you can now use these two types of plots to explore the relationships between all the other independent variables and the outcome if you wish, but there’s no real need to do this for this practical so feel free to move on.</p>
+</section></section></details>
+</section>
+</section>
+
+<section id="step-2-run-the-linear-regression-model" class="level2">
+<h2 class="anchored" data-anchor-id="step-2-run-the-linear-regression-model">Step 2: run the linear regression model</h2>
+<p><a href="https://youtu.be/gQRLkJNO0R0">Video instructions: run the linear regression model</a></p>
+<p><strong>Written instructions: run the linear regression model</strong></p>
+<details>
+<summary>
+Read/hide
+</summary>
+<p>Remember linear regression allows you to look at relationships between a numerical outcome variable and any number of numerical or categorical independent variables, assuming all the assumptions of the method are met (we’ll check these out shortly). So let’s see how we build, run and estimate our linear regression model in SPSS.</p>
+<ul>
+<li><p>From the main menu go: <mark>Analyze &gt; General Linear Model &gt; Univariate</mark>. Note: a univariate general linear model is essentially another name (less commonly used) for (multiple) linear regression, although confusingly SPSS also has various “regression” modelling tools as well that produce different linear regression model but with slightly different options available or (somewhat pointless) restrictions compared to this tool. One of the main benefit of the <mark>General Linear Model - Univariate</mark> tool is that you can add categorical variables without first converting them to dummy variables (see later for an explanation of what this means).</p></li>
+<li><p>Next in the <mark>Univariate</mark> tool we add our outcome variable sbp to the <mark>Dependent Variable:</mark> box. Then we add our independent variables. SPSS has separate boxes for numerical and categorical independent variables, so we add our numerical variables (bmi, salt and age) into the <mark>Covariate(s):</mark> box (you can highlight them all – hold shift while left-clicking – and add them together), and our categorical variables (sex, ses and ace) into the <mark>Fixed Factor(s):</mark> box (a factor is another term for a categorical variable). We can ignore the <mark>Random Factor(s):</mark> box and <mark>WLS Weight:</mark> box (see the help if you want to understand what they are for).</p></li>
+</ul>
+<p>Next we need to edit a number of options. Most importantly we need to specify the “functional form” of our model or how the model is “parameterised”. Essentially we can either add all variables as simple “main effects”, which means the independent linear effect of each variable is estimated, or we can add additional terms to create interactions between two or more variables, and/or we can add non-linear terms for one or more variables. However, as interactions and non-linear terms are beyond the scope of this course we will just assume all our variables have simple linear relationships with our outcome.</p>
+<ul>
+<li><p>Therefore, click on the <mark>Model</mark> tool button, then under <mark>Specify Model</mark> select the <mark>Custom</mark> option, then select all variables in the <mark>Factors &amp; Covariates:</mark> box (to do this click on the top variable, then click and hold shift before clicking on the bottom most variable). Next (with all variables still selected) under the <mark>Specify Model</mark> section click the <mark>Build terms</mark> button, then under the <mark>Build Terms(s) Type:</mark> section click on the drop-down menu and change it to <mark>Main effects</mark>. This is where you could create interaction terms between two or more terms/variables in the model if you wished, but we’ll just stick with main effects. Therefore, now click the right facing arrow beneath this menu which will add all selected variables as main effects terms into the <mark>Model:</mark> box. Ensure that the <mark>Include intercept in model</mark> box is ticked and click <mark>OK</mark>.</p></li>
+<li><p>Next click the <mark>Save</mark> button and under <mark>Predicted Values</mark> tick the <mark>Unstandardized</mark> box, and then under <mark>Residuals</mark> tick the <mark>Unstandardized</mark> box, and then under <mark>Diagnostics</mark> tick the box for <mark>Cook’s distance</mark>. This tells SPSS to save the unstandardised predictions and residuals, and values for “Cook’s distance”. We will explain these later.</p></li>
+<li><p>Lastly click the <mark>Options</mark> button, and then under <mark>Display</mark> tick the <mark>Parameter estimates</mark> box and click <mark>Continue</mark> and then <mark>OK</mark>. The output window will then pop up with the results, but first…</p></li>
+</ul>
+</details>
+</section>
+<section id="step-3-check-the-assumptions-of-linear-regression" class="level2">
+<h2 class="anchored" data-anchor-id="step-3-check-the-assumptions-of-linear-regression">Step 3: check the assumptions of linear regression</h2>
+<p>Before we look at the results that appear in the output window we must first check whether we can treat the results as robust and valid. Our results are only valid if the assumptions of the linear regression model have been met/hold, i.e.&nbsp;if they have not been violated. Below we’ll go through the assumptions and how to check them, which is more complicated than for the simpler statistical tests we ran previously.</p>
+<p><strong>1. Continuous outcome</strong></p>
+<p>Theoretically the outcome variable must be continuous, but like with t-tests this can be relaxed and you can safely use linear regression for discrete outcome variables as long as the other assumptions hold.</p>
+<p><strong>2. Independent observations</strong></p>
+<p>Technically this means that the residuals or model errors (variation not explained by the model) of one observation should not be correlated/related (be able to predict) to the residuals of other observations. As with the t-tests you should be able to understand from your study design whether you have independent observations or not. There are two main reasons for non-independent observations. 1) You have outcome measurements on your units of observation at more than one point in time (repeated measures) that are all included in the outcome variable. 2) You have outcome measurements on your units of observation that are nested within a larger cluster, such as patients within facilities, where patients from the same facility are going to be more similar and have correlated outcomes compared to patients from different facilities. We know our study design (simple random sampling of participants) ensures our observations are independent, so we don’t need to worry about this assumption further. What if your data are not independent? See below.</p>
+<p><strong>Dealing with non-independent observations in linear regression modelling</strong></p>
+<details>
+<summary>
+Read/hide
+</summary>
+<p>There are sophisticated and powerful ways of dealing with problems of non-independence, but we don’t go into them here. However, a simple solution for non-independent observations due to having multiple measurements across time is to just use observations from one time point only as your outcome (if this makes sense), or to take the average across all time points (if this makes sense), or to take the difference between your first and last time points and use these change scores as your new outcome (if this makes sense). And a simple solution for having non-independent observations due to clustering is to calculate summary values of the outcome based on all observations within each cluster. For example, if your outcome is a numerical variable, such as SBP, and you are looking at patients within facilities, then you can calculate the mean SBP across all patients in each facility, and then use the facility-level mean SBP as your outcome. For binary categorical variables (e.g.&nbsp;hypertension – yes/no) you can select one level (e.g.&nbsp;hypertension = yes) and calculate the proportion or percentage of observations in that level per cluster. For categorical variables with &gt;2 levels you have to create separate summary percentage variables for each level.</p>
+</details>
+<p><strong>3. Normally distributed residuals</strong></p>
+<p>Remember that in linear regression the residuals or model errors are simply the differences between each observed outcome value and the model predicted value (based on the linear regression equation). Technically the assumption here is “multivariate normality of residuals or errors”. In practical terms this just means checking that the residuals are (approximately) normally distributed, which luckily is easy to do. Linear regression assumes normally distributed errors, and if this assumption is violated then the resulting confidence intervals and p-values for coefficients can be biased (usually too narrow and too small respectively).</p>
+<p>When we ran our linear regression using the <mark>General Linear Model – Univariate</mark> tool we told SPSS to calculate the “unstandardised” residuals for each observation and save them as a new variable, which SPSS will have called RES_1. To check whether the residuals are approximately normally distributed we could use a statistical test, but again this is sensitive to sample size and even if violated doesn’t necessarily mean our results won’t be robust, so it’s best to use a histogram.</p>
+<ul>
+<li>From the main menu go: <mark>Graphs &gt; Legacy Dialogues &gt; Histogram</mark>. Then add the RES_1 variable into the <mark>Variable:</mark> box, tick the <mark>Display normal curve</mark> box and click <mark>OK</mark>. What can you conclude?</li>
+</ul>
+<p><strong>How are the residuals distributed?</strong></p>
+<details>
+<summary>
+Read/hide
+</summary>
+<p>The residuals appear to be reasonably approximately normal so we can safely assume this assumption has not been violated in our model. If the residuals were not approximately normally distributed then we can try to transform the outcome to increase the normality of their distribution. You can use the same methods as discussed and practiced in the “Inferential analysis 2: the independent t-test applied to a skewed outcome” practical, specifically see the “Step 2: transform the outcome” section.</p>
+</details>
+<p><strong>4. Linearity of the relationships between the residuals and all numerical variables</strong></p>
+<p>Although you should have already confirmed the nature of the bivariate relationships between sbp and the numerical independent variables during your pre-modelling data exploration phase, once we are dealing with a multiple linear regression model it can be the case that once you adjust for a certain variable the adjusted relationship between another numerical independent variable and the outcome becomes non-linear. If this is the case the un-modelled non-linearity will be reflected in the residuals and cause bias in the inferential results (confidence intervals and p-values). Therefore, we must check whether the residuals show any non-linear patterns (curved trends) when plotted against the values of each independent numerical variable.</p>
+<ul>
+<li>We will use a scatterplot. From the main menu: <mark>Graphs &gt; Legacy Dialogues &gt; Scatter/Dot</mark>. Then select <mark>Simple Scatter</mark> and click <mark>Define</mark>. Add the RES_1 variable into the <mark>Y Axis:</mark> box and the age variable into the <mark>X Axis:</mark> box and click <mark>OK</mark>. What do you see?</li>
+</ul>
+<p>What is the relationship between the residuals and age?</p>
+<details>
+<summary>
+Read/hide
+</summary>
+<p>There is no clear non-linear trend as the residuals are scattered fairly evenly and linearly across values of age.</p>
+</details>
+<p>In a real data analysis you should repeat this process for the other numerical independent variables in the model, but feel free to move on now if you wish because there are also no issues with the remaining variables. If you had found any non-linear relationships involving numerical independent variables then see the above “Bivariate exploration” section for a discussion of some possible solutions.</p>
+<p><strong>5. Homoscedasticity: constant variance of the residuals across model predicted values</strong></p>
+<p>The technical name for this assumption is homoscedasticity, but in practical terms this just means that there should be no systematic pattern or change in the amount of variation (i.e.&nbsp;spread) in the residuals across the model predicted values (also called the model fitted values). If the residual variance changes with predicted values (most commonly increasing at higher predicted values) then this is known as heteroscedasticity, and this can again lead to confidence intervals and p-values for coefficients can be biased (usually too narrow and too small respectively). Again there are statistical tests available to “test” for this, but we will use graphical methods. Again this is very easy to check: we just plot the model predicted values against the model residuals and hope to see “random noise”.</p>
+<p>See the following three figures for an illustration of some examples of clear heteroscedasticity and homoscedasticity:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="Images/hetero-homo-scedasticity.jpg" class="img-fluid figure-img"></p>
+<figcaption class="figure-caption">Illustrations of example heteroscedasticity and homoscedasticity residual patterns</figcaption>
+</figure>
+</div>
+<p>Note: these are in an idealised/very clear form. You will often see some tapering of points at either end of the main spread of points because there is usually less data at these places, but this is not usually something to worry about.</p>
+<p>Let’s now produce the necessary plot and check for violation of this assumption:</p>
+<ul>
+<li>From the main menu go: <mark>Graphs &gt; Legacy &gt; Scatter/Dot</mark>, then select <mark>Simple Scatter</mark> and click <mark>Define</mark>. Add the RES_1 variable into the <mark>Y Axis:</mark> box and the PRE_1 variable into the <mark>X Axis:</mark> box and click <mark>OK</mark>. Note: you can also get SPSS to make this graph via the <mark>Options</mark> menu in the <mark>General Linear Model Univariate</mark> tool, but it is a lot smaller and harder to see when made that way. What can we conclude?</li>
+</ul>
+<p><strong>Is the homoscedasticity assumption violated or not?</strong></p>
+<details>
+<summary>
+Read/hide
+</summary>
+<p>The spread of the residuals looks fairly even across all values of the model predictions for the outcome, so we can safely assume this assumption has not been violated.</p>
+</details>
+<p>What if there had been a clear pattern in the residuals when plotted against the model predicted values?</p>
+<p><strong>How to deal with heteroscedasticity</strong></p>
+<details>
+<summary>
+Read/hide
+</summary>
+<p>The first thing to do would be to try and find out why this was. This is usually either caused by 1) having an outcome that covers a very large range of values, because typically the variance will be greater at larger values, even if the model is correctly specified, 2) having an outcome that varies more at higher/lower values of a numerical independent variable and/or varies differently between one or more categorical variable levels for whatever (genuine/real world) reason, or 3) having an incorrectly specified model, which means your model is either missing important and necessary non-linear and/or interaction terms, or is missing one or more independent variables that are important in explaining variation in the outcome.</p>
+<p>Identifying scenario 2) and 3) involves exploring the relationship between the residuals and all independent variables in turn to try and identify the culprits, and careful thinking about whether any key independent variables may be missing from your sufficient adjustment set. While identifying scenario 1) involves ruling out scenario 2) and 3) and having an outcome with a large range of values (typically spanning a number of orders of magnitude).</p>
+<p>How to solve this? If the problem appears to be due to scenario 3) you may be able to identify the culprit missing variable or missing functional form and update the model to solve the problem. If the problem involves scenario 1) or 2) then a simple and often sufficient solution is to use a linear regression model with “robust standard errors”, also known as “heteroskedasticity-consistent standard errors” or “Huber-White (robust) standard errors” (after the two inventors of the method). While we will not discuss or practice this solution further you can get an overview of how to run the method in SPSS here:</p>
+<p>https://www.ibm.com/support/pages/can-i-compute-robust-standard-errors-spss</p>
+</details>
+</section>
+<section id="step-4-consider-additional-possible-issues" class="level2">
+<h2 class="anchored" data-anchor-id="step-4-consider-additional-possible-issues">Step 4: consider additional possible issues</h2>
+<p>There are two additional common problems with linear regression models that, while not violations of any assumptions, can cause serious problems in obtaining valid/unbiased results.</p>
+<p><strong>1. No serious multicollinearity</strong></p>
+<p>Multicollinearity refers to the situation when one or more independent variables in your linear regression model are correlated with each other. If the correlation is weak, as exists between most independent variables, it’s not a problem, but when the correlation becomes very high this can cause problems with model estimation potentially giving you worthless results. We can test whether there is any substantial multicollinearity between our independent variables using the variance inflation factor (VIF) measure, which measures how much each variable inflates the estimates of its variance (standard error) due to its collinearity with one or more other independent variables. As a rough rule of thumb VIF values &gt;10 are likely to be problematic for your results are need attention.</p>
+<p>To get SPSS to estimate the VIF values for our independent variables we must re-run our model using the <mark>Regression</mark> tool. Unfortunately this tool does not allow us to include our categorical variables in their current form, and they must be manually converted into the necessary separate “dummy coded” or “indicator” variables for each level of each categorical variable (the <mark>General Linear Model - Univariate</mark> tool does this automatically “behind the scenes”).</p>
+<p>What are dummy variables? To allow linear regression to model the effects of categorical variables we can use dummy variables. In the most common and simple coding scheme (see here for more on other coding schemes: https://stats.idre.ucla.edu/spss/faq/coding-systems-for-categorical-variables-in-regression-analysis-2/) we choose one level to be the reference against which the effects of all other levels are compared. Very briefly this level is then “omitted” and the mean of the linear regression model (when all other variables are set to 0) is the mean for the reference level. The remaining levels then have a dummy variable created for them, where the dummy variable takes the value of 1 if the observation is from that level or a value of 0 if the observation is from a different level. Dummy variables therefore act like “switches” that turn on or turn off the effect of each level when appropriate. Therefore, we must create dummy variables ourselves. To save time I have already done this.</p>
+<ul>
+<li>Therefore, to calculate the VIF values in the main menu go: <mark>Analyze &gt; Regression &gt; Linear</mark>. Then add sbp to the <mark>Dependent:</mark> variable box, and age, salt, bmi, sex_f_dummy, ses_m_dummy, ses_h_dummy and ace_dummy to the <mark>Independent(s):</mark> box (there is no dummy for sex = male or ses = low as these are taken to be the reference levels, i.e.&nbsp;the mean expected/predicted value of SBP when all independent variables have the value 0). Then click the <mark>Statistics</mark> button and tick the <mark>Collinearity diagnostics</mark> box. Click <mark>Continue</mark> then <mark>OK</mark>.</li>
+</ul>
+<p>In the output window look for the “Coefficients” table. On the right hand side of this table you will see the two columns under “Collinearity Statistics” are labelled “Tolerance” and “VIF”. VIF is just 1/tolerance. Based on the rough rule of thumb what can we conclude?</p>
+<p><strong>What can we conclude about multicollinearity in our model?</strong></p>
+<details>
+<summary>
+Read/hide
+</summary>
+<p>There are no concerning signs of excessive multicollinearity for any independent variables. Great!</p>
+</details>
+<p>What if you do find excessive multicollinearity in your model?</p>
+<p><strong>How to deal with excessive multicollinearity</strong></p>
+<details>
+<summary>
+Read/hide
+</summary>
+<p>What if one or more variables had very high VIF scores? Before doing anything we can actually ignore high VIF scores under some circumstances. 1) When they are only for “control” variables, i.e.&nbsp;variables whose effects we are not interested in interpreting but where we believe they need to be in our model because of our theory about the likely causal influences on our outcome. 2) Where the VIFs are for interaction or polynomial terms, because this is to be expected. 3) The variables with high VIF values are dummy variables for a categorical variable with three or more levels. When the reference level has an increasingly small proportion of the observations in it then the remaining levels will have increasingly large VIFs. You can avoid this by setting the reference category as a larger level. However, if the variable(s) with large VIF values aren’t covered by these situations then you need to consider why they have a high VIF. It means they are highly correlated with one or more other independent variables, which usually means they are essentially measuring the same thing. For example, weight and waist circumference will often be highly correlated. Therefore, in such a situation you can simply remove whichever one of the variables makes most sense for your research question.</p>
+</details>
+<p><strong>2. No extremely influential observations</strong></p>
+<p>Sometimes single or multiple observations (individuals in our “SBP data final.sav” dataset) can have an excessive influence on the results, i.e.&nbsp;the coefficients and/or confidence intervals and p-values of your linear regression model, especially in smaller datasets. What this means is that including or excluding these observations from the analysis can change the results and potentially your overall interpretation of the results substantially. This is obviously not a good situation when the results are so sensitive to one or a few observations. If such observations exist in your model then you need to explore them and try and understand why they are so influential and whether they should be retained in the model. Observations can be influential in two main ways:</p>
+<ul>
+<li><p>Outliers: observations can have a large residual value, i.e.&nbsp;an outcome value that is unusually larger or small given its independent variable values.</p></li>
+<li><p>Leverage: observations can have values for one or more independent variables that are unusually large or small compared to all other values for that independent variable.</p></li>
+</ul>
+<p>Separately or together these two processes can give rise to observations that are highly influential. There are quite a few ways to explore these issues, but for time and simplicity we will just look at one widely used approach: the Cook’s distance (D) statistic. Without going into details for each observation in a dataset Cook’s D measures “how much” the values in a regression model change when that observation is removed from the model. Cook’s D starts at 0 with higher values indicating more influential observations. Various rules of thumb have been proposed for judging when a value of Cook’s D indicates that the observation should be looked at, but these may fail, and it is simpler and probably more robust to just judge (based on the type of graph we will produce below) whether any observations have a value of Cook’s D that is relatively much greater than all the other Cook’s D values. We already told SPSS to calculate Cook’s D as a new variable in the <mark>General Linear Model Univariate</mark> tool when we selected the <mark>Cook’s distance</mark> option in the <mark>Save</mark> options.</p>
+<p>The easiest way to explore which observations appear to have excessively large values for Cook’s D is to create a scatterplot of Cook’s D against the observation ID variable (which is just a simple count from the first to the last observation).</p>
+<ul>
+<li><p>Remember in the main menu we go: <mark>Graphs &gt; Legacy Dialogues &gt; Scatter/Dot</mark>. Then select the <mark>Simple Scatter</mark> option and click <mark>Define</mark>. Then add the Cook’s D variable COO_1 to the <mark>Y Axis:</mark> box and the id variable to the <mark>X Axis:</mark> box and click <mark>OK</mark>.</p></li>
+<li><p>Remember you can interact with an SPSS graph by double clicking on it. We can then click twice on an observation to highlight it alone with a yellow circle, which allows you to then right click and select “Go to Case” to see that observation in the <mark>Data View</mark>. What do you see on the graph?</p></li>
+</ul>
+<p><strong>Interpreting Cook’s D values</strong></p>
+<details>
+<summary>
+Read/hide
+</summary>
+<p>Two observations appear to have clearly relatively much higher values for Cook’s D than all the other observations. Interacting with the graph we can explore these observations, which have ids of 478 and 520.</p>
+</details>
+<p>What do you notice about the outcome and/or independent variable values for these observations?</p>
+<p>What do you notice about these influential values?</p>
+<details>
+<summary>
+Read/hide
+</summary>
+<p>Observation id 520 has a very large value for BMI of 41, but otherwise appears normal, so this is likely driving its influential power. While observation 478 has a very large value for the outcome, with a SBP of 175, but otherwise has fairly “normal” values for its independent variables although they are of high socio-economic status and taking an ACE inhibitor, both of which (as we’ll see) are associated with lower values of SBP in the sample, so this is likely driving its influential power.</p>
+</details>
+<p>What should we do? Generally unless you can be certain that an observation is influential due to an error in the outcome or an independent variable then you should not make any changes to these values nor should you exclude the observation from your primary analysis. However, a simple, transparent and widely recommended approach is to conduct a sensitivity analysis by removing such observations from the dataset (i.e.&nbsp;create a copy of the dataset and then delete them entirely) and re-running your analysis to see if the results change substantially. If the results do not change in any important way then you should report this lack of change following the removal of the observations, but include the sensitivity analysis results in an appendix etc so readers can verify the truth of this. If the results do change substantially then it makes most sense to report both sets of results in the main paper and interpret accordingly, i.e.&nbsp;be clear that the conclusions change depending on whether such extreme observations are included or not. Either way you must be transparent and open about their effects.</p>
+</section>
+<section id="step-5-understand-the-results-tables-and-extract-the-key-results" class="level2">
+<h2 class="anchored" data-anchor-id="step-5-understand-the-results-tables-and-extract-the-key-results">Step 5: understand the results tables and extract the key results</h2>
+<p>So now that we have verified that our results are robust, and the assumptions of the model hold, we can finally interpret our results. This is the really interesting and exciting part of any analysis! As you’ll have filled the output window with lots of graphs from the assumptions checking you may wish to re-run the linear regression again. Either way in the output window the results are presented in three tables.</p>
+<p>The first table “Between-Subjects Factors” isn’t that useful (assuming we understand our data well), and just shows the number of observations in each level of each categorical variable. The second table “Tests of Between-Subjects Effects” shows an “ANOVA” table. This can be used to understand the “statistical significance” of each term (but only the overall term for categorical variables, not each level) in relation to how much variation it accounts for in the outcome variable. However, this is arguably of little value when our final table “Parameter Estimates” (which SPSS doesn’t provide by default!) provides us with both an estimate of the “statistical significance” (i.e.&nbsp;the p-value) of all terms including categorical variable levels, but also much more usefully it gives us the linear regression coefficient (i.e.&nbsp;the estimated direction and size of the relationship) and its 95% confidence interval for every independent variable (or more specifically every term) in the model. Therefore, we will largely ignore the second table (apart from coming back to one piece of information it provides that should really just be in the “Parameter Estimates” table), and just focus on the “Parameter Estimates” table.</p>
+<p>So what does it all mean?</p>
+<hr style="border: 3px solid grey">
+
+<p><strong>Parameter estimates table columns explained</strong></p>
+<hr style="border: 1px solid grey">
+
+<p><strong>Parameter</strong></p>
+<ul>
+<li>Each row indicates which term in the model the following results apply to. Terms are either the intercept or (in our case) main effects of independent variables, or with more complicated models they may include interaction terms and/or non-linear terms like polynomial terms. For numerical variables this means one row per variable. However, because each level of a categorical variable is actually treated as a separate “dummy variable” (coefficient) as standard in a linear regression model each categorical variable level has its own row.</li>
+</ul>
+<p><strong>B</strong></p>
+<ul>
+<li><p>B stands for “betas”, because in the linear regression model when represented mathematically the coefficients are usually represented by the Greek letter beta. The betas are more commonly referred to as the linear regression parameter estimates or coefficients. They tell us the best estimate (point estimate) of the direction (positive or negative) and size of the relationship between each parameter in the regression model and the outcome variable.</p></li>
+<li><p>For all numerical independent variables they represent the expected mean change in the outcome variable for every 1-unit increase in the independent variable.</p></li>
+<li><p>For categorical variables it’s a bit more complicated. There are many different ways of looking at categorical variable effects, but the most common is called dummy coding, and this is the default presentation in SPSS and most (probably all) stats software. With dummy coding one level in the categorical variable (e.g.&nbsp;female in the variable sex) is set as the reference level. Then the coefficients for the other level(s) represent the expected mean difference in the outcome variable between each level and the reference level (e.g.&nbsp;male compared to female). Unfortunately (for no obvious reason) SPSS’s univariate general linear model tool does not display value labels for categorical variables in the “Parameter Estimates” table and so all you see are the numerical codes (you’ll have to check the value labels in the <mark>Variable View</mark> if you can’t remember the value coding). By default SPSS sets the level with the highest value as the reference level. You will notice that the reference level always has a coefficient value of 0, with a superscript letter “a” linking to a footnote explaining that “This parameter is set to zero because it is redundant”, i.e.&nbsp;it’s the reference level.</p></li>
+<li><p>A note on the intercept. You may be wondering what the “Intercept” parameter represents? In a simple linear regression with just one independent variable this corresponds to the Y-intercept (hence the name), i.e.&nbsp;where the linear regression line crosses the y-axis (and the independent variable or x-value is 0). In a multiple linear regression this represents the expected/model predicted mean value of the outcome when all numerical independent variables have a value of 0 and all categorical variables are at their reference levels. Therefore the intercept will rarely have any useful interpretation (e.g.&nbsp;it assumes BMI = 0) and is usually ignored as a necessary but informative structural part of the model (unless you centre your variables, which we will not be looking at here).</p></li>
+</ul>
+<p><strong>Std. Error</strong></p>
+<ul>
+<li>This is the standard error of the coefficient, which is an estimate of the sampling variability of the coefficient in the target population. This is used when calculating the 95% confidence intervals and p-value, but you can ignore these and just interpret the 95% confidence intervals and (if you wish) p-values.</li>
+</ul>
+<p><strong>t</strong></p>
+<ul>
+<li>This is the t-statistic for the coefficient and is used when calculating the confidence intervals and the p-value associated with the coefficient. You can calculate 95% confidence intervals and p-values assuming normally distributed data, but using the t-distribution is more conservative (safe) for small sample sizes and is equal to assuming normally distributed data at large sample sizes. You can ignore these and just interpret the 95% confidence intervals and (if you wish) p-values.</li>
+</ul>
+<p><strong>Sig.</strong></p>
+<ul>
+<li>This is the two-tailed (although now it doesn’t mention that explicitly!) p-value associated with each coefficient. Again, assuming the “true” value of the coefficient in the target population is 0, the p-value represents the probability of observing a coefficient at least as great as that observed (positively or negatively as it’s a two-tailed p-value) due to sampling error alone.</li>
+</ul>
+<p><strong>95% Confidence Interval (Lower Bound and Upper Bound)</strong></p>
+<ul>
+<li>These are the lower and upper 95% confidence intervals for the coefficient based on the t-distribution. As usualy, loosely speaking they represent a range of values that we can be reasonably confident contain the “true” coefficient that exists in the target population.</li>
+</ul>
+<hr style="border: 1px solid grey">
+
+<p>Then lastly if we go back to the “Tests of Between-Subjects Effects” table and look at the footnotes we see one footnote: “a. R Squared = .594 (Adjusted R Squared = .588)”. In a linear regression model the R² value represents the proportion (or % if you multiply it by 100) of variation in the outcome variable that is explained by the model, i.e.&nbsp;by all the terms of variables in the model. However, whenever you add a term to a model the R² value will increase even if the term is a random number variable, and has no true explanatory power for the outcome. Therefore, it is better to use the adjusted R2 value which makes a correction for the number of variables in the model. Note, R² values in health sciences are rarely as high as the one seen here, which is due to the artificial nature of the data.</p>
+<p>Therefore, typically we are just interested in the key descriptive statistics about the sample (number of observations and missing values, which are more easily obtained via separate descriptive analysis of the dataset), and in terms of the inferential results we want the parameter or coefficient estimates, their associated 95% confidence intervals (and possible their associated p-values), and often also the R² value of the model.</p>
+</section>
+<section id="step-6-report-and-interpret-the-results" class="level2">
+<h2 class="anchored" data-anchor-id="step-6-report-and-interpret-the-results">Step 6: report and interpret the results</h2>
+<section id="numerical-variables" class="level3">
+<h3 class="anchored" data-anchor-id="numerical-variables">Numerical variables</h3>
+<p>First we’ll look at how to interpret the results relating to the numerical independent variables and their relationship with the outcome statistically and then how to interpret that result in practical terms (sometimes referred to as the results’ statistical and practical significance).</p>
+<p><strong>Statistical interpretation</strong></p>
+<blockquote class="blockquote">
+<p>For numerical independent variables linear regression coefficients represent the model-predicted mean (or more loosely the average) change in the outcome (i.e.&nbsp;in units of the outcome) for every 1-unit increase in the independent variable’s units, while holding the effect of all other independent variables constant, i.e.&nbsp;they measure the mean independent relationship. Note: this change does not depend on the value of the independent variable, i.e.&nbsp;the same relationship is assumed to exist across the full range of values that the independent variable can take in the sample data, but it should not be considered to hold if you were considering values of the independent variable outside of the range of values seen in the sample data.</p>
+</blockquote>
+<p>Let’s take age as an example. Looking at the parameter estimates table the point estimate (i.e.&nbsp;the single best estimate) of the regression coefficient is 0.21. This means that, based on the model, the point estimate of the relationship between age and systolic blood pressure in the target population is that for every 1-unit increase in age, i.e.&nbsp;for every year older a participant is, the model predicts that an individual’s systolic blood pressure will increase by a mean of 0.21 mmHg, whilst holding the effect of all other independent variables constant (i.e.&nbsp;this estimated relationship is independent of the effect of all other independent variables in the model).</p>
+<p>However, how sure can we be about the true direction and size of the regression coefficient (i.e.&nbsp;the relationship of interest) in the target population given our sample size and the sampling error in the sample? This is what our confidence intervals help us to estimate. Remember, formally they provide a range of values that, hypothetically speaking, if we were to repeat our study and analysis many times (technically an infinite number of times), would contain the true value of the regression coefficient in the target population X% of the time, where the true value of the regression coefficient would be the value of the regression coefficient that we would get if we measured every individual in our target population and ran the model, and X% is the confidence level (typically 95%). Informally and more loosely speaking a 95% confidence interval around a regression coefficient gives us a range of values that we can view as likely including the true value of the regression coefficient that exists in the target population (but we can’t say within that range which values are more/less likely).</p>
+<p>Therefore, in the parameter estimates table we can see that the 95% confidence intervals for the regression coefficient for age are 0.03 and 0.39. Consequently, we can be reasonably confident that the true value of the regression coefficient in the target population is between 0.03 and 0.39. And so because the 95% confidence intervals are fairly narrow we can conclude that we have obtained a reasonably accurate estimate of the likely relationship between age and systolic blood pressure in the target population. However, as always this is assuming there is no bias in the results, which in a real study is very unlikely, and therefore in a real study we must consider all likely sources of bias and their likely impacts when assessing the inferential results!</p>
+<p><strong>Practical importance</strong></p>
+<p>Now we know how to interpret the result statistically how do we interpret its real-world practical importance? For example, what can we conclude about its importance clinically and for public health programmes? These are complicated questions that have no simple answers and different people will have differing views depending on their views of the evidence (result) and the wider context. Most importantly you need to think carefully and critically and have strong subject matter knowledge to make robust interpretations and suggestions/recommendations. However, we can give some guidance about things to consider. You should clearly consider whether individuals or other units of observation can have their values of the independent variable of interest moved or not, and what this implies for what clinical practice and public health programmes etc can or cannot do about that the characteristic represented by that independent variable. For example, an individual cannot alter their height, while their age changes but out of their control, but their weight can be affected by themselves or outside influences (e.g.&nbsp;interventions).</p>
+<p>For numerical independent variables we must then also consider what range of values most individuals (or units of observation) take in the study/sample. This is because the impact of a 1-unit increase in an independent variable can add up if that variable can increase by many units. For example, our regression coefficient for age is 0.2 (95% CI: 0, 0.4) (rounding up for ease subsequent example calculations), and the age range in the study/sample was ~40 years. Therefore, across our age range, which most individuals will “experience”, based on the 95% confidence interval ranges for age, age is expected to account for a mean increase in individuals’ systolic blood pressure of between 0 x 40 = <strong>0 mmHg</strong> and 0.4 x 40 = <strong>16 mmHg</strong>. Note: unless strongly justifiable you should not interpret your results outside of the range of the independent variables in your sample, e.g.&nbsp;you should not try and interpret the age relationship as holding for individuals aged between 70 and 80 as no such individuals were in the study.</p>
+<p>Therefore, it might be reasonable to say that while every extra year makes little difference to most individuals’ systolic blood pressure, across forty years of their life it may result in a clinically important increase, which might therefore be of importance when considering relevant clinical guidelines and public health programmes. However, as noted earlier practical interpretations are complicated and you should consider all relevant contextual issues. For example, an increase of 16 mmHg or more systolic blood pressure may not make any clinical difference for a health individual, but a smaller increase might be very clinically important for someone with cardiovascular disease.</p>
+</section>
+<section id="categorical-variables" class="level3">
+<h3 class="anchored" data-anchor-id="categorical-variables">Categorical variables</h3>
+<p><strong>Statistical interpretation</strong></p>
+<blockquote class="blockquote">
+<p>With the standard dummy coding of categorical variables (https://stats.idre.ucla.edu/spss/faq/coding-systems-for-categorical-variables-in-regression-analysis-2/) linear regression coefficients represent the model-predicted mean (or more loosely the average) difference in the outcome (i.e.&nbsp;in units of the outcome) between the categorical level (or group) of interest and the reference or comparison level (or group), while holding the effect of all other independent variables constant, i.e.&nbsp;they measure the mean independent relationship. The choice of which categorical level is set as the reference group is up to you.</p>
+</blockquote>
+<p>Let’s take socio-economic status as an example. Looking at the parameter estimates table as this is a categorical variable there are separate rows for each of the levels of ses. First we can see that the highest value of ses (3), which codes for high socio-economic status, has been set as the reference group and has a regression coefficient of 0 (“ses=3” has a <em>B</em> or regression coefficient of 0). This means that the regression coefficients for the other socio-economic status groups represent the difference in the outcome in relation to/compared to the high status group.</p>
+<p>Look at the coefficients for “ses=1” and “ses=2”. Here we can see that participants with a low socio-economic status (ses=1) have a point estimate regression coefficient of 7.91. This means that, based on the model, the point estimate of the mean difference (or relationship) in systolic blood pressure between individuals in the low socio-economic status group compared to individuals in the high socio-economic status group, in the target population, is 7.91 mmHg, whilst holding the effect of all other independent variables constant (i.e.&nbsp;this estimated relationship is independent of the effect of all other independent variables in the model). To clarify, this means that the model estimates that in the target population individuals in the low socio-economic status group have systolic blood pressure values that are on average 7.91 mmHg higher than individuals in the high socio-economic status group, while holding the effect of all other independent variables constant. We would interpret the result for the medium socio-economic status group similarly.</p>
+<p>Then as with the numerical independent variables we of course need to look at the 95% confidence intervals to judge the likely direction and size of relationship in the target population, given our sample size and sampling error (i.e.&nbsp;our point estimate is not necessarily very precise). From the parameter estimates table we can see that the 95% confidence intervals for ses=1 are 4.85 and 10.97. Therefore, we appear to have a reasonably precise/clear estimate of the effect of low socio-economic status compared to high socio-economic status, and it appears that being of low socio-economic status compared to high socio-economic status is independently associated with slightly higher systolic blood pressures on average.</p>
+<p><strong>Practical importance</strong></p>
+<p>As with numerical independent variables interpreting the practical or real-world importance is complicated and requires careful and critical thought and strong subject matter knowledge. Similar to interpreting the practical importance of numerical independent variable results you should consider things like the relative proportions of individuals or other units of observation in your different categorical variable levels, and how plausible it is that individuals or other units of observation can move or be moved between category levels, say via interventions. Again you should also not interpret the results for category levels not in your sample, or for comparisons between category levels that you did not formally make.</p>
+</section>
+<section id="non-significant-results" class="level3">
+<h3 class="anchored" data-anchor-id="non-significant-results">“Non-significant” results</h3>
+<p>Note: you should present and discuss all results, i.e.&nbsp;“non-significant” results too, which may have equal if not more importance in relation to your research question. However, take care. A common mistake in interpreting inferential results is to treat a non-significant result as indicating “no difference” or “no relationship”, when actually the correct interpretation is that it provides no clear evidence of a difference or a relationship, but there may well be a real difference or a relationship in the target population but it’s just that it may be too small for you to have had much chance of detecting it with your dataset. In terms of whether a difference/relationship exists in the target population, there are actually typically three possibilities when you find a non-significant difference/relationship in your sample dataset:</p>
+<p>1/. There is really no (or negligible) difference/relationship in the target population.</p>
+<p>2/. There is a difference/relationship in the target population but it is too small for you to have any real chance of detecting it with your sample size (i.e.&nbsp;you lacked statistical power), no matter how many times you repeated the study.</p>
+<p>3/. There is a difference/relationship in the target population and given its size and your sample size you had a good (e.g.&nbsp;&gt;80%) chance of detecting it, but due to sampling error or other sources of bias you did not find any evidence of it in your single dataset. If you repeated the study lots of times though you’d find statistically significant evidence for it more often than not.</p>
+<p>There are analysis methods (e.g.&nbsp;“power calculations”) to help you get an idea about which of these possibilities is most likely, but as they are beyond the scope of this introductory course and actually not commonly used we will not look at them further.</p>
+</section>
+<section id="regression-tables" class="level3">
+<h3 class="anchored" data-anchor-id="regression-tables">Regression tables</h3>
+<p>When reporting the results from a linear regression model it is common to use a table to present the results, given there are typically a large number of results of interest. The following tips/recommended best practices may be useful when creating regression results tables:</p>
+<ul>
+<li><p>Separate 95% CI lower and upper values with a comma, not a dash (-), otherwise negative values can be ambiguous or hard to read.</p></li>
+<li><p>You can refer to the reference level in other ways, but the above is a simple and clear approach.</p></li>
+<li><p>P-values &lt;0.001 are usually referred to as such without further decimal place values.</p></li>
+<li><p>Always include all units for numerical variables.</p></li>
+<li><p>Always ensure the outcome variable is clearly mentioned (here in the title) along with the units it’s measured in.</p></li>
+<li><p>Include the adjusted R² value.</p></li>
+</ul>
+<p>In the exercise below you can fill in a regression results table “template” that incorporates these features, so you can then use this template/format to guide your future presentation of regression results.</p>
+</section>
+<section id="methods" class="level3">
+<h3 class="anchored" data-anchor-id="methods">Methods</h3>
+<p>As usual in a methods section you should clearly explain why you used a linear regression analysis and exactly what you did, including how all the variables were coded/what units they were in, if you modified any variables, how you dealt with any missing data etc.</p>
+</section>
+</section>
+<section id="exercise-multiple-linear-regression" class="level2">
+<h2 class="anchored" data-anchor-id="exercise-multiple-linear-regression">Exercise: multiple linear regression</h2>
+<ul>
+<li>In the MSc &amp; MPH computer practical sessions files “Exercises” folder open the “Exercises.docx” Word document and scroll down to <strong>Multiple linear regression: the causes of variation in systolic blood pressure</strong>. Then follow the instructions in the exercise.</li>
+</ul>
+<p><strong>Example completed linear regression results table</strong></p>
+<details>
+<summary>
+Read/hide
+</summary>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="Images/Linear regression table.jpg" class="img-fluid figure-img"></p>
+<figcaption class="figure-caption">Linear regression results table</figcaption>
+</figure>
+</div>
+</details>
+<p><strong>Example text interpreting the relationship between BMI and systolic blood pressure in terms of its statistical and practical importance</strong></p>
+<details>
+<summary>
+Read/hide
+</summary>
+<p>There was a clear and precise, statistically significant relationship between BMI (kg/m²) and systolic blood pressure (mmHg) in the linear regression model, indicating that for every 1-unit increase in BMI there is a mean increase in systolic blood pressure of 4.25 mmHg (95% CI: 3.89, 4.6) independent of all other independent variables. Given that the range of BMI in the study was 23, the relatively narrow confidence intervals for this relationship indicate that variation in BMI has the potential to have a very substantial impact on variation in systolic blood pressure in the target population, and given BMI is potentially variable by individuals and interventions this has clearly important clinical and practical implications. For example, this result suggests an increase in BMI of just 10 could potentially lead to an increase of between 39 mmHg (3.9 x 10) and 46 mmHg (4.6 x 10) in an individual’s systolic blood pressure on average, implying this should be considered when developing treatment guidelines and public health programmes.</p>
+</details>
+<p><strong>Example text interpreting the relationship between sex and systolic blood pressure in terms of its statistical and practical importance</strong></p>
+<details>
+<summary>
+Read/hide
+</summary>
+<p>There was a clear and precise, statistically significant relationship between sex (male/female) and systolic blood pressure (mmHg) in the linear regression model, indicating that compared to females males had systolic blood pressure values that were on average 10.03 mmHg (95% CI: 7.77, 12.3) higher, independent of all other independent variables. Therefore, considering that the mean difference is likely to be between 7.77 mmHg and 12.3 mmHg this appears to be a potentially important clinical difference that should be considered when developing treatment guidelines and public health programmes (for example, by educating males on their higher risk of having higher systolic blood pressure).</p>
+</details>
+<p><strong>Example text discussing the key limitations of the study and the issues that must be considered when critically interpreting the results</strong></p>
+<details>
+<summary>
+Read/hide
+</summary>
+<p>Care must be taken when interpreting the results because the study was an observational cross-sectional study with therefore very limited ability to make robust causal inferences, and because the validity and accuracy of the results depends on how well the study data and model have accurately captured the causal relationships of interest and all important confounding variables of those causal relationships, and on how much bias there was in the study.</p>
+</details>
+</section>
+<section id="next-steps-optional" class="level2">
+<h2 class="anchored" data-anchor-id="next-steps-optional">Next steps (optional)</h2>
+<ul>
+<li><p>If you have time why not run the sensitivity analysis for the extremely influential observations? Simply remove them from the dataset (go to the <mark>Data View</mark> and right click on their observation number on the left of the screen to highlight the relevant row, then select “Clear”), re-run the model and compare the results to those above.</p></li>
+<li><p>Confirm to yourself that an independent t-test is equivalent to a simple linear regression with one binary independent variable: using the “SBP final data.sav” dataset run an independent t-test analysing the difference/relationship between sex and systolic blood pressure, and then run a linear regression with systolic blood pressure as the outcome and sex as the sole independent variable. You should see that the coefficient estimate from the linear regression matches the mean difference estimate from the t-test, and the 95% confidence intervals and p-values match as well. Underlying the independent t-test is a model that is equivalent to a simple linear regression!</p></li>
+</ul>
+
+
+</section>
+
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>
