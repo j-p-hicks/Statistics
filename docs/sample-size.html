@@ -1,0 +1,1033 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.3.433">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>sample-size</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="dark">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+<link rel="stylesheet" href="styles.css">
+</head>
+
+<body class="nav-sidebar docked">
+
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./sample-size.html">5. Sample size calculations</a></li></ol></nav>
+      <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+      </a>
+      <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation docked overflow-auto">
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Home</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./website-information.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">How to use this website</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./timetable.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Computer sessions timetable</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./probability-sampling.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">1. Probability sampling</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
+ <span class="menu-text">2. Introducing SPSS &amp; preparing data</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./introduction-to-spss.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">2.1. Introducing SPSS</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./preparing-a-dataset.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">2.2. Preparing a dataset</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./sample-description.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">3. Data exploration &amp; sample description</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./population-description.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">4. Population description</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./sample-size.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">5. Sample size calculations</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
+ <span class="menu-text">6. Bivariate tests for numerical variables</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./independent-t-test.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">6.1. Independent t-test</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./independent-t-test-skewed.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">6.2. Independent t-test with skewed data</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./paired-t-test.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">6.3. Paired t-test</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">
+ <span class="menu-text">7. Bivariate tests for categorical variables</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chi-sq-independence.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">7.1. Chi-square test of independence</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chi-sq-goodness.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">7.2. Chi-square goodness of fit test</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./paired-categorical-test.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">7.3. Paired categorical variable test (McNemar’s test)</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true">
+ <span class="menu-text">8. Regresson modelling</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./linear-regression.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">8.1. Linear regression</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./logistic-regression.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">8.2. Logistic regression</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./complex-survey-analysis.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">9. Complex survey design analysis</span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#sample-size" id="toc-sample-size" class="nav-link active" data-scroll-target="#sample-size">Sample size</a></li>
+  <li><a href="#rationale-and-theory" id="toc-rationale-and-theory" class="nav-link" data-scroll-target="#rationale-and-theory">Rationale and theory</a>
+  <ul class="collapse">
+  <li><a href="#overview-of-key-concepts-the-two-approaches-we-will-look-at-and-the-online-tool-we-will-use" id="toc-overview-of-key-concepts-the-two-approaches-we-will-look-at-and-the-online-tool-we-will-use" class="nav-link" data-scroll-target="#overview-of-key-concepts-the-two-approaches-we-will-look-at-and-the-online-tool-we-will-use">Overview of key concepts, the two approaches we will look at, and the online tool we will use</a></li>
+  <li><a href="#confidence-interval-based-approach" id="toc-confidence-interval-based-approach" class="nav-link" data-scroll-target="#confidence-interval-based-approach">Confidence interval based approach</a>
+  <ul class="collapse">
+  <li><a href="#overview" id="toc-overview" class="nav-link" data-scroll-target="#overview">Overview</a></li>
+  <li><a href="#analytical-studies-and-the-confidence-interval-approach" id="toc-analytical-studies-and-the-confidence-interval-approach" class="nav-link" data-scroll-target="#analytical-studies-and-the-confidence-interval-approach">Analytical studies and the confidence interval approach</a></li>
+  </ul></li>
+  <li><a href="#hypothesis-testing-based-approach" id="toc-hypothesis-testing-based-approach" class="nav-link" data-scroll-target="#hypothesis-testing-based-approach">Hypothesis testing based approach</a>
+  <ul class="collapse">
+  <li><a href="#overview-1" id="toc-overview-1" class="nav-link" data-scroll-target="#overview-1">Overview</a></li>
+  <li><a href="#what-about-descriptive-studies" id="toc-what-about-descriptive-studies" class="nav-link" data-scroll-target="#what-about-descriptive-studies">What about descriptive studies?</a></li>
+  </ul></li>
+  </ul></li>
+  <li><a href="#practice" id="toc-practice" class="nav-link" data-scroll-target="#practice">Practice</a>
+  <ul class="collapse">
+  <li><a href="#exercise-1-sample-size-required-to-estimate-a-mean-to-a-given-level-of-precision" id="toc-exercise-1-sample-size-required-to-estimate-a-mean-to-a-given-level-of-precision" class="nav-link" data-scroll-target="#exercise-1-sample-size-required-to-estimate-a-mean-to-a-given-level-of-precision">Exercise 1: Sample size required to estimate a mean to a given level of precision</a>
+  <ul class="collapse">
+  <li><a href="#scenario" id="toc-scenario" class="nav-link" data-scroll-target="#scenario">Scenario</a></li>
+  <li><a href="#sample-size-assumption-inputs" id="toc-sample-size-assumption-inputs" class="nav-link" data-scroll-target="#sample-size-assumption-inputs">Sample size assumption inputs</a></li>
+  <li><a href="#calculate-the-required-sample-size" id="toc-calculate-the-required-sample-size" class="nav-link" data-scroll-target="#calculate-the-required-sample-size">Calculate the required sample size</a></li>
+  <li><a href="#additional-considerations" id="toc-additional-considerations" class="nav-link" data-scroll-target="#additional-considerations">Additional considerations</a></li>
+  </ul></li>
+  <li><a href="#exercise-2-sample-size-required-to-estimate-a-proportion-to-a-given-level-of-precision" id="toc-exercise-2-sample-size-required-to-estimate-a-proportion-to-a-given-level-of-precision" class="nav-link" data-scroll-target="#exercise-2-sample-size-required-to-estimate-a-proportion-to-a-given-level-of-precision">Exercise 2: Sample size required to estimate a proportion to a given level of precision</a>
+  <ul class="collapse">
+  <li><a href="#scenario-1" id="toc-scenario-1" class="nav-link" data-scroll-target="#scenario-1">Scenario</a></li>
+  <li><a href="#sample-size-assumption-inputs-1" id="toc-sample-size-assumption-inputs-1" class="nav-link" data-scroll-target="#sample-size-assumption-inputs-1">Sample size assumption inputs</a></li>
+  <li><a href="#calculate-the-required-sample-size-1" id="toc-calculate-the-required-sample-size-1" class="nav-link" data-scroll-target="#calculate-the-required-sample-size-1">Calculate the required sample size</a></li>
+  <li><a href="#additional-considerations-1" id="toc-additional-considerations-1" class="nav-link" data-scroll-target="#additional-considerations-1">Additional considerations</a></li>
+  </ul></li>
+  <li><a href="#exercise-3-sample-size-required-to-test-whether-two-independent-means-are-different" id="toc-exercise-3-sample-size-required-to-test-whether-two-independent-means-are-different" class="nav-link" data-scroll-target="#exercise-3-sample-size-required-to-test-whether-two-independent-means-are-different">Exercise 3: Sample size required to test whether two independent means are different</a>
+  <ul class="collapse">
+  <li><a href="#overview-2" id="toc-overview-2" class="nav-link" data-scroll-target="#overview-2">Overview</a></li>
+  <li><a href="#scenario-2" id="toc-scenario-2" class="nav-link" data-scroll-target="#scenario-2">Scenario</a></li>
+  <li><a href="#sample-size-assumption-inputs-2" id="toc-sample-size-assumption-inputs-2" class="nav-link" data-scroll-target="#sample-size-assumption-inputs-2">Sample size assumption inputs</a></li>
+  <li><a href="#calculate-the-sample-size" id="toc-calculate-the-sample-size" class="nav-link" data-scroll-target="#calculate-the-sample-size">Calculate the sample size</a></li>
+  </ul></li>
+  <li><a href="#exercise-4-sample-size-required-to-test-whether-two-independent-proportions-are-different" id="toc-exercise-4-sample-size-required-to-test-whether-two-independent-proportions-are-different" class="nav-link" data-scroll-target="#exercise-4-sample-size-required-to-test-whether-two-independent-proportions-are-different">Exercise 4: Sample size required to test whether two independent proportions are different</a>
+  <ul class="collapse">
+  <li><a href="#overview-3" id="toc-overview-3" class="nav-link" data-scroll-target="#overview-3">Overview</a></li>
+  <li><a href="#scenario-3" id="toc-scenario-3" class="nav-link" data-scroll-target="#scenario-3">Scenario</a></li>
+  <li><a href="#sample-size-assumption-inputs-3" id="toc-sample-size-assumption-inputs-3" class="nav-link" data-scroll-target="#sample-size-assumption-inputs-3">Sample size assumption inputs</a></li>
+  <li><a href="#calculate-the-sample-size-1" id="toc-calculate-the-sample-size-1" class="nav-link" data-scroll-target="#calculate-the-sample-size-1">Calculate the sample size</a></li>
+  </ul></li>
+  </ul></li>
+  <li><a href="#optional-additional-exercises-estimating-required-sample-sizes-for-various-scenarios" id="toc-optional-additional-exercises-estimating-required-sample-sizes-for-various-scenarios" class="nav-link" data-scroll-target="#optional-additional-exercises-estimating-required-sample-sizes-for-various-scenarios">Optional additional exercises: estimating required sample sizes for various scenarios</a>
+  <ul class="collapse">
+  <li><a href="#instructions" id="toc-instructions" class="nav-link" data-scroll-target="#instructions">Instructions</a>
+  <ul class="collapse">
+  <li><a href="#sample-size-exercises-model-answers" id="toc-sample-size-exercises-model-answers" class="nav-link" data-scroll-target="#sample-size-exercises-model-answers">Sample size exercises model answers</a></li>
+  </ul></li>
+  </ul></li>
+  <li><a href="#additional-optional-information" id="toc-additional-optional-information" class="nav-link" data-scroll-target="#additional-optional-information">Additional optional information</a>
+  <ul class="collapse">
+  <li><a href="#reporting-sample-size-calculations-in-methods-sections" id="toc-reporting-sample-size-calculations-in-methods-sections" class="nav-link" data-scroll-target="#reporting-sample-size-calculations-in-methods-sections">Reporting sample size calculations in methods sections</a>
+  <ul class="collapse">
+  <li><a href="#confidence-interval-based-sample-size-calculation" id="toc-confidence-interval-based-sample-size-calculation" class="nav-link" data-scroll-target="#confidence-interval-based-sample-size-calculation">Confidence interval based sample size calculation</a></li>
+  <li><a href="#hypothesis-testing-based-sample-size-calculation" id="toc-hypothesis-testing-based-sample-size-calculation" class="nav-link" data-scroll-target="#hypothesis-testing-based-sample-size-calculation">Hypothesis testing based sample size calculation</a></li>
+  </ul></li>
+  <li><a href="#estimating-sample-sizes-when-testing-for-differences-between-means-or-proportions-where-the-outcomes-are-paired" id="toc-estimating-sample-sizes-when-testing-for-differences-between-means-or-proportions-where-the-outcomes-are-paired" class="nav-link" data-scroll-target="#estimating-sample-sizes-when-testing-for-differences-between-means-or-proportions-where-the-outcomes-are-paired">Estimating sample sizes when testing for differences between means or proportions where the outcomes are “paired”</a></li>
+  <li><a href="#adjusting-for-clustering" id="toc-adjusting-for-clustering" class="nav-link" data-scroll-target="#adjusting-for-clustering">Adjusting for clustering</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+
+
+<section id="sample-size" class="level1">
+<h1>Sample size</h1>
+<hr>
+<p>In this practical we will practice estimating sample sizes for a few common types of outcomes and study design scenarios using an online sample size calculator.</p>
+<p><br></p>
+</section>
+<section id="rationale-and-theory" class="level1">
+<h1>Rationale and theory</h1>
+<hr>
+<p>If you are confident on the theory and approaches to sample size calculations in relation to confidence interval precision and hypothesis testing then you can skip on to the exercises below. However, if you are not fully confident about these topics we strongly suggest reading the below information.</p>
+<section id="overview-of-key-concepts-the-two-approaches-we-will-look-at-and-the-online-tool-we-will-use" class="level2">
+<h2 class="anchored" data-anchor-id="overview-of-key-concepts-the-two-approaches-we-will-look-at-and-the-online-tool-we-will-use">Overview of key concepts, the two approaches we will look at, and the online tool we will use</h2>
+<details>
+<summary>
+Read/hide
+</summary>
+<p>Almost every quantitative research study involves one or more research questions (usually the most important ones) that require statistical inference to answer. In brief, statistical inference involves sampling members from a population (ideally using a probability sampling method), collecting data from that sample, and then analysing that data using statistical analyses to draw conclusions about the population. There are two main types of research questions we are usually interested.</p>
+<p>First, description. For example, what is the prevalence of COVID-19 in a given population at a given time point? Here, we would call the true (but unknown) prevalence in the population at that time point a population parameter. We would then take a sample from the population and estimate the likely value of this population parameter using our study sample data via a sample statistic (the sample prevalence, i.e.&nbsp;the percentage of individuals in the sample with COVID-19), combined with some measure of how precise this point estimate is likely to be of the population parameter. Usually this measure of precision would be a confidence interval.</p>
+<p>Second, casual inference. For example, what effect does one dose of a given COVID-19 vaccine have on the probability of suffering from COVID-19 in the six-months following vaccination in a given population? Here, we might seek to measure the causal effect in terms of the average difference in the probability of suffering COVID-19 in the six-months after vaccination in a randomly selected individual who had the vaccine compared to if they had not had the vaccine. To estimate this population parameter we might take a sample of individuals from the population and run an RCT with, measuring the difference in the proportion of individuals randomly given the vaccine (intervention) who suffer COVID-19 in the six-months following vaccination compared to the proportion of individuals randomly not given the vaccine (control).</p>
+<p>We would then again combine this sample statistic with some measure of how precise this point estimate is likely to be of the population parameter. Again, usually this measure of precision would be a confidence interval. However, although our estimate and confidence interval provides the best understanding of the likely direction, size and precision of the causal effect (population parameter) in the population, the dominant approach (at least for RCTs) is to base conclusions about the likely existence of any causal effect (as opposed to any difference being due to sampling error) on a null-significance hypothesis test. We might therefore use an appropriate hypothesis test to test how unlikely it would be to observe an effect at least as great as the one observed if we assume that there is actually no difference in the probability of suffering COVID-19 between our two groups. Then, if the corresponding p-value were less than 0.05 we may conclude the difference is likely to represent a true causal effect of the vaccine in the given population.</p>
+<p>So where does sample size come into this? When we seek to make statistical inferences, like in the examples above, the sample size can be loosely thought of as simply the number of units of observation or sampling units that we need to give ourselves a reasonable chance of answering our research question satisfactorily. The units of observation may be individuals, health facilities etc, or they may be individuals, health facilities etc at successive time periods, depending on the study design.</p>
+<p>In the sample size calculation we define what we mean by reasonable chance/satisfactorily, and the reason we cannot guarantee that we will answer our research question in an inferential study is because we can only make probabilistic conclusions. This is because we are basing our inferences on samples, which may or may not be representative of our target population due to sampling error (and that’s ignoring other sources of bias/error).</p>
+<p>More formally, you make a series of assumptions, such as what level of variation in an outcome we expect to get in our sample, and then a sample size calculation can, in theory, tell you how large a sample size you need to get results with sufficient precision or power (we’ll come back to these concepts shortly). However, the validity or accuracy of a sample size calculation depends entirely on the validity/accuracy of the assumptions, as we’ll discuss. And whether the results can be validly generalised to the target population, assuming the internal validity is perfect, depends on the representativeness of the sample. As always the important thing is to think carefully and critically when planning your sample size, and not just mindlessly plug in some optimistic values.</p>
+<p>There are two main approaches typically used for calculating sample sizes for quantitative studies which can be thought of as:</p>
+<ol type="1">
+<li><p>The confidence interval or precision based approach.</p></li>
+<li><p>The hypothesis testing based approach.</p></li>
+</ol>
+<p>In practice they look quite different, and they do work quite differently in practice. However, they are actually very closely related, particularly in the underlying maths (not that we look into that).</p>
+<p>In this practical we will make use of the sample size calculation tools in SPSS.</p>
+</details>
+</section>
+<section id="confidence-interval-based-approach" class="level2">
+<h2 class="anchored" data-anchor-id="confidence-interval-based-approach">Confidence interval based approach</h2>
+<section id="overview" class="level3">
+<h3 class="anchored" data-anchor-id="overview">Overview</h3>
+<details>
+<summary>
+Read/hide
+</summary>
+<p>In summary, this is where we calculate the sample size we need to estimate our summary statistic of interest (e.g.&nbsp;a mean, proportion, or linear regression coefficient) with a given level of precision, by which we mean obtaining confidence intervals around our sample statistic of interest that are no wider/larger than a pre-specified size/range, <em>assuming all the assumptions that go into the calculation are exactly true</em>. If you need a reminder of the distinction/definition of sample statistics and population parameters see below.</p>
+<p><strong>Population parameters and sample statistics:</strong></p>
+<p>Remember, population parameters are either the exact summary measures of a characteristics’ distribution in the target population, such as the exact mean age of individuals in the target population, or the exact summary measures of a relationship/association, such as the exact mean difference in systolic blood pressure between individuals aged &lt;40 compared to individuals aged ≥40 in the target population. And we estimate the likely values of population parameters, i.e.&nbsp;make statistical inferences about their likely values, which we can rarely if ever know for sure, based on: 1) the equivalent sample statistics that we calculate from our sample, such as the <em>sample</em> mean age of individuals or the <em>sample</em> mean difference in systolic blood pressure between individuals aged &lt;40 compared to individuals aged ≥40, and 2) the associated confidence intervals around those statistics. Or, if we are taking a hypothesis testing based approach to inference (see below), we estimate whether the population parameter of interest is likely to differ from some null hypothesis value based on a p-value calculated from the sample data.</p>
+<p>This approach can be used for any sample statistic including measures of relationships such as differences in means/proportions or regression coefficients, but the confidence interval approach is mainly used when the aim is to describe population characteristics (something we will look at in section 4.2). This is typically in the context of a cross-sectional/repeated cross-sectional/longitudinal survey generating descriptive outcome measures for numerical or categorical variables in terms of means and proportions respectively. Note: any categorical outcome with &gt;3 category levels can also be treated as a series of binary outcomes based on each unit of observation having or not having the characteristic represented by each level of the categorical variable. For example, when sex is coded as having two levels, male and female, each level can be analysed as a binary variable, i.e.&nbsp;the proportion of individuals who are male (implicitly compared to the proportion who are not-male, i.e.&nbsp;female), or vice versa. Or for the categorical variable religion where we code it as having three levels, none, Christian, Muslim, we can analyse this as three related binary variables: religion-none = yes/no, religion-Christian = yes/no, and religion-Muslim = yes/no.</p>
+<p>Therefore, in many surveys most outcomes will be categorical variables (particularly from self-responses) where the goal will be to summarise the frequency (typically as a %) of each category level for each categorical variable. Consequently, if there is no clear primary (most important) outcome the sample size is often based on obtaining a level of precision for a generic binary variable, when all categorical variables will be analysed as a series of binary variables (i.e.&nbsp;inferential statistics, namely confidence intervals, will be calculated for each binary variable).</p>
+</details>
+</section>
+<section id="analytical-studies-and-the-confidence-interval-approach" class="level3">
+<h3 class="anchored" data-anchor-id="analytical-studies-and-the-confidence-interval-approach">Analytical studies and the confidence interval approach</h3>
+<details>
+<summary>
+Read/hide
+</summary>
+<p>Why is the confidence interval approach rarely used for analytical studies?</p>
+<p>The lack of use of the confidence interval approach in these situations is probably because of the dominance of the null hypothesis significant testing (NHST) approach to analytical inference, which we’ll look at next, whereas with descriptive studies the main aim is often estimating a range of characteristics (i.e.&nbsp;summarising individual variables) to a given level of precision rather than testing hypotheses about differences/relationships. And as we will see below, when using a NHST approach the more natural/logical sample size calculation approach is arguably the hypothesis testing approach to sample size calculations. However, I would argue that given the benefits of using confidence intervals for making statistical inferences rather than NHST tests, we should make use of the confidence interval sample size approach as the norm. And we can certainly do this. We just base our sample size on the level of precision (confidence interval width) we want around our estimate of the difference of interest.</p>
+</details>
+</section>
+</section>
+<section id="hypothesis-testing-based-approach" class="level2">
+<h2 class="anchored" data-anchor-id="hypothesis-testing-based-approach">Hypothesis testing based approach</h2>
+<section id="overview-1" class="level3">
+<h3 class="anchored" data-anchor-id="overview-1">Overview</h3>
+<details>
+<summary>
+Read/hide
+</summary>
+<p>The hypothesis testing approach is primarily used for analytical studies that are trying to understand whether a given relationship exists. It is usually the case that the relationship of interest will be studied and analysed in terms of a difference in a continuous or binary outcome between two groups, which are usually independent groups but they can be related. However, the relationship may also be analysed in terms of a linear regression coefficient for a continuous independent variable, a logistic regression odds ratio, or other similar measure, but these are much less commonly seen. Also, as we explain below, in theory this approach can also be used for descriptive studies, but this is very rarely done. As these other approaches/scenarios are rarely/very rarely used we won’t look at them further and we below will just assume we are considering the approach where our relationship of interest is analysed in terms of a difference in a continuous or binary outcome between two <strong>independent</strong> groups.</p>
+<p>The hypothesis testing approach is arguably harder to understand well than the confidence interval approach. It may be easiest to understand once you understand the process. Therefore, we will explain it in summary here by detailing the key steps you go through.</p>
+<p>First, we pre-specify a target difference that represents the smallest difference in our outcome between the two groups that we want to be able to detect. This target difference also explicitly or implicitly incorporates our assumption about what level of variation will exist in the outcome variable in the sample data. We also pre-specify the threshold below which we would declare a p-value from a NHST test of the null hypothesis that there is no difference in the target population “statistically significant”. That is, the threshold below which we would reject the null hypothesis and assume that the alternative hypothesis of a difference existing in the target population was more likely. This is usually the conventional P≤0.05 level.</p>
+<p>Then the last main assumption is maybe harder to understand. Here we pre-specify the probability that we will obtain a p-value from a NHST of the the null hypothesis that is statistically significant based on our chosen threshold for significance (i.e.&nbsp;equal to or below our chosen threshold). Technically speaking this probability is the proportion/percentage of the time we would obtain a p-value from a NHST of the the null hypothesis that is statistically significant, based on our chosen threshold for significance, if we were to repeat the study an infinite number of times. The reason we can’t guarantee we will get a statistically significant p-value even if all our other assumptions are correct is because of sampling error. Even if the true difference in the outcome between the two groups that exists in the target population is equal to (or larger) than our pre-specified target difference, in any given randomly selected sample we might, due to sampling error, select a sample where the difference in the sample doesn’t reflect the difference in the target population and is in fact smaller. However, we can ensure that this only happens a given proportion of the time.</p>
+<p>Then conditional on our assumption about the target difference in the sample data being exactly true, and conditional our assumption about the level of variation in the outcome in our sample data being exactly true, and conditional on their being no bias/error in the study and analysis other than sampling error, the resulting calculation will tell us what sample size we need to obtain to ensure that we have the pre-specified probability that we set of obtaining a statistically significant p-value when testing the null hypothesis.</p>
+<p>Unfortunately there is quite a lot of technical terminology associated with this approach that we haven’t used yet for obvious reasons. However, we must familiarise ourselves with this terminology. First, the threshold at which we declare an effect statistically significant and reject the null hypothesis is known as the “alpha level” or the “level of statistical significance”, and the probability that we will be able to detect our target difference if it exists via getting a p-value less than our level of significance is known as the “power” of the hypothesis test. The power is also equivalent to 1 - “beta” (i.e.&nbsp;“1 minus beta”), where beta is the probability (in the long-run) of getting a false negative result, i.e.&nbsp;the probability of not rejecting the null hypothesis when it is actually false. Therefore, power is the probability of correctly rejecting the null hypothesis when it is false in the long-run assuming all assumptions that go into the sample size calculation are true.</p>
+<p>You may be wondering why we need to pre-specify values for the alpha level and the power. Why not just set both to their maximum so that we always obtain a statistically significant result? The short answer is there is a trade-off with the resulting required sample size, and by convention researchers typically therefore set alpha to 0.05 (or less commonly 0.01) and power to 0.8 (or less commonly 0.9). See below for more details.</p>
+<p>Why can’t we always minimise our alpha level and maximise our power?</p>
+<p>More specifically, alpha is also the false positive rate of a hypothesis test, or the rate at which we will falsely declare a difference statistically significant in the long-run when conducting null hypothesis significance tests in a given scenario. Therefore, we want this to be as small as possible to avoid making mistakes, i.e.&nbsp;falsely declaring there to be a statistically significant difference, which we interpret to mean there is likely to really be a difference in the target population. However, the smaller we set the alpha level the larger the sample size required to detect any given difference as statistically significant for a given power (i.e.&nbsp;the larger the sample size required to detect any given difference as statistically significant with a given probability).</p>
+<p>Similarly, the higher we set the power level the larger the sample size required to detect any given difference as statistically significant for a given alpha level or level of statistical significance. This trade-off is simply a function of the maths underlying hypothesis testing approach sample size calculations: we need more statistical information and therefore a larger sample size to both reduce how often we make false positive decisions and increase how often we make true positive decisions from NHST. Similarly, for a given alpha and power level we require more statistical information or a larger sample size to detect as statistically significant smaller and smaller target differences (assuming they exist).</p>
+<p>Therefore, for any given target difference we clearly want to minimise our level of statistical significance to reduce our false positive rate while maximising our power level to increase our chances of detecting statistically significant differences (assuming they exist!), while not requiring an unfeasibly large sample size. Consequently, typical values of alpha used in almost all sample size calculations are either 0.05 (the common statistical significance threshold) or less commonly 0.01 (i.e.&nbsp;5% or 1%), while typical values for the power are 0.8 or less commonly 0.9 (i.e.&nbsp;80% or 90% power). Very broadly speaking, these values typically allow you to come up with a feasible sample size calculation for not “unreasonably” small target differences. However, these are not magic values and they are very much arbitrary conventions with no logical or natural basis for them other than the fact that people like round numbers, and a 5% false positive rate (0.05) and an 80% chance of detecting a difference as statistically significant if it exists seemed like “reasonable” values to researchers who have gone before us, given how much these two values/assumptions “cost” in terms of the required sample size.</p>
+</details>
+</section>
+<section id="what-about-descriptive-studies" class="level3">
+<h3 class="anchored" data-anchor-id="what-about-descriptive-studies">What about descriptive studies?</h3>
+<details>
+<summary>
+Read/hide
+</summary>
+<p>This hypothesis testing based approach can also be used for estimating sample sizes related to sample statistics that measure characteristics, e.g.&nbsp;means and proportions as estimated in a cross-sectional survey, if you wanted to test hypotheses about whether those characteristics differ from a given null hypothesis value (i.e.&nbsp;an assumed population value). However, this approach is almost only ever used to calculate sample sizes required for primarily analytical studies where the main research questions are about associations/relationships, and then this is usually typically further restricted/framed just in terms of differences between two groups, e.g.&nbsp;differences between two means or two proportions, where the intention is to use NHST to see whether the observed sample difference differs significantly from the assumed null hypothesis difference (usually of no difference).</p>
+</details>
+</section>
+</section>
+</section>
+<section id="practice" class="level1">
+<h1>Practice</h1>
+<hr>
+<section id="exercise-1-sample-size-required-to-estimate-a-mean-to-a-given-level-of-precision" class="level2">
+<h2 class="anchored" data-anchor-id="exercise-1-sample-size-required-to-estimate-a-mean-to-a-given-level-of-precision">Exercise 1: Sample size required to estimate a mean to a given level of precision</h2>
+<section id="scenario" class="level3">
+<h3 class="anchored" data-anchor-id="scenario">Scenario</h3>
+<p>You work for a regional ministry of health in a region where public health facilities have reported increasing numbers of patients seeking treatment for cardiovascular diseases over the last decade. However, there is no good data on the cardiovascular health of the population. Therefore, your department has tasked you with conducting a population survey on the cardiovascular health of the population. As it is hard to measure actual cardiovascular health you will focus on systolic blood pressure as a key proxy indicator or risk factor for cardiovascular health. The primary aim of the survey is therefore to estimate the distribution of blood pressure, specifically systolic blood pressure (mmHg), values within the target population, along with collecting other relevant health and socio-demographic data. As the primary or key outcome variable is systolic blood pressure and your aim is to estimate the distribution of this outcome in the target population a confidence interval based approach to the required sample size makes most sense. This is because this approach will allow you to plan a sample size that will enable you to estimate the distribution of the outcome to a certain level of precision (i.e.&nbsp;to estimate it with a certain maximum confidence interval width).</p>
+</section>
+<section id="sample-size-assumption-inputs" class="level3">
+<h3 class="anchored" data-anchor-id="sample-size-assumption-inputs">Sample size assumption inputs</h3>
+<p>When estimating the sample size required to estimate a mean with confidence intervals of a maximum desired width there are just three assumption inputs to consider.</p>
+<p>1. What confidence level do you want for your confidence interval?</p>
+<p>The convention is a 95% confidence interval, and unless you have a good reason to choose otherwise use this.</p>
+<ul>
+<li>Therefore, we will use <strong>95%</strong>.</li>
+</ul>
+<p>2. What standard deviation (SD) is your outcome variable expected to have in your sample data?</p>
+<p>This may be estimated from values in the literature from similar studies, or from pilot data (although this is risky as pilot studies by definition are small and cannot produce unreliable estimates of any sample statistics), or you can use the following rough rule of thumb:</p>
+<blockquote class="blockquote">
+<p>Take the range of values for your outcome that roughly 95% of the population are likely to fall between/within. Divide this by 4 for a conservative estimate of the population SD for the outcome.</p>
+</blockquote>
+<p>For our example, in our scenario we might assume, from clinical knowledge/existing literature, that about 95% of people in our target population have systolic blood pressure values between 80 and 150 mmHg. Therefore, the expected range is 150 - 80 = <strong>70</strong>. We then divide this by 4: 70/4 = <strong>17.5</strong>. You should then round this up for safety to at least 18, although for greater safety you might round up further (say to 20). The larger the assumed SD the larger the sample size required, but the safer you will be because you have less chance of finding out that the SD in your sample is actually higher than you assumed, which could mean you won’t then achieve your desired precision level. Note: this rule of thumb only applies to variables that are, at least approximately, normally distributed. See the following paper for an improved but slightly more complicated approach to estimate SDs: https://bmcmedresmethodol.biomedcentral.com/articles/10.1186/1471-2288-14-135</p>
+<ul>
+<li>Therefore, we will use <strong>18 mmHg</strong>.</li>
+</ul>
+<p>3. What is the minimum level of precision that you want your confidence intervals to have?</p>
+<p>This should be based on practical considerations, such as what level of precision will be useful for users of the results of the study such as clinicians, health administrators, and policy makers etc. Here we will assume that our result would only be judged to robust and useful by clinicians if our confidence intervals are a maximum of +/- 2.5 mmHg. This means that whatever mean we estimate we want the confidence intervals to be no wider than that mean plus 2.5 mmHg and that mean minus 2.5 mmHg. Note: the desired confidence interval precision does not depend on the likely/assumed value of the outcome. Also note: we have defined the precision of our desired confidence interval in terms of the “half-width” of the confidence interval, which is just the upper confidence interval value minus the lower confidence interval value (i.e.&nbsp;the confidence interval range) divided by 2. You will also often see this half-width referred to as the “margin of error”: https://en.wikipedia.org/wiki/Margin_of_error</p>
+<ul>
+<li>Therefore, we will set our confidence interval half-width to <strong>2.5 mmHg</strong>.</li>
+</ul>
+<p>4. What response rate do you expect?</p>
+<p>It is very rare to achieve a 100% response rate, so typically you should use previous values in the literature, if they exist, along with any pilot data, and past experience, to decide on a likely response rate. This should be a conservative/safe assumption, i.e.&nbsp;round down a “sufficient” extent, because experience shows researchers typically overestimate the response rate. SPSS does not allow you to automatically adjust the sample size for the response rate so we have to do this manually after we get our estimated sample size (assuming 100% response rate), but we can do this very easily as follows:</p>
+<blockquote class="blockquote">
+<p>Sample size adjusted for &lt;100% response rate = desired sample size (i.e.&nbsp;the result from the calculation, which assumes a 100% response rate) / assumed response rate as a proportion.</p>
+</blockquote>
+<p>For example, if we did our sample size calculation and we got a required sample size of 92, then if we assume we will likely only get a response rate of 90% or higher (0.9 on the proportion scale, i.e.&nbsp;90/100), then we actually need to aim to collect a sample size of 92/0.9 = <strong>103</strong> (rounding up). So we need to approach 103 people to end up with at least 92 who participate (assuming our response rate assumption is accurate).</p>
+<blockquote class="blockquote">
+<p>Note: while this will ensure that you have at least 92 individuals and that you achieve your desired level of precision, if peoples’ participation is related to their values of the outcome of interest then recruiting more people won’t stop your results from suffering response bias. Increasing the sample size will increase the precision of the estimate but it can never reduce any such bias! So you can certainly have a very precisely estimated (narrow confidence intervals) but very biased result.</p>
+</blockquote>
+<ul>
+<li>Therefore, we will assume a response rate of <strong>0.9</strong>.</li>
+</ul>
+</section>
+<section id="calculate-the-required-sample-size" class="level3">
+<h3 class="anchored" data-anchor-id="calculate-the-required-sample-size">Calculate the required sample size</h3>
+<p>Sorry, there is currently no video instructions for this method. Please use the written instructions below.</p>
+<p><strong>Written instructions: calculate the sample size required to estimate a population mean with a given level of precision when using the t-distribution</strong></p>
+<ul>
+<li><p>From the main menu go: <mark>Analyse &gt; Power Analysis &gt; Means &gt; One Sample T Test</mark>. Note that this sample size tool is aimed mainly at those wishing to test whether a population mean differs from an assumed value (the null hypothesis). So while we can use it to calculate the sample size necessary to estimate a population mean to a given level of precision it’s a little awkward.</p></li>
+<li><p>In the <mark>Power Analysis: One-Sample Mean</mark> tool window that appears click on the blue-rimmed <mark>Precision</mark> box at the top right. Enter our desired minimum half-width for our confidence interval (2.5 mmHg) into the <mark>Specify the half-width of confidence interval</mark> box. Once entered the <mark>Add</mark> button should appear turn from grey to blue and you should then click it to add the half-width into the box. Then click <mark>Continue</mark>.</p></li>
+<li><p>Then back in the main window add our assumed population standard deviation for the outcome (18 mmHg): look for the <mark>Population standard deviation</mark> box about half way down and enter the value 18.</p></li>
+<li><p>That’s all we need to specify for our confidence interval based sample size calculation. However, as I said above though the tool is a bit awkward/clunky for our purposes because it forces us to enter assumptions as if we also wanted to estimate the sample size necessary for a hypothesis test, testing whether our sample mean differs from some assumed population mean. Therefore, we need to fill out the assumptions for a hypothesis test as well, but be clear: these will only affect the results of the sample size calculation for the corresponding hypothesis test, which we are not interested in, so we are only adding these assumptions because the tool won’t let us only calculate our confidence interval based sample size without doing so! So please don’t worry about these values or assumptions here. They are not of any interest!</p></li>
+<li><p>Therefore, at the top in the <mark>Single power value</mark> box add any value &gt;0 and &lt;1 (it won’t accept values outside this range), e.g.&nbsp;0.5. Then in the <mark>Population mean</mark> box below add any value as long as it differs from the value in the <mark>Null value</mark> box below it, which by default is 0, so e.g.&nbsp;add 1.</p></li>
+<li><p>Now, finally, we can click <mark>OK</mark>. In the results that appear ignore the first <strong>Power Analysis Table</strong> as this relates to the sample size for a hypothesis test, which we are not interested in and just adding random assumptions for. Our results are in the <strong>Sample Size Based on Confidence Interval</strong> table. We can see our required sample size in the first column headed “N”: 202. It also gives the assumed half-width (i.e.&nbsp;what we wanted) and the actual half-width that the sample gives us, which will be the closest value to our desired half-width that we can get given a whole number sample size.</p></li>
+<li><p>Finally, we need to adjust our sample size for our assumed response rate of 90%. Remember we just need to divide our sample size assuming a 100% response rate by our assumed response rate on the proportion scale:</p></li>
+</ul>
+<blockquote class="blockquote">
+<p>202 / 0.9 = 244.4.</p>
+</blockquote>
+<ul>
+<li>So, rounding up, our final required sample size is <strong>245</strong>.</li>
+</ul>
+<blockquote class="blockquote">
+<p>Therefore, assuming the expected population SD is 18, and employing the t-distribution to calculate our confidence intervals, and assuming a response rate of 90%, the study would require a sample size of <strong>245</strong> to estimate the population mean systolic blood pressure (mmHg) with 95% confidence intervals of width ± 2.5.</p>
+</blockquote>
+<p>Remember though, if you achieve the required sample size you will only achieve your desired level of precision if the other assumptions in the calculation are accurate, i.e.&nbsp;if the SD of the outcome in the sample equals the assumed SD. If the actual SD in the sample data is larger than the pre-specified expected value then the precision you achieve, i.e.&nbsp;the half-width of the confidence intervals around your estimated mean, will be larger than your desired level of precision. Note: the opposite is also true, i.e.&nbsp;you’ll get better precision than expected if the SD turns out to be smaller than expected. Also, irrespective of the level of precision, the estimated population mean will only be unbiased on average if there is no systematic difference in outcome values between non-responders and responders, and if there are no other sources of bias impacting the data. Similarly, if our sample is not taken via a probability sampling method then formally we cannot be sure that the interpretation of our result applies to the population.</p>
+</section>
+<section id="additional-considerations" class="level3">
+<h3 class="anchored" data-anchor-id="additional-considerations">Additional considerations</h3>
+<details>
+<summary>
+Read/hide
+</summary>
+<p>What if you are estimating multiple means in a quantitative survey? For example, for our scenario where we are conducting a survey on cardiovascular health we might also measure salt intake, cigarettes smoked per day, BMI etc. Then you probably have two main approaches depending on the situation. First, if there is a clear, primary research question/objective then you can base the sample size of the outcome that allows you to answer that research question/acheive that objective. For example, if the primary aim of our survey was to estimate the distribution of systolic blood pressure in our target population then we could base the sample size on this outcome alone, and essentially hope that this is also a sufficient sample size to estimate our other numerical outcomes with sufficient precision.</p>
+<p>Second, if there is no clear, primary research question/objective then decide which outcomes you need to achieve a given level of precision for when estimating their distribution, and simply choose the sample size that is largest. That way you ensure that you will achieve at least sufficient precision for all your outcomes. For example, if we found we needed a sample size of 100 to estimate our systolic blood pressure outcome with sufficient precision and a sample size of 150 to estimate our salt intake outcome with sufficient precision, and these were our two key outcomes, then we would aim for a sample size of 150.</p>
+</details>
+</section>
+</section>
+<section id="exercise-2-sample-size-required-to-estimate-a-proportion-to-a-given-level-of-precision" class="level2">
+<h2 class="anchored" data-anchor-id="exercise-2-sample-size-required-to-estimate-a-proportion-to-a-given-level-of-precision">Exercise 2: Sample size required to estimate a proportion to a given level of precision</h2>
+<section id="scenario-1" class="level3">
+<h3 class="anchored" data-anchor-id="scenario-1">Scenario</h3>
+<p>You work for the regional ministry of health and the ministry leaders wish to know how frequently the public primary care facilities in the region run out of one or more drugs on the essential medicines list (known as a drug stock-out). They therefore plan to conduct a cross-sectional survey of public primary care facilities in the region and record whether each facility ran out of one or more drugs on the essential medicines list within the last month of the survey or not. Therefore, the outcome is binary (yes/no) and is most naturally summarised as a proportion/percentage. The ministry of health want a clear answer on this issue so they want to be fairly certain of the proportion of public primary care facilities across the whole region that have experienced such a drug “stock-out” within the last month. After some discussion it is agreed that you will try to give them an answer to this percentage within ± 5 percentage points.</p>
+</section>
+<section id="sample-size-assumption-inputs-1" class="level3">
+<h3 class="anchored" data-anchor-id="sample-size-assumption-inputs-1">Sample size assumption inputs</h3>
+<p>When estimating a proportion for a binary outcome there are also three assumptions to input when calculating your sample size based on confidence intervals.</p>
+<p>1. What confidence level do you want for your confidence interval?</p>
+<p>The convention is a 95% confidence interval, and unless you have a good reason to choose otherwise use this.</p>
+<ul>
+<li>Therefore, we will use <strong>95%</strong>.</li>
+</ul>
+<p>2. What is your expected prevalence/proportion/percentage?</p>
+<p>Remember, these are all equivalent measures but on potentially different scales, and you can covert between proportions and prevalences/percentages (prevalences are usually given as percentages, but can be given as proportions) by multiply/dividing by 100. We’ll just refer to the percentage from here on as that’s the scale that most people prefer to use.</p>
+<p>Note: unlike for a mean and for technical reasons related to the assumed probability distribution that a binary variable follows we do not specify an expected level of variation in the outcome like a SD, because for a binary variable the variation is assumed to be related to the mean, i.e.&nbsp;to the underlying probability or proportion. Therefore, we just need to specify the assumed proportion. As with the SD, you may either base your expected proportion on prior estimates from the literature, and/or from pilot studies, or if there is no information to go on then the safest (most conservative) option is to use an expected proportion of 0.5. This is because for any given sample size the confidence intervals you obtain when estimating a proportion will be widest around a proportion of 0.5, so if you assume a proportion of 0.5 then whatever level of precision you pre-specify you will guarantee that you will achieve that level of precision (conditional on obtaining the required sample size) or greater (if the proportion turns out to be &lt;0.5 or &gt;0.5. Again, technically this is because the probability distribution of a binary variable assumes that the variance is greatest when the underlying probability (i.e.&nbsp;proportion) is 0.5, and declines proportionally for values &lt;0.5 or &gt;0.5.</p>
+<p>However, an assumption of a proportion of 0.5 can be very conservative and result in a much larger sample size than might be necessary even if you are “playing it safe”. Therefore, it’s usually best to play around with this assumption based on your best estimate/guess and see how conservative you can go while still requiring a feasible sample size. For example, drug stock-outs are thought to be fairly rare and unlikely to occur in the previous month in more than 5 percent of facilities on average. Therefore, it doesn’t make sense to assume a proportion 0.5 as it’s very unlikely that you’d be this wrong, but to be conservative it is agreed you will assume a higher percentage of 10% to be the true frequency.</p>
+<ul>
+<li>Therefore, we’ll assume an outcome proportion of <strong>0.1 (10%)</strong>.</li>
+</ul>
+<p>3. What is the minimum level of precision that you want your confidence intervals to have?</p>
+<p>The same considerations apply when choosing your desired half-width as for the case when estimating a mean, i.e.&nbsp;consider the practical implications and requirements of your results.</p>
+<ul>
+<li>Therefore, as discussed above we’ll assume we want a confidence interval that goes from 0.05 to 0.15, so a width of 0.1 or a half-width of <strong>0.05</strong> on the proportion scale.</li>
+</ul>
+<p>4. What is your expected response rate?</p>
+<p>As discussed for the estimating a mean situation if you expect &lt;100% response rate you should adjust the sample size for the assumed response rate.</p>
+<ul>
+<li>Therefore, again we’ll assume a response rate of <em>90% (0.9)</em>.</li>
+</ul>
+</section>
+<section id="calculate-the-required-sample-size-1" class="level3">
+<h3 class="anchored" data-anchor-id="calculate-the-required-sample-size-1">Calculate the required sample size</h3>
+<p>Sorry, there is currently no video instructions for this method. Please use the written instructions below.</p>
+<p><strong>Written instructions: calculate the sample size to estimate a single proportion with a given level of precision</strong></p>
+<ul>
+<li><p>From the main menu go: <mark>Analyze &gt; Power Analysis &gt; Proportions &gt; One Sample Binomial Test</mark>.</p></li>
+<li><p>Click the blue-rimmed <mark>Precision</mark> box at the top right. We now have a diverse set of different approaches we can select. These relate to the different approaches to calculating confidence intervals we can take for proportions. As you can see people have developed lots of different methods. When computing confidence intervals for proportions we can assume a normal distribution. This would be the “Wald” method. When the proportion is not too close to 0 or 1, e.g.&nbsp;&gt;0.1 and &lt;0.9, so called normal-approximation confidence intervals for proportions will be fairly accurate. However, if the proportion is close to 0 or 1, e.g.&nbsp;&lt;0.1 or &gt;0.9, then this, particularly if the sample size is small, e.g.&nbsp;&lt;30, then this approach can lead to biased confidence intervals that do not include the true population value at the specified rate (e.g.&nbsp;95% of the time). Hence why statisticians have developed many different approaches that try to give more accurate confidence intervals. There’s not a great deal of guidance in the literature about which approach/approaches are best, but some evidence suggests the “Wilson Score” method often does well, so let’s just go with that one and not worry.</p></li>
+<li><p>Therefore, click the <mark>Wilson Score</mark> tick box. Then in the <mark>Specify the half-width of confidence interval</mark> box add our desired half-width of 0.05. The <mark>Add</mark> button should then turn blue and you should then click it to add our desired half-width to the box. Then click <mark>Continue</mark>.</p></li>
+<li><p>We then need to specify the assumed proportion we will be estimating. As discussed above, we assume this will be no greater than 0.1 (10%), so we will assume this upper value to be safe. Therefore, in the <mark>Population proportion:</mark> box add 0.1.</p></li>
+<li><p>Again, that’s all we need to do for our confidence interval based sample size, but unfortunately SPSS forces us to also specify assumptions for if we were calculating the sample size necessary when testing whether a proportion differed from some null hypothesis value. Therefore, in the <mark>Single power value:</mark> box, which doesn’t apply to our confidence interval based sample size, add any number &gt;0 or &lt;1 (again, it won’t accept values outside this range), e.g.&nbsp;0.5.</p></li>
+<li><p>Then, finally, you can click <mark>OK</mark>.</p></li>
+<li><p>In the results that appear again ignore the <strong>Power Analysis Table</strong> and look at the <strong>Sample Size Based on Confidence Interval</strong> table. In the first column under heading “N” we can see that our estimated required sample size is 141, and we can see the desired half-width we aimed for and the closest the calculation could get for a whole numbered sample size.</p></li>
+<li><p>Finally, let’s adjust for our assumed response rate:</p></li>
+</ul>
+<blockquote class="blockquote">
+<p>141 / 0.9 = 156.6.</p>
+</blockquote>
+<ul>
+<li>So, rounding up, our final required sample size is <strong>157</strong>.</li>
+</ul>
+<blockquote class="blockquote">
+<p>Therefore, assuming that the sample and population percentage of facilities experiencing a drug stock-out within the last month is 10% or lower, and assuming a response rate of 90% in the survey, then the study would require a sample size of <strong>157</strong> to estimate the percentage of stock-outs such that the 95% confidence intervals of the estimate were at most ±5 percentage points (i.e.&nbsp;go from at most 5% to 15%).</p>
+</blockquote>
+<p>Note that this assumes you are estimating your population proportion based on 95% confidence intervals calculated via the “Wilson Score” method we selected. You can see how to estimate a proportion using this method (or any of the methods listed in the sample size tool) in SPSS in the “Population description” section of the website.</p>
+<p>Also remember that achieving the level of precision implied by the sample size calculation depends on whether the estimated proportion in the sample data is equal to the expected proportion and on any other assumptions such as the true response rate being equal to your assumption. If the estimated proportion is further from 0.5 than your expected proportion (e.g.&nbsp;0.07) then you will have better precision than your pre-specified level of precision, assuming your response rate is equal or better than the assumed rate, and similarly if your response rate is better than your assumed rate you will have better precision than your pre-specified level of precision, assuming the estimated proportion is equal to or further from 0.5 than your expected proportion. And vice versa, i.e.&nbsp;your precision will be worse than the pre-specified value if the estimated proportion is closer to 0.5 than the expected proportion and/or if the response rate is worse than the assumed rate.</p>
+<p>Then as with the sample size for a mean, the same considerations apply around biases. Increasing the sample size will always increase the precision of your estimates, but it will never affect the influence of any study bias!</p>
+</section>
+<section id="additional-considerations-1" class="level3">
+<h3 class="anchored" data-anchor-id="additional-considerations-1">Additional considerations</h3>
+<details>
+<summary>
+Read/hide
+</summary>
+<p>See the “Additional considerations” section in the “Estimating a mean” section above for a discussion of some useful guidance when facing common additional considerations.</p>
+</details>
+</section>
+</section>
+<section id="exercise-3-sample-size-required-to-test-whether-two-independent-means-are-different" class="level2">
+<h2 class="anchored" data-anchor-id="exercise-3-sample-size-required-to-test-whether-two-independent-means-are-different">Exercise 3: Sample size required to test whether two independent means are different</h2>
+<section id="overview-2" class="level3">
+<h3 class="anchored" data-anchor-id="overview-2">Overview</h3>
+<p>The typical scenario where you would use this type of sample size calculation is when the research question is concerning whether there is a difference in the mean of a continuous outcome (or a discrete numerical outcome if it is distributed approximately normally) between two independent groups within a population. For example, when comparing the effect of an intervention on an outcome in a RCT, or describing the difference in the mean of a continuous outcome between women and men in a cross-sectional survey. The typical analysis for such a research question here would be via an independent t-test, or more powerfully a linear regression with a binary independent categorical variable to estimate the between-group difference (again based on a t-based null-hypothesis significance test), and additional independent variables, measuring characteristics of the subjects related to the outcome, to increase the precision of the estimate. We will see how to carry out independent t-tests in section <em>6.1. Independent t-test</em>, and linear regression in section <em>8.1. Linear regression</em>.</p>
+</section>
+<section id="scenario-2" class="level3">
+<h3 class="anchored" data-anchor-id="scenario-2">Scenario</h3>
+<p>You work for a research NGO in a country where public health facilities have reported increasing numbers of patients seeking treatment for cardiovascular diseases over the last decade. You have received funding to develop and pilot test an intervention that aims to improve the diagnosis and treatment of cardiovascular disease in your country’s public health facilities. Briefly, as this is a pilot test you plan to select one typical health facility and use an (individually) randomised controlled trial to compare relevant patient health outcomes in patients who are randomly allocated to be diagnosed and treated using the new intervention processes to patients who are randomly allocated to be diagnosed and treated using the existing processes. As cardiovascular disease events are rare you will use systolic blood pressure (mmHg) as a proxy outcome for cardiovascular health/risk.</p>
+<p>You will measure a range of other outcomes (i.e.&nbsp;secondary outcomes) and relevant health and socio-demographic data to use as independent variables in your analysis. However, as systolic blood pressure is your sole primary outcome you will base the sample size on this outcome alone. The idea is that if the intervention appears potentially effective based on this pilot study a multi-facility cluster trial will follow to provide definitive evidence. Therefore, based on consultations with clinicians and health officials in your country it has been agreed/decided that the smallest mean reduction in systolic blood pressure which will considered clinically meaningful/significant, and therefore indicating that the intervention should be tested in a large-scale cluster trial, is 5 mmHg.</p>
+</section>
+<section id="sample-size-assumption-inputs-2" class="level3">
+<h3 class="anchored" data-anchor-id="sample-size-assumption-inputs-2">Sample size assumption inputs</h3>
+<p>There are more assumption inputs to consider when taking a hypothesis testing approach to sample size calculations, but several of the inputs are typically fixed at conventional levels - although this should never mean that you just mindlessly select those levels, there’s always room for thought!</p>
+<p>1. What alpha (α) level or level of significance do you want?</p>
+<p>The lower this is set the less likely the resulting hypothesis test is to generate a type I error or a false positive result on average (or in the long-run), assuming you achieve the required sample size and that all other sample size assumption inputs are accurate. However, the lower this is set the larger the sample size required holding all other assumption inputs constant, so there’s a trade-off with the sample size. By convention the level of significance is usually set to be 0.05 or 0.01, i.e.&nbsp;the levels at which we commonly determine statistical significance: when P≤0.05 or less commonly P≤0.01. Again this is probably because it’s a nice round number and assumed to be reasonable trade-off. Unless you have a good reason to change this and know what you are doing then leave this as the default 0.05.</p>
+<ul>
+<li>Therefore, we’ll leave the level of significance as its default at <strong>0.05</strong>.</li>
+</ul>
+<p>2. What power (1-β) do you want?</p>
+<p>The higher this is set the more likely it is that the resulting hypothesis test will correctly reject a false null hypothesis, if the hypothesis is indeed false and the mean difference in the sample data is at least as large as the one assumed (see below), on average (or in the long-run), and assuming you achieve the required sample size and that all other sample size assumption inputs are accurate. However, again there is a trade-off: the larger this is set the larger the sample size required. By convention this is set at either 0.8 or less commonly 0.9. Again this is probably because it’s a nice round number and assumed to be reasonable trade-off. There’s absolutely no reason not to aim for a higher level of power though if you can afford the resulting sample size, and you can play around with this input and see how it affects your sample size.</p>
+<ul>
+<li>We’ll leave the power as its default at <strong>0.8</strong>.</li>
+</ul>
+<p>3. What is the expected difference in your outcome between the two independent groups (i.e.&nbsp;the expected difference in the two group means) and the expected variation in the outcome?</p>
+<p>This is where we pre-specify the target difference that we want to be able to detect, which is a reduction of 5 mmHg in our scenario.</p>
+<p>The expected standard deviation is the expected pooled standard deviation, i.e.&nbsp;assuming the outcome has the same standard deviation in both groups. As with the confidence interval approach to estimating a mean we can select this based on values in the literature, pilot data, and/or using the rule of thumb previously discussed. If you expect the standard deviation to be different in each group, which is often the case (e.g.&nbsp;outcomes in intervention arms are often less variable as processes are more standardised), then just use the bigger of the two standard deviations as the pooled standard deviation will always be smaller than this, i.e.&nbsp;it’s a conservative/safe approach. Let’s assume our expected shared or pooled standard deviation is 10 mmHg.</p>
+<ul>
+<li>Therefore, we’ll use the expected difference between means approach and enter the expected difference as <strong>-5</strong> (mmHg), i.e.&nbsp;a reduction of 5 mmHg, and the expected shared or pooled standard deviation as <strong>10</strong> (mmHg), to ensure we obtain a sample size based on our target difference.</li>
+</ul>
+<p>If the true difference in the target population is greater than this assumption then we’ll have more power on average than we expect. Note: it doesn’t make any difference to the calculation whether the target difference is positive or negative only the absolute value matters, so entering 5 or -5 won’t change the result.</p>
+<p>4. What is the ratio of group sizes that you expect?</p>
+<p>For any given total sample size, if the sample size in each of the two groups differs then you will not have the expected power that you pre-specified, and your power reduces as the ratio of group sizes gets further from 1 (i.e.&nbsp;the group sizes become increasingly different). Therefore, if you expect that you will not have equal group sizes you can account for this by specifying the expected group size ratio. We will just assume for our exercises below that we will have equal group sizes for simplicity, but be aware of this important consideration if you were carrying out a sample size calculation for a real study.</p>
+<ul>
+<li>Therefore, we’ll assumed an expected group size ratio of <strong>1</strong>, i.e.&nbsp;an equal ratio.</li>
+</ul>
+<p>5. What is the expected response rate?</p>
+<p>As with the estimating a mean tool the independent group means tool doesn’t have an option to automatically adjust for the expected response rate and so we’ll have to do it manually.</p>
+<ul>
+<li>We’ll assume a response rate of <strong>0.9 (90%)</strong>.</li>
+</ul>
+</section>
+<section id="calculate-the-sample-size" class="level3">
+<h3 class="anchored" data-anchor-id="calculate-the-sample-size">Calculate the sample size</h3>
+<p>Sorry, there is currently no video instructions for this method. Please use the written instructions below.</p>
+<p><strong>Written instructions: calculate the sample size required when comparing two independent means via the independent t-test</strong></p>
+<ul>
+<li><p>From the main menu go: <mark>Analyze &gt; Power Analysis &gt; Means &gt; Independent-samples T Test</mark>.</p></li>
+<li><p>In the <mark>Single power value:</mark> box enter our desired power: 0.8 (the most common convention).</p></li>
+<li><p>In the <mark>Group size ratio:</mark> enter our assumed maximum ratio for the group sizes: 1.</p></li>
+<li><p>In the <mark>Population mean difference</mark> enter the minimum difference we want to be able to detect via our hypothesis test: -5 (mmHg). Note that actually the sign is irrelevant, so we can just think in terms of the absolute value of the difference and enter 5 and get the same results.</p></li>
+<li><p>In the <mark>Population standard deviations are:</mark> area we can specify either an assumed pooled standard deviaiton for each group or specify separate assumptions for each group. As above we’re assuming a common/pooled standard deviation so leave the <mark>Equal for two groups</mark> button selected and in the <mark>Pooled standard deviation</mark> box enter our assumption for the pooled standard deviation: 10 (mmHg).</p></li>
+<li><p>In the <mark>Test Direction</mark> area we will leave the <mark>Nondirectional (two-sided) analysis</mark> button checked, because we don’t only want to test whether there is a difference between the groups in one direction. We want to test whether there is a difference in either direction.</p></li>
+<li><p>Finally, we will also leave the <mark>Significance level:</mark> box as it is, specifying the level of significance (or alpha) as 0.05 (the most common convention).</p></li>
+<li><p>Now click <mark>OK</mark>.</p></li>
+<li><p>In the <strong>Power Analysis Table</strong> that appears we can see in the first two columns the required sample size per group (under the “N1” and “N2” columns) of 64. So the overall required sample size is 64 + 64 = <strong>128</strong>. The other columns report some of the other key assumptions we made, such as the desired power and level of significance at which we would reject the null hypothesis.</p></li>
+<li><p>However, we would finally need to adjust this initial sample size for the assumed response rate:</p></li>
+</ul>
+<blockquote class="blockquote">
+<p>128 / 0.9 = 142.2</p>
+</blockquote>
+<ul>
+<li>As this is an odd number when rounded (143) we would add another 1.</li>
+</ul>
+<blockquote class="blockquote">
+<p>Therefore, we need to sample and recruit 144 / 2 = <strong>72</strong> individuals to the intervention and control groups to ensure we have an 80% chance (our power) of detecting a difference between each groups’ mean systolic blood pressure (mmHg) of 5mmHg or greater, on the assumption that such a difference exists in the population, via a null-hypothesis significance test based on a two-sided p-value with a significance level of 5%.</p>
+</blockquote>
+<ul>
+<li>That’s quite a complicated interpretation. Another way to think about it is that if we did our study an infinite number of times, each time calculating the p-value for the null-hypothesis that the difference between the two means we obtain = 0, and rejecting that null-hypothesis when the p-value is ≤0.05, then if the true difference in mean systolic blood pressure in the population between individuals given the intervention and those not given it is ≥5mmHg, then on average 80% of the time (in 80% of our repeated studies) we would get a p-value ≤0.05 and correctly reject the null-hypothesis. Still confused? I’m afraid it’s a complex series of concepts without an easy interpretation, and you just have to keep coming back to it until it clicks.</li>
+</ul>
+<p>Again, this calculation assumes you will be carrying out an independent t-test of the difference between your group means, either via a classical independent t-test or within the context of a linear regression model.</p>
+<p>However, as for the previous sample size calculations, the accuracy of this interpretation depends entirely on the underlying assumption that there is no bias in the study. If, for example, the 90% response rate is correct, but reflects the fact that 10% of individuals drop out of the study. Then if all 10% drop out from the intervention group due to side effects of the new treatment regimes, even if the true effect of the intervention is to reduce systolic blood pressure by &gt;5mmHg, we might have a power &lt;80%. That is, even if we recruit 72 participants per group we might actually only have a 10% chance of detecting a statistically significant difference between the two groups’ mean systolic blood pressures, because of the influence of this bias (known as differential loss to follow-up).</p>
+</section>
+</section>
+<section id="exercise-4-sample-size-required-to-test-whether-two-independent-proportions-are-different" class="level2">
+<h2 class="anchored" data-anchor-id="exercise-4-sample-size-required-to-test-whether-two-independent-proportions-are-different">Exercise 4: Sample size required to test whether two independent proportions are different</h2>
+<section id="overview-3" class="level3">
+<h3 class="anchored" data-anchor-id="overview-3">Overview</h3>
+<p>The typical scenario where you would use this type of sample size calculation is when the research question is concerning whether there is a difference in a binary outcome between two independent groups (and remember you can always convert a numerical outcome to a binary outcome, and you can always convert a categorical outcome with &gt;2 categories into a binary outcome, although it may not always make sense to do so). The typical study design for such a research question would either an RCT (most robust) or some form of observational comparison design, like a cohort study or an uncontrolled before and after study if the before group was independent of the after group (less common). The typical analysis for such a research question in these designs would be via a chi-square test of independence or a logistic regression with a binary independent categorical variable (plus maybe additional independent variables).</p>
+</section>
+<section id="scenario-3" class="level3">
+<h3 class="anchored" data-anchor-id="scenario-3">Scenario</h3>
+<p>You work for a research NGO in a country where public health facilities have reported increasing numbers of patients seeking treatment for diabetes over the last decade. You have received funding to develop and pilot test an intervention that aims to improve the diagnosis and treatment of diabetes in your country’s public health facilities. Briefly, as this is a pilot test you plan to select one typical health facility and use an (individually) randomised controlled trial to compare relevant patient health outcomes in patients who are randomly allocated to be diagnosed and treated using the new intervention processes to patients who are randomly allocated to be diagnosed and treated using the existing processes. You decide to define diabetes based on the international guideline of having a fasting plasma glucose level ≥7.0 mmol/l, and your primary outcome will therefore be the binary outcome of whether a patient has a fasting plasma glucose ≥7.0 mmol/l or &lt;7.0 mmol/l, i.e.&nbsp;whether they currently “have” diabetes/not. You will measure a range of other outcomes (i.e.&nbsp;secondary outcomes) and relevant health and socio-demographic data to use as independent variables in your analysis. However, as having diabetes/not is your sole primary outcome you will base the sample size on this binary outcome alone. The idea is that if the intervention appears potentially effective based on this pilot study a multi-facility cluster trial will follow to provide definitive evidence.</p>
+<p>Binary outcomes are naturally summarised as proportions/percentages, and a point prevalence is simply the proportion of individuals (or other units) that have a characteristic of interest at a certain point in time. Therefore, we can view our comparison of interest for our analysis as being a comparison between the proportion/percentage or point prevalence of diabetes in the intervention group compared to the proportion/percentage or point prevalence of diabetes in the control group.</p>
+<p>Unlike when you are calculating a sample size when comparing independent means, as we’ll discuss further below, there is a complicating issue. It is not just the difference in the outcome between the two groups that affects the sample size but also the value of the outcome (i.e.&nbsp;the assumed proportion) in each group.</p>
+<p>For our scenario though we’ll assume that we have good data on the existing point prevalence of diabetes among patients being treated for diabetes (i.e.&nbsp;the proportion of patients who have a fasting plasma glucose ≥7.0 mmol/l) in public health facilities, and that this is no greater than 0.3 (30%). We’ll also assume that based on consultations with clinicians and health officials in your country it has been agreed/decided that the smallest reduction in the prevalence of diabetes which will be considered clinically meaningful/significant, and therefore indicating that the intervention should be tested in a large-scale cluster trial, is a reduction from 0.3 to 0.2 (i.e.&nbsp;from 30% to 20%).</p>
+</section>
+<section id="sample-size-assumption-inputs-3" class="level3">
+<h3 class="anchored" data-anchor-id="sample-size-assumption-inputs-3">Sample size assumption inputs</h3>
+<p>Several of the assumptions are identical to those for the comparing two means sample size calculation, and so we will not explain them again.</p>
+<p>1. What alpha (α) level or level of significance do you want?</p>
+<ul>
+<li>We’ll leave the level of significance as its default at <strong>0.05</strong>.</li>
+</ul>
+<p>See the relevant description in the comparing two means section above if you need a reminder about this parameter.</p>
+<p>2. What power (1-β) do you want?</p>
+<ul>
+<li>We’ll leave the power as its default at <strong>0.8</strong>.</li>
+</ul>
+<p>See the relevant description in the comparing two means section above if you need a reminder about this parameter.</p>
+<p>3. What is the expected difference in your outcome between the two independent groups (i.e.&nbsp;the expected difference in the two group proportions)?</p>
+<p>As mentioned earlier we must be explicit about the outcome proportion expected in each group to set our minimum target difference we want to detect. As with the sample size for the mean difference, the difference we specify here should be the minimum target difference: the minimum difference we want to be able to detect, should it exist. Many studies instead base their sample size on the difference they expect (hope!) to see, but this inevitably is usually overly optimistic given the resource and monetary costs associated with a larger sample size. Therefore, such an optimistic approach often leads to wasted effort and money, because the sample size turns out to be too small to produce useful results.</p>
+<ul>
+<li>We’ll specify the expected proportions for each group explicitly, based on the minimum difference we want to be able to detect. We will therefore specify the assumed percentage outcome for the control group as <strong>30%</strong> and the expected percentage for the intervention group as <strong>20%</strong> to ensure we obtain a sample size based on our minimum target difference. If the true difference we find is greater than this then we’ll have more power than we expect.</li>
+</ul>
+<p>Note: it doesn’t matter which we round we specify these group percentages. As you’ll see in SPSS we can specify group 1 as 0.2 and group 2 as 0.3 or vice versa.</p>
+<p>Note: in the sample size calculation we will assume that the hypothesis test we will use will be the chi-squared test of independence, which we will cover in section <em>7.1. Chi-square test of independence</em>.</p>
+<p>4. What is the ratio of group sizes that you expect?</p>
+<p>See the description in the comparing two means section above.</p>
+<ul>
+<li>Again we’ll assume we have no reason to believe that either group will be larger than the other and so we’ll assume a group size ratio of <strong>1</strong>.</li>
+</ul>
+<p>5. What is the expected response rate?</p>
+<ul>
+<li>Again, we’ll assume a response rate of <strong>0.9 (90%)</strong>.</li>
+</ul>
+</section>
+<section id="calculate-the-sample-size-1" class="level3">
+<h3 class="anchored" data-anchor-id="calculate-the-sample-size-1">Calculate the sample size</h3>
+<p>Sorry, there is currently no video instructions for this method. Please use the written instructions below.</p>
+<p><strong>Written instructions: calculate the sample size required when comparing two independent proportions via the chi-square test of independence</strong></p>
+<ul>
+<li><p>From the main menu go: <mark>Analyse &gt; Power Analysis &gt; Proportions &gt; Independent-Samples Binomial Test</mark>.</p></li>
+<li><p>In the <mark>Power Analysis: Independent-Sample Proportions</mark> tool window at the top in the <mark>Single power value:</mark> box enter our desired power: 0.8 (the most common convention).</p></li>
+<li><p>Leave the <mark>Group size ratio:</mark> as 1.</p></li>
+<li><p>Then enter the outcome proportion values for each group that specify the minimum difference between the groups that we want to be able to detect. For <mark>Proportion parameters for group 1:</mark> enter 0.2 and for <mark>group 2:</mark> enter 0.3. As mentioned above though, we could equally specify group 1 as 0.3 and group 2 as 0.2. It makes no difference.</p></li>
+<li><p>We will leave the <mark>Significance level</mark> at 0.05 (the most common convention).</p></li>
+<li><p>And we will leave the <mark>Test Method</mark> as the <mark>Chi-squared test</mark>, with the <mark>Standard deviation is pooled</mark> box ticked (as default) but we will also tick the <mark>Apply continuity correction</mark> box, which makes our estimate a bit more conservative but more likely to give us our desired power.</p></li>
+<li><p>We will also leave the <mark>Test Direction</mark> again as <mark>Nondirection (two-sided) analysis</mark>, as we want to test whether the two groups are different, not whether there is a difference in one specific direction.</p></li>
+<li><p>Now you can click <mark>OK</mark>.</p></li>
+<li><p>Again, we can see the required sample size for each group in the first two columns (“N1” and “N2”). Some of the other columns list some of the other key assumptions made, specifically the power and level of significance. However, we also get our minimum desired difference that we want to be able to detect expressed in some different ways: as a risk difference (i.e.&nbsp;0.2 - 0.3 = -0.1), as a risk ratio (i.e.&nbsp;0.2/0.3 = 0.667), and as an odds ratio ((0.2/0.8) / (0.3/0.7) = 0.583). So our required overall sample size is 313 + 313 = 626. Compared to the previous sample size you can really get a feel for how much power we lose when we are working with binary outcomes compared to continuous outcomes. There’s just so much less information in the data. This is a great reason to avoid dichotomising numerical outcomes unless absolutely necessary.</p></li>
+</ul>
+<p>Finally, let’s adjust the required sample size for our assumed response rate:</p>
+<blockquote class="blockquote">
+<p>626 / 0.9 = 695.5.</p>
+</blockquote>
+<blockquote class="blockquote">
+<p>Therefore, after rounding up to the next even number, we need to sample and recruit 696 / 2 = <strong>348</strong> individuals to the intervention and control groups to ensure we have an 80% chance (our power) of detecting a difference in the prevalence of diabetes between the groups of 10 percentage points or more, on the assumption that such a difference exists in the population and that the difference is control = 30% intervention = 20%, via a null-hypothesis significance test based on a two-sided p-value with a significance level of 5%.</p>
+</blockquote>
+<ul>
+<li>Again, that’s quite a complicated interpretation. Another way to think about it is that if we did our study an infinite number of times, each time calculating the p-value for the null-hypothesis that the difference between the proportions we obtain = 0, and rejecting that null-hypothesis when the p-value is ≤0.05. Then if the true difference in diabetes prevalence in the population between individuals given the intervention and those not given it 10 percentage points lower in individuals given the treatment (and the prevalence is 30% in individuals not given the treatment), then on average 80% of the time (in 80% of our repeated studies) we would get a p-value ≤0.05 and correctly reject the null-hypothesis. Still confused? I’m afraid it’s a complex series of concepts without an easy interpretation, and you just have to keep coming back to it until it clicks.</li>
+</ul>
+<p>Again, as for the previous sample size calculations, the accuracy of this interpretation depends entirely on the underlying assumption that there is no bias in the study. If, for example, the 90% response rate is correct, but reflects the fact that 10% of individuals drop out of the study. Then if all 10% drop out from the intervention group due to side effects of the new treatment regimes, even if the true effect of the intervention was to reduce the prevalence of diabetes by &gt;10 percentage points (and the true prevalence in untreated individuals was 30%), we might have a power &lt;80%. That is, even if we recruit 343 participants per group we might actually only have a 10% chance of detecting a statistically significant difference between the two groups’ prevalence of diabetes, because of the influence of this bias (known as differential loss to follow-up).</p>
+<p>And as always the validity and accuracy of this calculation depends entirely on the accuracy of the assumptions that you made when calculating the sample size.</p>
+<p><br></p>
+</section>
+</section>
+</section>
+<section id="optional-additional-exercises-estimating-required-sample-sizes-for-various-scenarios" class="level1">
+<h1>Optional additional exercises: estimating required sample sizes for various scenarios</h1>
+<hr>
+<section id="instructions" class="level2">
+<h2 class="anchored" data-anchor-id="instructions">Instructions</h2>
+<p>In the “Exercises” folder open the “Exercises.docx” Word document and click on the <strong>Planning sample sizes</strong> heading in the contents and follow the instructions, then check your answers with the model answers below.</p>
+<p>Reveal the below if you want a hint about the type of sample size calculations required for each exercise scenario</p>
+<details>
+<summary>
+Read/hide
+</summary>
+<ul>
+<li><p>Scenario 1: given the scenario we are aiming to calculate the sample size required to estimate a single proportion (although in reality it will apply to all the proportions we estimate in the scenario survey).</p></li>
+<li><p>Scenario 2: given the scenario we are aiming to calculate the sample size required to detect compare two means (or more specifically we are aiming to detect a difference between two means as statistically significant, i.e.&nbsp;with a p-value less than some threshold, with a given level of power).</p></li>
+</ul>
+</details>
+<section id="sample-size-exercises-model-answers" class="level3">
+<h3 class="anchored" data-anchor-id="sample-size-exercises-model-answers">Sample size exercises model answers</h3>
+<details>
+<summary>
+Read/hide
+</summary>
+<p><strong>Exercise 1: public primary-care health facility patient satisfaction survey</strong></p>
+<p>For our survey we estimated that for any population proportion we wish to estimate (e.g.&nbsp;from a binary outcome or a category level from a categorical outcome with &gt;2 levels) we require a sample size of 117 (i.e.&nbsp;we need to try and recruit 117 facilities into the survey) to achieve a 10 percentage point level of precision (95% confidence interval ±10 percentage points), assuming the proportion we estimate is 0.5, and assuming a response rate of 80%.</p>
+<p><strong>Exercise 2: pilot intervention study to reduce drug stock-outs</strong></p>
+<p>We estimated that we required a total sample size of 96 health facilities, i.e.&nbsp;48 per group, to detect a difference in the mean number of essential drug stock-outs during the three-month study period (the primary outcome) in the intervention group compared to the comparison group of -15 or greater, assuming a standard deviation of 25, based on a hypothesis test of the difference in the primary outcome between the two groups (assuming the outcome is t-distributed), with a level of significance of 0.05 and a power of 0.8. We also assumed a follow-up rate of 95%.</p>
+<p>Remember to adjust for the response rate, and then to add 1 if you end up with an odd number to allow you to divide by 2 for the group sizes.</p>
+</details>
+<p><br></p>
+</section>
+</section>
+</section>
+<section id="additional-optional-information" class="level1">
+<h1>Additional optional information</h1>
+<hr>
+<section id="reporting-sample-size-calculations-in-methods-sections" class="level2">
+<h2 class="anchored" data-anchor-id="reporting-sample-size-calculations-in-methods-sections">Reporting sample size calculations in methods sections</h2>
+<p>For any methods and results reporting, such in a paper or report, you should explain what your study sample size was and how you calculated it, including all the assumptions that went into it. You should also report where any assumptions came from, i.e.&nbsp;what they were based on/how you chose them, unless they were chosen by convention, such as a 95% confidence interval or a level of significance of 5%. There is no set sequence in which you have to report the different assumptions/inputs used in your sample size calculation, but the below examples are one way you might do it. Lastly, you don’t have to explicitly state whether you are reporting a sample size calculated via a confidence interval or hypothesis testing based approach as this should be clear from the assumptions reported.</p>
+<p>In the below examples we will not report any assumptions about the response rate or group size ratio, but if you make an assumption for these other than 100% or 1 respectively this should also be reported, and the basis for these assumptions justified. Also, the assumption values are just for illustration and not real!</p>
+<section id="confidence-interval-based-sample-size-calculation" class="level3">
+<h3 class="anchored" data-anchor-id="confidence-interval-based-sample-size-calculation">Confidence interval based sample size calculation</h3>
+<p>When estimating a mean you simply need to report the expected standard deviation, the level of precision or margin of error, and the confidence level (this is often not presented, presumably because the assumption is 95%, but why not be clear?). You should also explain where your assumption of the expected standard deviation and level of precision came from.</p>
+<p>Example methods reporting text for a confidence interval based sample size calculation for a survey of systolic blood pressure:</p>
+<ul>
+<li>We estimated that we required a sample size of 100 to estimate the mean of our primary outcome of systolic blood pressure (mmHg) with a level of precision (95% confidence intervals) at most ± 5 mmHg, assuming a standard deviation of 10. We based our assumption of the expected standard deviation on data from our previously reported pilot study (reference), which we rounded up from 7 to 10 to be conservative. Our level of precision was chosen based on consultations with relevant clinicians and health officials about what level of precision they required for usable results.</li>
+</ul>
+<p>When estimating a proportion you simply need to report the expected proportion, the level of precision or margin of error, and the confidence level. You should also explain where your assumption of the expected proportion and level of precision came from.</p>
+<p>Example methods reporting text for a confidence interval based sample size calculation for a survey of hypertension prevalence:</p>
+<ul>
+<li>We estimated that we required a sample size of 100 to estimate the proportion of individuals with hypertension, which we assumed to be 0.3, with a level of precision (95% confidence intervals) where the lower limit was at most 0.25 and the upper limit was at most 0.3. We based our assumption of the expected proportion on data from our previously reported pilot study (reference) of 0.2, which we rounded up by 0.1 towards the most conservative value of 0.5 to be conservative. Our level of precision was chosen based on consultations with relevant clinicians and health officials about what level of precision they required for usable results.</li>
+</ul>
+<p>Take care, when reporting the confidence interval ranges for your proportion/percentage that you are clear whether they are on an absolute scale (probably the easiest to understand and not misinterpret) or a relative scale.</p>
+</section>
+<section id="hypothesis-testing-based-sample-size-calculation" class="level3">
+<h3 class="anchored" data-anchor-id="hypothesis-testing-based-sample-size-calculation">Hypothesis testing based sample size calculation</h3>
+<p>For a hypothesis test based sample size calculation for a difference between two independent means you simply need to report the expected difference in means (or if you prefer the expected mean in each group) and the expected pooled (or common) standard deviation, plus your pre-specified level of significance/alpha and the power, and that you are using a two-sided hypothesis test (unless of course you are not). You should also explain where your assumption about the expected difference in means (i.e.&nbsp;the target difference) and the expected pooled standard deviation came from. Lastly, although it’s often not done you should explain what distribution you are assuming your outcome follows</p>
+<p>Example methods reporting text for a hypothesis test based sample size calculation for a study comparing the effectiveness of an intervention at reducing systolic blood pressure in an two-group comparison RCT:</p>
+<ul>
+<li>We estimated that we required a sample size of 100 to detect a reduction in our primary outcome of systolic blood pressure (mmHg) between our intervention and control arms that is at least 5 mmHg, based on a two-sided hypothesis test (assuming the t-distribution). This assumes a pooled standard deviation of 10 mmHg, the standard level of significance of 0.05, and a power of 0.8. Our target difference for detection was chosen based on consultations with relevant clinicians and health officials about what size of impact would be required for the intervention to be considered worth funding and scaling up. Our expected standard deviation was chosen based on values from relevant previous studies (references), which we rounded up from 7 to 10 to be conservative.</li>
+</ul>
+<p>For a hypothesis test based sample size calculation for a difference between two independent proportions you simply need to report the expected proportion for each group (or equivalently the expected proportion in the reference/control group and the absolute or relative expected difference in the proportional outcome, but this is arguably less easy to follow), plus your desired level of alpha and power, and that you are using a two-sided hypothesis test (unless of course you are not). You should also explain where your assumption about the expected difference in proportions (i.e.&nbsp;the target difference) came from.</p>
+<p>Example methods reporting text for a hypothesis test based sample size calculation for a study comparing the effectiveness of an intervention at reducing the prevalence/proportion of individuals having hypertension in an two-group comparison RCT:</p>
+<ul>
+<li>We estimated that we required a sample size of 100 to detect a difference in the proportion of individuals with hypertension at study follow-up where we expect the proportion with hypertension in the intervention group is 0.2 and the expected proportion in the control group is 0.3, based on a two-sided hypothesis test. This assumes the standard level of significance of 0.05 and a power of 0.8. Our target difference for detection was chosen based on consultations with relevant clinicians and health officials about what size of impact would be required for the intervention to be considered worth funding and scaling up, with the expected proportion of individuals with hypertension in the control arm based on existing routine clinical data rounded up from 0.25 to 0.3 (towards the most conservative assumption of 0.5) to be conservative.</li>
+</ul>
+</section>
+</section>
+<section id="estimating-sample-sizes-when-testing-for-differences-between-means-or-proportions-where-the-outcomes-are-paired" class="level2">
+<h2 class="anchored" data-anchor-id="estimating-sample-sizes-when-testing-for-differences-between-means-or-proportions-where-the-outcomes-are-paired">Estimating sample sizes when testing for differences between means or proportions where the outcomes are “paired”</h2>
+<p>We will not look at these sample size scenarios/approaches or practice them as they are not commonly needed, but they are for when your study design involves comparing means or proportions between two groups where those groups are not independent. For example, if you are comparing the change in systolic blood pressure (mmHg) in the same individuals where their systolic blood pressure is measured at two separate times, or where you are comparing the proportion of individuals with diabetes where that diagnosis is made at two separate times within the same group of individuals. Most of the assumptions that go into these calculations are exactly the same as for the calculations we’ve already covered and the rest you should be able to work out or get help with if you ever need to use them, which is not likely.</p>
+</section>
+<section id="adjusting-for-clustering" class="level2">
+<h2 class="anchored" data-anchor-id="adjusting-for-clustering">Adjusting for clustering</h2>
+<p>We will not look at adjusting for clustering beyond saying that if you believe this issue applies to your study you should seek advice from a statistician/researcher experienced with making the necessary adjustments. What is clustering? As an example, if you collect data on pupils within different schools to look at test scores then those pupils within the same schools are likely to have correlated test scores. This is due to differences at the school level, such as difference in the overall quality of teaching, the socio-economic circumstances of the schools’ catchment areas, whether they charge fees etc. Hence, you don’t have the same amount of statistical information as for a true simple random sample, because pupils are not independent when they come from the same school. Standard sample size calculations, such as those we’ve looked at, assume your sample data are independent. They would assume that two randomly selected pupils from the same school are no more or less likely to have similar outcome values, such as test scores, than two randomly selected pupils from separate schools. Rarely will this be the case. Therefore, unless you adjust for the “level of clustering” in your outcome you won’t achieve the level of precision or power that you expect to get from a given sample size even if all the other assumptions are accurate. There are different ways of measuring the “amount of clustering” in an outcome, and it’s a more advanced topic beyond the scope of this introductory course that you should seek assistance with if you need to carry out such a sample size calculation in the future.</p>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>
