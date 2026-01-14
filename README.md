@@ -1,1 +1,1 @@
-This site hosts the statistics materials for the Nuffield Centre for International Health and Development MSc in International Health Statistics for Health Sciences module.
+This site hosts the computer practical materials for the Introduction to Quantitative Research Methods in International Health module on the MSc in International Health in the Nuffield Centre for International Health and Development.
